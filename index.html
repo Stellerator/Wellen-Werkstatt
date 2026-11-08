@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Wellen-Werkstatt">
+<meta name="theme-color" content="#0e151b">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="icon" type="image/png" href="icon-180.png">
+<link rel="manifest" href="manifest.webmanifest">
+<title>Wellen-Werkstatt</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=JetBrains+Mono:wght@500;700&display=swap">
+<style>
+/* Layout: App-Hülle mit Kapitel-Chips; Übersicht = Steckbrief-Raster + Spielkarten; Spielansicht = Messplatz mit Diagramm oben, Bedienung darunter */
+:root{
+  --bg:#eef3f6; --surface:#ffffff; --plot:#fbfdfe; --grid:#e1e9ef; --line:#cfdae2;
+  --ink:#122029; --muted:#566874;
+  --wave:#1d5bbd; --on-wave:#ffffff; --mark:#d97f00; --mark-soft:#fdf0dc;
+  --ok:#1d8048; --ok-soft:#e3f4ea; --bad:#c2352a; --bad-soft:#fbe7e5;
+  --font-display:"Bricolage Grotesque","Avenir Next",system-ui,sans-serif;
+  --font-body:"Atkinson Hyperlegible",system-ui,-apple-system,sans-serif;
+  --font-mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+  --r:14px;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#0e151b; --surface:#16212a; --plot:#121b22; --grid:#1d2a34; --line:#2a3945;
+  --ink:#e4ecf1; --muted:#93a5b2;
+  --wave:#6fa6ff; --on-wave:#0b1622; --mark:#ffb13d; --mark-soft:#3a2a12;
+  --ok:#50c784; --ok-soft:#14321f; --bad:#ff6d60; --bad-soft:#3a1714; color-scheme:dark; } }
+:root[data-theme="dark"]{
+  --bg:#0e151b; --surface:#16212a; --plot:#121b22; --grid:#1d2a34; --line:#2a3945;
+  --ink:#e4ecf1; --muted:#93a5b2;
+  --wave:#6fa6ff; --on-wave:#0b1622; --mark:#ffb13d; --mark-soft:#3a2a12;
+  --ok:#50c784; --ok-soft:#14321f; --bad:#ff6d60; --bad-soft:#3a1714; color-scheme:dark; }
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:17px/1.5 var(--font-body);
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 40px;
+  -webkit-tap-highlight-color:transparent}
+.wrap{max-width:1000px;margin:0 auto}
+button{font:inherit;color:inherit;cursor:pointer}
+button:focus-visible,input:focus-visible{outline:3px solid var(--mark);outline-offset:2px}
+h1,h2,h3{font-family:var(--font-display);text-wrap:balance;margin:0}
+
+.top{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px 24px;padding-block:22px 14px}
+.brand{display:flex;align-items:center;gap:14px}
+.brand svg{flex:none}
+.brand h1{font-size:clamp(28px,5vw,40px);font-weight:800;letter-spacing:-.02em;line-height:1}
+.brand p{margin:4px 0 0;color:var(--muted);font-size:14px;letter-spacing:.04em;text-transform:uppercase}
+
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{min-height:44px;padding:0 16px;border-radius:999px;border:1px solid var(--line);background:var(--surface);font-weight:700;font-size:15px;display:inline-flex;align-items:center;gap:8px}
+.chip .nr{font-family:var(--font-mono);font-size:13px;color:var(--muted)}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.chip[aria-pressed="true"] .nr{color:inherit;opacity:.7}
+.chip:disabled{opacity:.5;cursor:not-allowed}
+
+.sect{margin-top:28px}
+.sect-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:12px}
+.eyebrow{font-size:13px;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.sect h2{font-size:24px;font-weight:800}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:14px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:18px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.card h3{font-size:20px;font-weight:800}
+.card p{margin:0}
+.formel{font-family:var(--font-mono);font-weight:700;font-size:17px;background:var(--plot);border:1px dashed var(--line);border-radius:10px;padding:8px 12px;overflow-x:auto}
+.tag{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;display:inline-block;padding:2px 8px;border-radius:6px;margin-bottom:4px}
+.merke .tag{background:var(--ok-soft);color:var(--ok)}
+.falle .tag{background:var(--mark-soft);color:var(--mark)}
+.merke,.falle{font-size:15.5px}
+.card.wide{grid-column:1/-1}
+
+.games{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}
+.game{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:18px;display:flex;flex-direction:column;gap:8px;text-align:left;min-height:150px}
+.game:hover{border-color:var(--wave)}
+.game h3{font-size:20px;font-weight:800}
+.game p{margin:0;color:var(--muted);font-size:15px;flex:1}
+.game .go{font-weight:700;color:var(--wave)}
+
+.locked{border:1px dashed var(--line);border-radius:var(--r);padding:18px;color:var(--muted);text-align:center}
+
+/* Spielansicht */
+.bar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding-block:18px 10px}
+.bar h2{font-size:clamp(22px,4vw,30px);font-weight:800}
+.back{min-height:44px;padding:0 14px;border-radius:10px;border:1px solid var(--line);background:var(--surface);font-weight:700}
+.score{font-family:var(--font-mono);font-weight:700;font-size:15px;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:6px 14px;font-variant-numeric:tabular-nums}
+.stage{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:18px;display:flex;flex-direction:column;gap:14px}
+.prompt{font-size:19px;font-weight:700;margin:0}
+.hint{color:var(--muted);font-size:15px;margin:0}
+.plot{width:100%;min-width:0}
+.plot canvas{display:block;border-radius:10px;border:1px solid var(--line);touch-action:manipulation}
+.legend{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:14px;color:var(--muted)}
+.legend i{display:inline-block;width:22px;height:0;border-top:3px solid;vertical-align:middle;margin-right:6px}
+
+.btn{min-height:50px;padding:0 22px;border-radius:12px;border:0;background:var(--wave);color:var(--on-wave);font-weight:700;font-size:17px}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.actions{display:flex;flex-wrap:wrap;gap:10px}
+
+.rows{display:grid;gap:8px}
+.row{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:10px;padding:8px 10px;border-radius:12px;border:1px solid var(--line);background:var(--plot)}
+.row .lbl{min-width:0}
+.row .sym{font-family:var(--font-mono);font-weight:700;font-size:20px;margin-right:8px}
+.row .nm{color:var(--muted);font-size:14px}
+.tri{display:flex;gap:6px}
+.tri button{width:54px;height:46px;border-radius:10px;border:1px solid var(--line);background:var(--surface);font-size:20px;font-weight:700;font-family:var(--font-mono)}
+.tri button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.row.ok{border-color:var(--ok);background:var(--ok-soft)}
+.row.bad{border-color:var(--bad);background:var(--bad-soft)}
+.row .fix{font-size:14px;font-weight:700;color:var(--bad);grid-column:1/-1}
+
+.feedback{border-radius:12px;padding:12px 14px;font-size:16px}
+.feedback.ok{background:var(--ok-soft);color:var(--ink);border:1px solid var(--ok)}
+.feedback.bad{background:var(--bad-soft);color:var(--ink);border:1px solid var(--bad)}
+.feedback b{display:block;margin-bottom:2px}
+
+.controls{display:grid;gap:14px}
+.ctl-lbl{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:6px}
+.seg{display:flex;flex-wrap:wrap;gap:6px}
+.seg button{min-height:46px;padding:0 14px;border-radius:10px;border:1px solid var(--line);background:var(--plot);font-weight:700}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.seg button:disabled{opacity:.45;cursor:not-allowed}
+.freq{display:flex;align-items:center;gap:10px}
+.freq input{flex:1;min-width:0;accent-color:var(--wave);height:32px}
+.freq .val{font-family:var(--font-mono);font-weight:700;min-width:92px;text-align:right;font-variant-numeric:tabular-nums}
+.step{width:46px;height:46px;border-radius:10px;border:1px solid var(--line);background:var(--plot);font-weight:700;font-size:22px}
+
+.phen{border:2px solid var(--line);border-radius:var(--r);padding:22px;background:var(--plot);text-align:center}
+.phen h3{font-size:clamp(24px,4vw,32px);font-weight:800}
+.phen p{margin:6px 0 0;color:var(--muted)}
+.answers{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.answers button{min-height:64px;border-radius:12px;border:1px solid var(--line);background:var(--surface);font-weight:700;font-size:18px}
+.answers button.right{border-color:var(--ok);background:var(--ok-soft)}
+.answers button.wrong{border-color:var(--bad);background:var(--bad-soft)}
+.answers small{display:block;font-weight:400;font-size:13px;color:var(--muted)}
+
+.end{text-align:center;padding:24px 8px;display:flex;flex-direction:column;align-items:center;gap:12px}
+.end .big{font-family:var(--font-display);font-weight:800;font-size:64px;line-height:1;font-variant-numeric:tabular-nums}
+
+/* Spielgefühl: Kacheln, Punkte, Serie, Uhr, Sterne */
+.game{position:relative;transition:transform .12s,border-color .12s,box-shadow .12s}
+.game:hover{transform:translateY(-3px);box-shadow:0 6px 0 -3px var(--line)}
+.game:active{transform:scale(.98)}
+.game .ico{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;font-family:var(--font-mono);font-weight:700;font-size:24px;background:var(--ink);color:var(--bg);margin-bottom:2px}
+.game.quiz .ico{background:var(--mark);color:#1a1100}
+.game.quiz:hover{border-color:var(--mark)}
+.game .best{position:absolute;top:16px;right:16px;font-family:var(--font-mono);font-size:12px;font-weight:700;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:2px 10px}
+.hud{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-bottom:12px}
+.pips{display:flex;gap:7px;flex-wrap:wrap}
+.pip{width:15px;height:15px;border-radius:50%;border:2px solid var(--line);background:var(--surface);transition:background .2s,border-color .2s,transform .2s}
+.pip.now{border-color:var(--ink);transform:scale(1.25)}
+.pip.ok{background:var(--ok);border-color:var(--ok)}
+.pip.bad{background:var(--bad);border-color:var(--bad)}
+.streak{font-family:var(--font-mono);font-weight:700;font-size:15px;padding:6px 14px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--muted)}
+.streak.hot{background:var(--mark-soft);border-color:var(--mark);color:var(--ink)}
+.streak.pop{animation:pop .35s}
+.score{position:relative}
+.gain{position:absolute;right:10px;top:-6px;font-weight:700;color:var(--ok);pointer-events:none;animation:gain .9s forwards}
+@keyframes pop{40%{transform:scale(1.25)}}
+@keyframes gain{to{transform:translateY(-24px);opacity:0}}
+@keyframes shake{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.answers button.right{animation:pop .35s}
+.answers button.wrong,.feedback.shake{animation:shake .35s}
+.answers.mc{grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+.answers.mc button{text-align:left;padding:12px 16px;font-size:17px;line-height:1.3}
+.phen.q{text-align:left;padding:18px 20px}
+.phen.q h3{font-size:clamp(19px,3vw,24px);line-height:1.3}
+.mission{margin:0;border:2px solid var(--mark);background:var(--mark-soft);border-radius:12px;padding:12px 16px;font-weight:700;font-size:18px}
+.timer{height:10px;border-radius:99px;background:var(--grid);overflow:hidden}
+.timer i{display:block;height:100%;background:var(--wave);transform-origin:left}
+.timer.low i{background:var(--bad)}
+.meas{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.meas div{background:var(--plot);border:1px solid var(--line);border-radius:10px;padding:6px 10px;display:flex;flex-direction:column}
+.meas .k{font-family:var(--font-mono);font-size:13px;color:var(--muted);font-weight:700}
+.meas .v{font-family:var(--font-mono);font-weight:700;font-size:16px;font-variant-numeric:tabular-nums;white-space:nowrap}
+.stars{font-size:48px;letter-spacing:8px;line-height:1;color:var(--line)}
+.stars b{color:var(--mark)}
+@media (max-width:520px){ .meas{grid-template-columns:repeat(2,minmax(0,1fr))} }
+@media (prefers-reduced-motion:reduce){ *{animation:none!important;transition:none!important} }
+footer{margin-top:36px;color:var(--muted);font-size:13px;font-family:var(--font-mono)}
+@media (max-width:520px){ .tri button{width:46px} .row{grid-template-columns:1fr} }
+</style>
+
+</head>
+<body>
+<div class="wrap" id="app"></div>
+
+<script>
+/* =====================================================================
+   INHALTE — hier erweitern.
+   Neues Kapitel: Eintrag in KAPITEL ergänzen, freigegeben:true setzen.
+   Quiz (quiz: {typ:"quiz",pool,titel,n,kurz,wf?}) und Micro-Challenges (spiele): aendert | tuner | querlaengs (modus "art"/"pol") | teilchen
+   ===================================================================== */
+
+const STECKBRIEFE = {
+  welle:{titel:"Mechanische Welle",
+    text:"Eine mechanische Welle ist die Ausbreitung einer Schwingung im Raum. Gekoppelte Oszillatoren geben ihre Schwingung an den Nachbarn weiter. Alle Oszillatoren zusammen bilden das Medium.",
+    merke:"Eine Welle transportiert Energie, aber keine Materie.",
+    falle:"Die Teilchen wandern nicht mit der Welle. Jedes schwingt nur um seine eigene Ruhelage."},
+  arten:{titel:"Quer- und Längswellen", widget:"kette", wide:true,
+    text:"Bei einer Transversalwelle (Querwelle) schwingen die Oszillatoren senkrecht zur Ausbreitungsrichtung. Bei einer Longitudinalwelle (Längswelle) schwingen sie parallel zur Ausbreitungsrichtung. Beobachte das orange Teilchen: Es bleibt immer an seinem Platz.",
+    falle:"Eine Wasserwelle ist keine reine Querwelle. Die Wasserteilchen laufen auf kreisähnlichen Bahnen."},
+  kenngr:{titel:"Elongation, Amplitude, T und f", formel:"f = 1 / T",
+    text:"Die Elongation s ist die momentane Auslenkung eines Oszillators aus der Ruhelage, die Amplitude ŝ ist ihr größter Wert. Die Periodendauer T ist die Zeit für eine volle Schwingung. Die Frequenz f gibt an, wie viele Schwingungen pro Sekunde stattfinden.",
+    merke:"Frequenz und Periodendauer gibt der Erreger vor.",
+    falle:"T ist eine Zeit und keine Länge. In einem Foto der Welle kannst du T nicht ablesen."},
+  lambda:{titel:"Wellenlänge λ", formel:"[λ] = 1 m",
+    text:"Die Wellenlänge λ ist der Abstand zwischen zwei benachbarten Oszillatoren, die im gleichen Schwingungszustand sind, zum Beispiel von Wellenberg zu Wellenberg.",
+    falle:"Vom Wellenberg zum nächsten Wellental ist es nur λ/2."},
+  c:{titel:"Ausbreitungsgeschwindigkeit c", formel:"c = λ / T = λ · f",
+    text:"c gibt an, wie schnell sich ein Schwingungszustand, zum Beispiel ein Wellenberg, durch das Medium bewegt. In der Zeit T kommt die Welle genau um λ voran.",
+    merke:"Der Erreger bestimmt f. Das Medium bestimmt c. Daraus ergibt sich λ = c / f.",
+    falle:"c ist nicht die Geschwindigkeit, mit der ein Oszillator auf und ab schwingt. Diese heißt Schnelle."},
+  ort:{titel:"Ortsdarstellung s(x)", formel:"s(x)  bei festem t",
+    text:"Die Ortsdarstellung zeigt die Auslenkung aller Oszillatoren zu einem festen Zeitpunkt, wie ein Foto der Welle. Zwei benachbarte Punkte gleicher Phase haben den Abstand λ.",
+    falle:"s(x) und s(t) sehen ähnlich aus. Schau immer zuerst auf die Achse: x oder t?"},
+  zeit:{titel:"Zeitdarstellung s(t)", formel:"s(t)  bei festem x",
+    text:"Die Zeitdarstellung zeigt die Auslenkung eines einzelnen Oszillators im Lauf der Zeit, wie ein Video von genau diesem Teilchen. Zwei benachbarte Punkte gleicher Phase haben den zeitlichen Abstand T."},
+  regel:{titel:"Wohin bewegt sich ein Teilchen?",
+    text:"Jedes Teilchen macht das, was sein Nachbar in Richtung Erreger gerade eben gemacht hat.",
+    merke:"Läuft die Welle nach rechts und liegt links neben dem Teilchen ein Wellenberg, bewegt sich das Teilchen als Nächstes nach oben."},
+  pol:{titel:"Polarisation",
+    text:"Eine Querwelle hat eine Schwingungsrichtung quer zur Ausbreitung. Ein Spalt lässt nur die Schwingung parallel zum Spalt durch. Danach schwingt die Welle nur noch in dieser Richtung: Sie ist polarisiert.",
+    merke:"Nur Transversalwellen lassen sich polarisieren. Bei Längswellen liegt die Schwingung in Ausbreitungsrichtung, ein Spalt kann keine Richtung auswählen.",
+    falle:"Umgekehrt gilt: Lässt sich eine Welle polarisieren, ist sie eine Querwelle. Das brauchst du später beim Licht."}
+};
+
+const KAPITEL = [
+  {id:"k1", nr:1, titel:"Grundlagen", untertitel:"Definition, Wellenarten, λ, f und c", freigegeben:true,
+   steckbriefe:["welle","arten","kenngr","lambda","c"],
+   quiz:[{typ:"quiz",pool:"k1",titel:"Quiz Grundlagen",n:8,kurz:"8 Fragen mit je vier Antworten: Wellenarten, f, T, λ und c, auch mit Diagrammen."},
+         {typ:"quiz",pool:"wf1",wf:true,titel:"Richtig oder falsch?",n:7,kurz:"Sieben Aussagen. Stimmt sie oder nicht? Blitzcheck zum Stoff."}],
+   spiele:[{typ:"aendert"},{typ:"tuner"},{typ:"querlaengs",modus:"art"}]},
+  {id:"k2", nr:2, titel:"Darstellungen & Polarisation", untertitel:"s(x), s(t), Merkregel, Polarisation", freigegeben:true,
+   steckbriefe:["ort","zeit","regel","pol"],
+   quiz:[{typ:"quiz",pool:"k2",titel:"Quiz Darstellungen & Polarisation",n:8,kurz:"8 Fragen: s(x), s(t), Merkregel, Phase und Polarisation."}],
+   spiele:[{typ:"teilchen"},{typ:"querlaengs",modus:"pol"}]},
+  {id:"k3", nr:3, titel:"Interferenz & stehende Wellen", untertitel:"folgt", freigegeben:false, steckbriefe:[], quiz:[], spiele:[]}
+];
+
+/* ---------- Inhalte der Spiele ---------- */
+const GROESSEN = {f:["f","Frequenz"],T:["T","Periodendauer"],c:["c","Ausbreitungsgeschw."],lambda:["λ","Wellenlänge"],s:["ŝ","Amplitude"]};
+
+// demo: [c, f, Amplitude] vorher / nachher (qualitative Skizze)
+const AENDERT_ITEMS = [
+  {text:"Der Erreger schwingt doppelt so schnell. Das Seil bleibt dasselbe.",
+   soll:{f:"+",T:"-",c:"=",lambda:"-",s:"="}, vor:[1,1,1], nach:[1,2,1],
+   erkl:"Der Erreger legt f fest, das Seil legt c fest. Bei gleichem c und doppelter Frequenz halbiert sich λ = c/f."},
+  {text:"Der Erreger schwingt im gleichen Takt, aber mit größerer Auslenkung.",
+   soll:{f:"=",T:"=",c:"=",lambda:"=",s:"+"}, vor:[1,1,1], nach:[1,1,1.6],
+   erkl:"Die größere Auslenkung ändert nur die Amplitude. Takt und Medium bleiben gleich, also auch f, T, c und λ."},
+  {text:"Im Sommer wird es wärmer: Schall breitet sich in warmer Luft etwas schneller aus. Der Lautsprecher bleibt unverändert.",
+   soll:{f:"=",T:"=",c:"+",lambda:"+",s:"="}, vor:[1,1,1], nach:[1.6,1,1],
+   erkl:"Der Lautsprecher legt f fest, die wärmere Luft legt ein größeres c fest. Bei gleichem f wird λ = c/f größer."},
+  {text:"Die Welle läuft von einem dicken in ein dünnes, leichteres Seil. Dort ist sie schneller.",
+   soll:{f:"=",T:"=",c:"+",lambda:"+"}, vor:[1,1,1], nach:[1.7,1,1],
+   erkl:"Die Frequenz kommt vom Erreger und ändert sich beim Übergang nicht. Mit größerem c wird λ größer."},
+  {text:"Der Erreger schwingt langsamer: Die Periodendauer wird doppelt so groß.",
+   soll:{f:"-",T:"+",c:"=",lambda:"+",s:"="}, vor:[1,1,1], nach:[1,0.5,1],
+   erkl:"Doppelte Periodendauer heißt halbe Frequenz. Das Medium bleibt, also bleibt c, und λ = c/f verdoppelt sich."},
+  {text:"Ein Ton gelangt aus der Luft ins Wasser. Im Wasser ist Schall rund viermal so schnell.",
+   soll:{f:"=",T:"=",c:"+",lambda:"+"}, vor:[1,1,1], nach:[2,1,1],
+   erkl:"Die Frequenz bleibt beim Übergang gleich, du hörst unter Wasser denselben Ton. Mit größerem c wird λ größer."},
+  {text:"Im Winter ist die Luft kälter, Schall läuft langsamer. Der Ton soll trotzdem dieselbe Wellenlänge haben wie im Sommer. Wie musst du den Lautsprecher einstellen?",
+   soll:{c:"-",lambda:"=",f:"-",T:"+"}, vor:[1,1,1], nach:[0.6,0.6,1],
+   erkl:"Kältere Luft heißt kleineres c. Damit λ = c/f gleich bleibt, muss f im gleichen Verhältnis kleiner werden."},
+  {text:"Eine Fledermaus wechselt von einem tieferen zu einem höheren Ultraschallton.",
+   soll:{f:"+",T:"-",c:"=",lambda:"-"}, vor:[1,1,1], nach:[1,1.7,1],
+   erkl:"Ein höherer Ton hat eine höhere Frequenz. Das Medium Luft bleibt gleich, also bleibt c, und λ wird kleiner."},
+  {text:"Wasserwellen laufen auf einen flachen Strand zu. Im flachen Wasser sind sie langsamer. Der Takt der Wellen bleibt gleich.",
+   soll:{f:"=",T:"=",c:"-",lambda:"-"}, vor:[1,1,1], nach:[0.6,1,1],
+   erkl:"Die Frequenz kommt von der Quelle und bleibt gleich. Mit kleinerem c wird λ = c/f kleiner: Die Wellen rücken am Strand enger zusammen."}
+];
+
+
+const PHAENOMENE = [
+  {t:"Schall in Luft", d:"Ein Lautsprecher erzeugt einen Ton.", art:"laengs",
+   e:"Die Luftteilchen schwingen in Ausbreitungsrichtung hin und her. Verdichtungen und Verdünnungen wandern durch den Raum."},
+  {t:"Seilwelle", d:"Das Seilende wird schnell auf und ab bewegt.", art:"quer",
+   e:"Jedes Seilstück schwingt senkrecht zur Ausbreitungsrichtung."},
+  {t:"P-Welle eines Erdbebens", d:"Die Primärwelle kommt zuerst an.", art:"laengs",
+   e:"Das Gestein wird in Laufrichtung gestaucht und gedehnt. Deshalb läuft sie auch durch Flüssigkeiten."},
+  {t:"S-Welle eines Erdbebens", d:"Die Sekundärwelle kommt später an.", art:"quer",
+   e:"Das Gestein wird quer zur Laufrichtung verschoben. Flüssigkeiten übertragen das nicht, darum durchquert sie den flüssigen äußeren Erdkern nicht."},
+  {t:"Federschlange, gestaucht", d:"Einige Windungen werden zusammengedrückt und losgelassen.", art:"laengs",
+   e:"Die Windungen schwingen in Ausbreitungsrichtung. Die Verdichtung wandert die Feder entlang."},
+  {t:"Federschlange, geschüttelt", d:"Das Ende wird seitlich hin und her bewegt.", art:"quer",
+   e:"Die Windungen schwingen quer zur Feder, die Auslenkung wandert entlang."},
+  {t:"Gitarrensaite", d:"Eine Saite wird gezupft.", art:"quer",
+   e:"Auf der Saite laufen Querwellen. Der Ton, den du hörst, ist dagegen eine Längswelle in der Luft."},
+  {t:"Sonar", d:"Ein U-Boot ortet mit Schallpulsen im Wasser.", art:"laengs",
+   e:"Schall in Flüssigkeiten ist eine Längswelle."},
+  {t:"Wasserwelle", d:"Wellen auf einem See.", art:"misch",
+   e:"Die Wasserteilchen laufen auf kreisähnlichen Bahnen. Sie schwingen also gleichzeitig quer und längs."},
+  {t:"La-Ola im Stadion", d:"Zuschauer stehen nacheinander auf.", art:"quer", nopol:true,
+   e:"Im Modell eine Querwelle, denn die Bewegung ist senkrecht zur Laufrichtung. Streng genommen fehlt aber die mechanische Kopplung."},
+  {t:"Ultraschall beim Arzt", d:"Ultraschall im weichen Körpergewebe.", art:"laengs",
+   e:"Im weichen Gewebe breitet sich Ultraschall wie Schall in Wasser als Längswelle aus."}
+];
+
+/* ---------- Quiz-Fragen (Multiple Choice) ----------
+   a = richtige Antwort, f = drei falsche, th = Thema, e = Erklärung, fig = optionale Diagramme */
+const QUIZ = {
+k1:[
+ {th:"Welle", q:"Was transportiert eine Welle?", a:"Energie, aber keine Materie", f:["Materie, aber keine Energie","Energie und Materie","Weder Energie noch Materie"],
+  e:"Die Oszillatoren schwingen nur um ihre Ruhelage. Weitergegeben werden die Schwingung und damit Energie."},
+ {th:"Welle", q:"Ein Korken schwimmt auf einem See, über den Wellen laufen. Was macht der Korken?", a:"Er bewegt sich auf einer kreisähnlichen Bahn um seinen Platz", f:["Er wird mit der Welle zum Ufer getragen","Er schwingt nur senkrecht auf und ab","Er schwingt nur waagerecht hin und her"],
+  e:"Wasserteilchen laufen auf kreisähnlichen Bahnen, schwingen also quer und längs. Sie bleiben im Mittel an ihrem Platz."},
+ {th:"Wellenarten", q:"Bei einer Längswelle (Longitudinalwelle) schwingen die Oszillatoren …", a:"parallel zur Ausbreitungsrichtung", f:["senkrecht zur Ausbreitungsrichtung","auf Kreisbahnen um den Erreger","gar nicht, sie werden nur verschoben"],
+  e:"Quer = senkrecht zur Ausbreitung, längs = parallel dazu."},
+ {th:"Wellenarten", q:"Welche dieser Wellen ist eine reine Längswelle?", a:"Schall in Luft", f:["Seilwelle","S-Welle eines Erdbebens","Welle auf einer Gitarrensaite"],
+  e:"Die Luftteilchen schwingen in Ausbreitungsrichtung. Die drei anderen sind Querwellen."},
+ {th:"Periodendauer", q:"Was gibt die Periodendauer T an?", a:"Die Zeit für eine volle Schwingung", f:["Die Länge einer Welle","Die Anzahl der Schwingungen pro Sekunde","Die Zeit, die die Welle bis zum Ende des Seils braucht"],
+  e:"T ist eine Zeit, kein Abstand. Die Anzahl der Schwingungen pro Sekunde ist die Frequenz f."},
+ {th:"f und T", q:"Ein Erreger schwingt mit f = 5 Hz. Wie groß ist T?", a:"0,2 s", f:["5 s","0,5 s","2 s"], e:"T = 1 / f = 1 / 5 Hz = 0,2 s."},
+ {th:"f und T", q:"Die Periodendauer beträgt T = 0,25 s. Wie groß ist die Frequenz?", a:"4 Hz", f:["0,25 Hz","2,5 Hz","40 Hz"], e:"f = 1 / T = 1 / 0,25 s = 4 Hz."},
+ {th:"Wellenlänge", q:"Von einem Wellenberg bis zum nächsten Wellental sind es 0,5 m. Wie groß ist λ?", a:"1,0 m", f:["0,25 m","0,5 m","2,0 m"],
+  e:"Berg bis Tal ist nur λ/2. Also ist λ = 2 · 0,5 m = 1,0 m."},
+ {th:"Ausbreitungsgeschwindigkeit", q:"Eine Welle hat λ = 2 m und f = 3 Hz. Wie schnell läuft sie?", a:"6 m/s", f:["1,5 m/s","0,67 m/s","5 m/s"], e:"c = λ · f = 2 m · 3 Hz = 6 m/s."},
+ {th:"Ausbreitungsgeschwindigkeit", q:"Eine Welle hat λ = 1,2 m und T = 0,4 s. Wie groß ist c?", a:"3 m/s", f:["0,33 m/s","0,48 m/s","1,6 m/s"], e:"c = λ / T = 1,2 m / 0,4 s = 3 m/s."},
+ {th:"Erreger und Medium", q:"Wer legt die Frequenz einer Welle fest?", a:"Der Erreger", f:["Das Medium","Die Wellenlänge","Die Ausbreitungsgeschwindigkeit"],
+  e:"Der Erreger gibt f und T vor. Das Medium bestimmt c. Daraus folgt λ = c / f."},
+ {th:"Erreger und Medium", q:"Wovon hängt die Ausbreitungsgeschwindigkeit c einer Welle ab?", a:"Vom Medium", f:["Von der Frequenz des Erregers","Von der Amplitude","Vom Erreger allein"],
+  e:"Das Medium legt c fest. Der Erreger legt f fest."},
+ {th:"λ = c / f", q:"Die Frequenz des Erregers wird verdoppelt, das Medium bleibt gleich. Was passiert mit λ?", a:"Sie halbiert sich", f:["Sie verdoppelt sich","Sie bleibt gleich","Sie vervierfacht sich"],
+  e:"c bleibt gleich. Mit doppeltem f wird λ = c / f halb so groß."},
+ {th:"Medienwechsel", q:"Eine Welle läuft von einem Medium in ein anderes. Welche Größe bleibt dabei gleich?", a:"Die Frequenz", f:["Die Wellenlänge","Die Ausbreitungsgeschwindigkeit","Keine der Größen"],
+  e:"Die Frequenz kommt vom Erreger und ändert sich beim Übergang nicht. c und λ ändern sich."},
+ {th:"Schnelle", q:"Wie heißt die Geschwindigkeit, mit der ein einzelner Oszillator auf und ab schwingt?", a:"Schnelle", f:["Ausbreitungsgeschwindigkeit","Frequenz","Elongation"],
+  e:"Die Schnelle ist nicht c. c sagt, wie schnell sich ein Schwingungszustand durch das Medium bewegt."},
+ {th:"Amplitude", q:"Der Erreger schwingt im selben Takt, aber mit größerer Auslenkung. Was ändert sich?", a:"Nur die Amplitude", f:["Amplitude und Frequenz","Amplitude und Wellenlänge","Amplitude und Ausbreitungsgeschwindigkeit"],
+  e:"Takt und Medium bleiben gleich, also bleiben f, T, c und λ gleich."},
+ {th:"λ = c / f", q:"Ein Ton mit f = 340 Hz läuft in Luft mit c = 340 m/s. Wie groß ist λ?", a:"1 m", f:["0,1 m","340 m","115 600 m"], e:"λ = c / f = 340 m/s / 340 Hz = 1 m."},
+ {th:"Diagramm s(x)", fig:[{typ:"x",P:0.8}], q:"Die Abbildung zeigt s(x). Zwei benachbarte Wellenberge sind markiert. Wie groß ist die Wellenlänge?", a:"0,8 m", f:["0,4 m","1,2 m","1,6 m"],
+  e:"λ ist der Abstand zweier benachbarter Wellenberge. Sie liegen bei x = 0 und x = 0,8 m. 0,4 m wäre nur der Abstand von Berg zu Tal."},
+ {th:"Diagramm s(t)", fig:[{typ:"t",P:0.5}], q:"Die Abbildung zeigt s(t) eines Oszillators. Zwei benachbarte Wellenberge sind markiert. Wie groß ist die Periodendauer?", a:"0,5 s", f:["0,25 s","0,75 s","1,0 s"],
+  e:"T ist der zeitliche Abstand zweier Wellenberge: t = 0 und t = 0,5 s. Daraus folgt f = 2 Hz."}
+],
+k2:[
+ {th:"Darstellungen", q:"Was zeigt die Ortsdarstellung s(x)?", a:"Die Auslenkung aller Oszillatoren zu einem festen Zeitpunkt", f:["Die Auslenkung eines Oszillators im Lauf der Zeit","Die Ausbreitungsgeschwindigkeit an jedem Ort","Die Amplitude zu jedem Zeitpunkt"],
+  e:"s(x) ist wie ein Foto der Welle."},
+ {th:"Darstellungen", q:"Was zeigt die Zeitdarstellung s(t)?", a:"Die Auslenkung eines Oszillators im Lauf der Zeit", f:["Die Auslenkung aller Oszillatoren zu einem festen Zeitpunkt","Die Wellenlänge zu jedem Zeitpunkt","Die Frequenz an jedem Ort"],
+  e:"s(t) ist wie ein Video von genau einem Teilchen."},
+ {th:"Darstellungen", q:"Aus welchem Diagramm liest du die Wellenlänge λ ab?", a:"Aus s(x)", f:["Aus s(t)","Aus beiden gleich gut","Aus keinem, λ kann man nur berechnen"],
+  e:"In s(x) hat man die Ortsachse. Zwei benachbarte Punkte gleicher Phase haben den Abstand λ."},
+ {th:"Darstellungen", q:"Aus welchem Diagramm liest du die Periodendauer T ab?", a:"Aus s(t)", f:["Aus s(x)","Aus beiden gleich gut","Aus keinem, T kann man nur berechnen"],
+  e:"In s(t) hat man die Zeitachse. Zwei benachbarte Punkte gleicher Phase haben den zeitlichen Abstand T."},
+ {th:"Diagramm s(x)", fig:[{typ:"x",P:1.2}], q:"Das Bild zeigt s(x) einer Welle. Kannst du daraus die Periodendauer T direkt ablesen?", a:"Nein, in s(x) liest man λ und die Amplitude ab", f:["Ja, T ist der Abstand zweier Wellenberge","Ja, T ist die Höhe eines Wellenbergs","Nein, aus s(x) kann man gar nichts ablesen"],
+  e:"Der Abstand zweier Wellenberge in s(x) ist λ = 1,2 m, eine Länge. T ist eine Zeit und braucht eine Zeitachse."},
+ {th:"Diagramm s(t)", fig:[{typ:"t",P:0.4}], q:"Das Bild zeigt s(t) eines Oszillators. Wie groß ist seine Frequenz?", a:"2,5 Hz", f:["0,4 Hz","4 Hz","5 Hz"],
+  e:"Die Wellenberge liegen bei t = 0 und t = 0,4 s, also ist T = 0,4 s. Dann ist f = 1 / T = 2,5 Hz."},
+ {th:"Zwei Diagramme", fig:[{typ:"x",P:1.2},{typ:"t",P:0.4}], q:"Oben siehst du s(x), unten s(t) derselben Welle. Wie schnell läuft die Welle?", a:"3 m/s", f:["0,33 m/s","0,48 m/s","1,6 m/s"],
+  e:"λ = 1,2 m liest du aus s(x) ab, T = 0,4 s aus s(t). Dann ist c = λ / T = 1,2 m / 0,4 s = 3 m/s."},
+ {th:"Merkregel", q:"Die Welle läuft nach rechts. Direkt links neben einem Teilchen liegt ein Wellenberg. Wohin bewegt sich das Teilchen als Nächstes?", a:"Nach oben", f:["Nach unten","Nach rechts","Es bleibt in Ruhe"],
+  e:"Ein Teilchen macht das, was sein Nachbar in Richtung Erreger gerade gemacht hat. Links liegt der Erreger, dort ist ein Wellenberg."},
+ {th:"Merkregel", q:"Die Welle läuft nach rechts. Direkt links neben einem Teilchen liegt ein Wellental. Wohin bewegt sich das Teilchen als Nächstes?", a:"Nach unten", f:["Nach oben","Nach links","Es bleibt in Ruhe"],
+  e:"Der Nachbar in Richtung Erreger ist links und im Wellental. Das Teilchen folgt ihm nach unten."},
+ {th:"Merkregel", q:"Die Welle läuft nach links. Direkt rechts neben einem Teilchen liegt ein Wellenberg. Wohin bewegt sich das Teilchen als Nächstes?", a:"Nach oben", f:["Nach unten","Nach links","Es bleibt in Ruhe"],
+  e:"Bei einer Welle nach links liegt der Erreger rechts. Der Nachbar dort ist im Wellenberg, also geht das Teilchen nach oben."},
+ {th:"Phase", q:"Zwei Oszillatoren haben den Abstand λ/2. Wie schwingen sie?", a:"Genau gegenphasig: einer im Berg, der andere im Tal", f:["Genau im Gleichtakt","Der eine schwingt doppelt so schnell","Der eine ruht, der andere schwingt"],
+  e:"Von Wellenberg zu Wellental sind es λ/2. Dort schwingen die Teilchen entgegengesetzt."},
+ {th:"Phase", q:"Zwei Oszillatoren haben den Abstand λ. Wie schwingen sie?", a:"Genau im Gleichtakt", f:["Genau gegenphasig","Um eine Viertelperiode versetzt","Der eine ruht, der andere schwingt"],
+  e:"Im Abstand λ befinden sich zwei Teilchen im gleichen Schwingungszustand."},
+ {th:"Polarisation", q:"Welche Welle lässt sich polarisieren?", a:"Eine Querwelle", f:["Eine Längswelle","Jede mechanische Welle","Keine Welle"],
+  e:"Nur bei Querwellen gibt es eine Schwingungsrichtung quer zur Ausbreitung, die ein Spalt auswählen kann."},
+ {th:"Polarisation", q:"Schall in Luft trifft auf einen Spalt. Kann der Spalt den Schall polarisieren?", a:"Nein, Schall ist eine Längswelle und hat keine Querrichtung", f:["Ja, wenn der Spalt senkrecht steht","Ja, wenn der Spalt waagerecht steht","Nur bei sehr hoher Frequenz"],
+  e:"Bei einer Längswelle liegt die Schwingung in Ausbreitungsrichtung. Ein Spalt kann keine Richtung auswählen."},
+ {th:"Polarisation", q:"Was bedeutet es, dass eine Welle polarisiert ist?", a:"Sie schwingt nur noch in einer Richtung quer zur Ausbreitung", f:["Sie schwingt in Ausbreitungsrichtung","Sie hat eine besonders große Amplitude","Ihre Frequenz hat sich verdoppelt"],
+  e:"Ein Spalt lässt nur die Schwingung parallel zum Spalt durch. Danach schwingt die Welle nur noch in dieser Richtung."},
+ {th:"Polarisation", q:"Licht lässt sich polarisieren. Was folgt daraus?", a:"Licht ist eine Querwelle", f:["Licht ist eine Längswelle","Licht ist eine Mischform","Licht hat eine besonders hohe Frequenz"],
+  e:"Lässt sich eine Welle polarisieren, ist sie eine Querwelle."}
+]};
+
+/* Richtig oder falsch? w = Aussage stimmt */
+const WAHRFALSCH = {
+wf1:[
+ {th:"Aussage", q:"Bei einer Welle wandern die Teilchen mit der Welle mit.", w:false, e:"Die Teilchen schwingen nur um ihre Ruhelage. Eine Welle transportiert Energie, aber keine Materie."},
+ {th:"Aussage", q:"Schall in Luft ist eine Longitudinalwelle.", w:true, e:"Die Luftteilchen schwingen in Ausbreitungsrichtung."},
+ {th:"Aussage", q:"c ist die Geschwindigkeit, mit der ein Teilchen auf und ab schwingt.", w:false, e:"Das ist die Schnelle. c gibt an, wie schnell sich ein Schwingungszustand durch das Medium bewegt."},
+ {th:"Aussage", q:"λ ist der Abstand zweier benachbarter Teilchen mit gleichem Schwingungszustand.", w:true, e:"Zum Beispiel der Abstand von Wellenberg zu Wellenberg."},
+ {th:"Aussage", q:"In der Zeit T legt die Welle die Strecke λ zurück.", w:true, e:"Daraus folgt c = λ / T."},
+ {th:"Aussage", q:"Wird f bei gleichem Medium erhöht, wird auch c größer.", w:false, e:"c legt das Medium fest und bleibt gleich. Bei größerem f wird λ = c / f kleiner."},
+ {th:"Aussage", q:"Eine Wasserwelle ist eine reine Transversalwelle.", w:false, e:"Die Teilchen laufen auf kreisähnlichen Bahnen. Es ist eine Mischform aus Quer- und Längswelle."}
+]};
+QUIZ.wf1 = WAHRFALSCH.wf1.map(x=>({th:x.th,q:x.q,a:x.w?"Richtig":"Falsch",f:[x.w?"Falsch":"Richtig"],e:x.e}));
+
+/* Wellen-Tuner: ziel = Bedingungen (f in Hz, T in s, c in m/s, lam in m), loes = [f,c], start = [f,c], fix = festgelegte Größe */
+const TUNER = {
+einfach:[
+ {text:"Das Seil ist fest gespannt: c = 1,5 m/s. Zwei benachbarte Wellenberge sollen 0,75 m auseinanderliegen.", fix:"c", ziel:{lam:0.75}, loes:[2,1.5], start:[1,1.5]},
+ {text:"Das Seil ist fest gespannt: c = 2 m/s. Der Erreger braucht für eine Schwingung 0,8 s.", fix:"c", ziel:{T:0.8}, loes:[1.25,2], start:[2.5,2]},
+ {text:"Der Erreger ist fest auf f = 1,5 Hz eingestellt. Stell die Seilspannung so ein, dass die Wellenlänge 2 m beträgt.", fix:"f", ziel:{lam:2}, loes:[1.5,3], start:[1.5,1]},
+ {text:"Das Seil ist fest gespannt: c = 3 m/s. Der Erreger soll Wellen der Länge 1,5 m erzeugen.", fix:"c", ziel:{lam:1.5}, loes:[2,3], start:[0.5,3]},
+ {text:"Der Erreger ist fest auf f = 2 Hz eingestellt. Zwei benachbarte Wellenberge sollen 1,25 m auseinanderliegen.", fix:"f", ziel:{lam:1.25}, loes:[2,2.5], start:[2,1]}
+],
+frei:[
+ {text:"Gewünscht: Der Erreger schwingt mit f = 2 Hz und die Wellenlänge beträgt 1,5 m.", fix:null, ziel:{f:2,lam:1.5}, loes:[2,3], start:[1,1]},
+ {text:"Ein Wellenberg soll in 1 s genau 2,5 m weit laufen. Die Wellenlänge soll 1 m betragen.", fix:null, ziel:{c:2.5,lam:1}, loes:[2.5,2.5], start:[1,1]},
+ {text:"Der Erreger braucht für eine Schwingung 0,5 s. Die Welle soll mit c = 1,5 m/s laufen.", fix:null, ziel:{T:0.5,c:1.5}, loes:[2,1.5], start:[1,3]},
+ {text:"Ein Wellenberg soll in 4 s genau 6 m weit laufen. Die Wellenlänge soll 1 m betragen.", fix:null, ziel:{c:1.5,lam:1}, loes:[1.5,1.5], start:[2,2]},
+ {text:"Pro Sekunde sollen 3 Wellenberge den Erreger verlassen. Zwei benachbarte Wellenberge sollen 1 m auseinanderliegen.", fix:null, ziel:{f:3,lam:1}, loes:[3,3], start:[1,1]},
+ {text:"Die Periodendauer soll 0,4 s betragen und die Wellenlänge 1 m.", fix:null, ziel:{T:0.4,lam:1}, loes:[2.5,2.5], start:[1,1]}
+]};
+
+
+/* =====================================================================
+   TECHNIK
+   ===================================================================== */
+const app = document.getElementById("app");
+let cleanups = [];
+function cleanup(){ cleanups.splice(0).forEach(fn=>{try{fn()}catch(e){}}); }
+function loop(fn){ let alive=true, id; const t0=performance.now();
+  const step=now=>{ if(!alive) return; fn((now-t0)/1000); id=requestAnimationFrame(step); };
+  id=requestAnimationFrame(step); const stop=()=>{alive=false;cancelAnimationFrame(id)}; cleanups.push(stop); return stop; }
+function el(tag, attrs={}, html){ const e=document.createElement(tag);
+  for(const k in attrs){ if(k==="class") e.className=attrs[k]; else if(k.startsWith("on")) e.addEventListener(k.slice(2),attrs[k]); else e.setAttribute(k,attrs[k]); }
+  if(html!==undefined) e.innerHTML=html; return e; }
+function shuffle(a){ a=a.slice(); for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]} return a; }
+const fmt = v => String(v).replace(".",",");
+function colors(){ const s=getComputedStyle(document.documentElement); const g=n=>s.getPropertyValue(n).trim();
+  return {ink:g("--ink"),muted:g("--muted"),grid:g("--grid"),line:g("--line"),plot:g("--plot"),wave:g("--wave"),mark:g("--mark"),ok:g("--ok"),bad:g("--bad")}; }
+function canvasIn(host,h){
+  const c=el("canvas"); host.appendChild(c); const ctx=c.getContext("2d"); const st={c,ctx,w:0,h};
+  const fit=()=>{ const w=Math.max(200,host.clientWidth); const d=window.devicePixelRatio||1;
+    c.width=Math.round(w*d); c.height=Math.round(h*d); c.style.width=w+"px"; c.style.height=h+"px"; ctx.setTransform(d,0,0,d,0,0); st.w=w; };
+  fit(); const ro=new ResizeObserver(fit); ro.observe(host); cleanups.push(()=>ro.disconnect()); return st; }
+function paper(st,col){ const {ctx,w,h}=st; ctx.fillStyle=col.plot; ctx.fillRect(0,0,w,h);
+  ctx.strokeStyle=col.grid; ctx.lineWidth=1; ctx.beginPath();
+  for(let x=0.5;x<w;x+=20){ctx.moveTo(x,0);ctx.lineTo(x,h)} for(let y=0.5;y<h;y+=20){ctx.moveTo(0,y);ctx.lineTo(w,y)} ctx.stroke(); }
+function arrow(ctx,x1,y,x2,col){ ctx.strokeStyle=col; ctx.fillStyle=col; ctx.lineWidth=2; ctx.beginPath(); ctx.moveTo(x1,y); ctx.lineTo(x2,y); ctx.stroke();
+  const d=Math.sign(x2-x1); ctx.beginPath(); ctx.moveTo(x2,y); ctx.lineTo(x2-8*d,y-5); ctx.lineTo(x2-8*d,y+5); ctx.closePath(); ctx.fill(); }
+const MONO = w => `${w} 13px "JetBrains Mono", ui-monospace, monospace`;
+const TAU = Math.PI*2;
+
+/* ---------- Übersicht ---------- */
+let aktuellesKapitel = KAPITEL.find(k=>k.freigegeben).id;
+
+function renderHome(){
+  cleanup(); app.innerHTML="";
+  const top=el("header",{class:"top"});
+  top.innerHTML=`<div class="brand">
+      <svg width="46" height="46" viewBox="0 0 46 46" aria-hidden="true"><rect x="1" y="1" width="44" height="44" rx="12" fill="none" stroke="var(--line)" stroke-width="2"/>
+      <path d="M6 23 C 11 9, 16 9, 20 23 S 29 37, 33 23 S 39 13, 40 16" fill="none" stroke="var(--wave)" stroke-width="3" stroke-linecap="round"/>
+      <circle cx="20" cy="23" r="3.6" fill="var(--mark)"/></svg>
+      <div><h1>Wellen-Werkstatt</h1><p>BPE 10 · Mechanische Wellen</p></div></div>`;
+  const chips=el("nav",{class:"chips","aria-label":"Kapitel"});
+  KAPITEL.forEach(k=>{
+    const b=el("button",{class:"chip","aria-pressed":String(k.id===aktuellesKapitel)},`<span class="nr">${k.nr}</span>${k.titel}`);
+    if(!k.freigegeben){ b.disabled=true; b.title="Wird später freigegeben"; }
+    else b.addEventListener("click",()=>{aktuellesKapitel=k.id; renderHome();});
+    chips.appendChild(b);
+  });
+  top.appendChild(chips); app.appendChild(top);
+
+  const k=KAPITEL.find(x=>x.id===aktuellesKapitel);
+
+  const s1=el("section",{class:"sect"});
+  s1.innerHTML=`<div class="sect-head"><h2>Steckbriefe</h2><span class="eyebrow">Kapitel ${k.nr} · ${k.untertitel}</span></div>`;
+  const grid=el("div",{class:"grid"});
+  k.steckbriefe.forEach(id=>grid.appendChild(steckbrief(STECKBRIEFE[id])));
+  s1.appendChild(grid); app.appendChild(s1);
+
+  const kachel=(sp,label)=>{ const meta=SPIELE[sp.typ].meta(sp), best=getBest(gameId(sp));
+    const b=el("button",{class:"game"+(meta.quiz?" quiz":"")},`<span class="ico" aria-hidden="true">${meta.icon}</span><span class="eyebrow">${meta.art}</span><h3>${meta.titel}</h3><p>${meta.kurz}</p><span class="go">${label} →</span>${best?`<span class="best">Bestwert ${best}</span>`:""}`);
+    b.addEventListener("click",()=>startGame(sp)); return b; };
+  if(k.quiz.length){ const sq=el("section",{class:"sect"});
+    sq.innerHTML=`<div class="sect-head"><h2>Quiz</h2><span class="eyebrow">Wissen testen</span></div>`;
+    const gq=el("div",{class:"games"}); k.quiz.forEach(sp=>gq.appendChild(kachel(sp,"Quiz starten"))); sq.appendChild(gq); app.appendChild(sq); }
+  const s2=el("section",{class:"sect"});
+  s2.innerHTML=`<div class="sect-head"><h2>Micro-Challenges</h2><span class="eyebrow">Zusammenhänge erleben</span></div>`;
+  const gg=el("div",{class:"games"}); k.spiele.forEach(sp=>gg.appendChild(kachel(sp,"Los geht's"))); s2.appendChild(gg); app.appendChild(s2);
+
+  const gesperrt=KAPITEL.filter(x=>!x.freigegeben);
+  if(gesperrt.length){ const s3=el("section",{class:"sect"});
+    s3.appendChild(el("div",{class:"locked"},`Nächstes Kapitel: <b>${gesperrt[0].titel}</b>. Es kommt mit der nächsten Version der App.`)); app.appendChild(s3); }
+
+  app.appendChild(el("footer",{},"Wellen-Werkstatt · Version 2 · Stand 05.11.2026"));
+}
+
+function steckbrief(sb){
+  const c=el("article",{class:"card"+(sb.wide?" wide":"")});
+  c.appendChild(el("h3",{},sb.titel));
+  if(sb.formel) c.appendChild(el("div",{class:"formel"},sb.formel));
+  c.appendChild(el("p",{},sb.text));
+  if(sb.widget==="kette") kette(c);
+  if(sb.merke) c.appendChild(el("p",{class:"merke"},`<span class="tag">Merke</span><br>${sb.merke}`));
+  if(sb.falle) c.appendChild(el("p",{class:"falle"},`<span class="tag">Typische Falle</span><br>${sb.falle}`));
+  return c;
+}
+
+/* Teilchenkette: Quer- und Längswelle */
+function kette(card){
+  let modus="quer";
+  const seg=el("div",{class:"seg"});
+  [["quer","Querwelle"],["laengs","Längswelle"]].forEach(([m,l])=>{
+    const b=el("button",{"aria-pressed":String(m===modus)},l);
+    b.addEventListener("click",()=>{modus=m; [...seg.children].forEach(x=>x.setAttribute("aria-pressed",String(x===b)));}); seg.appendChild(b); });
+  card.appendChild(seg);
+  const host=el("div",{class:"plot"}); card.appendChild(host);
+  const st=canvasIn(host,170);
+  loop(t=>{
+    const col=colors(), {ctx,w,h}=st; paper(st,col);
+    const N=Math.max(16,Math.min(34,Math.floor(w/26))); const x0=24, dx=(w-48)/(N-1);
+    const lam=(w-48)/2.2, f=0.5, mi=Math.floor(N/3), y0=h/2+8;
+    ctx.fillStyle=col.muted; ctx.font=MONO(500); ctx.fillText("Ausbreitung",w-150,22); arrow(ctx,w-150,34,w-30,col.muted);
+    const pts=[];
+    for(let i=0;i<N;i++){ const xr=x0+i*dx; const ph=TAU*((xr-x0)/lam - f*t); const sv=Math.sin(-ph);
+      pts.push(modus==="quer"?[xr,y0-42*sv]:[xr+dx*0.42*sv,y0]); }
+    if(modus==="quer"){ ctx.strokeStyle=col.line; ctx.lineWidth=2; ctx.beginPath(); pts.forEach((p,i)=>i?ctx.lineTo(p[0],p[1]):ctx.moveTo(p[0],p[1])); ctx.stroke(); }
+    const rx=x0+mi*dx; ctx.strokeStyle=col.mark; ctx.lineWidth=1.5; ctx.setLineDash([3,4]);
+    ctx.beginPath(); if(modus==="quer"){ctx.moveTo(rx,y0-48);ctx.lineTo(rx,y0+48)}else{ctx.moveTo(rx-dx*0.5,y0+20);ctx.lineTo(rx+dx*0.5,y0+20)} ctx.stroke(); ctx.setLineDash([]);
+    pts.forEach((p,i)=>{ ctx.beginPath(); ctx.fillStyle=i===mi?col.mark:col.wave; ctx.arc(p[0],p[1],i===mi?7.5:5.5,0,TAU); ctx.fill(); });
+  });
+}
+
+/* ---------- Spielrahmen: Punkte, Serie, Runden-Anzeige, Sterne, Bestwert ---------- */
+const gameId = sp => sp.typ+"-"+(sp.pool||sp.modus||"");
+function getBest(id){ try{ return +localStorage.getItem("ww-best-"+id)||0; }catch(e){ return 0; } }
+function setBest(id,v){ try{ localStorage.setItem("ww-best-"+id,String(v)); }catch(e){} }
+const plus = n => n?` +${n} Punkte`:"";
+function konfetti(){
+  if(window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const c=el("canvas",{style:"position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:50"}); document.body.appendChild(c);
+  const W=c.width=innerWidth, H=c.height=innerHeight, x=c.getContext("2d");
+  const cols=["#d97f00","#1d5bbd","#1d8048","#c2352a","#ffb13d"];
+  const P=[...Array(70)].map(()=>({x:W/2+(Math.random()-.5)*160,y:H*0.4,vx:(Math.random()-.5)*10,vy:-Math.random()*10-3,s:6+Math.random()*7,c:cols[Math.floor(Math.random()*cols.length)],r:Math.random()*6}));
+  let n=0; const step=()=>{ x.clearRect(0,0,W,H);
+    P.forEach(p=>{ p.vy+=0.28; p.x+=p.vx; p.y+=p.vy; p.r+=0.2; x.save(); x.translate(p.x,p.y); x.rotate(p.r); x.fillStyle=p.c; x.fillRect(-p.s/2,-p.s/4,p.s,p.s/2); x.restore(); });
+    if(++n<110) requestAnimationFrame(step); else c.remove(); };
+  step();
+}
+
+function startGame(sp){
+  cleanup(); app.innerHTML=""; window.scrollTo(0,0);
+  const def=SPIELE[sp.typ], meta=def.meta(sp), gid=gameId(sp);
+  const bar=el("div",{class:"bar"});
+  const back=el("button",{class:"back"},"← Übersicht"); back.addEventListener("click",renderHome);
+  const h=el("h2",{},meta.titel); const score=el("span",{class:"score"},"<span>0</span> Punkte");
+  const left=el("div",{style:"display:flex;align-items:center;gap:12px;flex-wrap:wrap"}); left.append(back,h);
+  bar.append(left,score); app.appendChild(bar);
+  const hud=el("div",{class:"hud"}); const pips=el("div",{class:"pips","aria-hidden":"true"}); const streakEl=el("span",{class:"streak"},"Serie ×0");
+  hud.append(pips,streakEl); app.appendChild(hud);
+  const stage=el("section",{class:"stage"}); app.appendChild(stage);
+  let N=0, pts=0, streak=0, richtig=0, pipEls=[], cur=0;
+  const g={stage,
+    init(n){ N=n; pips.innerHTML=""; pipEls=[...Array(n)].map(()=>pips.appendChild(el("span",{class:"pip"}))); },
+    jetzt(i){ cur=i; pipEls.forEach((p,k)=>p.classList.toggle("now",k===i)); },
+    wert(ok,bonus=0){
+      let gain=0;
+      if(ok){ gain=10+2*Math.min(streak,5)+bonus; streak++; richtig++; pts+=gain; } else streak=0;
+      if(pipEls[cur]){ pipEls[cur].classList.remove("now"); pipEls[cur].classList.add(ok?"ok":"bad"); }
+      score.firstChild.textContent=pts;
+      streakEl.textContent=`Serie ×${streak}`; streakEl.classList.toggle("hot",streak>=2);
+      streakEl.classList.remove("pop"); void streakEl.offsetWidth; if(ok) streakEl.classList.add("pop");
+      if(gain){ const gEl=el("span",{class:"gain"},`+${gain}`); score.appendChild(gEl); setTimeout(()=>gEl.remove(),900); }
+      return gain; },
+    setScore(){},
+    ende(){ cleanup(); stage.innerHTML="";
+      const q=N?richtig/N:0, sterne=q===1?3:q>=0.7?2:q>=0.4?1:0, alt=getBest(gid), neu=pts>alt; if(neu) setBest(gid,pts);
+      const bestTxt=neu?(alt?`Neuer Bestwert! Vorher: ${alt}. `:"Bestwert gespeichert. "):`Dein Bestwert: ${alt}. `;
+      const e=el("div",{class:"end"},`<span class="eyebrow">Runde beendet</span>
+        <div class="stars" role="img" aria-label="${sterne} von 3 Sternen">${[1,2,3].map(k=>k<=sterne?"<b>★</b>":"★").join("")}</div>
+        <span class="big">${pts}</span><span class="eyebrow">Punkte · ${richtig} von ${N} richtig</span>
+        <p class="hint">${pts?bestTxt:""}${lob(richtig,N)}</p>`);
+      const acts=el("div",{class:"actions"}); const again=el("button",{class:"btn"},"Nochmal spielen"); again.addEventListener("click",()=>startGame(sp));
+      const home=el("button",{class:"btn ghost"},"Zur Übersicht"); home.addEventListener("click",renderHome); acts.append(again,home); e.appendChild(acts); stage.appendChild(e);
+      if(sterne===3) konfetti(); }};
+  def.start(g,sp);
+}
+function lob(a,b){ const q=a/b; return q===1?"Alles richtig. Du hast die Zusammenhänge im Griff.":q>=0.7?"Stark. Schau dir die Fehler noch einmal im Steckbrief an.":"Lies die Steckbriefe noch einmal und versuch eine zweite Runde."; }
+
+/* Statisches Diagramm s(x) oder s(t) mit zwei markierten Wellenbergen (für Quizfragen) */
+function figur(host,fig){
+  const st=canvasIn(host,150);
+  loop(()=>{ const col=colors(); paper(st,col); const {ctx,w,h}=st; const L=46,R=18,y0=h/2+8,A=44,P=fig.P,span=2.5*P, px=u=>L+u/span*(w-L-R);
+    ctx.strokeStyle=col.ink; ctx.lineWidth=1.5; ctx.beginPath(); ctx.moveTo(L,y0); ctx.lineTo(w-R+6,y0); ctx.moveTo(L,12); ctx.lineTo(L,h-12); ctx.stroke();
+    ctx.fillStyle=col.muted; ctx.font=MONO(500); ctx.textAlign="center";
+    for(let k=0;k<=4;k++){ const u=k*P/2; ctx.fillRect(px(u)-0.5,y0-4,1,8); ctx.fillText(fmt(+u.toFixed(2)),px(u),y0+22); }
+    ctx.textAlign="left"; ctx.fillText("s",L-16,26); ctx.fillText(fig.typ==="x"?"x in m":"t in s",w-R-62,h-8);
+    ctx.strokeStyle=col.wave; ctx.lineWidth=3; ctx.beginPath();
+    for(let q=0;q<=240;q++){ const u=q/240*span, X=px(u), Y=y0-A*Math.cos(TAU*u/P); q?ctx.lineTo(X,Y):ctx.moveTo(X,Y); } ctx.stroke();
+    ctx.strokeStyle=col.mark; ctx.fillStyle=col.mark; ctx.lineWidth=1.5;
+    [0,P].forEach(u=>{ ctx.setLineDash([3,4]); ctx.beginPath(); ctx.moveTo(px(u),y0-A); ctx.lineTo(px(u),y0); ctx.stroke(); ctx.setLineDash([]);
+      ctx.beginPath(); ctx.arc(px(u),y0-A,6,0,TAU); ctx.fill(); });
+    const by=14; ctx.lineWidth=2; ctx.beginPath(); ctx.moveTo(px(0),by); ctx.lineTo(px(P),by); ctx.moveTo(px(0),by-5); ctx.lineTo(px(0),by+5); ctx.moveTo(px(P),by-5); ctx.lineTo(px(P),by+5); ctx.stroke();
+    ctx.textAlign="center"; ctx.font=MONO(700); ctx.fillText("?",(px(0)+px(P))/2,by+16); ctx.textAlign="left";
+  });
+}
+
+const SPIELE = {
+
+/* ===== 1: Was ändert sich? ===== */
+aendert:{
+  meta:()=>({titel:"Was ändert sich?",art:"Ursache und Wirkung",icon:"±",kurz:"Eine Sache wird verändert. Entscheide für jede Größe: größer, gleich oder kleiner."}),
+  start(g){
+    const items=shuffle(AENDERT_ITEMS).slice(0,6); let i=0, punkte=0; g.init(items.length);
+    const runde=()=>{
+      cleanup(); g.stage.innerHTML=""; g.jetzt(i);
+      const it=items[i], antw={}, keys=Object.keys(GROESSEN).filter(k=>k in it.soll);
+      g.stage.appendChild(el("p",{class:"eyebrow"},`Situation ${i+1} von ${items.length}`));
+      g.stage.appendChild(el("p",{class:"prompt"},it.text));
+      const host=el("div",{class:"plot"}); g.stage.appendChild(host); const st=canvasIn(host,160);
+      const leg=el("div",{class:"legend"},`<span><i style="border-color:var(--muted);border-top-style:dashed"></i>vorher</span>`); g.stage.appendChild(leg);
+      let zeigeNach=false;
+      loop(t=>{ const col=colors(); paper(st,col); const {ctx,w,h}=st;
+        const draw=(p,color,dash)=>{ const [c,f,A]=p; const lam=(c/f)*w/3, amp=Math.min(62,40*A);
+          ctx.strokeStyle=color; ctx.lineWidth=dash?2:3; ctx.setLineDash(dash?[6,6]:[]); ctx.beginPath();
+          for(let x=0;x<=w;x+=3){ const y=h/2-amp*Math.sin(TAU*(x/lam-0.5*f*t)); x?ctx.lineTo(x,y):ctx.moveTo(x,y);} ctx.stroke(); ctx.setLineDash([]); };
+        draw(it.vor,col.muted,true); if(zeigeNach) draw(it.nach,col.wave,false); });
+      const rows=el("div",{class:"rows"});
+      const rowEls={};
+      keys.forEach(k=>{
+        const r=el("div",{class:"row"}); const [sym,nm]=GROESSEN[k];
+        r.appendChild(el("div",{class:"lbl"},`<span class="sym">${sym}</span><span class="nm">${nm}</span>`));
+        const tri=el("div",{class:"tri",role:"group","aria-label":nm});
+        [["+","↑","größer"],["=","=","gleich"],["-","↓","kleiner"]].forEach(([v,s,a])=>{
+          const b=el("button",{"aria-pressed":"false","aria-label":a,title:a},s);
+          b.addEventListener("click",()=>{ if(geprueft) return; antw[k]=v; [...tri.children].forEach(x=>x.setAttribute("aria-pressed",String(x===b))); pruef.disabled=Object.keys(antw).length<keys.length; });
+          tri.appendChild(b); });
+        r.appendChild(tri); rows.appendChild(r); rowEls[k]=r; });
+      g.stage.appendChild(rows);
+      const acts=el("div",{class:"actions"}); const pruef=el("button",{class:"btn",disabled:""},"Prüfen"); acts.appendChild(pruef); g.stage.appendChild(acts);
+      let geprueft=false;
+      pruef.addEventListener("click",()=>{
+        geprueft=true; zeigeNach=true; leg.innerHTML+=`<span><i style="border-color:var(--wave)"></i>nachher</span>`;
+        let alle=true; const wort={"+":"größer","=":"gleich","-":"kleiner"};
+        keys.forEach(k=>{ const ok=antw[k]===it.soll[k]; alle=alle&&ok; rowEls[k].classList.add(ok?"ok":"bad");
+          if(!ok) rowEls[k].appendChild(el("div",{class:"fix"},`Richtig: ${wort[it.soll[k]]}`)); });
+        const gain=g.wert(alle);
+        const fb=el("div",{class:"feedback "+(alle?"ok":"bad")},`<b>${alle?"Richtig!"+plus(gain):"Noch nicht ganz."}</b>${it.erkl}`);
+        acts.before(fb); pruef.remove();
+        const w=el("button",{class:"btn"},i+1<items.length?"Weiter":"Auswertung");
+        w.addEventListener("click",()=>{ i++; i<items.length?runde():g.ende(punkte,items.length,lob(punkte,items.length)); }); acts.appendChild(w);
+      });
+    };
+    runde();
+  }
+},
+
+/* ===== 2: Wellen-Tuner ===== */
+tuner:{
+  meta:()=>({titel:"Wellen-Tuner",art:"Mission · gegen die Uhr",icon:"f",kurz:"Stell Frequenz und Seilspannung so ein, dass die Welle zur Mission passt. Die Uhr läuft."}),
+  start(g){
+    const N=5, ZEIT=60, STEP=0.25;
+    const wahl=[...shuffle(TUNER.einfach).slice(0,2),...shuffle(TUNER.frei).slice(0,3)];
+    g.init(N); let r=0;
+    const G={f:["f","Hz"],T:["T","s"],c:["c","m/s"],lam:["λ","m"]};
+    const zahl=v=>fmt(+v.toFixed(2));
+    const runde=()=>{
+      cleanup(); g.stage.innerHTML=""; g.jetzt(r);
+      const M=wahl[r]; let f=M.start[0], c=M.start[1], fertig=false, fehl=0, phi=0, last=null; const t0=performance.now();
+      const rest=()=>Math.max(0,ZEIT-(performance.now()-t0)/1000);
+      const wert=k=>k==="f"?f:k==="T"?1/f:k==="c"?c:c/f;
+      g.stage.appendChild(el("p",{class:"eyebrow"},`Mission ${r+1} von ${N}`));
+      g.stage.appendChild(el("p",{class:"mission"},M.text));
+      const timer=el("div",{class:"timer",role:"img","aria-label":"Restzeit"},"<i></i>"); g.stage.appendChild(timer);
+      const host=el("div",{class:"plot"}); g.stage.appendChild(host); const st=canvasIn(host,200);
+      const meas=el("div",{class:"meas"}); const mEl={};
+      ["f","T","c","lam"].forEach(k=>{ const d=el("div",{},`<span class="k">${G[k][0]}</span><span class="v"></span>`); meas.appendChild(d); mEl[k]=d.lastChild; });
+      g.stage.appendChild(meas);
+      const updMeas=()=>["f","T","c","lam"].forEach(k=>mEl[k].textContent=`${zahl(wert(k))} ${G[k][1]}`);
+      loop(()=>{
+        const now=performance.now(); const dt=last===null?0:(now-last)/1000; last=now; phi+=TAU*f*dt;
+        if(!fertig){ const fr=rest()/ZEIT; timer.firstChild.style.transform=`scaleX(${fr})`; timer.classList.toggle("low",fr<0.25); if(fr<=0) zeitUm(); }
+        const col=colors(); paper(st,col); const {ctx,w,h}=st; const Lm=30,Rm=14, ppm=(w-Lm-Rm)/6, y0=h/2-8, A=56, lam=c/f;
+        ctx.strokeStyle=col.line; ctx.lineWidth=1.5; ctx.beginPath(); ctx.moveTo(Lm,y0); ctx.lineTo(w-Rm,y0); ctx.stroke();
+        ctx.fillStyle=col.muted; ctx.font=MONO(500); ctx.textAlign="center";
+        for(let k=0;k<=6;k++){ const x=Lm+k*ppm; ctx.fillRect(x-0.5,h-26,1,8); ctx.fillText(k===6?"6 m":String(k),x,h-6); } ctx.textAlign="left";
+        ctx.strokeStyle=col.wave; ctx.lineWidth=3.5; ctx.lineCap="round"; ctx.beginPath();
+        for(let x=0;x<=6.0001;x+=0.02){ const px=Lm+x*ppm, py=y0-A*Math.sin(phi-TAU*x/lam); x?ctx.lineTo(px,py):ctx.moveTo(px,py); } ctx.stroke();
+        let x1=(((lam*(phi-Math.PI/2)/TAU)%lam)+lam)%lam; if(x1<0.15) x1+=lam;
+        if(x1+lam<=6.001 && lam>=0.3){ const xa=Lm+x1*ppm, xb=Lm+(x1+lam)*ppm, by=18;
+          ctx.fillStyle=col.mark; ctx.strokeStyle=col.mark; ctx.lineWidth=2;
+          [x1,x1+lam].forEach(x=>{ ctx.beginPath(); ctx.arc(Lm+x*ppm,y0-A*Math.sin(phi-TAU*x/lam),6,0,TAU); ctx.fill(); });
+          ctx.beginPath(); ctx.moveTo(xa,by); ctx.lineTo(xb,by); ctx.moveTo(xa,by-5); ctx.lineTo(xa,by+5); ctx.moveTo(xb,by-5); ctx.lineTo(xb,by+5); ctx.stroke();
+          ctx.textAlign="center"; ctx.font=MONO(700); ctx.fillText("λ",(xa+xb)/2,by+18); ctx.textAlign="left"; }
+        ctx.fillStyle=col.muted; ctx.font=MONO(500); ctx.fillText("Erreger",Lm-2,h-34);
+      });
+      /* Regler */
+      const ctl=el("div",{class:"controls"});
+      const regler=(label,min,max,get,set,fest,unit)=>{
+        const box=el("div",{},`<div class="ctl-lbl">${label}${fest?" · festgelegt":""}</div>`); const row=el("div",{class:"freq"});
+        const rng=el("input",{type:"range",min:String(min),max:String(max),step:String(STEP),value:String(get()),"aria-label":label});
+        const val=el("span",{class:"val"}); const upd=()=>{ val.textContent=`${zahl(get())} ${unit}`; rng.value=get(); };
+        if(fest) rng.disabled=true;
+        rng.addEventListener("input",()=>{ set(+rng.value); upd(); updMeas(); fbClear(); });
+        row.append(rng,val); box.appendChild(row); ctl.appendChild(box); upd(); return {rng,upd}; };
+      const rf=regler("Frequenz f des Erregers",0.5,3,()=>f,v=>f=v,M.fix==="f","Hz");
+      const rc=regler("Seilspannung (bestimmt c)",0.5,4,()=>c,v=>c=v,M.fix==="c","m/s");
+      g.stage.appendChild(ctl); updMeas();
+      const fb=el("div",{}); g.stage.appendChild(fb); const fbClear=()=>{ if(!fertig) fb.innerHTML=""; };
+      const acts=el("div",{class:"actions"}); const pruef=el("button",{class:"btn"},"Fertig"); acts.appendChild(pruef); g.stage.appendChild(acts);
+      const sperren=()=>{ fertig=true; rf.rng.disabled=true; rc.rng.disabled=true; timer.classList.remove("low"); };
+      const weiter=()=>{ acts.innerHTML=""; const w=el("button",{class:"btn"},r+1<N?"Nächste Mission":"Auswertung");
+        w.addEventListener("click",()=>{ r++; r<N?runde():g.ende(); }); acts.appendChild(w); w.focus(); };
+      const rechnung=()=>{ const [lf,lc]=M.loes; return `λ = c / f = ${zahl(lc)} m/s / ${zahl(lf)} Hz = ${zahl(lc/lf)} m, T = 1 / f = ${zahl(1/lf)} s.`; };
+      function zeitUm(){
+        sperren(); f=M.loes[0]; c=M.loes[1]; rf.upd(); rc.upd(); updMeas(); g.wert(false);
+        fb.innerHTML=`<div class="feedback bad shake"><b>Zeit abgelaufen.</b>Passend wäre f = ${zahl(f)} Hz und c = ${zahl(c)} m/s gewesen. ${rechnung()}</div>`; weiter(); }
+      pruef.addEventListener("click",()=>{
+        if(fertig) return;
+        const falsch=Object.keys(M.ziel).filter(k=>Math.abs(wert(k)-M.ziel[k])>1e-6);
+        if(!falsch.length){
+          const bonus=Math.round(10*rest()/ZEIT); sperren(); const gain=g.wert(true,bonus);
+          fb.innerHTML=`<div class="feedback ok"><b>Mission geschafft!${plus(gain)}</b>${rechnung()}${bonus?` Zeitbonus: ${bonus}.`:""}</div>`; weiter(); return; }
+        fehl++;
+        const txt=falsch.map(k=>`${G[k][0]} ist jetzt ${zahl(wert(k))} ${G[k][1]}, gesucht sind ${zahl(M.ziel[k])} ${G[k][1]}.`).join(" ");
+        fb.innerHTML=`<div class="feedback bad shake"><b>Noch nicht.</b>${txt}${fehl>=2?" Tipp: λ = c / f, T = 1 / f und c = λ · f.":""}</div>`;
+      });
+    };
+    runde();
+  }
+},
+
+/* ===== Quiz: Multiple Choice und Richtig/Falsch ===== */
+quiz:{
+  meta:sp=>({titel:sp.titel,art:sp.wf?"Richtig oder falsch":"Multiple Choice",icon:sp.wf?"✓":"?",kurz:sp.kurz,quiz:true}),
+  start(g,sp){
+    const items=shuffle(QUIZ[sp.pool]).slice(0,sp.n||8); g.init(items.length); let i=0;
+    const runde=()=>{
+      cleanup(); g.stage.innerHTML=""; g.jetzt(i);
+      const it=items[i]; const opts=sp.wf?["Richtig","Falsch"]:shuffle([it.a,...it.f]);
+      g.stage.appendChild(el("p",{class:"eyebrow"},`Frage ${i+1} von ${items.length} · ${it.th}`));
+      (it.fig||[]).forEach(fg=>{ const host=el("div",{class:"plot"}); g.stage.appendChild(host); figur(host,fg); });
+      g.stage.appendChild(el("div",{class:"phen q"},`<h3>${it.q}</h3>`));
+      if(sp.wf) g.stage.appendChild(el("p",{class:"prompt"},"Richtig oder falsch?"));
+      const ans=el("div",{class:"answers"+(sp.wf?"":" mc")}); g.stage.appendChild(ans);
+      const fb=el("div",{}); g.stage.appendChild(fb); const acts=el("div",{class:"actions"}); g.stage.appendChild(acts);
+      opts.forEach(o=>{ const b=el("button",{"data-v":o},o);
+        b.addEventListener("click",()=>{ if(ans.dataset.done) return; ans.dataset.done="1"; const ok=o===it.a; const gain=g.wert(ok);
+          [...ans.children].forEach(x=>{ if(x.dataset.v===it.a) x.classList.add("right"); else if(x===b) x.classList.add("wrong"); });
+          fb.innerHTML=`<div class="feedback ${ok?"ok":"bad"}"><b>${ok?"Richtig!"+plus(gain):"Leider falsch."}</b>${ok?"":`Richtig: ${it.a}. `}${it.e}</div>`;
+          const w=el("button",{class:"btn"},i+1<items.length?"Weiter":"Auswertung");
+          w.addEventListener("click",()=>{ i++; i<items.length?runde():g.ende(); }); acts.appendChild(w); w.focus(); });
+        ans.appendChild(b); });
+    };
+    runde();
+  }
+},
+
+/* ===== 3: Quer oder längs? / Polarisierbar? ===== */
+querlaengs:{
+  meta:sp=>sp.modus==="pol"
+    ?({titel:"Polarisierbar?",art:"Polarisation",icon:"∥",kurz:"Lässt sich diese Welle mit einem Spalt polarisieren? Entscheide und begründe für dich."})
+    :({titel:"Quer oder längs?",art:"Wellenarten",icon:"↔",kurz:"Ordne Wellen aus Alltag, Technik und Natur zu: Querwelle, Längswelle oder Mischform."}),
+  start(g,sp){
+    const pol=sp.modus==="pol";
+    const items=shuffle(PHAENOMENE.filter(p=>!pol||(p.art!=="misch"&&!p.nopol))).slice(0,8); let i=0, punkte=0; g.init(items.length);
+    const opts=pol?[["ja","Ja","polarisierbar"],["nein","Nein","nicht polarisierbar"]]
+                  :[["quer","Querwelle","transversal"],["laengs","Längswelle","longitudinal"],["misch","Mischform","quer und längs"]];
+    const runde=()=>{
+      g.stage.innerHTML=""; g.jetzt(i);
+      const it=items[i], soll=pol?(it.art==="quer"?"ja":"nein"):it.art;
+      g.stage.appendChild(el("p",{class:"eyebrow"},`Karte ${i+1} von ${items.length}`));
+      g.stage.appendChild(el("div",{class:"phen"},`<h3>${it.t}</h3><p>${it.d}</p>`));
+      g.stage.appendChild(el("p",{class:"prompt"},pol?"Lässt sich diese Welle polarisieren?":"Welche Wellenart ist das?"));
+      const ans=el("div",{class:"answers"}); g.stage.appendChild(ans);
+      const fb=el("div",{}); g.stage.appendChild(fb); const acts=el("div",{class:"actions"}); g.stage.appendChild(acts);
+      opts.forEach(([v,l,s])=>{ const b=el("button",{"data-v":v},`${l}<small>${s}</small>`);
+        b.addEventListener("click",()=>{ if(ans.dataset.done) return; ans.dataset.done="1"; const ok=v===soll; const gain=g.wert(ok);
+          [...ans.children].forEach(x=>{ if(x.dataset.v===soll) x.classList.add("right"); else if(x===b) x.classList.add("wrong"); });
+          const grund=pol?(soll==="ja"?"Ja, das ist eine Querwelle. Sie hat eine Schwingungsrichtung quer zur Ausbreitung, die ein Spalt auswählen kann. ":"Nein, das ist eine Längswelle. Die Schwingung liegt in Ausbreitungsrichtung, ein Spalt kann keine Richtung auswählen. "):"";
+          fb.innerHTML=`<div class="feedback ${ok?"ok":"bad"}"><b>${ok?"Richtig!"+plus(gain):"Leider falsch."}</b>${grund}${it.e}</div>`;
+          const w=el("button",{class:"btn"},i+1<items.length?"Weiter":"Auswertung");
+          w.addEventListener("click",()=>{ i++; i<items.length?runde():g.ende(punkte,items.length,lob(punkte,items.length)); }); acts.appendChild(w); w.focus(); });
+        ans.appendChild(b); });
+    };
+    runde();
+  }
+},
+
+/* ===== 4: Welches Teilchen bin ich? ===== */
+teilchen:{
+  meta:()=>({titel:"Welches Teilchen bin ich?",art:"s(x) und s(t)",icon:"◉",kurz:"Unten siehst du die Schwingung eines Teilchens. Tippe oben auf das Teilchen, das so schwingt."}),
+  start(g){
+    const N=8; let r=0, punkte=0; g.init(N);
+    const runden=[...Array(N)].map((_,k)=>({dir:k<4?1:(Math.random()<0.5?1:-1), phi:Math.floor(Math.random()*8)*TAU/8, j:Math.floor(Math.random()*8)}));
+    const runde=()=>{
+      cleanup(); g.stage.innerHTML=""; g.jetzt(r);
+      const R=runden[r], K=13; let wahl=null, geprueft=false, t0=null;
+      const s=(i,t)=>Math.sin(TAU*i/8 + R.phi - R.dir*TAU*t);   // x in λ/8-Schritten, t in T
+      const richtig=i=>((i-R.j)%8+8)%8===0;
+      g.stage.appendChild(el("p",{class:"eyebrow"},`Runde ${r+1} von ${N}`));
+      g.stage.appendChild(el("p",{class:"prompt"},`Die Welle läuft nach ${R.dir>0?"rechts":"links"}. Welches Teilchen schwingt so wie unten gezeigt?`));
+      const top=el("div",{class:"plot"}); g.stage.appendChild(top); const A=canvasIn(top,200);
+      g.stage.appendChild(el("p",{class:"hint"},"Oben: Ortsdarstellung s(x) zum Zeitpunkt t = 0. Unten: Zeitdarstellung s(t) eines Teilchens."));
+      const bot=el("div",{class:"plot"}); g.stage.appendChild(bot); const B=canvasIn(bot,150);
+      const geo=()=>{ const L=26,Rr=26; const dx=(A.w-L-Rr)/(K-1); return {L,dx}; };
+      loop(sec=>{
+        const col=colors(); const t= geprueft ? ((performance.now()/1000-t0)/2.4)%2 : 0;
+        // oben
+        paper(A,col); let {ctx,w,h}=A; const {L,dx}=geo(); const y0=h/2-10, amp=58;
+        ctx.strokeStyle=col.line; ctx.lineWidth=1.5; ctx.beginPath(); ctx.moveTo(10,y0); ctx.lineTo(w-10,y0); ctx.stroke();
+        ctx.strokeStyle=col.wave; ctx.globalAlpha=.35; ctx.lineWidth=2; ctx.beginPath();
+        for(let q=0;q<=(K-1)*8;q++){ const i=q/8, px=L+i*dx, py=y0-amp*s(i,t); q?ctx.lineTo(px,py):ctx.moveTo(px,py);} ctx.stroke(); ctx.globalAlpha=1;
+        ctx.font=MONO(700); ctx.textAlign="center";
+        for(let i=0;i<K;i++){ const px=L+i*dx, py=y0-amp*s(i,t); const hl=geprueft&&richtig(i);
+          ctx.beginPath(); ctx.fillStyle=hl?col.mark:col.wave; ctx.arc(px,py,hl?8:6.5,0,TAU); ctx.fill();
+          if(wahl===i){ ctx.strokeStyle=geprueft?(richtig(i)?col.ok:col.bad):col.ink; ctx.lineWidth=3; ctx.beginPath(); ctx.arc(px,py,12,0,TAU); ctx.stroke(); }
+          ctx.fillStyle=hl?col.mark:col.muted; ctx.fillText(String(i+1),px,h-8); }
+        ctx.textAlign="left"; ctx.fillStyle=col.muted; ctx.font=MONO(500); ctx.fillText(geprueft?"Animation":"t = 0",12,20);
+        const ax=w/2; R.dir>0?arrow(ctx,ax-40,20,ax+40,col.muted):arrow(ctx,ax+40,20,ax-40,col.muted); ctx.fillText("c",ax-4,40);
+        // unten
+        paper(B,col); ({ctx,w,h}=B); const l=34, by=h/2, bamp=50, tw=w-l-16;
+        ctx.strokeStyle=col.line; ctx.lineWidth=1.5; ctx.beginPath(); ctx.moveTo(l,by); ctx.lineTo(w-8,by); ctx.moveTo(l,10); ctx.lineTo(l,h-10); ctx.stroke();
+        ctx.fillStyle=col.muted; ctx.font=MONO(500); ctx.fillText("s",l-22,18); ctx.fillText("t",w-18,by-8); ctx.fillText("T",l+tw/2-4,by+18); ctx.fillText("2T",l+tw-18,by+18);
+        ctx.fillRect(l+tw/2-0.5,by-4,1,8); ctx.fillRect(l+tw-0.5,by-4,1,8);
+        ctx.strokeStyle=col.mark; ctx.lineWidth=3; ctx.beginPath();
+        for(let q=0;q<=200;q++){ const tt=q/100, px=l+tt*tw/2, py=by-bamp*s(R.j,tt); q?ctx.lineTo(px,py):ctx.moveTo(px,py);} ctx.stroke();
+        if(geprueft){ const px=l+t*tw/2, py=by-bamp*s(R.j,t); ctx.strokeStyle=col.muted; ctx.lineWidth=1; ctx.setLineDash([3,4]); ctx.beginPath(); ctx.moveTo(px,10); ctx.lineTo(px,h-10); ctx.stroke(); ctx.setLineDash([]);
+          ctx.fillStyle=col.mark; ctx.beginPath(); ctx.arc(px,py,7,0,TAU); ctx.fill(); }
+      });
+      A.c.addEventListener("pointerdown",ev=>{ if(geprueft) return; const rc=A.c.getBoundingClientRect(); const x=ev.clientX-rc.left; const {L,dx}=geo();
+        const i=Math.round((x-L)/dx); if(i>=0&&i<K&&Math.abs(x-(L+i*dx))<dx*0.6){ wahl=i; pruef.disabled=false; pruef.textContent=`Teilchen ${i+1} prüfen`; } });
+      const fb=el("div",{}); g.stage.appendChild(fb);
+      const acts=el("div",{class:"actions"}); const pruef=el("button",{class:"btn",disabled:""},"Tippe ein Teilchen an"); acts.appendChild(pruef); g.stage.appendChild(acts);
+      pruef.addEventListener("click",()=>{
+        geprueft=true; t0=performance.now()/1000; // Startpunkt der Animation
+        const ok=richtig(wahl); const gain=g.wert(ok);
+        const v=s(R.j,0), dv=-R.dir*Math.cos(TAU*R.j/8+R.phi); const hoch=dv>0;
+        const lage=v>0.95?"im Wellenberg":v<-0.95?"im Wellental":Math.abs(v)<0.05?"in der Ruhelage":(v>0?"oberhalb der Ruhelage":"unterhalb der Ruhelage");
+        const bew=Math.abs(v)>0.95?(v>0?"nach unten":"nach oben"):(hoch?"nach oben":"nach unten");
+        const nachbar=R.dir>0?"links":"rechts";
+        const passend=[...Array(K).keys()].filter(richtig).map(i=>i+1).join(" und ");
+        fb.innerHTML=`<div class="feedback ${ok?"ok":"bad"}"><b>${ok?"Richtig!"+plus(gain):"Leider nicht."} Gesucht war Teilchen ${passend}.</b>Es startet ${lage} und bewegt sich zuerst ${bew}. Merkregel: Es macht, was sein Nachbar ${nachbar} von ihm (Richtung Erreger) gerade gemacht hat. Teilchen im Abstand λ schwingen gleich.</div>`;
+        pruef.remove(); const w=el("button",{class:"btn"},r+1<N?"Weiter":"Auswertung");
+        w.addEventListener("click",()=>{ r++; r<N?runde():g.ende(punkte,N,lob(punkte,N)); }); acts.appendChild(w);
+      });
+    };
+    runde();
+  }
+}
+};
+
+renderHome();
+</script>
+
+</body>
+</html>
