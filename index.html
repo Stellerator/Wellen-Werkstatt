@@ -354,6 +354,70 @@ footer .fbtns{display:flex;gap:8px;flex-wrap:wrap}
 @keyframes ruck3{15%,55%{transform:translateX(-7px)}35%,75%{transform:translateX(7px)}}
 .tonb[aria-pressed="true"]{border-color:var(--wave);color:var(--wave)}
 .k3row .hint{font-size:14px}
+/* Spielwelt: Nachthimmel, Neon, Glas */
+.nacht{--bg:#060b1e;--surface:rgba(20,26,66,.74);--plot:rgba(10,16,48,.8);--line:#33428a;--ink:#eaf0ff;--muted:#a3b3ea;--wave:#6fe3ff;--on-wave:#031018;--mark:#ffd36a;--ok:#5fe39b;--bad:#ff6d8a;color:var(--ink);color-scheme:dark}
+body.nachtwelt{background:radial-gradient(120% 80% at 50% 0%,#1a1450 0,#0a0d2e 45%,#050818 100%) fixed}
+body.nachtwelt .theme{display:none}
+.sterne{display:inline-flex;gap:3px;font-size:24px;line-height:1}
+.sterne b{color:#ffd36a;text-shadow:0 0 12px rgba(255,211,106,.75)} .sterne b.aus{color:rgba(255,255,255,.2);text-shadow:none}
+.sterne.gross{font-size:52px;gap:8px}
+.station.spiel{border:1px solid #3a4690;background:linear-gradient(170deg,#0c1236,#1d1a4a);color:#eaf0ff;box-shadow:none}
+.station.spiel>*:not(.badge-next):not(canvas){position:relative;z-index:1} .station.spiel .badge-next{z-index:2}
+.station.spiel>canvas.sk{position:absolute;left:0;top:0;z-index:0;border-radius:inherit;pointer-events:none}
+.station.spiel::after{content:"";position:absolute;inset:0;z-index:0;background:linear-gradient(180deg,rgba(6,9,33,.92),rgba(6,9,33,.7) 60%,rgba(6,9,33,.35));border-radius:inherit;pointer-events:none}
+.station.spiel h3{color:#fff} .station.spiel p{color:#c9d3ff}
+.station.spiel .num{background:rgba(255,255,255,.1);border-color:#8da0ff;color:#fff}
+.station.spiel .stat{color:#ffd36a}
+.station.spiel:not(.locked){border:2px solid #7f93ff;background:linear-gradient(170deg,#0c1240,#2a1a5e 75%,#4a2370);box-shadow:0 0 0 3px rgba(127,147,255,.18),0 0 30px rgba(120,130,255,.55);animation:glimm3 3.2s ease-in-out infinite}
+.station.spiel:not(.locked) h3{text-shadow:0 0 14px rgba(140,160,255,.9)}
+.station.spiel:not(.locked)::after{background:linear-gradient(180deg,rgba(6,9,33,.8),rgba(6,9,33,.3) 60%,transparent)}
+@keyframes glimm3{50%{box-shadow:0 0 0 3px rgba(127,147,255,.3),0 0 46px rgba(130,140,255,.8)}}
+@media (prefers-reduced-motion:reduce){ .station.spiel{animation:none!important} }
+.station.spiel.locked{background:#0b0f2b;border:2px dashed #3a4690;color:#8b97cc}
+.station.spiel.locked h3,.station.spiel.locked p,.station.spiel.locked .stat{color:#8b97cc;text-shadow:none}
+.sp-intro{display:flex;flex-direction:column;gap:18px;padding-bottom:24px}
+.sp-hero{position:relative;height:clamp(210px,34vh,300px);border-radius:22px;overflow:hidden;border:1px solid #3b4c9c;box-shadow:0 0 40px rgba(100,120,255,.3)}
+.sp-hero canvas{position:absolute;left:0;top:0}
+.sp-hero .tt{position:absolute;left:22px;top:16px;display:flex;flex-direction:column;gap:2px}
+.sp-hero .tt h2{font-size:clamp(28px,4vw,44px);font-weight:800;color:#fff;text-shadow:0 0 22px #6fe3ff,0 0 44px rgba(111,227,255,.5)}
+.sp-hero .tt .eyebrow{color:#bcd0ff}
+.sp-card{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:20px;display:flex;flex-direction:column;gap:14px;backdrop-filter:blur(6px)}
+.sp-card h3{font-size:26px;font-weight:800}
+.sp-steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.sp-step{display:flex;gap:12px;align-items:flex-start;background:rgba(255,255,255,.04);border-radius:14px;padding:12px}
+.sp-step b{flex:none;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:var(--wave);color:var(--on-wave);font-family:var(--font-mono)}
+.sp-step p{font-size:16px}
+.pk{color:#ff7fb8;font-weight:700} .cy{color:#6fe3ff;font-weight:700}
+.sp-levels{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.sp-lv{--neon:#4fe3ff;position:relative;text-align:left;display:flex;flex-direction:column;gap:6px;padding:18px;border-radius:20px;border:2px solid var(--neon);background:linear-gradient(160deg,rgba(30,38,96,.85),rgba(12,16,46,.9));box-shadow:0 0 26px color-mix(in srgb,var(--neon) 35%,transparent);color:var(--ink);min-height:180px}
+.sp-lv .no{font:800 40px/1 var(--font-display);color:var(--neon);text-shadow:0 0 18px var(--neon)}
+.sp-lv h3{font-size:22px;font-weight:800} .sp-lv p{color:var(--muted);font-size:15px;flex:1}
+.sp-lv.locked{border-style:dashed;box-shadow:none;opacity:.6;cursor:default}
+.sp-stage{flex:1;display:flex;flex-direction:column;gap:10px;min-height:0}
+.sp-cv{position:relative;flex:1;min-height:280px;border-radius:20px;overflow:hidden;border:1px solid #3b4c9c;box-shadow:0 0 34px rgba(100,120,255,.28)}
+.sp-cv canvas{position:absolute;left:0;top:0}
+.sp-cv.ruck{animation:ruck3 .42s}
+.sp-ov{position:absolute;inset:0;z-index:3;display:none;flex-direction:column;align-items:center;justify-content:safe center;overflow:auto;gap:12px;text-align:center;padding:18px;background:rgba(5,8,28,.58);backdrop-filter:blur(3px)}
+.sp-ov.on{display:flex}
+.sp-ov.count{background:transparent;backdrop-filter:none;pointer-events:none}
+.sp-ov.slowov{justify-content:flex-end;background:transparent;backdrop-filter:none;pointer-events:none}
+.sp-ov.slowov .btn{pointer-events:auto}
+.sp-ov .big{font:800 clamp(64px,13vw,120px)/1 var(--font-display);color:#fff;text-shadow:0 0 26px #6fe3ff,0 0 60px #6fe3ff}
+.sp-ov h3{font-size:clamp(26px,4vw,40px);font-weight:800;text-shadow:0 0 24px rgba(111,227,255,.6)}
+.sp-ov p{max-width:600px;color:#cdd7ff}
+.sp-hint{min-height:20px;text-align:center;color:var(--muted);font-size:15px}
+.sp-ctl{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.sp-b{--neon:#4fe3ff;min-width:150px;min-height:78px;padding:0 16px;border-radius:18px;border:2px solid var(--neon);background:linear-gradient(180deg,rgba(255,255,255,.12),rgba(255,255,255,.02));color:#fff;font:800 20px var(--font-display);box-shadow:0 0 22px color-mix(in srgb,var(--neon) 40%,transparent);touch-action:none}
+.sp-b:active{transform:scale(.96);background:color-mix(in srgb,var(--neon) 35%,transparent)}
+.sp-b.cool{opacity:.45;filter:saturate(.3)}
+.sp-b:disabled{opacity:.3}
+.sp-duel{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.sp-pl{min-width:0;border:2px solid var(--neon);border-radius:20px;padding:10px 12px;display:flex;flex-direction:column;gap:8px;background:rgba(10,16,48,.7)}
+.sp-pl h4{margin:0;color:var(--neon);font-size:16px}
+.sp-pl .btns{display:flex;gap:10px} .sp-pl .btns .sp-b{flex:1;min-width:0;min-height:64px}
+.sp-cd{height:7px;border-radius:4px;background:rgba(255,255,255,.12);overflow:hidden} .sp-cd i{display:block;height:100%;background:var(--neon);width:100%}
+@media (max-width:899px),(max-aspect-ratio:5/4),(max-height:559px){ .sp-cv{flex:none;height:360px} .sp-cv.duel{height:500px} .sp-ov p{font-size:15px} .sp-duel{gap:8px} .sp-pl{padding:8px} .sp-pl .btns .sp-b{font-size:16px;padding:0 4px;min-height:58px} }
+
 .answers.spiel2 button{min-height:92px;font-size:22px;text-align:center}
 @media (min-width:821px) and (orientation:landscape){ .path:has(> :nth-child(11)){flex-wrap:wrap;row-gap:14px} .path:has(> :nth-child(11)) .station{flex:1 1 27%} }
 .fside .cv.b3{min-height:170px}
@@ -634,7 +698,7 @@ const KAPITEL = [
   {id:"k2", nr:2, titel:"Darstellungen & Polarisation", untertitel:"s(x), s(t), Merkregel, Polarisation", freigegeben:true,
    steckbriefe:["ort","zeit","regel","pol"], challenges:["teilchen","ablesen","polar"]},
   {id:"k3", nr:3, titel:"Interferenz & stehende Wellen", untertitel:"Superposition, Interferenz, Reflexion, stehende Wellen", freigegeben:true,
-   steckbriefe:["superpos","interf","gangu","reflex","stehend","knoten","eigen"], challenges:["pulse","gang","reflexion","stehend","voegel"]}
+   steckbriefe:["superpos","interf","gangu","reflex","stehend","knoten","eigen"], challenges:["pulse","gang","reflexion","stehend"], spiel:"voegel"}
 ];
 
 const PRO_LEVEL = 5, HUERDE = 4;   // 5 Aufgaben, bestanden mit 4 Treffern im ersten Versuch
@@ -1972,40 +2036,177 @@ function resoLambda(){ const n=one([3,4]), L=n===3?one([.9,1.5,3]):one([1,1.2,2]
       return {reveal(){ auf=true; }}; }}); }
 function stehL3(){ return shuffle([phasenTask(one(["gegen","ruht"])),phasenTask(one(["gleich","gleich2"])),...pick([resoBaeuche,resoKeine,resoLose,resoLambda],3).map(fn=>fn())]); }
 
-/* ---------- Spiel „Vögel auf der Leitung“ ----------
-   Von rechts rollen Pulse an. Der Spieler schickt von links Gegenpulse los. Treffen sich Puls und Gegenstück genau beim Vogel,
-   bleibt die Leitung dort in Ruhe (Superposition), und beide Pulse laufen weiter. Drei Vögel = drei Leben für das ganze Level.
-   Passt in das Raster der App: 5 Runden je Level, eine Runde zählt als Treffer, wenn kein Vogel auffliegt. */
-function vogel3(ctx,x,y,t,flug){ ctx.save(); ctx.translate(x,y-13); if(flug!==null){ const u=t-flug; ctx.translate(u*70,-u*150-30*Math.sin(u*3)); }
-  ctx.fillStyle="#f4c95d"; ctx.beginPath(); ctx.ellipse(0,0,13,11,0,0,TAU); ctx.fill(); ctx.beginPath(); ctx.arc(9,-10,7.5,0,TAU); ctx.fill();
-  ctx.fillStyle="#e8853a"; ctx.beginPath(); ctx.moveTo(15,-11); ctx.lineTo(23,-8.5); ctx.lineTo(15,-6.5); ctx.closePath(); ctx.fill();
-  ctx.strokeStyle="#3a2a12"; ctx.lineWidth=1.8; ctx.beginPath(); if(flug===null){ ctx.moveTo(8,-10.5); ctx.lineTo(12.5,-10.5); } else ctx.arc(10.5,-11,1.6,0,TAU); ctx.stroke();
-  ctx.fillStyle="#d9a53c"; ctx.beginPath(); if(flug===null) ctx.ellipse(-3,1,8,5.5,-.3,0,TAU); else { const f=Math.sin(t*22)*11; ctx.moveTo(-9,-2); ctx.lineTo(-1,-12-f); ctx.lineTo(5,-2); ctx.closePath(); } ctx.fill();
-  if(flug===null){ ctx.strokeStyle="#3a2a12"; ctx.lineWidth=2; ctx.beginPath(); ctx.moveTo(-3,10); ctx.lineTo(-3,13); ctx.moveTo(3,10); ctx.lineTo(3,13); ctx.stroke(); label(ctx,"z",20,-22-3*Math.sin(t*2),B3.dim,"left",700,11+2*Math.sin(t*2)); }
+/* ---------- Spielwelt „Vögel auf der Leitung“ (eigener Nachtlook, zählt nicht in „Meine Erfolge“ und nicht in den Nachweis) ----------
+   Fortschritt (Sterne) liegt unter eigenem Schlüssel, nie im Lernstand. Pulse tragen ein Feld own: 1 = Spieler links / du, 2 = Gegner.
+   Ein Vogel wacht auf, wenn die Leitung dort um mehr als 1 Kästchen ausschlägt UND ein gegnerischer Puls dort ankommt. */
+const SP={ky:"wellen-werkstatt-spiel",L:24,cyan:"#4fe3ff",pink:"#ff5ea8",gold:"#ffd36a",viol:"#a99bff",A:2.4,CD:1.1};
+const rgb3=h=>{ const n=parseInt(h.slice(1),16); return [n>>16&255,n>>8&255,n&255]; };
+const mix3=(a,b,u)=>{ const p=rgb3(a), q=rgb3(b); return "rgb("+p.map((v,i)=>Math.round(v+(q[i]-v)*u)).join(",")+")"; };
+const hash3=i=>{ const x=Math.sin(i*127.1+311.7)*43758.5453; return x-Math.floor(x); };
+function spielStand(){ let s=null; try{ s=JSON.parse(localStorage.getItem(SP.ky)||"null"); }catch(e){}
+  const r={s:[0,0,0],serie:0}; if(s&&Array.isArray(s.s)) r.s=[0,1,2].map(i=>klemm(Math.floor(+s.s[i])||0,0,3)); r.serie=Math.max(0,Math.floor(+(s&&s.serie))||0); return r; }
+function spielSpeichern(r){ try{ localStorage.setItem(SP.ky,JSON.stringify(r)); }catch(e){} }
+const spielLvOpen=n=>teacher||n===0||spielStand().s[n-1]>0;
+const sterneHtml=n=>`<span class="sterne">${[0,1,2].map(i=>`<b${i<n?"":' class="aus"'}>★</b>`).join("")}</span>`;
+const SP_LV=[{name:"Berg gegen Tal",info:"Gleich große Pulse, eine Startlinie hilft dir beim Timing.",neon:SP.cyan},
+  {name:"Groß und klein",info:"Jetzt muss auch die Größe des Gegenpulses stimmen.",neon:SP.viol},
+  {name:"Ohne Startlinie",info:"Schneller, und den richtigen Moment findest du selbst.",neon:SP.pink}];
+
+/* Spielplan: pure Rechnung, deshalb testbar. c = Tempo, xb = Platz des Vogels, kommt = ankommende Pulse (own 2) */
+function vogelPlan(lv,r){ const gross=lv>0, c=[4,4.4,5][lv], gap=[2.7,2.4,2.0][lv], xb=lv===2?one([7,8.5,10]):[9,8,10,7.5,10.5][r%5];
+  const kommt=[0,1,2].map(i=>{ const a=(gross?one([1.5,3]):SP.A)*one([1,-1]), t=1.2+i*gap; return {t,a,tp:t+(SP.L+3-xb)/c}; }); return {lv,xb,c,gross,kommt}; }
+function vogelSeil(p){ return {L:SP.L,rl:0,rr:0,c:p.c,pulse:p.kommt.map(q=>({a:q.a,g:FORM.glocke(2.4),dir:-1,x0:SP.L+3,t0:q.t,own:2}))}; }
+const weckt=(S,xb,t,eigner)=>{ let sE=0; S.pulse.forEach(p=>{ if(p.own!==eigner) sE+=pulsWert(S,p,xb,t); }); return Math.abs(seilWert(S,xb,t))>1&&Math.abs(sE)>.5; };
+
+/* ---------- Grafik ---------- */
+function vogel3(ctx,x,y,t,z,u){ // z: "schlaf" | "wach" (landet) | "flug" (u = Zeit seit dem Aufwachen)
+  ctx.save(); ctx.translate(x,y-13); if(z==="flug") ctx.translate(u*80,-u*170-26*Math.sin(u*3));
+  if(z==="schlaf"){ ctx.save(); ctx.globalAlpha=.28; perle(ctx,0,-2,"#ffcf70",30); ctx.restore(); }
+  ctx.fillStyle="#f6d66b"; ctx.beginPath(); ctx.ellipse(0,0,13,11,0,0,TAU); ctx.fill(); ctx.beginPath(); ctx.arc(9,-10,7.5,0,TAU); ctx.fill();
+  ctx.fillStyle="#f09a45"; ctx.beginPath(); ctx.moveTo(15,-11); ctx.lineTo(23,-8.5); ctx.lineTo(15,-6.5); ctx.closePath(); ctx.fill();
+  ctx.strokeStyle="#3a2a12"; ctx.fillStyle="#fff"; ctx.lineWidth=1.8; ctx.beginPath();
+  if(z==="schlaf"){ ctx.moveTo(8,-10.5); ctx.lineTo(12.5,-10.5); ctx.stroke(); } else { ctx.arc(10.5,-11,2.6,0,TAU); ctx.fill(); ctx.stroke(); ctx.fillStyle="#3a2a12"; ctx.beginPath(); ctx.arc(11.2,-11,1.2,0,TAU); ctx.fill(); }
+  ctx.fillStyle="#e0b23f"; ctx.beginPath(); if(z==="schlaf") ctx.ellipse(-3,1,8,5.5,-.3,0,TAU); else { const f=Math.sin(t*24)*11; ctx.moveTo(-9,-2); ctx.lineTo(-1,-12-f); ctx.lineTo(5,-2); ctx.closePath(); } ctx.fill();
+  if(z==="schlaf"){ ctx.strokeStyle="#3a2a12"; ctx.lineWidth=2; ctx.beginPath(); ctx.moveTo(-3,10); ctx.lineTo(-3,13); ctx.moveTo(3,10); ctx.lineTo(3,13); ctx.stroke(); label(ctx,"z",20,-22-3*Math.sin(t*2),"#bcd0ff","left",700,11+2*Math.sin(t*2)); }
+  if(z==="flug"&&u<.9){ ctx.fillStyle=SP.pink; ctx.beginPath(); ctx.arc(-6,-28,9,0,TAU); ctx.fill(); label(ctx,"!",-6,-23,"#fff","center",800,14); }
   ctx.restore(); }
-function vogelTask(lv,runde,Leben){ return {_o:{lv,runde},run(api){
-  if(Leben.n<=0){ api.situation("Die Leitung ist leer. Alle drei Vögel sind aufgeflogen."); api.prompt("Für diese Runde ist kein Vogel mehr da."); api.feedback(false,"Neue Runde, neue Vögel: Starte das Level noch einmal.","Keine Leben mehr."); api.finish(false); return; }
-  const L=24, c=lv===2?3.6:3, xb=lv===2?one([7,8.5,10]):[9,8,10,7.5,10.5][runde], gross=lv>0, g=FORM.glocke(2.4), S={L,rl:0,rr:0,c,pulse:[]};
-  const kommt=[0,1,2].map(i=>({t:1.5+i*(lv===2?3:3.4),a:(gross?one([1.5,3]):2)*one([1,-1])})), tEnd=kommt[2].t+(L+6)/c+.5;
-  kommt.forEach(k=>S.pulse.push({a:k.a,g,dir:-1,x0:L+3,t0:k.t}));
-  let weg=false, ende=false, flug=null, jetzt=0, nah=0;
-  api.badge("Spiel · "+Leben.n+(Leben.n===1?" Vogel":" Vögel")+" übrig");
-  api.prompt("Halte die Leitung unter dem Vogel ruhig! Schick jedem ankommenden Puls von links sein <b>Gegenstück</b> entgegen, sodass sich beide genau beim Vogel treffen.");
-  api.hint(lv<2?"Beide Pulse sind gleich schnell. Schick deinen Puls los, wenn die Mitte des ankommenden Pulses die gestrichelte Startlinie erreicht."+(gross?" Achte auch auf die Größe.":""):"Ohne Startlinie: Dein Puls braucht bis zum Vogel genauso lange wie der ankommende von der Stelle, die gleich weit rechts vom Vogel liegt wie dein Startpunkt links.");
-  const st=canvasFill(api.cv("b3")), box=el("div",{class:"answers"+(gross?"":" spiel2")});
-  (gross?[[3,"Großer Berg"],[1.5,"Kleiner Berg"],[-3,"Großes Tal"],[-1.5,"Kleines Tal"]]:[[2,"Berg ▲"],[-2,"Tal ▼"]]).forEach(([a,txt])=>{ const b=el("button",{},txt);
-    b.addEventListener("pointerdown",e=>{ e.preventDefault(); if(!ende) S.pulse.push({a,g,dir:1,x0:-3,t0:jetzt}); }); box.appendChild(b); });
-  api.body.appendChild(box);
-  loop(t=>{ jetzt=t; if(st.c._auto) kommt.forEach(k=>{ if(!k.ab&&t>=k.t+(L-2*xb)/c){ k.ab=true; S.pulse.push({a:-k.a,g,dir:1,x0:-3,t0:t}); } });
-    const G=zeichneSeil(st,S,t,{ym:5,pb:20}), {ctx}=st, s=seilWert(S,xb,t);
-    if(lv<2){ const x=G.X(2*xb+3); dashV(ctx,x,G.Y(4.6),G.Y(-4.6),B3.mark); label(ctx,"Startlinie",x,G.Y(-4.6)+15,B3.mark,"center",700,12); }
-    label(ctx,"dein Start",G.X(0)+2,G.Y(-4.6)+15,B3.txt,"left",700,12); arrow(ctx,G.X(.2),G.Y(4.3),G.X(2.4),G.Y(4.3),B3.txt,2); arrow(ctx,G.X(L-.2),G.Y(4.3),G.X(L-2.4),G.Y(4.3),B3.b,2);
-    if(!weg&&Math.abs(s)>1){ weg=true; flug=t; Leben.n--; effekt3(st,false); } nah=Math.max(nah,Math.abs(s));
-    vogel3(ctx,G.X(xb),G.Y(weg?0:s),t,flug); for(let i=0;i<Leben.n-(weg?0:1);i++) vogel3(ctx,st.w-30-i*34,34,t+i,null);
-    if(!ende&&(t>=tEnd||(weg&&t>flug+1.8))){ ende=true; if(!weg) effekt3(st,true);
-      api.feedback(!weg,weg?"Unter dem Vogel hat sich die Leitung um mehr als ein Kästchen bewegt. Das Gegenstück zu einem Berg ist ein gleich großes Tal, und beide müssen genau beim Vogel übereinander liegen.":"Beim Vogel haben sich die Auslenkungen jedes Mal aufgehoben: s = s₁ + s₂ = 0. Die Pulse selbst sind nicht verschwunden, sie laufen unverändert weiter.",weg?"Der Vogel ist aufgeflogen.":"Kein Vogel geweckt!"); api.finish(!weg); } });
-}};}
-const vogelL=lv=>()=>{ const Leben={n:3}; return [0,1,2,3,4].map(r=>vogelTask(lv,r,Leben)); };
+function vogelAt(log,t){ let e=log[0]; log.forEach(q=>{ if(q.land<=t) e=q; }); if(e.flug!==null&&t>=e.flug) return ["flug",t-e.flug]; if(t<e.land+.85) return ["wach",t-e.land]; return ["schlaf",0]; }
+function vogelMalen(ctx,G,S,t,log,x){ const [z,u]=vogelAt(log,t); if(z==="wach"&&u<0) return; let y=G.Y(seilWert(S,x,t),x); if(z==="wach") y-=Math.pow(1-u/.85,2)*170; vogel3(ctx,G.X(x),y,t,z,u); }
+function nachtHimmel(ctx,w,h,t){
+  const g=ctx.createLinearGradient(0,0,0,h); g.addColorStop(0,"#050921"); g.addColorStop(.55,"#1a1450"); g.addColorStop(1,"#4a1f6b"); ctx.fillStyle=g; ctx.fillRect(0,0,w,h);
+  ctx.save(); ctx.globalCompositeOperation="lighter";
+  [["80,160,255",.17],["90,255,200",.24],["200,90,255",.31]].forEach(([col,yy],i)=>{ const y=h*yy, gr=ctx.createLinearGradient(0,y-40,0,y+60); gr.addColorStop(0,"rgba("+col+",0)"); gr.addColorStop(.5,"rgba("+col+",.1)"); gr.addColorStop(1,"rgba("+col+",0)");
+    ctx.fillStyle=gr; ctx.beginPath(); ctx.moveTo(0,y-40); for(let x=0;x<=w;x+=20) ctx.lineTo(x,y+Math.sin(x*.01+t*.25+i*2)*22); ctx.lineTo(w,y+80); ctx.lineTo(0,y+80); ctx.closePath(); ctx.fill(); }); ctx.restore();
+  for(let i=0;i<70;i++){ const a=.3+.7*Math.abs(Math.sin(t*(.6+hash3(i+3))+i)); ctx.fillStyle="rgba(235,242,255,"+a.toFixed(2)+")"; ctx.beginPath(); ctx.arc(hash3(i)*w,hash3(i+99)*h*.62,.6+hash3(i+7)*1.4,0,TAU); ctx.fill(); }
+  const u=(t%9)/1.1; if(u>=0&&u<1){ const x=w*(.15+.5*hash3(Math.floor(t/9)))+u*w*.25, y=h*.08+u*h*.16, gr=ctx.createLinearGradient(x,y,x-70,y-30); gr.addColorStop(0,"rgba(255,255,255,"+(1-u).toFixed(2)+")"); gr.addColorStop(1,"rgba(255,255,255,0)"); ctx.strokeStyle=gr; ctx.lineWidth=2; ctx.beginPath(); ctx.moveTo(x,y); ctx.lineTo(x-70,y-30); ctx.stroke(); }
+  const mx=w*.84, my=h*.16, mr=Math.min(w,h)*.06; perle(ctx,mx,my,"#cfe0ff",mr*3.4); ctx.fillStyle="#f3f6ff"; ctx.beginPath(); ctx.arc(mx,my,mr,0,TAU); ctx.fill();
+  ctx.fillStyle="rgba(150,165,210,.35)"; [[-.3,-.2,.25],[.25,.15,.2],[-.1,.35,.14]].forEach(([a,b,c])=>{ ctx.beginPath(); ctx.arc(mx+a*mr,my+b*mr,c*mr,0,TAU); ctx.fill(); });
+  [["#1b1346",.8,.9,.012],["#0c0a2a",.88,1.7,.02]].forEach(([c,yy,ph,fr])=>{ ctx.fillStyle=c; ctx.beginPath(); ctx.moveTo(0,h); for(let x=0;x<=w;x+=16) ctx.lineTo(x,h*yy+Math.sin(x*fr+ph)*h*.03+Math.sin(x*fr*2.3)*h*.012); ctx.lineTo(w,h); ctx.closePath(); ctx.fill(); });
+  for(let i=0;i<9;i++){ const x=((hash3(i+40)*w+Math.sin(t*.4+i)*30)%w+w)%w, y=h*(.8+.15*hash3(i+60))+Math.sin(t*.7+i*2)*8; ctx.save(); ctx.globalAlpha=.4+.6*Math.abs(Math.sin(t*1.3+i)); perle(ctx,x,y,"#c8ff7a",10); ctx.restore(); } }
+const newE=()=>({p:[],r:[],t:[]});
+function efSpr(E,x,y,n,cols,v=240){ for(let i=0;i<n;i++){ const a=Math.random()*TAU, s=v*(.3+Math.random()); E.p.push({x,y,vx:Math.cos(a)*s,vy:Math.sin(a)*s-70,l:0,m:.6+Math.random()*.7,c:one(cols),r:4+Math.random()*7}); } }
+const efRing=(E,x,y,c)=>E.r.push({x,y,l:0,m:.7,c}), efText=(E,txt,x,y,c)=>E.t.push({txt,x,y,l:0,m:1.3,c});
+function efMal(ctx,E,dt){ ctx.save(); ctx.globalCompositeOperation="lighter";
+  for(let i=E.p.length-1;i>=0;i--){ const p=E.p[i]; p.l+=dt; if(p.l>=p.m){ E.p.splice(i,1); continue; } p.vy+=320*dt; p.x+=p.vx*dt; p.y+=p.vy*dt; ctx.globalAlpha=1-p.l/p.m; ctx.drawImage(funkeBild(p.c),p.x-p.r,p.y-p.r,2*p.r,2*p.r); }
+  for(let i=E.r.length-1;i>=0;i--){ const r=E.r[i]; r.l+=dt; if(r.l>=r.m){ E.r.splice(i,1); continue; } const u=r.l/r.m; ctx.globalAlpha=(1-u)*.9; ctx.strokeStyle=r.c; ctx.lineWidth=3+4*(1-u); ctx.beginPath(); ctx.arc(r.x,r.y,10+u*70,0,TAU); ctx.stroke(); }
+  ctx.restore();
+  for(let i=E.t.length-1;i>=0;i--){ const q=E.t[i]; q.l+=dt; if(q.l>=q.m){ E.t.splice(i,1); continue; } const u=q.l/q.m; ctx.save(); ctx.globalAlpha=1-u*u; ctx.shadowColor=q.c; ctx.shadowBlur=14; label(ctx,q.txt,q.x,q.y-u*42,q.c,"center",800,18); ctx.restore(); } }
+function spielGeo(w,h,y){ const L=SP.L, pad=Math.max(24,w*.045), ux=(w-2*pad)/L, u=Math.min(ux*1.45,h*.072), y0=(y||.56)*h, sg=Math.min(14,h*.03);
+  return {L,u,y0,X:x=>pad+x*ux,Y:(s,x)=>y0-s*u+sg*(1-Math.pow(2*x/L-1,2)),ix:px=>(px-pad)/ux}; }
+// Eine Szene: Himmel, Masten, Leitung (Farbe nach Auslenkung), Pulse als Kugeln über der Leitung (sie laufen durcheinander hindurch), Vögel, Linien, Effekte
+function spielSzene(st,S,t,o){ const {ctx,w,h}=st; nachtHimmel(ctx,w,h,t); const G=spielGeo(w,h,o.y);
+  [0,G.L].forEach(x=>{ const px=G.X(x), py=G.Y(0,x); ctx.fillStyle="#0a0c26"; ctx.fillRect(px-5,py-6,10,h-py+6); ctx.fillStyle="#2b3a86"; ctx.fillRect(px-5,py-6,2,h-py+6);
+    ctx.fillStyle="#0a0c26"; ctx.fillRect(px-26,py-12,52,6); ctx.fillStyle="#2b3a86"; ctx.fillRect(px-26,py-12,52,1.5); perle(ctx,px,py-8,SP.cyan,14); });
+  (o.lines||[]).forEach(l=>{ const x=G.X(l.x); ctx.save(); ctx.strokeStyle=l.farbe; ctx.globalAlpha=.8; ctx.lineWidth=2; ctx.setLineDash([6,6]); ctx.beginPath(); ctx.moveTo(x,G.y0-G.u*5.6); ctx.lineTo(x,G.y0+G.u*5.2); ctx.stroke(); ctx.restore();
+    label(ctx,l.txt,x,G.y0+G.u*5.2+16+(l.row||0)*15,l.farbe,"center",700,12); });
+  const n=Math.max(60,Math.round((G.X(G.L)-G.X(0))/3)), P=[], V=[]; for(let i=0;i<=n;i++){ const x=G.L*i/n, s=seilWert(S,x,t); P.push([G.X(x),G.Y(s,x)]); V.push(s); }
+  ctx.save(); ctx.lineCap="round"; [[12,.16,"lighter"],[3.4,1,"source-over"]].forEach(([lw,al,mode])=>{ ctx.globalCompositeOperation=mode; ctx.globalAlpha=al; ctx.lineWidth=lw;
+    for(let i=0;i<n;i++){ const s=(V[i]+V[i+1])/2; ctx.strokeStyle=s>=0?mix3("#d8f1ff","#ffe08a",klemm(s/2.5,0,1)):mix3("#d8f1ff",SP.viol,klemm(-s/2.5,0,1)); ctx.beginPath(); ctx.moveTo(P[i][0],P[i][1]); ctx.lineTo(P[i+1][0],P[i+1][1]); ctx.stroke(); } }); ctx.restore();
+  if(o.orbs) S.pulse.forEach(p=>{ const xc=p.dir>0?p.x0+S.c*(t-(p.t0||0)):p.x0-S.c*(t-(p.t0||0)); if(xc<-.5||xc>G.L+.5) return; const px=G.X(xc), yo=G.y0-G.u*5.2, ys=G.Y(seilWert(S,xc,t),xc), col=p.own===1?SP.cyan:SP.pink;
+    ctx.save(); ctx.strokeStyle=col; ctx.globalAlpha=.35; ctx.setLineDash([3,5]); ctx.beginPath(); ctx.moveTo(px,yo+10); ctx.lineTo(px,ys); ctx.stroke(); ctx.restore();
+    perle(ctx,px,yo,col,22); ctx.fillStyle=col; ctx.beginPath(); ctx.arc(px,yo,9,0,TAU); ctx.fill(); label(ctx,p.a>0?"▲":"▼",px,yo+4,"#06102a","center",800,11); label(ctx,p.dir>0?"›":"‹",px+(p.dir>0?16:-16),yo+5,col,"center",800,16); });
+  (o.birds||[]).forEach(b=>vogelMalen(ctx,G,S,t,b.log,b.x)); if(o.E) efMal(ctx,o.E,o.dt||0); return G; }
+function hudVoegel(ctx,x,y,n,dir){ for(let i=0;i<3;i++){ const px=x+dir*i*34; if(i<n){ ctx.save(); ctx.translate(px,y+6); ctx.scale(.62,.62); vogel3(ctx,0,0,0,"schlaf",0); ctx.restore(); } else { ctx.strokeStyle="rgba(255,255,255,.25)"; ctx.lineWidth=2; ctx.beginPath(); ctx.arc(px,y,9,0,TAU); ctx.stroke(); } } }
+// Vorschau für Kachel und Spielwelt: zeigt, wie ein Gegenpuls den Vogel ruhig hält
+const VORS={L:SP.L,rl:0,rr:0,c:4,pulse:[{a:2.4,g:FORM.glocke(2.4),dir:-1,x0:27,t0:1,own:2},{a:-2.4,g:FORM.glocke(2.4),dir:1,x0:-3,t0:2.5,own:1}]}, VOG=[{land:-9,flug:null}];
+function vorschau(st,t,o={}){ const dt=st._pt===undefined?0:Math.min(.05,Math.abs(t-st._pt)); st._pt=t; st.E=st.E||newE(); const tt=o.still?0:t%9;
+  if(!o.still&&st._tt<5.5&&tt>=5.5){ const G=spielGeo(st.w,st.h,o.y); efRing(st.E,G.X(9),G.Y(0,9),SP.gold); efSpr(st.E,G.X(9),G.Y(0,9),16,[SP.gold,"#ffffff",SP.cyan],200); } st._tt=tt;
+  spielSzene(st,VORS,tt,{E:st.E,dt,y:o.y,orbs:!o.still,birds:[{x:9,log:VOG}]}); if(o.dunkel){ st.ctx.fillStyle="rgba(5,8,28,.55)"; st.ctx.fillRect(0,0,st.w,st.h); } }
+
+/* ---------- Lernpfad: Spielkachel ---------- */
+function spielStation(k,list){ if(!k.spiel) return; const S0=spielStand(), alle=k.challenges.every(typ=>[0,1,2].every(n=>lvPassed(chId(k,typ),n)));
+  const offen=teacher||alle;
+  list.push({kind:"spiel",typ:k.spiel,titel:offen?"Vögel auf der Leitung":"???",eyebrow:"Spiel",kurz:offen?"Pulse rollen über die Leitung. Halte sie unter den Vögeln ruhig.":"Schließe zuerst alle vier Challenges ab.",open:offen,done:S0.s.every(v=>v>0),passed:S0.s.map(v=>v>0),
+    lock:"Erst alle vier Challenges mit allen drei Levels schaffen.",go:()=>spielIntro(k)}); }
+function spielDeko(path,st){ const i=st.findIndex(s=>s.kind==="spiel"); if(i<0) return; const b=path.children[i*2], s=st[i], S0=spielStand(); if(!b) return; b.classList.add("spiel");
+  const num=b.querySelector(".num"); if(num&&s.open&&!s.done) num.textContent="▶︎"; const stat=b.querySelector(".stat"); if(stat) stat.innerHTML=s.open?`${sterneHtml(Math.min(3,Math.round(S0.s.reduce((a,v)=>a+v,0)/3)))}<span>${S0.s.reduce((a,v)=>a+v,0)} / 9 Sterne</span>`:"Noch gesperrt";
+  if(!s.open) return; const cv=canvasFill(b); cv.c.className="sk"; cv.c.style.opacity=".9"; loop(t=>vorschau(cv,t,{y:.8,still:!s.open,dunkel:!s.open})); }
+
+/* ---------- Spielwelt: Einstieg ---------- */
+function spielSeite(fill){ view(fill); app.classList.add("nacht"); document.body.classList.add("nachtwelt"); cleanups.push(()=>document.body.classList.remove("nachtwelt")); }
+function spielIntro(k){ spielSeite(false); bar("← Lernpfad",renderHome,"Spielwelt","Vögel auf der Leitung");
+  const wrap=el("main",{class:"sp-intro"}), S0=spielStand(); app.appendChild(wrap);
+  const hero=el("div",{class:"sp-hero"}); wrap.appendChild(hero); const cv=canvasFill(hero); loop(t=>vorschau(cv,t,{y:.8}));
+  hero.appendChild(el("div",{class:"tt"},`<span class="eyebrow">Spielwelt</span><h2>Vögel auf der Leitung</h2>`));
+  wrap.appendChild(el("section",{class:"sp-card"},`<h3>So geht's</h3><div class="sp-steps">
+    <div class="sp-step"><b>1</b><p>Von rechts rollen <span class="pk">rosa Pulse</span> über die Leitung auf die schlafenden Vögel zu.</p></div>
+    <div class="sp-step"><b>2</b><p>Du schickst von links das <span class="cy">Gegenstück</span> los: Berg gegen Tal, Tal gegen Berg.</p></div>
+    <div class="sp-step"><b>3</b><p>Treffen sich beide genau beim Vogel, bleibt die Leitung dort ruhig. Danach laufen beide Pulse unverändert weiter.</p></div></div>
+    <p class="muted">Drei Vögel sind drei Leben. Je mehr Vögel am Ende noch schlafen, desto mehr Sterne bekommst du.</p>`));
+  const lv=el("div",{class:"sp-levels"}); wrap.appendChild(lv);
+  SP_LV.forEach((d,n)=>{ const open=spielLvOpen(n), b=el("button",{class:"sp-lv"+(open?"":" locked"),style:"--neon:"+d.neon});
+    b.innerHTML=`<span class="no">${open?n+1:LOCK}</span><h3>${d.name}</h3><p>${d.info}</p>${sterneHtml(S0.s[n])}`; if(open) b.addEventListener("click",()=>spielLevel(k,n)); lv.appendChild(b); });
+  const du=spielLvOpen(1), db=el("button",{class:"sp-lv duell"+(du?"":" locked"),style:"--neon:"+SP.gold});
+  db.innerHTML=`<span class="no">${du?"⚔︎":LOCK}</span><h3>Duell</h3><p>${du?"Zwei Spieler an einem Gerät, oder allein gegen den Computer. Jeder Gegenpuls ist zugleich ein Angriff.":"Wird mit Level 1 frei."}</p>`;
+  if(du) db.addEventListener("click",()=>spielDuell(k)); lv.appendChild(db); }
+
+/* ---------- Spiel: ein Level (5 Runden, 3 Vögel) ---------- */
+function spielLevel(k,n){ spielSeite(true); bar("← Spielwelt",()=>spielIntro(k),"Vögel auf der Leitung",`Level ${n+1} · ${SP_LV[n].name}`);
+  const stage=el("div",{class:"sp-stage"}), host=el("div",{class:"sp-cv"}), ov=el("div",{class:"sp-ov"}), hint=el("p",{class:"sp-hint"}), ctl=el("div",{class:"sp-ctl"});
+  host.appendChild(ov); stage.append(host,hint,ctl); app.appendChild(stage); const st=canvasFill(host), g=FORM.glocke(2.4);
+  hint.textContent=n<2?"Schick deinen Puls los, wenn die Mitte des rosa Pulses die gelbe Startlinie erreicht.":"Keine Startlinie mehr: Dein Puls ist genauso schnell wie der ankommende. Schätze, wann er losmuss.";
+  const G0={leben:3,serie:0,beste:0,runde:0}, E=newE(); let ph="count", gt=-2, plan, S, log, tEnd=null, zz=0, last=null, Gc=null;
+  (n===0?[[SP.A,"▲ Berg"],[-SP.A,"▼ Tal"]]:[[3,"▲ Großer Berg"],[1.5,"▲ Kleiner Berg"],[-3,"▼ Großes Tal"],[-1.5,"▼ Kleines Tal"]]).forEach(([a,tx])=>{ const b=el("button",{class:"sp-b",style:"--neon:"+SP.cyan},tx);
+    b.addEventListener("pointerdown",e=>{ e.preventDefault(); if(ph!=="lauf") return; S.pulse.push({a,g,dir:1,x0:-3,t0:gt,own:1}); if(Gc) efSpr(E,Gc.X(0),Gc.Y(0,0),8,[SP.cyan,"#ffffff"],150); }); ctl.appendChild(b); });
+  const starte=()=>{ plan=vogelPlan(n,G0.runde); S=vogelSeil(plan); log=[{land:-1.5,flug:null}]; gt=-2; ph="count"; tEnd=null; zz=0; }; starte();
+  function abschluss(ok){ ph="fertig"; const stars=ok?G0.leben:0, S0=spielStand(); if(stars>S0.s[n]) S0.s[n]=stars; S0.serie=Math.max(S0.serie,G0.beste); spielSpeichern(S0);
+    ov.className="sp-ov on"; ov.innerHTML=`<h3>${ok?(stars===3?"Alle Vögel schlafen!":"Level geschafft"):"Die Vögel sind weggeflogen"}</h3>${ok?sterneHtml(stars).replace("sterne","sterne gross"):""}<p>${ok?`${stars} von 3 Vögeln sind noch da. Beste Serie: ${G0.beste}.`:"Alle drei Vögel sind aufgeflogen. Probier es gleich noch einmal."}</p>`;
+    const row=el("div",{class:"actions",style:"justify-content:center"}); const bt=(txt,fn,gh)=>{ const b=el("button",{class:"btn"+(gh?" ghost":"")},txt); b.addEventListener("click",fn); row.appendChild(b); };
+    bt("Nochmal",()=>spielLevel(k,n),ok); if(ok&&n<2) bt(`Level ${n+2} →`,()=>spielLevel(k,n+1)); bt("Zur Spielwelt",()=>spielIntro(k),true); ov.appendChild(row); if(ok) efSpr(E,st.w/2,st.h*.4,40,[SP.gold,"#ffffff",SP.cyan,SP.pink],320); }
+  function tick(d){
+    if(ph==="count"){ gt+=d; if(gt>=0){ ph="lauf"; ov.className="sp-ov"; ov.innerHTML=""; } else { const z=Math.ceil(-gt); if(z!==zz){ zz=z; ov.className="sp-ov on count"; ov.innerHTML=`<div class="big">${z}</div>`; } } return; }
+    if(ph!=="lauf") return;
+    if(st.c._auto) plan.kommt.forEach(q=>{ const ts=q.t+(SP.L-2*plan.xb)/plan.c; if(!q.ab&&gt>=ts){ q.ab=true; S.pulse.push({a:-q.a,g,dir:1,x0:-3,t0:ts,own:1}); } });
+    gt+=d; const px=Gc?Gc.X(plan.xb):st.w/2, py=Gc?Gc.Y(0,plan.xb):st.h/2;
+    if(tEnd===null){
+      if(gt>log[0].land+.9&&weckt(S,plan.xb,gt,1)){ log[0].flug=gt; G0.leben--; G0.serie=0; tEnd=gt+1.8; host.classList.add("ruck"); setTimeout(()=>host.classList.remove("ruck"),450); efSpr(E,px,py,26,["#f6d66b","#fff1b0","#ffffff"],220); efText(E,"Aufgeflogen!",px,py-50,SP.pink); }
+      else plan.kommt.forEach(q=>{ if(!q.pass&&gt>=q.tp){ q.pass=true; const fein=Math.abs(seilWert(S,plan.xb,gt))<.35; G0.serie++; G0.beste=Math.max(G0.beste,G0.serie);
+        efRing(E,px,py,fein?SP.gold:SP.cyan); efSpr(E,px,py,fein?26:14,fein?[SP.gold,"#ffffff",SP.cyan]:[SP.cyan,"#ffffff"],fein?260:180); efText(E,fein?"Perfekt!":"Geschafft",px,py-50,fein?SP.gold:SP.cyan); } });
+      if(tEnd===null&&plan.kommt.every(q=>q.pass)){ tEnd=gt+1.4; }
+    } else if(gt>=tEnd){ if(log[0].flug!==null&&G0.leben<=0) abschluss(false); else if(++G0.runde>=5) abschluss(true); else starte(); } }
+  loop(now=>{ const dt=last===null?0:Math.min(.05,now-last); last=now; let rest=dt*(window.__spTempo||1); while(rest>1e-6){ const d=Math.min(1/60,rest); tick(d); rest-=d; }
+    const G=spielSzene(st,S,gt,{E,dt,birds:[{x:plan.xb,log}],orbs:true,lines:n<2?[{x:2*plan.xb+3,farbe:SP.gold,txt:"Hier losschicken"}]:[]}); Gc=G; const ctx=st.ctx;
+    label(ctx,"RUNDE "+(Math.min(G0.runde,4)+1)+" / 5",16,28,"#cdd7ff","left",700,13);
+    if(G0.serie>=2){ ctx.save(); ctx.shadowColor=SP.gold; ctx.shadowBlur=18; label(ctx,"SERIE ×"+G0.serie,st.w/2,34,SP.gold,"center",800,18+Math.min(G0.serie,8)*1.6); ctx.restore(); }
+    hudVoegel(ctx,st.w-30,28,G0.leben,-1); }); }
+
+/* ---------- Spiel: Duell (zwei Spieler oder gegen den Computer) ---------- */
+function spielDuell(k){ spielSeite(true); bar("← Spielwelt",()=>spielIntro(k),"Vögel auf der Leitung","Duell");
+  const stage=el("div",{class:"sp-stage"}), host=el("div",{class:"sp-cv duel"}), ov=el("div",{class:"sp-ov on"}), ctl=el("div",{class:"sp-duel"}); host.appendChild(ov); stage.append(host,ctl); app.appendChild(stage);
+  const st=canvasFill(host), g=FORM.glocke(2.4), L=SP.L, c=4.2, XB=[5,19], LINIE=[13,11], FARBE=[SP.cyan,SP.pink], gauss=()=>(Math.random()+Math.random()+Math.random()-1.5)*2;
+  let modus=null, ph="wahl", gt=-2, S={L,rl:0,rr:0,c,pulse:[]}, pl=[0,1].map(()=>({lv:3,cd:0,abwehr:0,treffer:0,log:[{land:-9,flug:null}]})), E=newE(), last=null, zz=0, ki=null, wartend=[], aiNext=0, tK=0, tEnde=0, slowT=0, Gc=null;
+  const P=[0,1].map(i=>{ const box=el("div",{class:"sp-pl",style:"--neon:"+FARBE[i]}), h4=el("h4",{}), btns=el("div",{class:"btns"}), cd=el("div",{class:"sp-cd"},"<i></i>");
+    const bs=[[1,"▲ Berg"],[-1,"▼ Tal"]].map(([sg,tx])=>{ const b=el("button",{class:"sp-b",style:"--neon:"+FARBE[i]},tx); b.addEventListener("pointerdown",e=>{ e.preventDefault(); senden(i,sg); }); btns.appendChild(b); return b; });
+    box.append(h4,btns,cd); ctl.appendChild(box); return {h4,bs,cd:cd.firstChild}; });
+  const keys={a:[0,1],s:[0,-1],k:[1,1],l:[1,-1]}, kd=e=>{ const q=keys[e.key&&e.key.toLowerCase()]; if(q&&!(ki&&q[0]===1)) senden(q[0],q[1]); }; document.addEventListener("keydown",kd); cleanups.push(()=>document.removeEventListener("keydown",kd));
+  function senden(i,sg){ if(ph!=="lauf"||pl[i].cd>0) return; pl[i].cd=SP.CD; S.pulse.push({a:sg*SP.A,g,dir:i?-1:1,x0:i?L+3:-3,t0:gt,own:i+1}); if(Gc) efSpr(E,Gc.X(i?L:0),Gc.Y(0,i?L:0),10,[FARBE[i],"#ffffff"],170); }
+  const KI={leicht:{s:.28,m:.3,a:[5,8]},mittel:{s:.15,m:.12,a:[3.5,6]},schwer:{s:.06,m:.03,a:[2.5,4.5]}};
+  function neu(m){ modus=m; S={L,rl:0,rr:0,c,pulse:[]}; pl=[0,1].map(()=>({lv:3,cd:0,abwehr:0,treffer:0,log:[{land:-1.6,flug:null}]})); E=newE(); gt=-2; ph="count"; zz=0; wartend=[]; tK=0; ki=m==="zwei"?null:KI[m]; aiNext=ki?3+Math.random()*ki.a[0]:0;
+    P[0].h4.textContent=ki?"Du · links":"Spieler 1 · links"; P[1].h4.textContent=ki?"Computer · rechts":"Spieler 2 · rechts"; P[1].bs.forEach(b=>b.disabled=!!ki); ov.className="sp-ov"; ov.innerHTML=""; }
+  function wahl(){ ph="wahl"; ov.className="sp-ov on"; ov.innerHTML=`<h3>Duell</h3><p>Links spielt <b style="color:${SP.cyan}">Blau</b>, rechts <b style="color:${SP.pink}">Pink</b>. Erreicht ein Puls des Gegners deine Abwehrlinie, schick den passenden Gegenpuls: Beide heben sich bei deinem Vogel auf. Danach läuft dein Puls weiter und greift den Gegner an. Nach jedem Puls musst du kurz warten. Wer zuerst alle drei Vögel verliert, hat verloren.</p>`;
+    const row=el("div",{class:"actions",style:"justify-content:center"}), bt=(txt,fn,gh)=>{ const b=el("button",{class:"btn"+(gh?" ghost":"")},txt); b.addEventListener("click",fn); row.appendChild(b); };
+    bt("Zu zweit",()=>neu("zwei")); [["leicht","Computer: leicht"],["mittel","Computer: mittel"],["schwer","Computer: schwer"]].forEach(([m,t])=>bt(t,()=>neu(m),true)); ov.appendChild(row); } wahl();
+  function ende(){ ph="ende"; const v=pl[0].lv===0?1:0, du=ki?(v===0?"Du gewinnst!":"Der Computer gewinnt"):`Spieler ${v+1} gewinnt!`; ov.className="sp-ov on"; ov.innerHTML=`<h3 style="color:${FARBE[v]}">${du}</h3><p>Abgewehrt: ${pl[0].abwehr} : ${pl[1].abwehr} · Treffer: ${pl[0].treffer} : ${pl[1].treffer}<br>Pulse laufen durcheinander hindurch. Gegenpulse heben sich nur dort auf, wo sie sich treffen.</p>`;
+    const row=el("div",{class:"actions",style:"justify-content:center"}), bt=(txt,fn,gh)=>{ const b=el("button",{class:"btn"+(gh?" ghost":"")},txt); b.addEventListener("click",fn); row.appendChild(b); };
+    bt("Revanche",()=>neu(modus)); bt("Zeitlupe",()=>{ ph="slow"; slowT=tK-4; ov.className="sp-ov on slowov"; ov.innerHTML=`<p>Zeitlupe · der letzte Treffer</p>`; const b=el("button",{class:"btn ghost"},"Zurück"); b.addEventListener("click",ende); ov.appendChild(b); },true); bt("Anderer Modus",wahl,true); bt("Zur Spielwelt",()=>spielIntro(k),true); ov.appendChild(row); efSpr(E,st.w/2,st.h*.4,40,[FARBE[v],SP.gold,"#ffffff"],320); }
+  function tick(d){
+    if(ph==="count"){ gt+=d; if(gt>=0){ ph="lauf"; ov.className="sp-ov"; ov.innerHTML=""; } else { const z=Math.ceil(-gt); if(z!==zz){ zz=z; ov.className="sp-ov on count"; ov.innerHTML=`<div class="big">${z}</div>`; } } return; }
+    if(ph!=="lauf") return; gt+=d; pl.forEach(p=>p.cd=Math.max(0,p.cd-d));
+    if(ki){ S.pulse.forEach(p=>{ if(p.own===1&&!p.ki){ p.ki=1; if(Math.random()>=ki.m) wartend.push({t:p.t0+(LINIE[1]+3)/c+gauss()*ki.s,sg:-Math.sign(p.a)}); } });
+      wartend=wartend.filter(q=>{ if(gt>=q.t){ if(pl[1].cd<=0){ senden(1,q.sg); return false; } return gt<q.t+.5; } return true; });
+      if(gt>=aiNext&&pl[1].cd<=0){ senden(1,Math.random()<.5?1:-1); aiNext=gt+ki.a[0]+Math.random()*(ki.a[1]-ki.a[0]); } }
+    pl.forEach((p,i)=>{ const b=p.log[p.log.length-1], px=Gc?Gc.X(XB[i]):0, py=Gc?Gc.Y(0,XB[i]):0;
+      if(b.flug===null&&gt>b.land+.9&&weckt(S,XB[i],gt,i+1)){ b.flug=gt; p.lv--; pl[1-i].treffer++; host.classList.add("ruck"); setTimeout(()=>host.classList.remove("ruck"),450); efSpr(E,px,py,26,["#f6d66b","#fff1b0","#ffffff"],220); efText(E,"Treffer!",px,py-50,FARBE[1-i]); if(p.lv===0&&!tK){ tK=gt; tEnde=gt+2; } }
+      if(b.flug!==null&&p.lv>0&&gt>=b.flug+1.8) p.log.push({land:gt,flug:null}); });
+    S.pulse.forEach(q=>{ if(q.chk) return; const i=q.own===1?1:0, tp=q.t0+(q.dir>0?XB[i]+3:L+3-XB[i])/c; if(gt<tp) return; q.chk=true; const b=pl[i].log[pl[i].log.length-1];
+      if(b.flug===null&&gt>b.land+.9){ pl[i].abwehr++; const fein=Math.abs(seilWert(S,XB[i],gt))<.35, px=Gc?Gc.X(XB[i]):0, py=Gc?Gc.Y(0,XB[i]):0; efRing(E,px,py,fein?SP.gold:FARBE[i]); efSpr(E,px,py,fein?24:12,[FARBE[i],"#ffffff",SP.gold],fein?250:170); efText(E,fein?"Perfekt!":"Abgewehrt",px,py-50,fein?SP.gold:FARBE[i]); } });
+    if(tK&&gt>=tEnde) ende(); }
+  loop(now=>{ const dt=last===null?0:Math.min(.05,now-last); last=now; let rest=dt*(window.__spTempo||1); while(rest>1e-6){ const d=Math.min(1/60,rest); tick(d); rest-=d; }
+    if(ph==="slow"){ slowT+=dt*.3; if(slowT>tK+1.2) slowT=tK-4; }
+    const tz=ph==="slow"?slowT:gt, G=spielSzene(st,S,tz,{E,dt,y:.5,orbs:true,birds:[{x:XB[0],log:pl[0].log},{x:XB[1],log:pl[1].log}],
+      lines:[{x:LINIE[0],farbe:SP.cyan,txt:"Abwehrlinie blau",row:0},{x:LINIE[1],farbe:SP.pink,txt:"Abwehrlinie pink",row:1}]}); Gc=G; const ctx=st.ctx;
+    hudVoegel(ctx,28,28,pl[0].lv,1); hudVoegel(ctx,st.w-28,28,pl[1].lv,-1); label(ctx,"DUELL",st.w/2,32,"#cdd7ff","center",800,15);
+    pl.forEach((p,i)=>{ P[i].bs.forEach(b=>b.classList.toggle("cool",p.cd>0)); P[i].cd.style.width=(100*(1-p.cd/SP.CD))+"%"; }); }); }
 /*K3-ENDE*/
 /* =====================================================================
    CHALLENGES
@@ -2061,12 +2262,7 @@ const CH = {
     intro:"Vor einem Seilende steht die Welle. Du markierst Knoten und Bäuche mit dem Finger, misst mit der Messzange nach und sagst voraus, wie zwei Teilchen zueinander schwingen. Am Ende stellst du den Erreger ein: Nur bei einer Eigenfrequenz schaukelt sich das Seil auf.",
     levels:[{name:"Knoten finden",info:"Knoten und Bäuche antippen, dazu ein Blick durchs Schlüsselloch.",make:stehL1},
             {name:"Wellenlänge messen",info:"Mit Lineal und Messzange vom Knotenabstand zu λ und f.",make:stehL2},
-            {name:"Resonanz treffen",info:"Gleichtakt oder Gegentakt? Und welche Frequenz bringt das Seil zum Schwingen?",make:stehL3}]},
-  voegel:{titel:"Vögel auf der Leitung", art:"Spiel", kurz:"Drei Vögel schlafen auf der Leitung. Halte sie mit Gegenpulsen ruhig, bevor die Pulse sie wecken.",
-    intro:"Von rechts rollen Pulse über die Leitung. Du schickst von links das passende Gegenstück los: Berg gegen Tal, Tal gegen Berg. Treffen sich beide genau beim Vogel, bleibt die Leitung dort ruhig. Du hast drei Vögel für das ganze Level. Eine Runde zählt, wenn in ihr kein Vogel auffliegt.",
-    levels:[{name:"Berg gegen Tal",info:"Gleich große Pulse, mit Startlinie.",make:vogelL(0)},
-            {name:"Groß und klein",info:"Jetzt muss auch die Größe stimmen.",make:vogelL(1)},
-            {name:"Ohne Startlinie",info:"Schneller, und den richtigen Moment findest du selbst.",make:vogelL(2)}]}
+            {name:"Resonanz treffen",info:"Gleichtakt oder Gegentakt? Und welche Frequenz bringt das Seil zum Schwingen?",make:stehL3}]}
 /*K3-ENDE*/
 };
 
@@ -2088,7 +2284,7 @@ function stations(k){
   k.challenges.forEach((typ,i)=>{ const id=chId(k,typ), def=CH[typ], passed=[0,1,2].map(n=>lvPassed(id,n));
     list.push({kind:"ch",typ,titel:def.titel,eyebrow:`Challenge ${i+1}`,kurz:def.kurz,open:chOpen(k,i),done:passed.every(Boolean),passed,
       lock:i===0?"Erst alle Steckbriefe mit Mini-Check schaffen.":`Erst Level 1 von „${CH[k.challenges[i-1]].titel}“ schaffen.`,go:()=>renderIntro(k,typ)}); });
-  return list; }
+  /*K3-ANFANG*/spielStation(k,list);/*K3-ENDE*/return list; }
 function renderHome(){
   view(false);
   const top=el("header",{class:"top"});
@@ -2117,7 +2313,7 @@ function renderHome(){
     if(s.open) b.addEventListener("click",s.go);
     else { b.setAttribute("aria-disabled","true"); b.addEventListener("click",()=>{ note.textContent=s.lock; note.className="cta-note warn"; }); }
     path.appendChild(b); });
-  home.appendChild(path);
+  /*K3-ANFANG*/spielDeko(path,st);/*K3-ENDE*/home.appendChild(path);
   const cta=el("div",{class:"cta-row"});
   if(next){ let txt;
     if(next.kind==="cards") txt="Weiter: Steckbriefe lesen →";
@@ -2131,7 +2327,7 @@ function renderHome(){
     `<div class="rule"><b>1 · Steckbriefe</b>Karte lesen, Mini-Check lösen, weiterblättern. Danach geht die erste Challenge auf.</div>
      <div class="rule"><b>2 · Level-Hürde</b>Jedes Level hat ${PRO_LEVEL} Aufgaben. Mit ${HUERDE} Treffern im ersten Versuch steigst du auf.</div>
      <div class="rule"><b>3 · Erst denken</b>Bei jeder Animation sagst du zuerst voraus, was passiert. Dann schaust du zu.</div>`));
-  const gesperrt=KAPITEL.filter(x=>!x.freigegeben);
+  /*K3-ANFANG*/if(k.spiel){ const r=home.querySelector(".rules"); if(r) r.remove(); }/*K3-ENDE*/const gesperrt=KAPITEL.filter(x=>!x.freigegeben);
   if(gesperrt.length) home.appendChild(el("div",{class:"locked-k"},`Nächstes Kapitel: <b>${gesperrt[0].titel}</b>. Es kommt mit der nächsten Version der App.`));
   const sh=endHint(); if(sh) home.appendChild(sh);
   app.appendChild(home);
@@ -2402,7 +2598,8 @@ function checkBox(id,sb,onChange){ const c=sb.check; const box=el("div",{class:"
   box.append(opts,fb); return box; }
 
 /* ---------- Challenge: Level-Auswahl ---------- */
-function renderIntro(k,typ){
+function renderIntro(k,typ){/*K3-ANFANG*/if(typ===k.spiel) return spielIntro(k);/*K3-ENDE*/
+
   view(true);
   const def=CH[typ], id=chId(k,typ), idx=k.challenges.indexOf(typ);
   bar("← Lernpfad",renderHome,`Kapitel ${k.nr} · Challenge ${idx+1} von ${k.challenges.length}`,def.titel,themeSwitch());
@@ -2419,7 +2616,8 @@ function renderIntro(k,typ){
 }
 
 /* ---------- Level spielen ---------- */
-function playLevel(k,typ,n){
+function playLevel(k,typ,n){/*K3-ANFANG*/if(typ===k.spiel) return spielIntro(k);/*K3-ENDE*/
+
   view(true);
   const def=CH[typ], lv=def.levels[n], id=chId(k,typ);
   const tasks=lv.make(); const N=tasks.length; const res=[]; let i=0;
