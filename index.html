@@ -2423,7 +2423,10 @@ function rohrBild(st,o){ buehne(st); const {ctx,w,h}=st, x0=46, x1=46+(w-92)*(o.
    Zielton treffen: mit dem Finger auf der Saite (f ∝ 1/L), mit Flageolett-Knoten (k · f₁) und mit der Pfeifenlänge (offen oder gedackt).
    ===================================================================== */
 const gcd4=(a,b)=>b?gcd4(b,a%b):a;
-const bundF=(f0,p)=>f0/(1-p);                           // Finger bei p·L: Es schwingt nur noch die Länge (1−p)·L
+const bundF=(f0,p)=>f0/(1-p);
+// Bünde: Drückt der Finger im Feld zwischen Bund n−1 und n, verkürzt der Bund n die Saite (der Finger steht immer VOR dem Bundstab)
+const fretN=p=>klemm(Math.ceil(-12*Math.log2(1-p)-1e-9),0,12), fretP=n=>1-Math.pow(2,-n/12), fretMitte=(G,n)=>(G.X(fretP(n))+G.X(fretP(Math.max(0,n-1))))/2;
+                         // Finger bei p·L: Es schwingt nur noch die Länge (1−p)·L
 // Flageolett: Berührung bei p. Liegt p bei a/b (teilerfremd), bleiben alle Eigenschwingungen mit k = b, 2b, 3b, … und der Ton ist b · f₁.
 function flagK(p){ let best=null; for(let b=2;b<=8;b++) for(let a=1;a<b;a++){ if(gcd4(a,b)!==1) continue; const d=Math.abs(p-a/b); if(d<=.025&&(!best||d<best.d)) best={a,b,d}; } return best; }
 const orgelF=(L,ged)=>343/((ged?4:2)*L);               // Rohr mit c = 343 m/s
@@ -2443,8 +2446,9 @@ function bundTask(o){ return {run(api){
   api.situation(`Gitarre: Die leere Saite klingt mit ${hz4(f0)}. Die Saite ist 65 cm lang.`); api.badge("Spielen");
   api.prompt(`Triff den Zielton <b>${hz4(ft)}</b> (${o.name}). Zieh den Finger auf die Saite: Er kürzt die schwingende Länge.`); api.hint((o.bunde?"Die Bundstäbchen sind nur eine Hilfe. ":"Diesmal ohne Bundstäbchen. ")+"Die Frequenz siehst du nicht, nur die Länge: Rechne aus, welche Länge du brauchst.");
   const st=canvasFill(api.cv("b3 zieh")), zb=el("button",{class:"btn ghost"},"Zupfen"), pr=el("button",{class:"btn"},"Das ist der Ton"), row=el("div",{class:"k3row"});
-  st.c._ziel=()=>{ const r=st.c.getBoundingClientRect(), pc=1-1/o.r; return {r:[r.left+G.X(pc),r.top+G.y0],f:[r.left+G.X(klemm(pc>.3?pc-.25:pc+.25,0,.88)),r.top+G.y0]}; };
-  ziehbar(st.c,(x,y)=>{ if(!G) return; p=klemm(G.P(x),0,.9); if(o.bunde){ const n=klemm(Math.round(-12*Math.log2(1-p)),0,12); p=1-Math.pow(2,-n/12); } });   // mit Bünden: Die Saite wird am Bundstab verkürzt, der Finger steht davor
+  const zielX=G=>{ const pc=1-1/o.r; return o.bunde?fretMitte(G,klemm(Math.round(-12*Math.log2(1/o.r)),1,12)):G.X(pc); };   // Mit Bünden liegt das Ziel im Feld vor dem Bundstab, dort kann der Finger stehen
+  st.c._ziel=()=>{ const r=st.c.getBoundingClientRect(), pc=1-1/o.r; return {r:[r.left+zielX(G),r.top+G.y0],f:[r.left+G.X(klemm(pc>.3?pc-.25:pc+.25,0,.88)),r.top+G.y0]}; };
+  ziehbar(st.c,(x,y)=>{ if(!G) return; p=klemm(G.P(x),0,.9); if(o.bunde) p=fretP(fretN(p)); });   // mit Bünden: Die Saite wird am Bundstab verkürzt, der Finger steht davor
   let rest=2; const zl=()=>{ zb.textContent=fertig?"Frei zupfen":`Zupfen · ${rest} übrig`; zb.disabled=!fertig&&rest<=0; };   // vor der Antwort höchstens zwei Versuche, danach beliebig oft
   zb.addEventListener("click",()=>{ if(!fertig){ if(rest<=0) return; rest--; } zt=t; aud4Zupf(bundF(f0,p)); zl(); }); zl(); tonKnopf4(row,()=>{}); api.body.appendChild(row); api.actions.append(zb,pr);
   pr.addEventListener("click",()=>{ if(fertig) return; fertig=true; zt=t; const f=bundF(f0,p), Lv=.65*(1-p), ok=Math.abs(f-ft)/ft<=.02; pr.disabled=true; zl(); aud4Zupf(f); effekt3(st,ok);
@@ -2453,8 +2457,8 @@ function bundTask(o){ return {run(api){
     ctx.strokeStyle=B3.metall; ctx.lineWidth=2; ctx.beginPath(); ctx.moveTo(G.x0,G.y0); ctx.lineTo(px,G.y0); ctx.stroke();
     saiteLinie(ctx,px,G.x1,G.y0,A,Math.cos(TAU*DOCH4*(f/f0)*(t-zt)),1,B3.a,3);
     if(A<1.5){ ctx.strokeStyle=B3.a; ctx.lineWidth=3; ctx.beginPath(); ctx.moveTo(px,G.y0); ctx.lineTo(G.x1,G.y0); ctx.stroke(); }
-    if(fertig){ const pc=1-1/o.r; ctx.strokeStyle=B3.ok; ctx.lineWidth=2.4; ctx.setLineDash([5,5]); ctx.beginPath(); ctx.arc(G.X(pc),G.y0,17,0,TAU); ctx.stroke(); ctx.setLineDash([]); label(ctx,"Ziel",G.X(pc),G.y0-26,B3.ok,"center",700,12); }
-    const fx=o.bunde&&p>0?px-13:px; perle(ctx,fx,G.y0,B3.mark,22); ctx.fillStyle=B3.mark; ctx.beginPath(); ctx.arc(fx,G.y0,8,0,TAU); ctx.fill();
+    if(fertig){ const zx=zielX(G); ctx.strokeStyle=B3.ok; ctx.lineWidth=2.4; ctx.setLineDash([5,5]); ctx.beginPath(); ctx.arc(zx,G.y0,17,0,TAU); ctx.stroke(); ctx.setLineDash([]); label(ctx,"Ziel",zx,G.y0-26,B3.ok,"center",700,12); }
+    const fx=o.bunde&&p>0?fretMitte(G,fretN(p)):px; perle(ctx,fx,G.y0,B3.mark,22); ctx.fillStyle=B3.mark; ctx.beginPath(); ctx.arc(fx,G.y0,8,0,TAU); ctx.fill();
     label(ctx,`Ziel: ${hz4(ft)}`,14,24,B3.mark,"left",700,14); label(ctx,`schwingende Länge L = ${lenTxt(.65*(1-p))}`,w/2,h-14,B3.txt,"center",700,13); label(ctx,"Sattel",G.x0,G.y0-44,B3.dim,"center",600,11); label(ctx,"Steg",G.x1+4,G.y0-44,B3.dim,"center",600,11); }); }};}
 function bundL1(){ const L=[{name:"Oktave",r:2,bunde:true,ver:"Eine Oktave bedeutet doppelte Frequenz, also halbe Länge."},{name:"Quinte",r:1.5,bunde:true,ver:"Eine Quinte hat das Frequenzverhältnis 3:2, also zwei Drittel der Länge."},{name:"Quarte",r:4/3,bunde:true,ver:"Eine Quarte hat das Verhältnis 4:3, also drei Viertel der Länge."},
     {name:"große Terz",r:1.25,bunde:false,ver:"Eine große Terz hat das Verhältnis 5:4, also vier Fünftel der Länge."},{name:"kleine Terz",r:1.2,bunde:false,ver:"Eine kleine Terz hat das Verhältnis 6:5, also fünf Sechstel der Länge."}];
@@ -2900,7 +2904,7 @@ function renderHome(){
     `<div class="rule"><b>1 · Steckbriefe</b>Karte lesen, Mini-Check lösen, weiterblättern. Danach geht die erste Challenge auf.</div>
      <div class="rule"><b>2 · Level-Hürde</b>Jedes Level hat ${PRO_LEVEL} Aufgaben. Mit ${HUERDE} Treffern im ersten Versuch steigst du auf.</div>
      <div class="rule"><b>3 · Erst denken</b>Bei jeder Animation sagst du zuerst voraus, was passiert. Dann schaust du zu.</div>`));
-  /*K3-ANFANG*/if(k.spiel){ const r=home.querySelector(".rules"); if(r) r.remove(); }/*K3-ENDE*//*K4-ANFANG*/if(k.nr>=4){ const r=home.querySelector(".rules"); if(r) r.remove(); }/*K4-ENDE*/const gesperrt=KAPITEL.filter(x=>!x.freigegeben);
+  /*K3-ANFANG*/if(k.spiel){ const r=home.querySelector(".rules"); if(r) r.remove(); }/*K3-ENDE*//*K4-ANFANG*/{ const r=home.querySelector(".rules"); if(r) r.remove(); }/*K4-ENDE*/const gesperrt=KAPITEL.filter(x=>!x.freigegeben);
   if(gesperrt.length) home.appendChild(el("div",{class:"locked-k"},`Nächstes Kapitel: <b>${gesperrt[0].titel}</b>. Es kommt mit der nächsten Version der App.`));
   const sh=endHint(); if(sh) home.appendChild(sh);
   app.appendChild(home);
