@@ -429,6 +429,34 @@ body.nachtwelt .theme{display:none}
 @media (max-width:520px){ .answers.pics{grid-template-columns:1fr 1fr} .answers.pics .mini{height:96px} }
 @media (max-width:520px){ .fdots:has(button:nth-child(7)) button{width:22px} .fnav:has(.fdots button:nth-child(7)) .btn{padding:0 14px;font-size:16px;white-space:nowrap} }
 /*K3-ENDE*/
+/*K4-ANFANG*/
+/* ===== Ab Version 2.4: Kapitel 4 ===== */
+.fside .cv.hoch{min-height:250px}
+@media (max-width:720px){ .fside .cv.hoch{height:300px} }
+.praxis{font-size:17px!important;border-radius:14px;padding:12px 14px;background:var(--plot);border:1px solid var(--line)}
+.praxis .tag{background:var(--wave);color:#fff}
+.answers button[aria-pressed="true"]{border-color:var(--wave);box-shadow:0 0 0 2px var(--wave) inset}
+:root{--plus:#a8822a;--plus-soft:#f6edd2}
+:root[data-theme="dark"]{--plus:#e2bb5d;--plus-soft:#2c2410}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){--plus:#e2bb5d;--plus-soft:#2c2410} }
+.pluswrap{display:flex;flex-direction:column;align-items:center;margin:0 0 8px}
+.plusline{width:0;height:28px;border-left:2px dashed var(--plus);opacity:.7}
+.plusk{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:14px;width:min(560px,100%);min-height:96px;padding:14px 18px;border:1px solid var(--plus);border-radius:var(--r);background:linear-gradient(135deg,var(--surface),var(--plus-soft));text-align:left;position:relative;overflow:hidden}
+.pemb{width:46px;height:46px;border-radius:50%;border:2px solid var(--plus);color:var(--plus);display:grid;place-items:center;font-family:var(--font-display);font-weight:800;font-size:28px;line-height:1}
+.plusk.done .pemb{box-shadow:0 0 0 4px var(--plus-soft),0 0 0 6px var(--plus)}
+.peye{display:block;font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:800;color:var(--plus)}
+.ptit{display:block;font-family:var(--font-display);font-weight:800;font-size:21px}
+.pkurz{display:block;font-size:14px;color:var(--muted)}
+.pstat{font-family:var(--font-mono);font-weight:700;font-size:14px;color:var(--plus)}
+.plusk.locked{opacity:.7;border-style:dashed}
+.plusk.shim::after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,transparent 30%,rgba(255,235,170,.55) 50%,transparent 70%);transform:translateX(-120%);animation:plusschim 1.2s ease-out 1 forwards;pointer-events:none}
+@keyframes plusschim{to{transform:translateX(120%)}}
+@media (prefers-reduced-motion: reduce){ .plusk.shim::after{animation:none;opacity:0} }
+.plusbadge{display:inline-grid;place-items:center;width:26px;height:26px;margin-left:10px;border-radius:50%;border:2px solid var(--plus);color:var(--plus);font-size:17px;font-weight:800;vertical-align:middle}
+.plusseite .about{overflow:auto}
+.plusseite .about .vizhost{display:flex;flex-direction:column;gap:10px}
+.plusseite .about .cv{min-height:230px}
+/*K4-ENDE*/
 </style>
 </head>
 <body>
@@ -690,6 +718,40 @@ const STECKBRIEFE = {
       o:["330 Hz","220 Hz","36,7 Hz"], h:"fₙ = n · f₁.",
       e:"f₃ = 3 · f₁ = 3 · 110 Hz = 330 Hz. Die Wellenlänge ist dann nur noch ein Drittel so groß."}}
 /*K3-ENDE*/
+/*K4-ANFANG*/  ,
+  saite:{titel:"Eigenschwingungen einer Saite", formel:"L = k · λ/2&emsp;fₖ = k · c/(2L)", viz:"saite",
+    text:"Beide Enden einer Saite sind fest, dort liegt immer ein Knoten. Deshalb passen nur ganze Vielfache von λ/2 auf die Saite: L = k · λ/2 mit k = 1, 2, 3, … Daraus folgen die Eigenfrequenzen fₖ = k · c/(2L). Wähle rechts k aus. Die Animation läuft stark verlangsamt, der Ton (mit Kopfhörern) nicht.",
+    merke:"Die Saite legt fest, welche Frequenzen möglich sind. Das sind ihre Eigenfrequenzen.",
+    falle:"Die Saitenlänge ist nicht λ. Bei der Grundschwingung gilt L = λ/2.",
+    praxis:"Greifst du an der Gitarre einen Bund, wird L kürzer und der Ton höher. Klavier-Basssaiten sind mit Kupferdraht umwickelt. Dadurch werden sie schwerer, c sinkt und der Ton wird tief, ohne dass die Saite meterlang sein muss.",
+    check:{q:"Eine Gitarrensaite ist 65 cm lang. Wie groß ist λ der Grundschwingung?",
+      o:["1,30 m","65 cm","32,5 cm"], h:"Bei der Grundschwingung passt genau ein halber Wellenzug auf die Saite: L = λ/2.",
+      e:"L = λ/2, also λ = 2 · L = 2 · 65 cm = 1,30 m."}},
+  rohr:{titel:"Offenes und gedacktes Rohr", formel:"offen: fₖ = k · c/(2L)&emsp;gedackt: fₖ = (2k−1) · c/(4L)", viz:"rohr",
+    text:"In einem Rohr schwingt die Luft als Längswelle. Am offenen Ende liegt ein Bewegungsbauch, am geschlossenen ein Bewegungsknoten. Beim Rohr mit zwei offenen Enden passen ganze Vielfache von λ/2 hinein. Ist ein Ende zu, passen nur ungerade Vielfache von λ/4. Tippe rechts das Ende zu und schalte zwischen Teilchen und Druck um.",
+    merke:"Zu einem gedackten Rohr gehören nur die ungeraden Vielfachen der Grundfrequenz. Der Grundton liegt bei gleicher Länge eine Oktave tiefer als beim offenen Rohr.",
+    falle:"Ein Bewegungsknoten ist ein Druckbauch. Ein Mikrofon misst den Druck: Direkt an einer Wand, wo die Luft nicht schwingen kann, ist es deshalb laut.",
+    praxis:"Die Querflöte ist ein offenes Rohr. Die Klarinette wirkt näherungsweise wie ein gedacktes Rohr. Sie klingt deshalb etwa eine Oktave tiefer als eine gleich lange Flöte und hat einen „hohlen“ Klang, weil die geraden Obertöne fehlen. Die Panflöte besteht aus gedackten Röhren, und eine gedackte Orgelpfeife braucht für denselben Ton nur die halbe Länge. Auch dein Gehörgang ist ein gedacktes Rohr von etwa 2,5 cm. Seine Resonanz bei rund 3,4 kHz liegt dort, wo du am empfindlichsten hörst.",
+    check:{q:"Du verschließt eine offene Pfeife an einem Ende. Was passiert mit dem Grundton?",
+      o:["Er wird eine Oktave tiefer.","Er wird eine Oktave höher.","Er bleibt gleich."], h:"Vergleiche λ₁ = 2L (offen) mit λ₁ = 4L (gedackt).",
+      e:"Gedackt gilt λ₁ = 4L statt 2L. Die Wellenlänge verdoppelt sich, die Frequenz halbiert sich: eine Oktave tiefer."}},
+  kundt:{titel:"Kundt'sches Rohr", formel:"c = λ · f&emsp;Häufchenabstand = λ/2", viz:"kundt",
+    text:"Ein Lautsprecher erzeugt im Rohr eine stehende Schallwelle. Leichtes Pulver wird in den Bäuchen hin- und hergeworfen und sammelt sich in den Bewegungsknoten. Zwei benachbarte Häufchen sind λ/2 voneinander entfernt, daraus folgt mit der bekannten Frequenz die Schallgeschwindigkeit c = λ · f. Schalte ein und wähle rechts die Frequenz.",
+    merke:"Das Pulver zeigt die Knoten der Luftbewegung. Aus ihrem Abstand lässt sich λ und damit c bestimmen.",
+    falle:"Der Häufchenabstand ist nicht λ, sondern λ/2.",
+    praxis:"August Kundt hat 1866 so die Schallgeschwindigkeit in Metallen bestimmt. Dasselbe Prinzip nutzt du mit einer Mess-App vor einer Wand: Dort wechseln laute und leise Stellen im Abstand λ/2.",
+    check:{q:"Bei f = 1,70 kHz liegen die Häufchen 10,0 cm auseinander. Wie groß ist c?",
+      o:["340 m/s","170 m/s","17 m/s"], h:"Aus dem Häufchenabstand folgt zuerst λ, dann c = λ · f.",
+      e:"λ = 2 · 10,0 cm = 20,0 cm = 0,200 m. Dann c = λ · f = 0,200 m · 1700 Hz = 340 m/s."}},
+  klang:{titel:"Klang und Instrumente", formel:"f₁ = c/(2L)&emsp;Klangfarbe = Mischung der fₖ", viz:"klang",
+    text:"Die Tonhöhe bestimmt die Grundfrequenz f₁. Die Klangfarbe bestimmt die Mischung der Eigenschwingungen. Die Stellschrauben stecken in f₁ = c/(2L): die Länge L und über c die Spannung und die Masse der Saite. Zupfst du die Saite bei p, schwingt die k-te Eigenschwingung mit einer Stärke, die proportional zu sin(k·π·p/L) / k² ist. Verschiebe die Zupfstelle und sieh im Spektrum zu.",
+    merke:"Zupfst du genau in einem Knoten der k-ten Eigenschwingung, fehlt sie im Klang.",
+    falle:"Zwei Instrumente können denselben Ton spielen und trotzdem verschieden klingen: Die Grundfrequenz ist gleich, die Mischung der Oberschwingungen nicht.",
+    praxis:"Zupfst du nah am Steg, klingt die Gitarre hell und hart, in der Mitte weich. Beim Flageolett berührst du die Saite bei L/2. Dort entsteht ein Knoten, es bleiben nur die geraden Eigenschwingungen und die Oktave klingt. Bei der Helium-Stimme ändert sich vor allem die Klangfarbe: Die Resonanzen des Mund- und Rachenraums wandern nach oben, der Grundton der Stimmbänder bleibt fast gleich.",
+    check:{q:"Du zupfst die Saite genau in der Mitte. Welche Eigenschwingungen fehlen?",
+      o:["Alle mit geradem k","Alle mit ungeradem k","Keine"], h:"In der Mitte liegt der Knoten aller Eigenschwingungen mit geradem k.",
+      e:"Bei k = 2, 4, 6, … liegt in der Saitenmitte ein Knoten. Wer dort zupft, regt sie nicht an."}}
+/*K4-ENDE*/
 };
 
 const KAPITEL = [
@@ -699,6 +761,10 @@ const KAPITEL = [
    steckbriefe:["ort","zeit","regel","pol"], challenges:["teilchen","ablesen","polar"]},
   {id:"k3", nr:3, titel:"Interferenz & stehende Wellen", untertitel:"Superposition, Interferenz, Reflexion, stehende Wellen", freigegeben:true,
    steckbriefe:["superpos","interf","gangu","reflex","stehend","knoten","eigen"], challenges:["pulse","gang","reflexion","stehend"], spiel:"voegel"}
+/*K4-ANFANG*/  ,
+  {id:"k4", nr:4, titel:"Eigenschwingungen & Klang", untertitel:"Saite, Rohr, Kundt'sches Rohr, Klangfarbe", freigegeben:true,
+   steckbriefe:["saite","rohr","kundt","klang"], challenges:["jaeger","klingts","kundtlab"], plus:["schweb"]}
+/*K4-ENDE*/
 ];
 
 const PRO_LEVEL = 5, HUERDE = 4;   // 5 Aufgaben, bestanden mit 4 Treffern im ersten Versuch
@@ -1129,6 +1195,65 @@ const VIZ = {
       const n=eigenNr(f,Tr.o.R); label(st.ctx,n?`Eigenschwingung n = ${n}   λ = ${nf(2.4/f)} m`:"keine Eigenfrequenz: Das Seil zittert nur",st.w/2,st.h-8,n?B3.ok:B3.dim,"center",700,13);
       label(st.ctx,"Erreger",12,18,B3.mark,"left",700,12); }); }
 /*K3-ENDE*/
+/*K4-ANFANG*/  ,
+  saite(side){ let k=1; const row=el("div",{class:"k3row"}), nb=el("div",{class:"seg eng"}), ton=()=>{ if(aud4.ctx) aud4Setze([110*k],[1]); };
+    [1,2,3,4].forEach(n=>{ const b=el("button",{"aria-pressed":String(n===k),"aria-label":"Eigenschwingung "+n},`k=${n}`);
+      b.addEventListener("click",()=>{ k=n; [...nb.children].forEach(x=>x.setAttribute("aria-pressed",String(x===b))); ton(); }); nb.appendChild(b); });
+    const zp=el("button",{class:"btn ghost","aria-label":"Saite zupfen"},"Zupfen"); zp.addEventListener("click",()=>aud4Zupf(110)); zp.addEventListener("pointerdown",e=>e.stopPropagation());
+    row.append(nb); tonKnopf4(row,an=>{ if(an) ton(); }); row.appendChild(zp); side.appendChild(row);
+    const U=uhr4(side), st=canvasFill(mkcv(side,"b3")); ton();
+    szene4(st,U,t=>{ const G=saiteBild(st,{k,ph:Math.cos(TAU*.45*k*t)}); legende3(st,[["Saite",B3.a,0],["Hüllkurve",rgba3(B3.a,.6),1]]);
+      label(st.ctx,`k = ${k}   λ = 2L/${k}   f = ${k} · f₁ = ${hz4(110*k)}`,st.w/2,st.h-9,B3.txt,"center",700,13); }); },
+  rohr(side){ let ged=false, n=1, druck=false; const f=()=>ged?(2*n-1)*100:n*200, ton=()=>{ if(aud4.ctx) aud4Setze([f()],[1]); };
+    const row=el("div",{class:"k3row"}), s1=el("div",{class:"seg"}), s2=el("div",{class:"seg eng"}), s3=el("div",{class:"seg"});
+    const mk=(seg,opts,get,set)=>opts.forEach(([v,l])=>{ const b=el("button",{"aria-pressed":String(v===get())},l); b.addEventListener("click",()=>{ set(v); [...seg.children].forEach(x=>x.setAttribute("aria-pressed",String(x===b))); ton(); }); seg.appendChild(b); });
+    mk(s1,[[false,"rechts offen"],[true,"rechts zu"]],()=>ged,v=>{ ged=v; });
+    mk(s2,[[1,"k=1"],[2,"k=2"],[3,"k=3"]],()=>n,v=>{ n=v; });
+    mk(s3,[[false,"Teilchen"],[true,"Druck"]],()=>druck,v=>{ druck=v; });
+    row.append(s1,s2,s3); tonKnopf4(row,an=>{ if(an) ton(); }); side.appendChild(row);
+    const U=uhr4(side), st=canvasFill(mkcv(side,"b3")); ton();
+    szene4(st,U,t=>{ const ph=TAU*.6*f()/200*t; rohrBild(st,{gedackt:ged,n,ph:Math.cos(ph),pph:Math.sin(ph),druck});
+      label(st.ctx,`L = 85 cm   f = ${hz4(f())}   ${ged?"gedackt: (2k−1) · c/(4L)":"offen: k · c/(2L)"}`,st.w/2,st.h*.17,B3.txt,"center",700,13); }); },
+  kundt(side){ const N=720, X=new Float32Array(N), Y=new Float32Array(N), reset=()=>{ for(let i=0;i<N;i++){ X[i]=Math.random(); Y[i]=Math.random(); } }; reset();
+    let m=5, an=false, lt=null, seit=0; const f=()=>m*170, ton=()=>{ if(aud4.ctx) aud4Setze(an?[f()]:[],[1]); };
+    const row=el("div",{class:"k3row"}), s1=el("div",{class:"seg eng"}), s2=el("div",{class:"seg"});
+    [[5,"850 Hz"],[7,"1190 Hz"],[9,"1530 Hz"]].forEach(([v,l])=>{ const b=el("button",{"aria-pressed":String(v===m)},l); b.addEventListener("click",()=>{ m=v; seit=0; [...s1.children].forEach(x=>x.setAttribute("aria-pressed",String(x===b))); ton(); }); s1.appendChild(b); });
+    const eb=el("button",{class:"btn"},"Einschalten"), rb=el("button",{},"Pulver verteilen");
+    eb.addEventListener("click",()=>{ an=!an; seit=0; eb.textContent=an?"Ausschalten":"Einschalten"; ton(); });
+    rb.addEventListener("click",()=>{ reset(); seit=0; }); [eb,rb].forEach(b=>b.addEventListener("pointerdown",e=>e.stopPropagation()));
+    s2.append(rb); row.append(eb,s1,s2); tonKnopf4(row,()=>ton()); side.appendChild(row);
+    const U=uhr4(side), st=canvasFill(mkcv(side,"b3"));
+    szene4(st,U,t=>{ const dt=lt===null?0:Math.max(0,t-lt); lt=t; buehne(st); const {ctx,w,h}=st, x0=58, x1=w-40, L=x1-x0, y0=h*.55, hh=Math.min(54,h*.26), base=y0+hh-5;
+      if(an) seit+=dt;
+      if(an&&dt>0) for(let i=0;i<N;i++){ const u=1-X[i], a=Math.abs(Math.sin(m*Math.PI*u)); X[i]=klemm(X[i]+1.4*dt*Math.sin(2*m*Math.PI*u)/(2*m*Math.PI)+(Math.random()-.5)*(.004*a+.003),0,1); }
+      const gl=ctx.createLinearGradient(0,y0-hh,0,y0+hh); gl.addColorStop(0,"rgba(150,200,255,.2)"); gl.addColorStop(1,"rgba(150,200,255,.05)"); ctx.fillStyle=gl; rr4(ctx,x0,y0-hh,L,2*hh,10); ctx.fill(); ctx.strokeStyle="rgba(190,225,255,.5)"; ctx.lineWidth=2; ctx.stroke();
+      ctx.fillStyle=B3.wand; ctx.fillRect(x1-2,y0-hh-5,12,2*hh+10); ctx.strokeStyle=B3.metall; ctx.strokeRect(x1-2,y0-hh-5,12,2*hh+10);
+      const sh=an?Math.sin(t*40)*2.2:0; ctx.fillStyle=B3.metall; ctx.beginPath(); ctx.moveTo(x0-4,y0-hh*.35+sh); ctx.lineTo(x0-30+sh,y0-hh*.8); ctx.lineTo(x0-30+sh,y0+hh*.8); ctx.lineTo(x0-4,y0+hh*.35+sh); ctx.closePath(); ctx.fill();
+      ctx.fillStyle=B3.wand; ctx.fillRect(x0-46,y0-hh*.55,16,hh*1.1);
+      const BN=70, H=new Float32Array(BN); for(let i=0;i<N;i++) H[Math.min(BN-1,(X[i]*BN)|0)]++;
+      ctx.fillStyle="#e4c37a"; for(let i=0;i<N;i++){ const u=1-X[i], a=an?Math.abs(Math.sin(m*Math.PI*u)):0, hb=Math.min(34,H[Math.min(BN-1,(X[i]*BN)|0)]*.55), py=base-Y[i]*hb-a*(((Math.sin(i*12.9898+Math.floor(t*30)*78.233)*43758.5453)%1+1)%1)*9*(.4+Y[i]); ctx.fillRect(x0+X[i]*L-1,py,2.2,2.2); }
+      if(an&&seit>3.5){ const nx=j=>x1-j*L/m; ctx.strokeStyle=rgba3(B3.mark,.7); ctx.lineWidth=1.5; ctx.setLineDash([4,5]); for(let j=0;j<=m;j++){ ctx.beginPath(); ctx.moveTo(nx(j),y0-hh-8); ctx.lineTo(nx(j),y0+hh); ctx.stroke(); } ctx.setLineDash([]);
+        const j=Math.floor(m/2); darrow(ctx,nx(j+1),y0-hh-16,nx(j),y0-hh-16,B3.mark,2.2); label(ctx,"λ/2",(nx(j)+nx(j+1))/2,y0-hh-24,B3.mark,"center",700,13); }
+      label(ctx,`Rohr L = 1,00 m   f = ${hz4(f())}   λ/2 = ${fmt(+(100/m).toFixed(1))} cm`,w/2,h-10,B3.txt,"center",700,13);
+      label(ctx,an?(seit>3.5?"Das Pulver liegt in den Bewegungsknoten.":"Das Pulver wandert …"):"Pulver gleichmäßig verteilt",14,22,B3.txt,"left",700,13); }); },
+  klang(side){ let p=.18; const NB=8, amps=q=>{ const a=[...Array(NB)].map((_,i)=>Math.sin((i+1)*Math.PI*q)/((i+1)*(i+1))), mx=Math.max(...a.map(Math.abs))||1; return a.map(v=>Math.abs(v)<1e-9?0:v/mx); };
+    const anschlag=()=>{ const A=amps(p), s=A.reduce((q,v)=>q+Math.abs(v),0)||1; aud4Anschlag(A.map((_,i)=>110*(i+1)),A.map(v=>Math.abs(v)/s*.9)); };
+    const row=el("div",{class:"k3row"}), reg=el("div",{class:"reg"}), rng=el("input",{type:"range",min:"5",max:"50",step:"1",value:String(Math.round(p*100)),"aria-label":"Zupfstelle"}), val=el("span",{class:"val"});
+    reg.append(rng,val); reg.addEventListener("pointerdown",e=>e.stopPropagation()); const zeig=()=>{ p=+rng.value/100; val.textContent=`p = ${fmt(+(p).toFixed(2))} L`; }; rng.addEventListener("input",zeig); rng.addEventListener("change",anschlag); zeig();
+    const zb=el("button",{class:"btn"},"Zupfen"); zb.addEventListener("click",anschlag); zb.addEventListener("pointerdown",e=>e.stopPropagation());
+    row.append(zb); tonKnopf4(row,an=>{ if(an) anschlag(); }); side.append(row,reg); const U=uhr4(side), st=canvasFill(mkcv(side,"b3 hoch"));
+    szene4(st,U,t=>{ buehne(st); const {ctx,w,h}=st, A=amps(p), G=geo3(st,{xa:0,xb:1,ym:1.2,frei:true,pl:38,pr:38,pt:30,pb:h*.5});
+      const f0=x=>A.reduce((s,a,i)=>s+a*Math.sin((i+1)*Math.PI*x),0); let pk=0; for(let i=0;i<=60;i++) pk=Math.max(pk,Math.abs(f0(i/60))); const sc=1/(pk||1), xs=[...Array(101)].map((_,i)=>i/100);
+      ctx.fillStyle=B3.wand; ctx.fillRect(G.X(0)-14,G.Y(1),14,G.Y(-1)-G.Y(1)); ctx.fillRect(G.X(1),G.Y(1),14,G.Y(-1)-G.Y(1));
+      strich(ctx,xs.map(x=>[G.X(x),G.Y(sc*f0(x))]),B3.dim,1.5,[4,5],.7);
+      leucht(ctx,xs.map(x=>[G.X(x),G.Y(sc*A.reduce((s,a,i)=>s+a*Math.sin((i+1)*Math.PI*x)*Math.cos(TAU*.3*(i+1)*t),0))]),B3.a,3.2);
+      ctx.fillStyle=B3.mark; ctx.beginPath(); ctx.moveTo(G.X(p),G.Y(-1.05)); ctx.lineTo(G.X(p)-7,G.Y(-1.05)+12); ctx.lineTo(G.X(p)+7,G.Y(-1.05)+12); ctx.closePath(); ctx.fill();
+      const by=h-26, bh=h*.3, bw=Math.min(34,(w-80)/NB-8); label(ctx,"Spektrum: Stärke der k-ten Eigenschwingung",w/2,by-bh-12,B3.txt,"center",700,12);
+      A.forEach((a,i)=>{ const x=w/2+(i-(NB-1)/2)*(bw+10)-bw/2, v=Math.abs(a), g=ctx.createLinearGradient(0,by-bh,0,by); g.addColorStop(0,B3.mark); g.addColorStop(1,rgba3(B3.mark,.35));
+        ctx.fillStyle=rgba3(B3.sum,.07); ctx.fillRect(x,by-bh,bw,bh); ctx.fillStyle=g; ctx.fillRect(x,by-v*bh,bw,Math.max(2,v*bh)); label(ctx,String(i+1),x+bw/2,by+15,v<.02?B3.bad:B3.dim,"center",700,12); });
+      label(ctx,p<.2?"Klang: hell und hart":p<.42?"Klang: ausgewogen":"Klang: weich und rund",14,h*.5-bh-24>40?20:20,B3.mark,"left",700,13);
+      if(Math.abs(p-.5)<.012) label(ctx,"Mitte: k = 2, 4, 6, 8 fehlen",w-14,20,B3.bad,"right",700,12); }); }
+/*K4-ENDE*/
 };
 
 /* =====================================================================
@@ -2208,6 +2333,433 @@ function spielDuell(k){ spielSeite(true); bar("← Spielwelt",()=>spielIntro(k),
     hudVoegel(ctx,28,28,pl[0].lv,1); hudVoegel(ctx,st.w-28,28,pl[1].lv,-1); label(ctx,"DUELL",st.w/2,32,"#cdd7ff","center",800,15);
     pl.forEach((p,i)=>{ P[i].bs.forEach(b=>b.classList.toggle("cool",p.cd>0)); P[i].cd.style.width=(100*(1-p.cd/SP.CD))+"%"; }); }); }
 /*K3-ENDE*/
+/*K4-ANFANG*/
+/* =====================================================================
+   KAPITEL 4 · Eigenschwingungen & Klang (ab Version 2.4)
+   Technik-Basis nur für die neuen Szenen: Simulationsuhr, Kugel-Sprites, Ton (Web Audio, standardmäßig stumm).
+   Alles in diesem Block ist neu. Die Kapitel 1 bis 3 benutzen nichts davon.
+   ===================================================================== */
+const hz4=v=>v>=1000?fmt(+(v/1000).toFixed(2))+" kHz":fmt(+(+v).toFixed(v<100?1:0))+" Hz";
+const ms4=v=>fmt(+(+v).toPrecision(3))+" m/s";
+
+/* ---------- Ton: startet erst nach dem Antippen, Rampen gegen Knacken, Karplus-Strong für gezupfte Saiten ---------- */
+const aud4={an:false,ctx:null,out:null,bank:[],cache:{}};
+function aud4Start(){ if(aud4.ctx){ try{ if(aud4.ctx.state==="suspended") aud4.ctx.resume(); }catch(e){} return true; }
+  try{ const AC=window.AudioContext||window.webkitAudioContext; if(!AC) return false; if(navigator.audioSession) navigator.audioSession.type="playback";
+    const c=new AC(), out=c.createGain(); out.gain.value=.22; out.connect(c.destination); aud4.ctx=c; aud4.out=out;
+    for(let i=0;i<8;i++){ const o=c.createOscillator(), g=c.createGain(); g.gain.value=0; o.type="sine"; o.frequency.value=220; o.connect(g); g.connect(out); o.start(); aud4.bank.push({o,g}); }
+    return true; }catch(e){ return false; } }
+// Dauerton aus bis zu 8 Sinustönen: Frequenzen fr, Lautstärken gs (Summe höchstens 1)
+function aud4Setze(fr,gs){ if(!aud4.ctx) return; const t=aud4.ctx.currentTime;
+  aud4.bank.forEach((b,i)=>{ const v=aud4.an&&i<fr.length?(gs?gs[i]:1/fr.length):0; if(i<fr.length) b.o.frequency.setTargetAtTime(fr[i],t,.01); b.g.gain.setTargetAtTime(v,t,.012); }); }
+function aud4Stumm(){ aud4Setze([],[]); }
+// Angeschlagener Klang: Anstieg in 8 ms, dann klingt jede Eigenschwingung ab (hohe schneller)
+function aud4Anschlag(fr,gs){ if(!aud4.ctx||!aud4.an) return; const t=aud4.ctx.currentTime;
+  aud4.bank.forEach((b,i)=>{ b.g.gain.cancelScheduledValues(t); b.g.gain.setValueAtTime(0,t); if(i<fr.length){ b.o.frequency.setValueAtTime(fr[i],t); b.g.gain.linearRampToValueAtTime(gs[i],t+.008); b.g.gain.setTargetAtTime(0,t+.012,.9/(1+.45*i)); } }); }
+function aud4Zupf(f){ if(!aud4.ctx||!aud4.an) return; const c=aud4.ctx, sr=c.sampleRate, key=Math.round(f); let b=aud4.cache[key];
+  if(!b){ const N=Math.round(sr*1.8), P=Math.max(2,Math.round(sr/f)), ring=new Float32Array(P); b=c.createBuffer(1,N,sr); const d=b.getChannelData(0);
+    for(let i=0;i<P;i++) ring[i]=Math.random()*2-1; let q=0; for(let i=0;i<N;i++){ const a=ring[q], nx=ring[(q+1)%P]; d[i]=a; ring[q]=.4985*(a+nx); q=(q+1)%P; } aud4.cache[key]=b; }
+  const s=c.createBufferSource(), g=c.createGain(), t=c.currentTime; s.buffer=b; s.connect(g); g.connect(aud4.out); g.gain.setValueAtTime(0,t); g.gain.linearRampToValueAtTime(.9,t+.005); s.start(t); }
+function tonKnopf4(host,bei){ const b=el("button",{class:"linkbtn tonb"}), zeig=()=>{ b.textContent=aud4.an?"Ton: an":"Ton: aus"; b.setAttribute("aria-pressed",String(aud4.an)); };
+  b.addEventListener("click",()=>{ aud4.an=!aud4.an; if(aud4.an&&!aud4Start()) aud4.an=false; if(!aud4.an) aud4Stumm(); zeig(); if(bei) bei(aud4.an); });
+  b.addEventListener("pointerdown",e=>e.stopPropagation()); zeig(); host.appendChild(b); cleanups.push(()=>aud4Stumm()); return b; }
+
+/* ---------- Simulationsuhr mit Zeitlupe, Pause und Einzelschritt; Szenen zeichnen nur, solange sie sichtbar sind ---------- */
+function uhr4(host){ const U={v:1,pause:false,t:0,last:null}, row=el("div",{class:"k3row"}), seg=el("div",{class:"seg"}), sg2=el("div",{class:"seg"});
+  [[1,"1×"],[.5,"½×"],[.25,"¼×"]].forEach(([v,l])=>{ const b=el("button",{"aria-pressed":String(v===1),"aria-label":"Tempo "+l},l);
+    b.addEventListener("click",()=>{ U.v=v; [...seg.children].forEach(x=>x.setAttribute("aria-pressed",String(x===b))); }); seg.appendChild(b); });
+  const pb=el("button",{"aria-label":"Anhalten oder weiterlaufen"},"❚❚"), sb=el("button",{"aria-label":"Ein Bild weiter"},"Schritt");
+  pb.addEventListener("click",()=>{ U.pause=!U.pause; pb.textContent=U.pause?"▶︎":"❚❚"; });
+  sb.addEventListener("click",()=>{ U.pause=true; pb.textContent="▶︎"; U.t+=1/20; });
+  sg2.append(pb,sb); row.append(seg,sg2); row.addEventListener("pointerdown",e=>e.stopPropagation()); host.appendChild(row); U.row=row;
+  U.tick=now=>{ const dt=U.last===null?0:Math.min(.05,now-U.last); U.last=now; if(!U.pause) U.t+=dt*U.v; return U.t; }; return U; }
+function szene4(st,U,fn){ let sicht=true;
+  if(window.IntersectionObserver){ const io=new IntersectionObserver(es=>{ sicht=es[es.length-1].isIntersecting; }); io.observe(st.c); cleanups.push(()=>io.disconnect()); }
+  let zuletzt=-9;   // außerhalb des Bildes wird nur zweimal pro Sekunde gezeichnet (Akku), damit die Fläche nach einer Größenänderung nicht leer bleibt
+  return loop(now=>{ const t=U.tick(now); if(sicht||now-zuletzt>.5){ zuletzt=now; fn(t); } }); }
+
+/* ---------- Kugel-Sprite mit Lichtpunkt: plastisch und billig ---------- */
+const kug4={};
+function kugel4(farbe){ if(kug4[farbe]) return kug4[farbe]; const c=document.createElement("canvas"); c.width=c.height=32; const g=c.getContext("2d"), r=g.createRadialGradient(12,11,1,16,16,15);
+  r.addColorStop(0,"#ffffff"); r.addColorStop(.3,farbe); r.addColorStop(.85,rgba3(farbe,.55)); r.addColorStop(1,rgba3(farbe,0)); g.fillStyle=r; g.fillRect(0,0,32,32); return kug4[farbe]=c; }
+function rr4(ctx,x,y,w,h,r){ ctx.beginPath(); ctx.moveTo(x+r,y); ctx.arcTo(x+w,y,x+w,y+h,r); ctx.arcTo(x+w,y+h,x,y+h,r); ctx.arcTo(x,y+h,x,y,r); ctx.arcTo(x,y,x+w,y,r); ctx.closePath(); }
+const DOCH4=1.2;     // sichtbare Frequenz der Animation in Hz (Zeitlupe, die Töne sind echt)
+
+/* ---------- Bild: Saite mit k Bäuchen ---------- */
+// o: {k, amp, ph (Phase der Schwingung), formen:[[n,a]...] (Mischung, sonst nur k), geist: k des gestrichelten Zielbildes}
+function saiteBild(st,o){ buehne(st); const {ctx,w}=st, G=geo3(st,{xa:0,xb:1,ym:1.3,frei:true,pl:38,pr:38,pt:o.pt||30,pb:o.pb||34});
+  ctx.fillStyle=B3.wand; [[G.X(0)-14,14],[G.X(1),14]].forEach(([x,b])=>{ ctx.fillRect(x,G.Y(1.1),b,G.Y(-1.1)-G.Y(1.1)); });
+  ctx.strokeStyle=B3.achse; ctx.lineWidth=1; ctx.setLineDash([5,6]); ctx.beginPath(); ctx.moveTo(G.X(0),G.y0); ctx.lineTo(G.X(1),G.y0); ctx.stroke(); ctx.setLineDash([]);
+  const A=o.amp===undefined?1:o.amp, forms=o.formen||[[o.k,1]], f=x=>forms.reduce((s,[n,a])=>s+a*Math.sin(n*Math.PI*x),0), N=120, xs=[...Array(N+1)].map((_,i)=>i/N);
+  if(o.geist){ strich(ctx,xs.map(x=>[G.X(x),G.Y(Math.sin(o.geist*Math.PI*x))]),B3.mark,2,[7,6],.8); strich(ctx,xs.map(x=>[G.X(x),G.Y(-Math.sin(o.geist*Math.PI*x))]),B3.mark,2,[7,6],.8); }
+  if(!o.ohneBand){ ctx.fillStyle=rgba3(B3.a,.13); ctx.beginPath(); xs.forEach((x,i)=>{ const y=G.Y(A*Math.abs(f(x))); i?ctx.lineTo(G.X(x),y):ctx.moveTo(G.X(x),y); });
+    for(let i=N;i>=0;i--) ctx.lineTo(G.X(xs[i]),G.Y(-A*Math.abs(f(xs[i])))); ctx.closePath(); ctx.fill(); }
+  leucht(ctx,xs.map(x=>[G.X(x),G.Y(A*f(x)*o.ph)]),B3.a,3.5);
+  if(o.k&&!o.formen&&!o.ohneKnoten){ for(let j=0;j<=o.k;j++){ ctx.strokeStyle=B3.mark; ctx.lineWidth=2.4; ctx.beginPath(); ctx.arc(G.X(j/o.k),G.y0,8,0,TAU); ctx.stroke(); }
+    ctx.strokeStyle=B3.mark; ctx.fillStyle=B3.mark; const a=G.X(0), b=G.X(1/o.k), yy=G.Y(-1.12); darrow(ctx,a,yy,b,yy,B3.mark,2); label(ctx,"λ/2",(a+b)/2,yy+17,B3.mark,"center",700,13); }
+  return G; }
+
+/* ---------- Bild: Luftsäule im Rohr (Teilchen oder Druck) ---------- */
+// o: {gedackt, n, amp, ph, druck}; links ist das Rohr immer offen
+function rohrBild(st,o){ buehne(st); const {ctx,w,h}=st, x0=46, x1=46+(w-92)*(o.rel||1), y0=h*.5, hh=Math.min(h*.3,58), L=x1-x0, n=o.n, ged=!!o.gedackt, amp=o.amp===undefined?1:o.amp;
+  const xi=u=>ged?Math.cos((2*n-1)*Math.PI*u/2):Math.cos(n*Math.PI*u), pp=u=>ged?Math.sin((2*n-1)*Math.PI*u/2):Math.sin(n*Math.PI*u);
+  const gl=ctx.createLinearGradient(0,y0-hh,0,y0+hh); gl.addColorStop(0,"rgba(150,200,255,.22)"); gl.addColorStop(.5,"rgba(150,200,255,.06)"); gl.addColorStop(1,"rgba(150,200,255,.16)");
+  if(o.druck){ const S=60; for(let i=0;i<S;i++){ const u=(i+.5)/S, p=pp(u)*(o.pph||0)*amp; ctx.fillStyle=p>0?rgba3(B3.b,Math.min(.7,Math.abs(p)*.7)):rgba3(B3.a,Math.min(.7,Math.abs(p)*.7)); ctx.fillRect(x0+i*L/S,y0-hh,L/S+1,2*hh); } }
+  ctx.fillStyle=gl; rr4(ctx,x0,y0-hh,L,2*hh,10); ctx.fill(); ctx.strokeStyle="rgba(190,225,255,.55)"; ctx.lineWidth=2; ctx.stroke();
+  if(ged){ ctx.fillStyle=B3.wand; ctx.fillRect(x1-2,y0-hh-6,14,2*hh+12); ctx.strokeStyle=B3.metall; ctx.lineWidth=2; ctx.strokeRect(x1-2,y0-hh-6,14,2*hh+12); }
+  else { ctx.strokeStyle=B3.mark; ctx.lineWidth=2; ctx.setLineDash([4,5]); ctx.beginPath(); ctx.moveTo(x1+3,y0-hh); ctx.lineTo(x1+3,y0+hh); ctx.stroke(); ctx.setLineDash([]); }
+  ctx.strokeStyle=B3.mark; ctx.lineWidth=2; ctx.setLineDash([4,5]); ctx.beginPath(); ctx.moveTo(x0-3,y0-hh); ctx.lineTo(x0-3,y0+hh); ctx.stroke(); ctx.setLineDash([]);
+  const cols=30, rows=4, dx=L/cols*.95;
+  for(let i=0;i<cols;i++) for(let j=0;j<rows;j++){ const u=(i+.5)/cols, px=x0+u*L+amp*xi(u)*o.ph*dx, py=y0-hh+(j+.5)/rows*2*hh; ctx.drawImage(kugel4(B3.a),px-5,py-5,10,10); }
+  // Bewegungsknoten (○) und Bewegungsbäuche (△) unter dem Rohr
+  const kn=[]; for(let j=0;j<n;j++) kn.push(ged?(2*j+1)/(2*n-1):(2*j+1)/(2*n));
+  ctx.strokeStyle=B3.mark; ctx.lineWidth=2.4; kn.forEach(u=>{ ctx.beginPath(); ctx.arc(x0+u*L,y0+hh+18,7,0,TAU); ctx.stroke(); });
+  label(ctx,w>520?"○ Bewegungsknoten (Druckbauch)":"○ Bewegungsknoten",14,h-8,B3.mark,"left",700,12); if(w>420) label(ctx,ged?"links offen · rechts gedackt":"beide Enden offen",w-14,h-8,B3.txt,"right",700,12);
+  return {x0,x1,y0,hh}; }
+
+
+/* =====================================================================
+   Challenge A · Saitenmeister
+   Zielton treffen: mit dem Finger auf der Saite (f ∝ 1/L), mit Flageolett-Knoten (k · f₁) und mit der Pfeifenlänge (offen oder gedackt).
+   ===================================================================== */
+const gcd4=(a,b)=>b?gcd4(b,a%b):a;
+const bundF=(f0,p)=>f0/(1-p);                           // Finger bei p·L: Es schwingt nur noch die Länge (1−p)·L
+// Flageolett: Berührung bei p. Liegt p bei a/b (teilerfremd), bleiben alle Eigenschwingungen mit k = b, 2b, 3b, … und der Ton ist b · f₁.
+function flagK(p){ let best=null; for(let b=2;b<=8;b++) for(let a=1;a<b;a++){ if(gcd4(a,b)!==1) continue; const d=Math.abs(p-a/b); if(d<=.025&&(!best||d<best.d)) best={a,b,d}; } return best; }
+const orgelF=(L,ged)=>343/((ged?4:2)*L);               // Rohr mit c = 343 m/s
+const lenTxt=L=>L<1?fmt(+(L*100).toFixed(1))+" cm":fmt(+L.toFixed(2))+" m";
+
+// Gitarrenhals von der Seite: links Sattel, rechts Steg; auf Wunsch Bundstäbchen im Abstand der gleichstufigen Stimmung
+function halsBild(st,o){ buehne(st); const {ctx,w,h}=st, x0=46, x1=w-46, y0=h*.5, L=x1-x0;
+  const g=ctx.createLinearGradient(0,y0-34,0,y0+34); g.addColorStop(0,"#4a3420"); g.addColorStop(1,"#26190b"); ctx.fillStyle=g; rr4(ctx,x0-6,y0-34,L+12,68,8); ctx.fill();
+  ctx.fillStyle="#e8dcc0"; ctx.fillRect(x0-9,y0-34,9,68); ctx.fillStyle=B3.metall; ctx.fillRect(x1,y0-34,9,68);
+  if(o.bunde){ ctx.strokeStyle="rgba(205,215,230,.6)"; ctx.lineWidth=2; for(let n=1;n<=12;n++){ const x=x0+L*(1-Math.pow(2,-n/12)); ctx.beginPath(); ctx.moveTo(x,y0-34); ctx.lineTo(x,y0+34); ctx.stroke(); } }
+  return {x0,x1,y0,L,X:p=>x0+p*L,P:x=>(x-x0)/L}; }
+function saiteLinie(ctx,xa,xb,y0,A,ph,b,farbe,lw){ const pts=[...Array(61)].map((_,i)=>{ const u=i/60; return [xa+(xb-xa)*u,y0-A*Math.sin(b*Math.PI*u)*ph]; }); if(A>1.5) leucht(ctx,pts,farbe,lw); else { ctx.strokeStyle=farbe; ctx.lineWidth=lw; ctx.beginPath(); pts.forEach((q,i)=>i?ctx.lineTo(q[0],q[1]):ctx.moveTo(q[0],q[1])); ctx.stroke(); } }
+const opts4=l=>{ const s=new Set(); return l.filter(o=>{ if(s.has(o.t)) return false; s.add(o.t); return true; }); };
+
+function bundTask(o){ return {run(api){
+  const f0=o.f0, ft=f0*o.r; let p=0, fertig=false, zt=-9, t=0, lt=null, G=null;
+  api.situation(`Gitarre: Die leere Saite klingt mit ${hz4(f0)}. Die Saite ist 65 cm lang.`); api.badge("Spielen");
+  api.prompt(`Triff den Zielton <b>${hz4(ft)}</b> (${o.name}). Zieh den Finger auf die Saite: Er kürzt die schwingende Länge.`); api.hint((o.bunde?"Die Bundstäbchen sind nur eine Hilfe. ":"Diesmal ohne Bundstäbchen. ")+"Die Frequenz siehst du nicht, nur die Länge: Rechne aus, welche Länge du brauchst.");
+  const st=canvasFill(api.cv("b3 zieh")), zb=el("button",{class:"btn ghost"},"Zupfen"), pr=el("button",{class:"btn"},"Das ist der Ton"), row=el("div",{class:"k3row"});
+  st.c._ziel=()=>{ const r=st.c.getBoundingClientRect(), pc=1-1/o.r; return {r:[r.left+G.X(pc),r.top+G.y0],f:[r.left+G.X(klemm(pc>.3?pc-.25:pc+.25,0,.88)),r.top+G.y0]}; };
+  ziehbar(st.c,(x,y)=>{ if(fertig||!G) return; p=klemm(G.P(x),0,.9); if(o.bunde){ const n=klemm(Math.round(-12*Math.log2(1-p)),0,12); p=1-Math.pow(2,-n/12); } });   // mit Bünden: Die Saite wird am Bundstab verkürzt, der Finger steht davor
+  zb.addEventListener("click",()=>{ zt=t; aud4Zupf(bundF(f0,p)); }); tonKnopf4(row,()=>{}); api.body.appendChild(row); api.actions.append(zb,pr);
+  pr.addEventListener("click",()=>{ if(fertig) return; fertig=true; zt=t; const f=bundF(f0,p), Lv=.65*(1-p), ok=Math.abs(f-ft)/ft<=.02; [zb,pr].forEach(b=>b.disabled=true); aud4Zupf(f); effekt3(st,ok);
+    api.feedback(ok,ok?`Treffer: Es schwingt die Länge ${lenTxt(Lv)}, das ergibt f = f₀ · L₀/L = ${hz4(f)}. ${o.ver}`:`Du hast ${hz4(f)} getroffen (Länge ${lenTxt(Lv)}). Für ${hz4(ft)} brauchst du L = L₀ · f₀/f = ${lenTxt(.65*f0/ft)}. ${o.ver}`,ok?undefined:"Die Saite reißt fast!"); api.finish(ok); });
+  loop(now=>{ const dt=lt===null?0:Math.min(.05,now-lt); lt=now; t+=dt; G=halsBild(st,{bunde:o.bunde}); const {ctx,w,h}=st, f=bundF(f0,p), px=G.X(p), A=Math.max(0,24*Math.exp(-(t-zt)*1.3));
+    ctx.strokeStyle=B3.metall; ctx.lineWidth=2; ctx.beginPath(); ctx.moveTo(G.x0,G.y0); ctx.lineTo(px,G.y0); ctx.stroke();
+    saiteLinie(ctx,px,G.x1,G.y0,A,Math.cos(TAU*DOCH4*(f/f0)*(t-zt)),1,B3.a,3);
+    if(A<1.5){ ctx.strokeStyle=B3.a; ctx.lineWidth=3; ctx.beginPath(); ctx.moveTo(px,G.y0); ctx.lineTo(G.x1,G.y0); ctx.stroke(); }
+    if(fertig){ const pc=1-1/o.r; ctx.strokeStyle=B3.ok; ctx.lineWidth=2.4; ctx.setLineDash([5,5]); ctx.beginPath(); ctx.arc(G.X(pc),G.y0,17,0,TAU); ctx.stroke(); ctx.setLineDash([]); label(ctx,"Ziel",G.X(pc),G.y0-26,B3.ok,"center",700,12); }
+    const fx=o.bunde&&p>0?px-13:px; perle(ctx,fx,G.y0,B3.mark,22); ctx.fillStyle=B3.mark; ctx.beginPath(); ctx.arc(fx,G.y0,8,0,TAU); ctx.fill();
+    label(ctx,`Ziel: ${hz4(ft)}`,14,24,B3.mark,"left",700,14); label(ctx,`schwingende Länge L = ${lenTxt(.65*(1-p))}`,w/2,h-14,B3.txt,"center",700,13); label(ctx,"Sattel",G.x0,G.y0-44,B3.dim,"center",600,11); label(ctx,"Steg",G.x1+4,G.y0-44,B3.dim,"center",600,11); }); }};}
+function bundL1(){ const L=[{name:"Oktave",r:2,bunde:true,ver:"Eine Oktave bedeutet doppelte Frequenz, also halbe Länge."},{name:"Quinte",r:1.5,bunde:true,ver:"Eine Quinte hat das Frequenzverhältnis 3:2, also zwei Drittel der Länge."},{name:"Quarte",r:4/3,bunde:true,ver:"Eine Quarte hat das Verhältnis 4:3, also drei Viertel der Länge."},
+    {name:"große Terz",r:1.25,bunde:false,ver:"Eine große Terz hat das Verhältnis 5:4, also vier Fünftel der Länge."},{name:"kleine Terz",r:1.2,bunde:false,ver:"Eine kleine Terz hat das Verhältnis 6:5, also fünf Sechstel der Länge."}];
+  return [...shuffle(L.slice(0,3)),...shuffle(L.slice(3))].map(it=>bundTask(Object.assign({f0:one([82.4,110,146.8,196])},it))); }
+
+// Flageolett: Die Saite nur berühren. An einem Knoten kann sie nicht schwingen, also bleiben nur die Eigenschwingungen mit Knoten an dieser Stelle.
+function flagTask(o){ return {run(api){
+  const f1=110, k=o.k, pz=o.a/o.k; let p=.5, fertig=false, zt=-9, t=0, lt=null, G=null, res=null;
+  api.situation(`Gitarrensaite, leer ${hz4(f1)}. Du berührst sie nur leicht, ohne sie herunterzudrücken, und zupfst dann.`); api.badge("Spielen");
+  api.prompt(`Bring die <b>${k}. Eigenschwingung</b> (${hz4(k*f1)}) zum Klingen. Wo musst du die Saite berühren?`); api.hint("An deinem Finger liegt ein Knoten. Nur Eigenschwingungen, die dort selbst einen Knoten haben, bleiben übrig.");
+  const st=canvasFill(api.cv("b3 zieh")), zb=el("button",{class:"btn ghost"},"Zupfen"), pr=el("button",{class:"btn"},"Das ist der Ton"), row=el("div",{class:"k3row"});
+  st.c._ziel=()=>{ const r=st.c.getBoundingClientRect(), pw=k===2?1/3:.5; return {r:[r.left+G.X(pz),r.top+G.y0],f:[r.left+G.X(pw),r.top+G.y0]}; };
+  ziehbar(st.c,(x)=>{ if(!fertig&&G) p=klemm(G.P(x),.03,.97); });
+  const zupf=()=>{ zt=t; res=flagK(p); if(res) aud4Zupf(res.b*f1); else aud4Zupf(f1/2); };
+  zb.addEventListener("click",zupf); tonKnopf4(row,()=>{}); api.body.appendChild(row); api.actions.append(zb,pr);
+  pr.addEventListener("click",()=>{ if(fertig) return; fertig=true; zupf(); const ok=!!res&&res.b===k; [zb,pr].forEach(b=>b.disabled=true); effekt3(st,ok);
+    const ziel=`Für k = ${k} berührst du bei ${o.a}/${k} der Länge.`;
+    api.feedback(ok,res?`Du hast bei ${res.a}/${res.b} der Länge berührt. Dort liegt ein Knoten aller Eigenschwingungen mit k = ${res.b}, ${2*res.b}, ${3*res.b}, … Die tiefste davon klingt: ${res.b} · f₁ = ${hz4(res.b*f1)}.${ok?"":" "+ziel}`:`Dort liegt kein Knoten einer tiefen Eigenschwingung, die Saite klingt dumpf. Knoten liegen bei Bruchteilen wie 1/2, 1/3 oder 1/4 der Länge. ${ziel}`,ok?undefined:"Saite abgewürgt!"); api.finish(ok); });
+  loop(now=>{ const dt=lt===null?0:Math.min(.05,now-lt); lt=now; t+=dt; G=halsBild(st,{bunde:false}); const {ctx,w,h}=st, A=res?Math.max(0,28*Math.exp(-(t-zt)*(fertig?.6:1.1))):Math.max(0,5*Math.exp(-(t-zt)*3));
+    ctx.strokeStyle=B3.metall; ctx.lineWidth=2; ctx.beginPath(); ctx.moveTo(G.x0,G.y0); ctx.lineTo(G.x1,G.y0); ctx.stroke();
+    const b=res?res.b:1; if(zt>-1) saiteLinie(ctx,G.x0,G.x1,G.y0,A,Math.cos(TAU*DOCH4*b*.55*(t-zt)),b,B3.a,3.2);
+    if(fertig&&res){ for(let j=0;j<=res.b;j++){ ctx.strokeStyle=B3.mark; ctx.lineWidth=2.2; ctx.beginPath(); ctx.arc(G.X(j/res.b),G.y0,8,0,TAU); ctx.stroke(); } }
+    if(fertig){ ctx.strokeStyle=B3.ok; ctx.lineWidth=2.4; ctx.setLineDash([5,5]); ctx.beginPath(); ctx.arc(G.X(pz),G.y0,17,0,TAU); ctx.stroke(); ctx.setLineDash([]); label(ctx,"Ziel",G.X(pz),G.y0-26,B3.ok,"center",700,12); }
+    const px=G.X(p); perle(ctx,px,G.y0,B3.mark,22); ctx.strokeStyle=B3.mark; ctx.lineWidth=3; ctx.beginPath(); ctx.arc(px,G.y0,9,0,TAU); ctx.stroke();
+    label(ctx,`Ziel: ${k}. Eigenschwingung = ${hz4(k*f1)}`,14,24,B3.mark,"left",700,14); label(ctx,`Berühre die Saite leicht und zupfe`,w/2,h-14,B3.txt,"center",700,13); }); }};}
+function flagL2(){ return pick([{k:2,a:1},{k:3,a:1},{k:3,a:2},{k:4,a:1},{k:4,a:3},{k:5,a:1},{k:5,a:2},{k:6,a:1}],PRO_LEVEL).map(flagTask); }
+
+// Pfeife: Länge so einstellen, dass der Grundton stimmt (offen: λ₁ = 2L, gedackt: λ₁ = 4L)
+function orgelTask(o){ return {run(api){
+  const ft=o.f, ged=o.ged, Lt=343/((ged?4:2)*ft), Lmin=Lt*.35, Lmax=Lt*2.8, vz=Math.round(1000*Math.log(Lt/Lmin)/Math.log(Lmax/Lmin)); let v=Math.random()<.5?150+Math.random()*120:720+Math.random()*130, fertig=false, t=0, lt=null;
+  const Lv=()=>Lmin*Math.pow(Lmax/Lmin,v/1000);
+  api.situation(`${o.name}: ${ged?"gedackt, ein Ende ist geschlossen":"offen, beide Enden sind offen"}. Rechne mit c = 343 m/s.`); api.badge("Spielen");
+  api.prompt(`Stell die Länge so ein, dass die Pfeife den Ton <b>${hz4(ft)}</b> trifft.`); api.hint("Die Frequenz siehst du nicht, nur die Länge. Rechne aus, welche Länge du brauchst (c = 343 m/s).");
+  const st=canvasFill(api.cv("b3")), row=el("div",{class:"k3row"}), reg=el("div",{class:"reg"}), rng=el("input",{type:"range",min:"0",max:"1000",step:"1","aria-label":"Länge der Pfeife"}), val=el("span",{class:"val"}), pr=el("button",{class:"btn"},"Das ist der Ton"), trow=el("div",{class:"k3row"});
+  st.c._ziel=()=>({v:vz,fv:vz>500?vz-300:vz+300});
+  const ton=()=>{ if(aud4.ctx) aud4Setze([orgelF(Lv(),ged)],[.9]); };
+  const setze=x=>{ v=klemm(x,0,1000); rng.value=String(Math.round(v)); val.textContent=`L = ${lenTxt(Lv())}`; ton(); }; rng.addEventListener("input",()=>setze(+rng.value));
+  reg.append(rng,val); row.appendChild(reg); api.body.appendChild(row); tonKnopf4(trow,an=>{ if(an) ton(); }); api.body.appendChild(trow); api.actions.appendChild(pr); setze(v);
+  pr.addEventListener("click",()=>{ if(fertig) return; fertig=true; rng.disabled=pr.disabled=true; const f=orgelF(Lv(),ged), ok=Math.abs(f-ft)/ft<=.02; effekt3(st,ok);
+    if(ok) api.feedback(true,`${ged?"Gedackt":"Offen"}: f₁ = c/(${ged?4:2}L) = 343 m/s : (${ged?4:2} · ${lenTxt(Lv())}) = ${hz4(f)}.${ged?" Eine gedackte Pfeife ist für denselben Ton nur halb so lang wie eine offene.":""}`);
+    else api.feedback(false,`Mit L = ${lenTxt(Lv())} kommt f₁ = ${hz4(f)} heraus. Für ${hz4(ft)} brauchst du L = ${lenTxt(Lt)}: ${ged?"λ₁ = 4L, also L = c/(4f)":"λ₁ = 2L, also L = c/(2f)"}.`,"Die Pfeife quietscht!"); api.finish(ok); });
+  loop(now=>{ const dt=lt===null?0:Math.min(.05,now-lt); lt=now; t+=dt; const f=orgelF(Lv(),ged), ph=TAU*DOCH4*Math.min(3,f/ft)*t; rohrBild(st,{gedackt:ged,n:1,ph:Math.cos(ph),amp:.9,rel:Lv()/Lmax}); const {ctx,w,h}=st, x0=46, ww=w-92;
+    if(fertig){ ctx.strokeStyle=B3.ok; ctx.lineWidth=2.4; ctx.setLineDash([5,5]); ctx.beginPath(); ctx.moveTo(x0+ww*Lt/Lmax,h*.5-70); ctx.lineTo(x0+ww*Lt/Lmax,h*.5+70); ctx.stroke(); ctx.setLineDash([]); label(ctx,"Ziel",x0+ww*Lt/Lmax,h*.5-76,B3.ok,"center",700,12); }
+    label(ctx,`Ziel: ${hz4(ft)}`,14,24,B3.mark,"left",700,14); label(ctx,`L = ${lenTxt(Lv())}`,w/2,h*.17+14,B3.txt,"center",700,13); }); }};}
+function orgelL3(){ const L=[{name:"Querflöte, Ton C",f:262,ged:false},{name:"Gedackte Pfeife, derselbe Ton C",f:262,ged:true},{name:"Panflötenrohr",f:858,ged:true},{name:"Stimmpfeife für das A",f:440,ged:false},{name:"Orgelpfeife, Bass",f:131,ged:true},{name:"Orgelpfeife, Bass",f:131,ged:false}];
+  return shuffle(L).slice(0,PRO_LEVEL).map(orgelTask); }
+
+/* =====================================================================
+   Challenge B · Wie klingt's?
+   ===================================================================== */
+const GR4={c:["c","Wellengeschw."],lam:["λ₁","Wellenlänge der Grundschwingung"],f:["f₁","Grundfrequenz"]};
+const KA4=[
+  {text:"Du greifst die Gitarrensaite im 5. Bund.",soll:{c:"=",lam:"-",f:"+"},nach:[.75,1.33],bez:"Saite",erkl:"Spannung und Saite bleiben gleich, also bleibt c gleich. Die schwingende Länge wird kürzer: λ₁ = 2L sinkt und f₁ = c/(2L) steigt."},
+  {text:"Du stimmst die Gitarrensaite straffer.",soll:{c:"+",lam:"=",f:"+"},nach:[1,1.25],bez:"Saite",erkl:"Mehr Spannung macht die Saite schneller: c steigt. Die Länge und damit λ₁ = 2L bleiben, also steigt f₁ = c/(2L)."},
+  {text:"Du ziehst eine dickere Saite auf. Länge und Spannung bleiben gleich.",soll:{c:"-",lam:"=",f:"-"},nach:[1,.8],bez:"Saite",erkl:"Die dickere Saite hat mehr Masse pro Länge und ist träger: c sinkt. λ₁ = 2L bleibt, also sinkt f₁."},
+  {text:"Du setzt einen Kapodaster auf die Gitarre.",soll:{c:"=",lam:"-",f:"+"},nach:[.8,1.25],bez:"Saite",erkl:"Der Kapodaster verkürzt die schwingende Länge wie ein gegriffener Bund: c bleibt, λ₁ sinkt, f₁ steigt."},
+  {text:"Eine offene Orgelpfeife wird im Raum wärmer.",soll:{c:"+",lam:"=",f:"+"},nach:[1,1.12],bez:"Luftsäule",erkl:"In warmer Luft ist c größer. Die Pfeife behält ihre Länge, also bleibt λ₁ = 2L. Deshalb steigt f₁ und die Orgel „zieht hoch“."},
+  {text:"Du füllst Wasser in einen Messzylinder und bläst darüber. Der Wasserstand steigt.",soll:{c:"=",lam:"-",f:"+"},nach:[.7,1.43],bez:"Luftsäule",erkl:"Die Luftsäule über dem Wasser wird kürzer, c in der Luft bleibt. Mit λ₁ = 4L sinkt λ₁, und f₁ = c/(4L) steigt: Der Ton wird höher."}
+];
+function klangAendertTask(it){ return {run(api){
+  const antw={}, keys=["c","lam","f"]; let geprueft=false, zeig=false;
+  api.badge("Erst vorhersagen"); api.prompt(it.text); api.hint("Entscheide für jede Größe. λ₁ ist die Wellenlänge der Grundschwingung. Das Bild zeigt erst nach dem Prüfen, wie es danach schwingt.");
+  const st=canvasFill(api.cv("b3"));
+  loop(now=>{ buehne(st); const {ctx,w,h}=st, W=w-110, cx=w/2, y0=h*.5, A=Math.min(h*.27,58), pts=(Lr,fr,ph)=>[...Array(61)].map((_,i)=>{ const u=i/60; return [cx-W*Lr/2+W*Lr*u,y0-A*Math.sin(Math.PI*u)*ph]; });
+    strich(ctx,pts(1,1,1),B3.dim,2,[6,6],.9); strich(ctx,pts(1,1,-1),B3.dim,2,[6,6],.5);
+    if(zeig){ leucht(ctx,pts(it.nach[0],it.nach[1],Math.cos(TAU*.7*it.nach[1]*now)),B3.a,3.5); [-1,1].forEach(s=>{ ctx.fillStyle=B3.mark; ctx.beginPath(); ctx.arc(cx+s*W*it.nach[0]/2,y0,5,0,TAU); ctx.fill(); }); }
+    else { [-1,1].forEach(s=>{ ctx.fillStyle=B3.dim; ctx.beginPath(); ctx.arc(cx+s*W/2,y0,5,0,TAU); ctx.fill(); }); leucht(ctx,pts(1,1,Math.cos(TAU*.7*now)),B3.a,3.5,.7); label(ctx,"nachher: ?",w-14,22,B3.dim,"right",700,13); }
+    legende3(st,[[it.bez+" vorher",B3.dim,1],[it.bez+" nachher",B3.a,0]]); });
+  const rows=el("div",{class:"rows"}), rowEls={}, pruef=el("button",{class:"btn",disabled:""},"Prüfen"); rows._soll=it.soll;
+  keys.forEach(k=>{ const r=el("div",{class:"row"}); const [sym,nm]=GR4[k]; r.appendChild(el("div",{},`<span class="sym">${sym}</span><span class="nm">${nm}</span>`));
+    const tri=el("div",{class:"tri",role:"group","aria-label":nm});
+    [["+","↑","größer"],["=","=","gleich"],["-","↓","kleiner"]].forEach(([v,s,a])=>{ const b=el("button",{"aria-pressed":"false","aria-label":a,title:a},s);
+      b.addEventListener("click",()=>{ if(geprueft) return; antw[k]=v; [...tri.children].forEach(x=>x.setAttribute("aria-pressed",String(x===b))); pruef.disabled=Object.keys(antw).length<keys.length; }); tri.appendChild(b); });
+    r.appendChild(tri); rows.appendChild(r); rowEls[k]=r; });
+  api.body.appendChild(rows); api.actions.appendChild(pruef);
+  pruef.addEventListener("click",()=>{ geprueft=true; zeig=true; let alle=true; const wort={"+":"größer","=":"gleich","-":"kleiner"};
+    keys.forEach(k=>{ const ok=antw[k]===it.soll[k]; alle=alle&&ok; rowEls[k].classList.add(ok?"ok":"bad"); if(!ok) rowEls[k].firstChild.appendChild(el("span",{class:"fix"},`Richtig: ${wort[it.soll[k]]}`)); });
+    api.feedback(alle,it.erkl); api.finish(alle); });
+}};}
+function klangL1(){ return pick(KA4,PRO_LEVEL).map(klangAendertTask); }
+function klangL2(){ const C=343;
+  return shuffle([
+    ()=>{ const L=one([60,65,70]), f=one([82.4,110,146.8]), c=2*L/100*f; return mcTask({sit:`Eine Gitarrensaite ist ${L} cm lang. Ihre Grundfrequenz ist ${hz4(f)}.`,q:"Wie schnell breitet sich die Welle auf der Saite aus?",
+      opts:opts4([{t:ms4(c),ok:true},{t:ms4(c/2),fb:"Du hast λ = L gesetzt. Bei der Grundschwingung ist L = λ/2, also λ = 2L."},{t:ms4(c*100),fb:"Die Zentimeter sind nicht in Meter umgerechnet."},{t:ms4(c*2),fb:"λ = 4L gilt nur beim gedackten Rohr."}]),
+      erkl:`λ = 2L = ${fmt(2*L/100)} m, dann c = λ · f₁ = ${fmt(2*L/100)} m · ${hz4(f)} = ${ms4(c)}.`}); },
+    ()=>{ const L=one([10,12.5,20]), f=C/(4*L/100); return mcTask({sit:`Ein Panflötenrohr ist gedackt und ${fmt(L)} cm lang. Rechne mit c = 343 m/s.`,q:"Wie groß ist die Grundfrequenz?",
+      opts:opts4([{t:hz4(f),ok:true},{t:hz4(2*f),fb:"Das ist die Formel für das offene Rohr. Beim gedackten Rohr gilt λ₁ = 4L."},{t:hz4(f/100),fb:"Die Zentimeter sind nicht in Meter umgerechnet."},{t:hz4(f/2),fb:"Zu tief: λ₁ ist 4L, nicht 8L."}]),
+      erkl:`λ₁ = 4L = ${fmt(4*L/100)} m, dann f₁ = c/λ₁ = ${C} m/s : ${fmt(4*L/100)} m = ${hz4(f)}.`}); },
+    ()=>{ const f=C/(4*.025); return mcTask({sit:"Dein Gehörgang ist ein Rohr von etwa 2,5 cm Länge. Es ist an einem Ende offen und am anderen vom Trommelfell verschlossen. Rechne mit c = 343 m/s.",q:"Bei welcher Grundfrequenz hat er seine Resonanz?",
+      opts:opts4([{t:hz4(f),ok:true},{t:hz4(2*f),fb:"Das wäre ein offenes Rohr. Hier ist ein Ende zu: λ₁ = 4L."},{t:hz4(f/10),fb:"Die Zehnerpotenz stimmt nicht: 2,5 cm sind 0,025 m."},{t:hz4(f/2),fb:"λ₁ ist 4L, nicht 8L."}]),
+      erkl:`λ₁ = 4L = 0,10 m, dann f₁ = ${C} m/s : 0,10 m = ${hz4(f)}. Hier hörst du am empfindlichsten.`}); },
+    ()=>{ const L=one([2,1.5,1]), f=C/(2*L); return mcTask({sit:`Eine offene Orgelpfeife ist ${fmt(L.toFixed(2))} m lang. Rechne mit c = 343 m/s.`,q:"Wie groß ist die Grundfrequenz?",
+      opts:opts4([{t:hz4(f),ok:true},{t:hz4(f/2),fb:"Das ist die Formel für das gedackte Rohr. Offen gilt λ₁ = 2L."},{t:hz4(2*f),fb:"Du hast λ = L gesetzt. Bei der Grundschwingung ist L = λ/2."},{t:hz4(4*f),fb:"Zu hoch: λ₁ ist 2L, nicht L/2."}]),
+      erkl:`λ₁ = 2L = ${fmt((2*L).toFixed(2))} m, dann f₁ = c/λ₁ = ${C} m/s : ${fmt((2*L).toFixed(2))} m = ${hz4(f)}.`}); },
+    ()=>{ const f1=one([110,165,220,330]), k=one([3,4,5]); return mcTask({sit:`Eine Saite hat die Grundfrequenz f₁ = ${hz4(f1)}.`,q:`Welche Frequenz hat die ${k}. Eigenschwingung?`,
+      opts:opts4([{t:hz4(k*f1),ok:true},{t:hz4((k-1)*f1),fb:`Das ist die ${k-1}. Eigenschwingung.`},{t:hz4((k+1)*f1),fb:`Das ist die ${k+1}. Eigenschwingung.`},{t:hz4(f1/k),fb:"Geteilt statt multipliziert."}]),
+      erkl:`fₖ = k · f₁ = ${k} · ${hz4(f1)} = ${hz4(k*f1)}.`}); }
+  ]).map(g=>g()); }
+const KL3=[
+  {sit:"Nach einem Atemzug Helium klingt die Stimme heller, der Grundton der Stimmbänder bleibt aber fast gleich.",q:"Was ändert sich?",ok:"Die Resonanzen im Mund- und Rachenraum wandern nach oben. Die Klangfarbe ändert sich.",f:["Die Stimmbänder schwingen viel schneller.","Der Rachenraum wird kürzer."],e:"In Helium ist c viel größer. Die Resonanzfrequenzen des Mund- und Rachenraums steigen, die Mischung der Oberschwingungen ändert sich. Der Grundton kommt von den Stimmbändern und bleibt."},
+  {sit:"Eine Klarinette und eine Querflöte sind gleich lang. Die Klarinette klingt etwa eine Oktave tiefer.",q:"Warum?",ok:"Die Klarinette wirkt wie ein gedacktes Rohr: λ₁ = 4L statt 2L.",f:["Das Holz hat ein kleineres c als das Metall der Flöte.","Die Klarinette hat ein engeres Rohr."],e:"Eine Klarinette ist näherungsweise an einem Ende geschlossen. Dort liegt ein Knoten, das Rohr hat λ₁ = 4L. Die doppelte Wellenlänge bedeutet die halbe Frequenz."},
+  {sit:"Du berührst eine Gitarrensaite bei L/3 nur leicht und zupfst sie. Es klingt ein heller Ton.",q:"Welche Eigenschwingungen bleiben, und was hörst du?",ok:"Es bleiben k = 3, 6, 9, …. Du hörst 3 · f₁.",f:["Es bleiben nur gerade k. Du hörst die Oktave 2 · f₁.","Es bleibt die Grundschwingung. Du hörst f₁."],e:"Bei L/3 liegt ein Knoten. Er passt nur zu den Eigenschwingungen, bei denen L/3 ein ganzes Vielfaches von λ/2 ist: k = 3, 6, 9, … Am deutlichsten hörst du 3 · f₁."},
+  {sit:"Orgelbauer bauen für tiefe Töne gern gedackte Pfeifen.",q:"Was ist ihr Vorteil?",ok:"Für denselben Ton ist sie nur halb so lang wie eine offene Pfeife.",f:["Gedackte Pfeifen klingen bei gleicher Länge höher.","Gedackte Pfeifen sind lauter."],e:"Gedackt gilt λ₁ = 4L, offen λ₁ = 2L. Für dieselbe Frequenz braucht die gedackte Pfeife also nur die halbe Länge."},
+  {sit:"Du bläst über eine Flasche, während sie sich mit Wasser füllt. Der Ton wird immer höher.",q:"Warum?",ok:"Die Luftsäule wird kürzer, also steigt f₁ = c/(4L).",f:["Das Wasser schwingt mit und hat ein größeres c.","Die Luft wird dichter, deshalb steigt c."],e:"Die Luftsäule ist gedackt und wird mit steigendem Wasserstand kürzer. c in der Luft bleibt gleich, nur L sinkt. Also steigt f₁."},
+  {sit:"Zupfst du die Gitarrensaite nahe am Steg, klingt sie hell und hart. In der Mitte klingt sie weich.",q:"Warum?",ok:"Nahe am Steg werden die hohen Eigenschwingungen stark angeregt.",f:["Nahe am Steg wird die Saite kürzer.","Nahe am Steg wird c größer."],e:"Die Länge und c ändern sich nicht. Nur die Mischung: Nahe am Ende sind die Anteile der hohen k größer, in der Mitte fehlen die geraden k ganz."},
+  {sit:"Die tiefen Saiten eines Klaviers sind mit Kupferdraht umwickelt.",q:"Was bringt das?",ok:"Die Saite wird schwerer, c sinkt, und der Ton wird tief, ohne dass die Saite sehr lang sein muss.",f:["Die Saite wird länger und schwingt deshalb langsamer.","Die Saite wird straffer und schwingt deshalb tiefer."],e:"f₁ = c/(2L). Mehr Masse pro Länge verkleinert c, und f₁ sinkt. Ohne Umwicklung bräuchte die Saite für denselben Ton viele Meter."}
+];
+function klangL3(){ return pick(KL3,PRO_LEVEL).map(it=>mcTask({sit:it.sit,q:it.q,opts:[{t:it.ok,ok:true},{t:it.f[0],fb:"Das passt nicht zu den Größen in f₁ = c/(2L)."},{t:it.f[1],fb:"Das erklärt es nicht."}],erkl:it.e})); }
+
+/* =====================================================================
+   Challenge C · Kundt-Labor
+   ===================================================================== */
+// Rohr von der Seite mit Pulverhäufchen und Lineal. o = {W (Fensterbreite in cm), heaps:[cm], ghost:[cm], ring:[Indizes], sel:[Indizes]}
+function kundtBild(st,o){ buehne(st); const {ctx,w,h}=st, x0=20, x1=w-20, y0=h*.36, hh=Math.min(h*.17,38), sx=(x1-x0)/o.W, X=c=>x0+c*sx, base=y0+hh-2;
+  const gl=ctx.createLinearGradient(0,y0-hh,0,y0+hh); gl.addColorStop(0,"rgba(150,200,255,.2)"); gl.addColorStop(1,"rgba(150,200,255,.05)"); ctx.fillStyle=gl; rr4(ctx,x0-6,y0-hh,x1-x0+12,2*hh,10); ctx.fill(); ctx.strokeStyle="rgba(190,225,255,.5)"; ctx.lineWidth=2; ctx.stroke();
+  (o.ghost||[]).forEach(c=>{ ctx.strokeStyle=rgba3(B3.mark,.8); ctx.lineWidth=1.6; ctx.setLineDash([5,5]); ctx.beginPath(); ctx.moveTo(X(c),y0-hh-6); ctx.lineTo(X(c),y0+hh+4); ctx.stroke(); ctx.setLineDash([]); });
+  const draw=(c,col)=>{ const bw=Math.min(30,sx*3.2), bh=Math.min(22,hh*.9); ctx.fillStyle=col; ctx.beginPath(); ctx.moveTo(X(c)-bw/2,base); ctx.quadraticCurveTo(X(c)-bw*.3,base-bh*1.55,X(c),base-bh*1.1); ctx.quadraticCurveTo(X(c)+bw*.3,base-bh*1.55,X(c)+bw/2,base); ctx.closePath(); ctx.fill(); };
+  o.heaps.forEach(c=>draw(c,"#e4c37a"));
+  (o.ring||[]).forEach(i=>{ ctx.strokeStyle=B3.mark; ctx.lineWidth=2.6; ctx.beginPath(); ctx.arc(X(o.heaps[i]),base-12,15,0,TAU); ctx.stroke(); });
+  const ry=y0+hh+12; ctx.fillStyle="rgba(232,218,170,.92)"; ctx.fillRect(x0-6,ry,x1-x0+12,28); ctx.strokeStyle="#3b3320"; ctx.fillStyle="#3b3320"; ctx.lineWidth=1; ctx.beginPath();
+  for(let c=0;c<=o.W;c++){ const x=Math.round(X(c))+.5, l=c%10===0?14:c%5===0?10:5; ctx.moveTo(x,ry); ctx.lineTo(x,ry+l); } ctx.stroke();
+  ctx.font=MONO(700,11); ctx.textAlign="center"; for(let c=0;c<=o.W;c+=10) ctx.fillText(String(c),X(c),ry+26); ctx.textAlign="left"; label(ctx,"cm",x1+6-24,ry+40,B3.dim,"left",700,11);
+  return {X,base}; }
+function kundtAbstandTask(d,off,n){ return {run(api){
+  const hp=[...Array(n)].map((_,i)=>off+i*d), W=Math.ceil(off+(n-1)*d+Math.min(off,6)+2); let sel=[], msg="", fertig=false, G=null, gefragt=false;
+  const cm=v=>fmt(+(+v).toFixed(1))+" cm";
+  api.situation("Im Rohr hat sich das Pulver zu Häufchen gesammelt. Die Luft schwingt mit einer festen Frequenz."); api.badge("Messen"); api.prompt("Tippe zwei <b>benachbarte Häufchen</b> an. Lies ihren Abstand am Lineal ab.");
+  const st=canvasFill(api.cv("b3 zieh")); st.c._geo=()=>G&&hp.map(x=>G.X(x));
+  st.c.addEventListener("pointerdown",e=>{ if(fertig||!G) return; const r=st.c.getBoundingClientRect(), px=e.clientX-r.left; let b=-1, bd=1e9; hp.forEach((x,i)=>{ const dd=Math.abs(G.X(x)-px); if(dd<bd){ bd=dd; b=i; } }); if(bd>30) return;
+    if(sel.length===1&&Math.abs(b-sel[0])===1){ sel=[sel[0],b]; msg=""; if(!gefragt){ gefragt=true; frage(); } }
+    else { sel=[b]; msg=sel.length&&hp.length?"Wähle als Zweites das Häufchen direkt daneben.":""; } });
+  function frage(){ api.prompt("Der Abstand benachbarter Häufchen ist abgelesen. Wie groß ist <b>λ</b> in Luft?");
+    const op=[{t:cm(2*d),ok:true},{t:cm(d),fb:"Das ist nur der Häufchenabstand, also λ/2."},{t:cm(off),fb:"Das ist die Lage des ersten Häufchens auf dem Lineal. λ steckt im Abstand zweier Häufchen."},{t:cm(d/2),fb:"λ ist größer als der Häufchenabstand, nicht kleiner."}];
+    wahl3(api,opts4(op),o=>{ fertig=true; api.feedback(!!o.ok,(o.ok?"":o.fb+" ")+`Der Abstand benachbarter Häufchen ist λ/2 = ${cm(d)}. Also ist λ = 2 · ${cm(d)} = ${cm(2*d)}.`); api.finish(!!o.ok); }); }
+  loop(()=>{ G=kundtBild(st,{W,heaps:hp,ring:sel}); const {ctx,w}=st; if(sel.length===2){ const a=hp[sel[0]], b=hp[sel[1]], y=G.base-52; darrow(ctx,G.X(Math.min(a,b)),y,G.X(Math.max(a,b)),y,B3.mark,2.4); label(ctx,`Abstand ${cm(Math.abs(b-a))}`,(G.X(a)+G.X(b))/2,y-8,B3.mark,"center",700,13); }
+    if(msg) label(ctx,msg,w/2,st.h-12,B3.txt,"center",700,13); else if(!sel.length) label(ctx,"Tippe auf ein Häufchen",w/2,st.h-12,B3.dim,"center",700,13); }); }};}
+function kundtL1(){ return shuffle([[6,3,5],[7.5,4,5],[8,5,6],[9,4,5],[10,6,5],[12.5,5,4]]).slice(0,PRO_LEVEL).map(([d,off,n])=>kundtAbstandTask(d,off,n)); }
+function kundtL2(){ return shuffle([1360,1700,2000,2500,3400]).map(f=>{ const d=17000/f, n=one([4,5,6,7]), off=one([3,4,5,6]), hp=[...Array(n+1)].map((_,i)=>off+i*d), W=Math.ceil(off+n*d+4), x1=hp[0], x2=hp[n], D=x2-x1, c=2*D/n/100*f, nz=v=>fmt(+(+v).toFixed(1));
+    return mcTask({sit:`Auf dem Lineal liegt das 1. Häufchen bei ${nz(x1)} cm und das ${n+1}. Häufchen bei ${nz(x2)} cm. Die Luft schwingt mit f = ${hz4(f)}.`,q:"Wie groß ist die Schallgeschwindigkeit c?",
+      viz:api=>{ api.situation(`Auf dem Lineal liegt das 1. Häufchen bei ${nz(x1)} cm und das ${n+1}. Häufchen bei ${nz(x2)} cm. Die Luft schwingt mit f = ${hz4(f)}.`); const st=canvasFill(api.cv("b3")); loop(()=>{ const G=kundtBild(st,{W,heaps:hp,ring:[0,n]}); label(st.ctx,`${n} Abstände zwischen dem 1. und dem ${n+1}. Häufchen`,st.w/2,st.h-12,B3.txt,"center",700,12); }); },
+      opts:opts4([{t:ms4(c),ok:true},{t:ms4(c*100),fb:"Die Zentimeter sind nicht in Meter umgerechnet."},{t:ms4(c/2),fb:"Das ist mit λ/2 gerechnet. Der Häufchenabstand ist λ/2, nicht λ."},{t:ms4(c*n/(n+1)),fb:`Zwischen ${n+1} Häufchen liegen nur ${n} Abstände, nicht ${n+1}.`}]),
+      erkl:`${n} Abstände messen zusammen ${nz(D)} cm. Ein Abstand ist λ/2 = ${nz(D/n)} cm, also λ = ${nz(2*D/n)} cm = ${fmt(+(2*D/n/100).toFixed(3))} m. Dann c = λ · f = ${ms4(c)}.`}); }); }
+function kundtWas(it){ const d0=10, off=4, W=70; return mcTask({sit:it.sit,q:it.q,
+  viz:api=>{ api.situation(it.sit); const st=canvasFill(api.cv("b3")); let zeig=false; const alt=[...Array(7)].map((_,i)=>off+i*d0).filter(x=>x<W-2), neu=[...Array(Math.floor((W-off)/(d0*it.fakt))+1)].map((_,i)=>off+i*d0*it.fakt).filter(x=>x<W-2);
+    loop(()=>{ kundtBild(st,zeig?{W,heaps:neu,ghost:alt}:{W,heaps:alt}); label(st.ctx,zeig?"nachher (gestrichelt: vorher)":"vorher: Luft, Frequenz wie angegeben",st.w/2,st.h-12,zeig?B3.ok:B3.txt,"center",700,12); }); return {reveal(){ zeig=true; }}; },
+  opts:[{t:"Sie rücken zusammen.",ok:it.fakt<1,fb:"Falsche Richtung: λ = c/f wird hier größer, nicht kleiner."},{t:"Sie rücken auseinander.",ok:it.fakt>1,fb:"Falsche Richtung: λ = c/f wird hier kleiner, nicht größer."},{t:"Sie bleiben, wo sie sind.",ok:false,fb:"λ = c/f ändert sich, also auch der Häufchenabstand λ/2."}]  ,erkl:it.erkl}); }
+function kundtL3(){ const A=[
+  {sit:"Das Rohr wird statt mit Luft mit Kohlenstoffdioxid gefüllt (c ≈ 267 m/s). Die Frequenz bleibt gleich.",q:"Was passiert mit den Häufchen?",fakt:267/343,erkl:"Der Häufchenabstand ist λ/2 = c/(2f). Bei gleichem f und kleinerem c wird λ kleiner: Die Häufchen rücken zusammen."},
+  {sit:"Das Rohr wird mit Helium gefüllt (c ≈ 1000 m/s). Die Frequenz bleibt gleich.",q:"Was passiert mit den Häufchen?",fakt:1000/343,erkl:"Bei gleichem f und größerem c wird λ = c/f größer: Die Häufchen rücken auseinander."},
+  {sit:"Du verdoppelst die Frequenz des Lautsprechers. Die Luft bleibt dieselbe.",q:"Was passiert mit den Häufchen?",fakt:.5,erkl:"λ = c/f wird halb so groß, also auch der Häufchenabstand: Die Häufchen rücken zusammen."},
+  {sit:"Du senkst die Frequenz des Lautsprechers auf ein Drittel. Die Luft bleibt dieselbe.",q:"Was passiert mit den Häufchen?",fakt:3,erkl:"λ = c/f wird dreimal so groß, also auch der Häufchenabstand: Die Häufchen rücken auseinander."}
+ ].map(kundtWas);
+  const mess=mcTask({sit:"Kundts Original: Ein Messingstab (L = 1,00 m) ist in der Mitte eingespannt und schwingt in der Grundschwingung, beide Enden sind frei. Er regt die Luft im Rohr an. Die Häufchen liegen 9,8 cm auseinander. Rechne mit c = 343 m/s für die Luft.",q:"Wie groß ist c im Messing?",
+    opts:[{t:"etwa 3,50 km/s",ok:true},{t:"etwa 1,75 km/s",fb:"Du hast λ im Stab gleich L gesetzt. Mit Knoten in der Mitte und freien Enden ist L = λ/2."},{t:"etwa 7,0 km/s",fb:"Zu groß: In der Grundschwingung ist λ im Stab 2L, nicht 4L."},{t:"etwa 35 m/s",fb:"Die Zehnerpotenz stimmt nicht: 9,8 cm sind 0,098 m."}],
+    erkl:"In der Luft ist λ = 2 · 9,8 cm = 19,6 cm, die Frequenz also f = 343 m/s : 0,196 m ≈ 1750 Hz. Der Stab schwingt mit derselben Frequenz. Seine Länge ist λ/2, also λ = 2,00 m, und c = λ · f ≈ 2,00 m · 1750 Hz ≈ 3,50 km/s."});
+  return shuffle(A.concat([mess])); }
+/*K4-ENDE*/
+/*K4-ANFANG*/
+/* =====================================================================
+   PLUS-KACHELN (ab Version 2.4): freiwillig, kleiner und abgesetzt unter dem Lernpfad.
+   Sie zählen weder für den Kapitelfortschritt noch für „Meine Erfolge“ und den Nachweis: eigener Speicherschlüssel.
+   ===================================================================== */
+const PLUSKEY="wellen-werkstatt-plus";
+function plusStand(){ let s=null; try{ s=JSON.parse(localStorage.getItem(PLUSKEY)); }catch(e){} if(!s||typeof s!=="object") s={}; s.lv=s.lv||{}; s.best=s.best||{}; s.sh=s.sh||{}; return s; }
+function plusSave(s){ try{ localStorage.setItem(PLUSKEY,JSON.stringify(s)); }catch(e){} }
+const hzs=v=>fmt(+(+v).toFixed(2))+" Hz";
+
+/* ---------- Bild: Überlagerung zweier Töne, Hüllkurve ---------- */
+// Das Fenster zeigt 3 Sekunden. Die Töne sind zur Anschauung auf 26 Schwingungen je Fenster gestreckt, der Unterschied df (Hz) ist echt.
+function schwebBild(st,t,df,o={}){ buehne(st); const {ctx,w,h}=st, W=3, F=26/W, pl=18, pr=18, y0=h*.5, A=Math.min(h*.3,70), N=Math.max(80,Math.round(w/2)), X=u=>pl+u*(w-pl-pr);
+  ctx.strokeStyle=B3.achse; ctx.lineWidth=1; ctx.setLineDash([5,6]); ctx.beginPath(); ctx.moveTo(pl,y0); ctx.lineTo(w-pr,y0); ctx.stroke(); ctx.setLineDash([]);
+  const pts=fn=>[...Array(N+1)].map((_,i)=>{ const u=i/N; return [X(u),y0-A*fn(t+u*W)]; });
+  if(o.einzeln){ leucht(ctx,pts(s=>.5*Math.cos(TAU*F*s)),B3.a,1.6,.55); leucht(ctx,pts(s=>.5*Math.cos(TAU*(F+df)*s)),B3.b,1.6,.55); }
+  if(o.huelle!==false){ strich(ctx,pts(s=>Math.abs(Math.cos(Math.PI*df*s))),B3.mark,2,[7,6],.9); strich(ctx,pts(s=>-Math.abs(Math.cos(Math.PI*df*s))),B3.mark,2,[7,6],.9); }
+  leucht(ctx,pts(s=>.5*(Math.cos(TAU*F*s)+Math.cos(TAU*(F+df)*s))),B3.sum,2.6);
+  if(df>.05&&o.huelle!==false){ const k0=Math.ceil(t*df-1e-9), s1=k0/df, s2=(k0+1)/df; if(s2<t+W){ const x1=X((s1-t)/W), x2=X((s2-t)/W), yy=y0+A+20; darrow(ctx,x1,yy,x2,yy,B3.mark,2); label(ctx,`${fmt(+(1/df).toFixed(2))} s`,(x1+x2)/2,yy+17,B3.mark,"center",700,13); } }
+  return {X,y0}; }
+
+/* ---------- Plus-Kachel im Lernpfad ---------- */
+const PLUS4={};
+function plusKachel(home,k){ if(!k.plus||!k.plus.length) return; const S=plusStand(), wrap=el("div",{class:"pluswrap"}); wrap.appendChild(el("div",{class:"plusline","aria-hidden":"true"}));
+  const note=el("p",{class:"cta-note"}); let alle=true;
+  k.plus.forEach(id=>{ const d=PLUS4[id], offen=teacher||cardsDone(k), pass=[0,1,2].map(n=>!!(S.lv[id]&&S.lv[id][n])), done=pass.every(Boolean); alle=alle&&done;
+    const b=el("button",{class:"plusk"+(offen?"":" locked")+(done?" done":""),"aria-label":"Plus: "+d.titel});
+    b.innerHTML=`<span class="pemb">+</span><span><span class="peye">Plus · freiwillig</span><span class="ptit">${d.titel}</span><span class="pkurz">${offen?d.kurz:"Frei, sobald alle Steckbriefe dieses Kapitels gelesen sind."}</span></span><span class="pstat">${pass.filter(Boolean).length} / 3</span>`;
+    if(offen){ b.addEventListener("click",()=>plusSeite(k,id)); if(!S.sh[id]){ b.classList.add("shim"); S.sh[id]=1; plusSave(S); } }
+    else { b.setAttribute("aria-disabled","true"); b.addEventListener("click",()=>{ note.textContent="Erst alle Steckbriefe dieses Kapitels lesen."; note.className="cta-note warn"; }); }
+    wrap.appendChild(b); });
+  wrap.appendChild(note); home.appendChild(wrap);
+  if(alle){ const h=home.querySelector(".khead h2"); if(h) h.appendChild(el("span",{class:"plusbadge",title:"Plus geschafft"},"+")); } }
+
+/* ---------- Plus: Steckbrief und Levelwahl ---------- */
+function plusSeite(k,id){ view(true); const d=PLUS4[id], S=plusStand();
+  bar("← Lernpfad",renderHome,`Kapitel ${k.nr} · Plus`,d.titel,themeSwitch());
+  const wrap=el("div",{class:"intro plusseite"}), about=el("div",{class:"about"});
+  about.innerHTML=`<span class="eyebrow">Plus · freiwillig</span><h3>${d.titel}</h3><div class="formel">${d.formel}</div><p>${d.text}</p>`;
+  const host=el("div",{class:"vizhost"}); about.appendChild(host); d.viz(host);
+  about.insertAdjacentHTML("beforeend",`<p class="merke"><span class="tag">Merke</span><br>${d.merke}</p><p class="falle"><span class="tag">Typische Falle</span><br>${d.falle}</p><p class="praxis"><span class="tag">Aus dem Alltag</span><br>${d.praxis}</p>`);
+  const lvls=el("div",{class:"levels"}), pass=n=>!!(S.lv[id]&&S.lv[id][n]), open=n=>teacher||n===0||pass(n-1), next=[0,1,2].find(n=>open(n)&&!pass(n));
+  d.levels.forEach((lv,n)=>{ const o=open(n), p=pass(n), best=S.best[id+":"+n]; const b=el("button",{class:"level"+(p?" passed":"")+(!o?" locked":"")+(n===next?" next":"")});
+    b.innerHTML=`<span class="lnum">${p?"✓":n+1}</span><span><span class="eyebrow">Level ${n+1}${best!==undefined?` · Bestwert ${best} / ${PRO_LEVEL}`:""}</span><h3>${lv.name}</h3><p>${lv.info}</p></span><span class="go">${!o?LOCK:(p?"Nochmal →":"Start →")}</span>`;
+    if(o) b.addEventListener("click",()=>plusPlay(k,id,n)); lvls.appendChild(b); });
+  wrap.append(about,lvls); app.appendChild(wrap); }
+
+/* ---------- Plus: Level spielen (wie playLevel, speichert aber im Plus-Speicher) ---------- */
+function plusPlay(k,id,n){ view(true);
+  const d=PLUS4[id], lv=d.levels[n], tasks=lv.make(), N=tasks.length, res=[]; let i=0;
+  const track=el("div",{class:"track","aria-label":"Fortschritt im Level"});
+  bar("← Level",()=>plusSeite(k,id),d.titel,`Level ${n+1} · ${lv.name}`,track);
+  const split=el("div",{class:"split"}), viz=el("section",{class:"viz"}), panel=el("section",{class:"panel"}); split.append(viz,panel); app.appendChild(split);
+  function drawTrack(){ const fehler=res.filter(x=>x===false).length, erlaubt=N-HUERDE;
+    track.innerHTML=[...Array(N)].map((_,q)=>`<i class="${res[q]===true?"ok":res[q]===false?"bad":""}${q===i&&res[q]===undefined?" cur":""}"></i>`).join("");
+    const txt=fehler<erlaubt?`Ziel ${HUERDE} / ${N} · noch ${erlaubt-fehler} Fehler frei`:fehler===erlaubt?`Ziel ${HUERDE} / ${N} · kein Fehler mehr frei`:"Hürde verpasst · spiel zu Ende";
+    track.appendChild(el("span",{class:fehler>=erlaubt?"warn":""},txt)); }
+  function run(){
+    cleanup(); viz.innerHTML=""; panel.innerHTML=""; panel.scrollTop=0; drawTrack();
+    const eb=el("div",{class:"ptop"},`<span class="eyebrow">Aufgabe ${i+1} von ${N}</span>`);
+    const pr=el("p",{class:"prompt"}), hints=el("div",{class:"pbody"}), body=el("div",{class:"pbody"}), fb=el("div",{}), acts=el("div",{class:"actions"});
+    panel.append(eb,pr,hints,body,fb,acts);
+    const api={viz,panel,body,actions:acts,
+      prompt:t=>{ pr.innerHTML=t; }, hint:t=>{ hints.appendChild(el("p",{class:"hint"},t)); }, badge:t=>{ eb.appendChild(el("span",{class:"pred"},t)); },
+      cv:(cls="")=>mkcv(viz,cls), legend:html=>{ const l=el("div",{class:"legend"},html); viz.appendChild(l); return l; },
+      situation:t=>{ viz.appendChild(el("div",{class:"situ"},`<span class="eyebrow">Situation</span><p>${t}</p>`)); },
+      feedback:(ok,html,title)=>{ fb.innerHTML=`<div class="feedback ${ok?"ok":"bad"}"><b>${title||(ok?one(LOBW):"Nicht ganz.")}</b>${html}</div>`; },
+      finish:ok=>{ if(res[i]!==undefined) return; res[i]=!!ok; drawTrack(); acts.innerHTML="";
+        const w=el("button",{class:"btn"},i+1<N?"Weiter →":"Auswertung →"); w.addEventListener("click",()=>{ i++; i<N?run():ende(); }); acts.appendChild(w);
+        requestAnimationFrame(()=>{ try{ panel.scrollTo({top:panel.scrollHeight,behavior:"smooth"}); }catch(e){} }); }};
+    tasks[i].run(api);
+  }
+  function ende(){
+    cleanup(); split.remove(); const S=plusStand(), key=id+":"+n;
+    const hits=res.filter(Boolean).length, pass=hits>=HUERDE, war=!!(S.lv[id]&&S.lv[id][n]);
+    if(pass){ S.lv[id]=S.lv[id]||[false,false,false]; S.lv[id][n]=true; } S.best[key]=Math.max(S.best[key]||0,hits); plusSave(S); drawTrack();
+    const sp=track.querySelector("span"); if(sp){ sp.textContent=pass?"Level geschafft":"Hürde verpasst"; sp.className=pass?"":"warn"; }
+    const card=el("div",{class:"endcard"});
+    card.innerHTML=`<span class="eyebrow">Level ${n+1} · ${lv.name}</span><span class="big">${hits} / ${N}</span><span class="muted">Treffer im ersten Versuch</span>`;
+    card.appendChild(el("h3",{},pass?(hits===N?"Perfekt. Level geschafft!":"Level geschafft!"):(hits===HUERDE-1?"Knapp daneben.":"Noch nicht geschafft.")));
+    card.appendChild(el("p",{class:"msg"},pass?(hits===N?"Alles im ersten Versuch.":"Schau dir den Fehler im Steckbrief noch einmal an."):`Für den Aufstieg brauchst du ${HUERDE} von ${N}. Die nächste Runde hat neue Aufgaben.`));
+    if(pass&&!war&&n<2) card.appendChild(el("span",{class:"unlock"},`Level ${n+2} ist frei.`));
+    const acts=el("div",{class:"actions",style:"justify-content:center;margin-top:8px"}), btn=(t,fn,ghost)=>{ const b=el("button",{class:"btn"+(ghost?" ghost":"")},t); b.addEventListener("click",fn); acts.appendChild(b); };
+    if(pass){ if(n<2) btn(`Level ${n+2} starten →`,()=>plusPlay(k,id,n+1)); } else { btn("Neue Runde",()=>plusPlay(k,id,n)); btn("Steckbrief ansehen",()=>plusSeite(k,id),true); }
+    btn("Zur Plus-Seite",()=>plusSeite(k,id),true); btn("Zum Lernpfad",renderHome,true); card.appendChild(acts); app.appendChild(card);
+  }
+  run();
+}
+
+/* =====================================================================
+   Plus · Schwebung
+   ===================================================================== */
+function schwebViz(host){ let df=3; const row=el("div",{class:"k3row"}), reg=el("div",{class:"reg"}), rng=el("input",{type:"range",min:"0",max:"20",step:"1",value:"6","aria-label":"Unterschied der Frequenzen"}), val=el("span",{class:"val"}), ton=()=>{ if(aud4.ctx) aud4Setze(df>0?[440,440+df]:[440],df>0?[.45,.45]:[.9]); };
+  const zeig=()=>{ df=+rng.value/2; val.textContent=`f₂ − f₁ = ${hzs(df)}`; ton(); }; rng.addEventListener("input",zeig); reg.append(rng,val); reg.addEventListener("pointerdown",e=>e.stopPropagation());
+  tonKnopf4(row,an=>{ if(an) ton(); }); host.append(reg,row); zeig(); const U=uhr4(host), cv=mkcv(host,"b3"); cv.style.cssText="flex:none;height:230px"; const st=canvasFill(cv);
+  szene4(st,U,t=>{ schwebBild(st,t,df,{einzeln:true}); legende3(st,[["Ton 1 (f₁)",B3.a,0],["Ton 2 (f₂)",B3.b,0],["Summe",B3.sum,0],["Hüllkurve",B3.mark,1]]);
+    label(st.ctx,df>0?`Schwebung: f_S = |f₁ − f₂| = ${hzs(df)}`:"f₁ = f₂: keine Schwebung",st.w/2,st.h-24,df>0?B3.mark:B3.dim,"center",700,13);
+    label(st.ctx,"Bild gestreckt: Die Töne sind langsamer gezeichnet, die Schwebung stimmt.",st.w/2,st.h-8,B3.dim,"center",600,11); }); }
+Object.assign(PLUS4,{schweb:{titel:"Schwebung", kurz:"Zwei fast gleiche Töne: Wie schwillt die Lautstärke an und ab?", formel:"f_S = |f₁ − f₂|&emsp;T_S = 1 / f_S", viz:schwebViz,
+  text:"Zwei Töne mit fast gleicher Frequenz überlagern sich. Du hörst einen Ton mit der mittleren Frequenz, dessen Lautstärke mit der Schwebungsfrequenz f_S = |f₁ − f₂| an- und abschwillt. Zeitlich ändert sich nichts an den Tönen selbst: Mal liegen die Wellenberge übereinander, mal ein Berg auf einem Tal. Ändere unten den Unterschied und beobachte die Hüllkurve.",
+  merke:"Die Lautstärke schwillt mit f_S = |f₁ − f₂| an und ab. Je näher die Frequenzen beieinander liegen, desto langsamer wird die Schwebung.",
+  falle:"Die Schwebungsfrequenz ist die Differenz, nicht die Summe und nicht der Mittelwert der beiden Frequenzen. Und: Zwischen zwei Lautstärkemaxima liegt die Zeit 1 / f_S.",
+  praxis:"Beim Stimmen einer Gitarre hörst du die Schwebung gegen einen Referenzton und drehst, bis sie verschwindet. Zweimotorige Propellerflugzeuge wummern, wenn die Motoren leicht verschieden laufen. Beim Akkordeon sind im Tremolo-Register zwei Zungen absichtlich verstimmt.",
+  levels:[{name:"Gitarre stimmen",info:"Dreh am Wirbel, bis die Schwebung zum Referenzton verschwindet.",make:()=>schwebL1()},
+          {name:"Rechnen",info:"f_S, Zeit zwischen den Maxima und Frequenzen aus der Schwebung.",make:()=>schwebL2()},
+          {name:"Transfer",info:"Propeller, Akkordeon, Klavier: Was steckt hinter dem Wummern?",make:()=>schwebL3()}]}});
+
+function stimmTask(o){ return {run(api){
+  const fr=o.f, lo=fr-8, hi=fr+8; let f=klemm(fr+o.d,lo,hi), fertig=false, t=0, lt=null;
+  api.situation(`${o.name} der Gitarre. Der Referenzton hat ${hzs(fr)}. Die Saite ist verstimmt.`); api.badge("Stimmen");
+  api.prompt("Dreh am Wirbel, bis die <b>Schwebung verschwindet</b>. Dann ist die Saite gestimmt."); api.hint("Je langsamer die Lautstärke an- und abschwillt, desto näher bist du dran. Ton nur mit Kopfhörern einschalten.");
+  const st=canvasFill(api.cv("b3")); st.c._soll=fr; const row=el("div",{class:"k3row"}), reg=el("div",{class:"reg"}), rng=el("input",{type:"range",min:"0",max:"320",step:"1","aria-label":"Wirbel: Frequenz der Saite"}), val=el("span",{class:"val"});
+  const minus=el("button",{class:"btn ghost","aria-label":"Wirbel etwas zurück"},"−"), plus=el("button",{class:"btn ghost","aria-label":"Wirbel etwas vor"},"+"), pr=el("button",{class:"btn"},"Gestimmt");
+  const ton=()=>{ if(aud4.ctx) aud4Setze([fr,f],[.45,.45]); };
+  const setze=v=>{ f=klemm(v,lo,hi); rng.value=String(Math.round((f-lo)/.05)); val.textContent=`Saite ${hzs(f)}`; ton(); };
+  rng.addEventListener("input",()=>setze(lo+(+rng.value)*.05)); minus.addEventListener("click",()=>setze(f-.1)); plus.addEventListener("click",()=>setze(f+.1));
+  reg.append(rng,val); row.append(minus,reg,plus); api.body.appendChild(row); const trow=el("div",{class:"k3row"}); tonKnopf4(trow,an=>{ if(an) ton(); }); api.body.appendChild(trow); api.actions.appendChild(pr); setze(f);
+  pr.addEventListener("click",()=>{ if(fertig) return; fertig=true; const df=Math.abs(f-fr), ok=df<=.25; [rng,minus,plus,pr].forEach(x=>x.disabled=true);
+    api.feedback(ok,ok?`Gestimmt: Die Schwebung ist praktisch verschwunden (f_S = ${hzs(df)}). Beim Stimmen zählst du so die Schwebungen und drehst, bis sie ausbleiben.`:`Noch nicht: Es schwebt mit f_S = ${hzs(df)}, also kommt alle ${fmt(+(1/df).toFixed(1))} s ein Maximum. Gestimmt ist die Saite bei ${hzs(fr)}.`); api.finish(ok); });
+  loop(now=>{ const dt=lt===null?0:Math.min(.05,now-lt); lt=now; t+=dt; const df=Math.abs(f-fr); schwebBild(st,t,df,{einzeln:false});
+    label(st.ctx,df<.05?"keine Schwebung":`Schwebung: ${hzs(df)}`,st.w-14,22,df<=.25?B3.ok:B3.txt,"right",700,14); label(st.ctx,"Referenz + Saite",14,22,B3.dim,"left",700,12);
+    label(st.ctx,"Bild gestreckt: Die Töne sind langsamer gezeichnet, die Schwebung stimmt.",st.w/2,st.h-8,B3.dim,"center",600,11); }); }};}
+function schwebL1(){ const S=[["E-Saite (tief)",82.4],["A-Saite",110],["D-Saite",146.8],["G-Saite",196],["H-Saite",246.9],["E-Saite (hoch)",329.6]];
+  return pick(S,PRO_LEVEL).map(([name,f])=>stimmTask({name,f,d:(Math.random()<.5?-1:1)*(1.5+Math.random()*4)})); }
+function schwebViz4(f1,f2){ return api=>{ api.situation(`Zwei Töne: f₁ = ${hzs(f1)} und f₂ = ${hzs(f2)}.`); const st=canvasFill(api.cv("b3")); let zeig=false, df=Math.abs(f2-f1);
+  loop(t=>{ schwebBild(st,t,df,{einzeln:true,huelle:zeig}); legende3(st,[["Ton 1",B3.a,0],["Ton 2",B3.b,0],["Summe",B3.sum,0]]); label(st.ctx,zeig?`f_S = ${hzs(df)}`:"Hüllkurve nach der Antwort",st.w/2,st.h-10,zeig?B3.mark:B3.dim,"center",700,13); });
+  return {reveal(){ zeig=true; }}; }; }
+function schwebL2(){ const t=[
+  ()=>{ const f1=one([440,220,330,262,392]), d=one([2,3,4,5,6]), f2=f1+d; return mcTask({viz:schwebViz4(f1,f2),badge:"Erst vorhersagen",q:"Wie oft pro Sekunde schwillt die Lautstärke an und ab? Wie groß ist die Schwebungsfrequenz?",
+    opts:[{t:hzs(d),ok:true},{t:hzs(f1+f2),fb:"Das ist die Summe. Es kommt auf den Unterschied an."},{t:hzs((f1+f2)/2),fb:"Das ist die mittlere Frequenz, die du als Tonhöhe hörst."},{t:hzs(1/d),fb:"Das ist die Zeit in Sekunden zwischen zwei Maxima, keine Frequenz."}],erkl:`f_S = |f₁ − f₂| = |${hzs(f1)} − ${hzs(f2)}| = ${hzs(d)}.`}); },
+  ()=>{ const f1=one([440,220,330,262,392]), d=one([3,4,5,7]), f2=f1+d; return mcTask({viz:schwebViz4(f1,f2),badge:"Erst vorhersagen",q:"Wie oft pro Sekunde schwillt die Lautstärke an und ab? Wie groß ist die Schwebungsfrequenz?",
+    opts:[{t:hzs(d),ok:true},{t:hzs(f1+f2),fb:"Das ist die Summe. Es kommt auf den Unterschied an."},{t:hzs((f1+f2)/2),fb:"Das ist die mittlere Frequenz, die du als Tonhöhe hörst."},{t:hzs(1/d),fb:"Das ist die Zeit in Sekunden zwischen zwei Maxima, keine Frequenz."}],erkl:`f_S = |f₁ − f₂| = |${hzs(f1)} − ${hzs(f2)}| = ${hzs(d)}.`}); },
+  ()=>{ const f1=one([440,330,262]), d=one([2,4,5]), f2=f1+d, T=+(1/d).toPrecision(2); return mcTask({viz:schwebViz4(f1,f2),badge:"Erst vorhersagen",q:"Wie viel Zeit liegt zwischen zwei Lautstärkemaxima?",
+    opts:opts4([{t:`${fmt(T)} s`,ok:true},{t:`${d} s`,fb:"Das ist die Frequenz in Hz, keine Zeit."},{t:`${fmt(+(T/2).toPrecision(2))} s`,fb:"Das wäre nur die Zeit von einem Maximum bis zum nächsten Minimum."},{t:`${fmt(+(1/f1).toPrecision(2))} s`,fb:"Das ist die Periodendauer eines einzelnen Tons, nicht der Schwebung."}]),erkl:`f_S = ${hzs(d)}, also T_S = 1 / f_S = ${fmt(T)} s.`}); },
+  ()=>{ const q=one([[40,10,4],[30,10,3],[24,8,3],[60,10,6]]), f1=440, fs=q[2], f2=f1+fs; return mcTask({sit:`Du hörst bei einer Stimmgabel mit 440 Hz und einer zweiten, höher klingenden Quelle in ${q[1]} s genau ${q[0]} Schwebungen.`,q:"Welche Frequenz hat die zweite Quelle?",
+    opts:opts4([{t:hzs(f2),ok:true},{t:hzs(f1-fs),fb:"Die zweite Quelle klingt höher, nicht tiefer."},{t:hzs(fs),fb:"Das ist die Schwebungsfrequenz, nicht die Frequenz der Quelle."},{t:hzs(f1+q[0]),fb:"Du hast die Schwebungen nicht durch die Zeit geteilt."}]),erkl:`f_S = ${q[0]} : ${q[1]} s = ${hzs(fs)}. Die zweite Quelle ist höher: f₂ = ${hzs(f1)} + ${hzs(fs)} = ${hzs(f2)}.`}); },
+  ()=>{ const f1=one([440,330]), d=one([3,4]), f2=f1+d; return mcTask({viz:schwebViz4(f1,f2),badge:"Erst vorhersagen",q:"Welche Tonhöhe hörst du als Ton, dessen Lautstärke schwankt?",
+    opts:[{t:hzs((f1+f2)/2),ok:true},{t:hzs(d),fb:"Das ist die Schwebungsfrequenz, die du als Lautstärkeschwankung hörst."},{t:hzs(f1+f2),fb:"Das ist die Summe. Die Tonhöhe liegt zwischen f₁ und f₂."},{t:hzs(f1),fb:"Du hörst nicht nur den ersten Ton: Beide überlagern sich zu einer mittleren Frequenz."}],erkl:`Die überlagerte Welle schwingt mit der mittleren Frequenz (f₁ + f₂)/2 = ${hzs((f1+f2)/2)}. Ihre Amplitude schwankt mit ${hzs(d)}.`}); }
+ ]; return shuffle(t).map(g=>g()); }
+const SB3=[
+  {sit:"Eine Stimmgabel (440 Hz) und eine Saite zusammen ergeben 4 Schwebungen pro Sekunde. Du spannst die Saite straffer, jetzt sind es 6 pro Sekunde.",q:"Welche Frequenz hatte die Saite vor dem Straffen?",ok:"444 Hz",f:["436 Hz","446 Hz"],e:"Straffer heißt höhere Frequenz. Die Schwebung wurde schneller, also hat sich die Saite von 440 Hz entfernt: Sie lag darüber. Vorher 444 Hz (4 Schwebungen), nachher 446 Hz (6 Schwebungen)."},
+  {sit:"Zweimotorige Propellerflugzeuge wummern oft im Reiseflug.",q:"Woher kommt das Wummern?",ok:"Die Motoren laufen mit leicht verschiedenen Drehzahlen. Ihre Töne überlagern sich zu einer Schwebung.",f:["Der Schall wird vom Boden reflektiert.","Die Flügel schwingen in Resonanz."],e:"Zwei fast gleiche Frequenzen ergeben eine Schwebung. Piloten gleichen die Drehzahlen ab, bis das Wummern verschwindet."},
+  {sit:"Im Tremolo-Register eines Akkordeons klingen zwei Zungen pro Ton, die absichtlich leicht verstimmt sind.",q:"Was hörst du?",ok:"Eine Schwebung, die den Ton lebendig wabern lässt.",f:["Einen Ton mit doppelter Frequenz.","Einen Ton, der immer leiser wird."],e:"Die kleine Frequenzdifferenz erzeugt die Schwebung. Das Wabern ist gewollt."},
+  {sit:"Du stimmst ein Klavier: Die Schwebung zwischen zwei Saiten wird immer langsamer.",q:"Was bedeutet das?",ok:"Die Frequenzen kommen sich näher.",f:["Die Frequenzen entfernen sich voneinander.","Beide Saiten werden lauter."],e:"f_S = |f₁ − f₂|. Eine langsamere Schwebung heißt kleinerer Unterschied. Bei f_S = 0 sind beide Saiten gleich gestimmt."},
+  {sit:"Zwei Stimmgabeln mit 440 Hz und 441 Hz klingen gleichzeitig.",q:"Wie oft wird der Ton in einer Minute laut?",ok:"60-mal",f:["1-mal","441-mal"],e:"f_S = 1 Hz, also einmal pro Sekunde ein Maximum, in einer Minute 60-mal."},
+  {sit:"Zwei fast gleiche Töne ergeben eine Schwebung mit der Periode 0,25 s.",q:"Wie groß ist der Frequenzunterschied?",ok:"4 Hz",f:["0,25 Hz","0,5 Hz"],e:"T_S = 0,25 s, also f_S = 1 / T_S = 4 Hz."}
+];
+function schwebL3(){ return pick(SB3,PRO_LEVEL).map(it=>mcTask({sit:it.sit,q:it.q,opts:[{t:it.ok,ok:true},{t:it.f[0],fb:"Das passt nicht zu f_S = |f₁ − f₂|."},{t:it.f[1],fb:"Das erklärt es nicht."}],erkl:it.e})); }
+/*K4-ENDE*/
 /* =====================================================================
    CHALLENGES
    ===================================================================== */
@@ -2264,6 +2816,23 @@ const CH = {
             {name:"Wellenlänge messen",info:"Mit Lineal und Messzange vom Knotenabstand zu λ und f.",make:stehL2},
             {name:"Resonanz treffen",info:"Gleichtakt oder Gegentakt? Und welche Frequenz bringt das Seil zum Schwingen?",make:stehL3}]}
 /*K3-ENDE*/
+/*K4-ANFANG*/  ,
+  jaeger:{titel:"Saitenmeister", art:"Töne treffen", kurz:"Finde die richtige Stelle auf Saite und Pfeife: Länge, Knoten und Eigenschwingungen bestimmen den Ton.",
+    intro:"Du bist Saitenmeister: Ein Zielton erscheint, und du triffst ihn. Mit dem Finger kürzt du die Saite, mit einer leichten Berührung holst du eine Eigenschwingung heraus, und an der Pfeife stellst du die Länge ein. Nach jedem Versuch siehst du, was physikalisch passiert ist. Ein grober Fehlgriff lässt die Saite fast reißen.",
+    levels:[{name:"Bund finden",info:"Zieh den Finger auf die Saite und triff Oktave, Quinte und Co. Kürzere Saite, höherer Ton.",make:bundL1},
+            {name:"Flageolett",info:"Berühre die Saite an einem Knoten und hol die k-te Eigenschwingung heraus.",make:flagL2},
+            {name:"Rohr-Orgel",info:"Stell die Pfeifenlänge ein, offen oder gedackt, und triff den Ton.",make:orgelL3}]},
+  klingts:{titel:"Wie klingt's?", art:"Ursache und Wirkung", kurz:"Gitarre, Orgel, Flasche: Was passiert mit c, λ₁ und f₁, und wie rechnet man damit?",
+    intro:"Du bekommst ein Instrument und eine Änderung. Sag voraus, was mit c, λ₁ und f₁ passiert. Danach rechnest du mit Saiten und Rohren und begründest Phänomene aus der Musik.",
+    levels:[{name:"Was ändert sich?",info:"Bund, Spannung, dicke Saite, Wärme: c, λ₁ und f₁ vorhersagen.",make:klangL1},
+            {name:"Rechnen",info:"f₁ und c aus Länge und Frequenz. Drei der vier Ergebnisse sind typische Fehler.",make:klangL2},
+            {name:"Begründen",info:"Helium-Stimme, Klarinette, Flageolett, Orgel: Wähle die Erklärung, die wirklich trägt.",make:klangL3}]},
+  kundtlab:{titel:"Kundt-Labor", art:"Messen wie im Labor", kurz:"Häufchen am Lineal ablesen, c bestimmen und vorhersagen, was sich ändert.",
+    intro:"Im Glasrohr hat sich das Pulver zu Häufchen gesammelt. Du liest am Lineal ab, rechnest damit λ und c aus und sagst voraus, was passiert, wenn sich Gas oder Frequenz ändern.",
+    levels:[{name:"Abstand ablesen",info:"Zwei benachbarte Häufchen antippen und λ bestimmen.",make:kundtL1},
+            {name:"c bestimmen",info:"Über mehrere Häufchen messen, dann c = λ · f.",make:kundtL2},
+            {name:"Was, wenn …?",info:"Erst vorhersagen, dann ansehen: andere Gase, andere Frequenz, Kundts Original.",make:kundtL3}]}
+/*K4-ENDE*/
 };
 
 /* =====================================================================
@@ -2314,7 +2883,7 @@ function renderHome(){
     else { b.setAttribute("aria-disabled","true"); b.addEventListener("click",()=>{ note.textContent=s.lock; note.className="cta-note warn"; }); }
     path.appendChild(b); });
   /*K3-ANFANG*/spielDeko(path,st);/*K3-ENDE*/home.appendChild(path);
-  const cta=el("div",{class:"cta-row"});
+/*K4-ANFANG*/plusKachel(home,k);/*K4-ENDE*/  const cta=el("div",{class:"cta-row"});
   if(next){ let txt;
     if(next.kind==="cards") txt="Weiter: Steckbriefe lesen →";
     else { const n=next.passed.findIndex(p=>!p); txt=`Weiter: ${next.titel} · Level ${n+1} →`; }
@@ -2327,7 +2896,7 @@ function renderHome(){
     `<div class="rule"><b>1 · Steckbriefe</b>Karte lesen, Mini-Check lösen, weiterblättern. Danach geht die erste Challenge auf.</div>
      <div class="rule"><b>2 · Level-Hürde</b>Jedes Level hat ${PRO_LEVEL} Aufgaben. Mit ${HUERDE} Treffern im ersten Versuch steigst du auf.</div>
      <div class="rule"><b>3 · Erst denken</b>Bei jeder Animation sagst du zuerst voraus, was passiert. Dann schaust du zu.</div>`));
-  /*K3-ANFANG*/if(k.spiel){ const r=home.querySelector(".rules"); if(r) r.remove(); }/*K3-ENDE*/const gesperrt=KAPITEL.filter(x=>!x.freigegeben);
+  /*K3-ANFANG*/if(k.spiel){ const r=home.querySelector(".rules"); if(r) r.remove(); }/*K3-ENDE*//*K4-ANFANG*/if(k.nr>=4){ const r=home.querySelector(".rules"); if(r) r.remove(); }/*K4-ENDE*/const gesperrt=KAPITEL.filter(x=>!x.freigegeben);
   if(gesperrt.length) home.appendChild(el("div",{class:"locked-k"},`Nächstes Kapitel: <b>${gesperrt[0].titel}</b>. Es kommt mit der nächsten Version der App.`));
   const sh=endHint(); if(sh) home.appendChild(sh);
   app.appendChild(home);
@@ -2577,6 +3146,8 @@ function renderFocus(k,start){
     tx.appendChild(el("p",{},sb.text));
     if(sb.merke) tx.appendChild(el("p",{class:"merke"},`<span class="tag">Merke</span><br>${sb.merke}`));
     if(sb.falle) tx.appendChild(el("p",{class:"falle"},`<span class="tag">Typische Falle</span><br>${sb.falle}`));
+/*K4-ANFANG*/    if(sb.praxis) tx.appendChild(el("p",{class:"praxis"},`<span class="tag">Aus dem Alltag</span><br>${sb.praxis}`));
+/*K4-ENDE*/
     const side=el("div",{class:"fside"}); card.append(tx,side); stage.appendChild(card);
     if(sb.viz && VIZ[sb.viz]) VIZ[sb.viz](side);
     side.appendChild(checkBox(id,sb,updNav));

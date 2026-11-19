@@ -94,3 +94,11 @@ Version 2.2 · Stand 11.11.2026
 - Der bisherige Fortschritt bleibt beim Update erhalten. Alles Neue steht im Quelltext zwischen `/*K3-ANFANG*/` und `/*K3-ENDE*/`.
 - Für die Auswertung das Lehrkraft-Werkzeug `Wellen-Werkstatt-Nachweise-v2.3.html` benutzen (kennt Kapitel 3).
 - Ton im Wellenfeld ist aus, bis man „Ton: aus“ antippt.
+
+## Neu in Version 2.4: Kapitel 4 „Eigenschwingungen & Klang“
+
+- 4 Steckbriefe (Saite, offenes und gedacktes Rohr, Kundt'sches Rohr, Klang und Instrumente) mit „Aus dem Alltag“, 3 Challenges (Saitenmeister, Wie klingt's?, Kundt-Labor).
+- Neu in der Technik, nur für neue Szenen: Simulationsuhr (Zeitlupe, Pause, Schritt), Ton mit Web Audio (standardmäßig aus), gezupfte Saite nach Karplus-Strong.
+- Der bisherige Fortschritt bleibt erhalten. Alles Neue steht zwischen `/*K4-ANFANG*/` und `/*K4-ENDE*/`.
+- Für die Auswertung `Wellen-Werkstatt-Nachweise-v2.4.html` benutzen (kennt Kapitel 4).
+- Plus-Kachel „Schwebung“ (freiwillig, Messing-Kachel unter dem Lernpfad von Kapitel 4, frei nach den Steckbriefen): Steckbrief mit Animation und Ton, 3 Level (Gitarre stimmen, Rechnen, Transfer). Zählt nicht für Fortschritt und Nachweis, eigener Speicherschlüssel `wellen-werkstatt-plus` (wird von „Fortschritt zurücksetzen“ nicht gelöscht).
