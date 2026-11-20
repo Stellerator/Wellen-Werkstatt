@@ -457,6 +457,156 @@ body.nachtwelt .theme{display:none}
 .plusseite .about .vizhost{display:flex;flex-direction:column;gap:10px}
 .plusseite .about .cv{min-height:230px}
 /*K4-ENDE*/
+/*HEFT-ANFANG*/
+/* ===== Ab Version 2.5: Physikheft (Blatt wie Papier, auch im dunklen Modus; Druck auf A4) ===== */
+/* Kopfzeile wie im Mathe-Master: nur das gewählte Kapitel ausgeklappt, die anderen nur mit Nummer */
+.tabs .tab[aria-pressed="false"],.hleiste .tab[aria-pressed="false"]:not(.alle){font-size:0;min-width:48px;padding:0 14px;gap:0;justify-content:center}
+.tabs .tab[aria-pressed="false"] .nr,.hleiste .tab[aria-pressed="false"] .nr{font-size:16px;color:var(--ink);margin:0}
+/* Kopfzeile: Kapitel links, Heft, Erfolge und Einstellungen rechts */
+.top .tabs{flex:1 1 auto;justify-content:flex-start}
+.tabs .tab.heftk{margin-left:auto;min-width:48px;padding:0 13px;justify-content:center}
+.tab.heftk svg{flex:none}
+.hleiste{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin:0 0 14px}
+.hlade{text-align:center;color:var(--muted);padding:40px 0}
+.heft{display:flex;flex-direction:column;align-items:center;gap:30px;padding:4px 0 48px}
+.hblatt{width:min(860px,100%);box-sizing:border-box;color:#1d2430;background-color:#fff;background-image:linear-gradient(#eef2f7 1px,transparent 1px),linear-gradient(90deg,#eef2f7 1px,transparent 1px);background-size:20px 20px;border-radius:6px;box-shadow:0 12px 34px rgba(0,0,0,.28);padding:34px 46px 46px;font:17px/1.55 var(--font-body)}
+.hkopf{display:flex;gap:14px;align-items:center;border-bottom:3px solid #1d2430;padding-bottom:10px;margin-bottom:4px}
+.hknr{flex:none;width:46px;height:46px;border-radius:50%;background:#1f6fd1;color:#fff;display:grid;place-items:center;font:800 24px/1 var(--font-display)}
+.heye{display:block;font:800 12px/1.2 var(--font-display);letter-spacing:.12em;text-transform:uppercase;color:#5d6675}
+.hkopf h2{font:800 30px/1.1 var(--font-display);margin:3px 0 0;color:#1d2430}
+.habs h3{hyphens:auto;-webkit-hyphens:auto;overflow-wrap:break-word;font:800 21px/1.25 var(--font-display);margin:28px 0 10px;color:#1d2430;border-bottom:1.5px solid #c9d3e0;padding-bottom:5px;break-after:avoid}
+.hnr{color:#1f6fd1;margin-right:10px;font-variant-numeric:tabular-nums}
+.hb{margin:12px 0;break-inside:avoid}
+p.hb.text{margin:10px 0}
+.hb.merke,.hb.achtung,.hb.beispiel{border-radius:10px;padding:10px 14px 11px 16px}
+.hb.merke{background:#eaf2fd;border:1.5px solid #1f6fd1}
+.hb.achtung{background:#fff4e6;border:1.5px dashed #c46a00}
+.hb.beispiel{background:#edf7f1;border:1.5px solid #9fd0b4;border-left:5px solid #2e8b57}
+.hbtag{display:inline-block;font:800 11px/1 var(--font-display);letter-spacing:.12em;text-transform:uppercase;color:#fff;background:#1f6fd1;border-radius:4px;padding:4px 7px;margin:0 0 6px}
+.achtung .hbtag{background:#c46a00} .beispiel .hbtag{background:#2e8b57}
+.hauf{margin:0 0 6px}
+.hloes p{margin:2px 0 2px 18px;font-weight:600}
+.hb.hformel{margin:18px auto;width:fit-content;max-width:100%;box-sizing:border-box;text-align:center}
+.hf{display:inline-block;font:600 24px/1.4 var(--font-body);letter-spacing:.01em;padding:10px 22px;border:2px solid #1d2430;outline:1.5px solid #1d2430;outline-offset:3px;border-radius:2px;background:#fff}
+.hfs{display:block;width:fit-content;margin:8px auto 0;font:700 12px/1 var(--font-body);letter-spacing:.02em;color:#7a2430;border:1.3px solid #a8323e;border-radius:999px;padding:4px 10px;background:#fff}
+.hb.hneben{margin:12px 0 12px 4px;text-align:left}
+.hb.hneben .hf{font:600 18px/1.4 var(--font-body);padding:0;border:0;outline:0;background:none}
+.hb.hneben .hfs{margin:4px 0 0}
+.hb.hneben .hbereich{margin-top:4px}
+.hbereich{font-size:15px;line-height:1.45;color:#4b5565;margin-top:10px;text-align:left;max-width:560px}
+.hbereich b{color:#1d2430}
+.fr{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;margin:0 .12em;line-height:1.15}
+.fr>span:first-child{border-bottom:1.5px solid currentColor;padding:0 .18em .05em}
+.fr>span:last-child{padding:.05em .18em 0}
+table.hgr{border-collapse:collapse;margin:12px 0;font-size:16px;width:100%}
+table.hgr td{padding:6px 10px;border-bottom:1px solid #d6dde7;vertical-align:middle}
+table.hgr td:first-child{font-weight:800;white-space:nowrap;color:#1f6fd1}
+table.hgr td:last-child{white-space:nowrap;text-align:right;color:#4b5565}
+figure.hb.skizze{margin:16px 0;text-align:center}
+figure.hb.skizze figcaption{font-size:14px;line-height:1.4;color:#5d6675;margin:6px auto 0;max-width:600px}
+.hs{width:100%;max-width:640px;height:auto;display:block;margin:0 auto;overflow:visible}
+.hs text{font-family:var(--font-body);font-size:14px;fill:#1d2430}
+.hs .ax{stroke:#3d4757;stroke-width:1.5;fill:none}
+.hs .g{stroke:#9aa5b5;stroke-width:1.4;fill:none;stroke-dasharray:5 4}
+.hs .w{stroke:#1f6fd1;stroke-width:2.8;fill:none;stroke-linejoin:round;stroke-linecap:round}
+.hs .wg{stroke:#9aa5b5;stroke-width:2.4;fill:none;stroke-dasharray:7 5}
+.hs .m{stroke:#c46a00;stroke-width:2;fill:none}
+.hs .md{stroke:#c46a00;stroke-width:1.4;fill:none;stroke-dasharray:4 4}
+.hs .k{stroke:#3d4757;stroke-width:1.6;fill:none}
+.hs .pb{stroke:#1f6fd1;stroke-width:2;fill:none}
+.hs .pbd{stroke:#1f6fd1;stroke-width:1.4;fill:none;stroke-dasharray:4 4}
+.hs .fe{stroke:#8a94a3;stroke-width:1.3;fill:none}
+.hs .wl{stroke:#9cc1ef;stroke-width:1.6;fill:none}
+.hs .wb{stroke:#1f6fd1;stroke-width:2;fill:none}
+.hs .wgn{stroke:#2e8b57;stroke-width:2;fill:none}
+.hs .ws{stroke:#1d2430;stroke-width:3;fill:none;stroke-linejoin:round}
+.hs .wgr{stroke:#9aa5b5;stroke-width:2.2;fill:none;stroke-dasharray:6 5}
+.hs .pgn{stroke:#2e8b57;stroke-width:2;fill:none}
+.hs .gnt{fill:#2e8b57;font-weight:700}
+.hs .mt{fill:#c46a00;font-weight:700}
+.hs .bt{fill:#1f6fd1;font-weight:700}
+.hs .st{fill:#5d6675;font-size:12.5px}
+.hs .gr{font-weight:700;font-size:15px}
+/* Vertiefung: gleiche Bausteine, etwas zurückgenommen */
+.habs.tief{font-size:15.5px;color:#4f5867}
+.habs.tief h3{font-size:18px;font-weight:700;color:#4f5867;border-bottom-color:#dde3ea}
+.habs.tief .hnr{color:#8a94a3}
+.habs.tief .hb.merke,.habs.tief .hb.achtung,.habs.tief .hb.beispiel{background:#f6f7f9;border-color:#cfd5de}
+.habs.tief .hb.beispiel{border-left-color:#9aa5b5}
+.habs.tief .hbtag{background:#8a94a3}
+.habs.tief .hf{font-size:20px;border-color:#7d8796;outline-color:#7d8796;color:#3d4757}
+.habs.tief table.hgr td:first-child{color:#4f5867}
+@media (max-width:640px){
+  .hblatt{padding:22px 16px 30px;font-size:16px;border-radius:4px}
+  .hkopf h2{font-size:24px}
+  .hf{font-size:20px;padding:8px 14px}
+}
+@media print{
+  @page{size:A4;margin:14mm 15mm 16mm}
+  :root,:root[data-theme],html,body{background:#fff!important;color-scheme:light!important}
+  #app{background:#fff!important;max-width:none!important;padding:0!important;margin:0!important;min-height:0!important;height:auto!important;overflow:visible!important}
+  #app>*:not(.heft){display:none!important}
+  .heft{display:block;padding:0}
+  .hblatt{width:auto;box-shadow:none;border-radius:0;padding:0;background:none;break-after:page;font-size:12pt}
+  .hblatt:last-child{break-after:auto}
+  .hb.merke,.hb.achtung,.hb.beispiel,.hknr,.hbtag,.hf{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .habs h3{margin-top:18pt}
+  figure.hb.skizze{break-inside:avoid}
+  .hs{max-width:150mm}
+}
+/*HEFT-ENDE*/
+/*HEFT-ANFANG*/
+/* ===== Heft: Umschalter, Karteikarten, Mindmap ===== */
+.hmodi button{min-height:44px;font-weight:700}
+.kwrap{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:20px;align-items:start;padding-bottom:40px}
+.kwahl,.kstart{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:20px 22px}
+.kwahl h3,.kstart h3{font:800 22px/1.2 var(--font-display);margin:0 0 12px}
+.kgrp{border-top:1px solid var(--line);padding:10px 0 6px}
+.kkopf{display:flex;gap:12px;align-items:center;font-size:17px;padding:6px 0;cursor:pointer}
+.kzeile{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:12px;align-items:center;padding:8px 0 8px 26px;font-size:16px;cursor:pointer;border-radius:10px}
+.kzeile:hover{background:var(--plot)}
+.kwahl input[type=checkbox]{width:22px;height:22px;accent-color:var(--wave)}
+.kfaell{font:700 12px/1 var(--font-mono);color:var(--muted);white-space:nowrap}
+.kfaell.neu{color:var(--wave)}
+.kmodi{display:flex;flex-direction:column;gap:10px}
+.kmodus{display:flex;flex-direction:column;gap:4px;text-align:left;padding:12px 14px;border-radius:14px;border:2px solid var(--line);background:var(--bg)}
+.kmodus span{font-size:14px;color:var(--muted);font-weight:400}
+.kmodus[aria-pressed="true"]{border-color:var(--wave);background:var(--plot)}
+.kzahl{margin:16px 0 12px;color:var(--muted)}
+.kzahl b{color:var(--ink)}
+.kabfrage{display:flex;flex-direction:column;align-items:center;gap:18px;padding:8px 0 40px}
+.kfort{width:min(760px,100%);position:relative;height:30px;font:700 13px/30px var(--font-mono);color:var(--muted)}
+.kfort i{position:absolute;left:0;bottom:0;height:4px;border-radius:2px;background:var(--wave);transition:width .3s}
+.kkarte{width:min(760px,100%);min-height:300px;box-sizing:border-box;background:#fff;color:#1d2430;border-radius:16px;box-shadow:0 14px 36px rgba(0,0,0,.28);padding:28px 34px;display:flex;flex-direction:column;gap:14px;background-image:linear-gradient(#eef2f7 1px,transparent 1px);background-size:100% 28px}
+.kkarte .kv{font:700 24px/1.35 var(--font-display);margin:4px 0}
+.kkarte .kr{border-top:2px dashed #c9d3e0;padding-top:14px;font-size:19px;line-height:1.5}
+.kkarte .kr p{margin:0 0 10px}
+.kskizze{margin:6px 0 0}
+.kskizze .hs{max-width:520px}
+.kknoepfe{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+.kbew{min-width:130px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;line-height:1.15}
+.kbew small{font:600 12px/1 var(--font-mono);opacity:.85}
+.kbew.nochmal{background:#c2352a;color:#fff} .kbew.schwer{background:#c46a00;color:#fff} .kbew.gut{background:#2e8b57;color:#fff} .kbew.einfach{background:#1f6fd1;color:#fff}
+.mmleiste{display:flex;gap:6px;flex-wrap:wrap}
+.mmleiste .tab{min-width:44px;justify-content:center;padding:0 12px}
+.mm{position:relative;flex:1;min-height:420px;overflow:hidden;border-radius:var(--r);border:1px solid var(--line);background:#f7f9fc;background-image:radial-gradient(#d9e1ec 1.2px,transparent 1.2px);background-size:26px 26px;touch-action:none;cursor:grab;user-select:none;-webkit-user-select:none}
+#app:not(.fill) .mm{height:72vh}
+.mmwelt{position:absolute;left:0;top:0;transform-origin:0 0}
+.mmlinien{position:absolute;overflow:visible;pointer-events:none}
+.mmk{position:absolute;transform:translate(-50%,-50%);background:#fff;color:#1d2430;border-radius:16px;box-shadow:0 6px 18px rgba(20,30,60,.16);cursor:pointer;text-align:center}
+.mmzentrum{padding:26px 40px;border-radius:999px;background:#1d2430;color:#fff;display:flex;flex-direction:column;gap:4px}
+.mmzentrum b{font:800 44px/1.1 var(--font-display)} .mmzentrum span{font-size:18px;opacity:.75}
+.mmkap{padding:20px 30px;border:4px solid var(--f);display:flex;align-items:center;gap:16px;white-space:nowrap}
+.mmkap b{font:800 34px/1.1 var(--font-display)}
+.mmnr{display:grid;place-items:center;width:52px;height:52px;border-radius:50%;color:#fff;font:800 28px/1 var(--font-display)}
+.mmab{width:300px;padding:14px 18px;border:2px solid var(--f);display:flex;flex-direction:column;gap:8px;text-align:left}
+.mmab b{font:800 21px/1.2 var(--font-display)}
+.mmnr2{font:800 14px/1 var(--font-mono)}
+.mmab .mmf{font:600 19px/1.4 var(--font-body);background:#f3f6fb;border-radius:8px;padding:8px 10px;text-align:center}
+.mmab .mmt{font-size:15px;line-height:1.4;color:#4b5565}
+.mmab.tief{opacity:.62;border-style:dashed;box-shadow:none}
+.mmtipp{position:absolute;left:14px;bottom:10px;margin:0;font-size:13px;color:#5d6675;background:rgba(255,255,255,.85);padding:4px 10px;border-radius:999px;pointer-events:none}
+/*HEFT-ENDE*/
 </style>
 </head>
 <body>
@@ -621,8 +771,8 @@ const STECKBRIEFE = {
       o:["Eine Längswelle","Eine Querwelle","Gar keine Welle, nur eine Verschiebung"],
       h:"Vergleiche die Schwingungsrichtung mit der Ausbreitungsrichtung.",
       e:"Die Windungen schwingen in Ausbreitungsrichtung hin und her. Das ist eine Longitudinalwelle."}},
-  kenngr:{titel:"Elongation, Amplitude, T und f", formel:"f = 1 / T", viz:"kenngr",
-    text:"Die Elongation s ist die momentane Auslenkung eines Oszillators aus der Ruhelage, die Amplitude ŝ ist ihr größter Wert. Die Periodendauer T ist die Zeit für eine volle Schwingung. Die Frequenz f gibt an, wie viele Schwingungen pro Sekunde stattfinden.",
+  kenngr:{titel:"Elongation, Amplitude, T und f", formel:"T = 1 / f", viz:"kenngr",
+    text:"Die Elongation s ist die momentane Auslenkung eines Oszillators aus der Ruhelage, die Amplitude sₘₐₓ ist ihr größter Wert. Die Periodendauer T ist die Zeit für eine volle Schwingung. Die Frequenz f gibt an, wie viele Schwingungen pro Sekunde stattfinden.",
     merke:"Frequenz und Periodendauer gibt der Erreger vor.",
     falle:"T ist eine Zeit und keine Länge. In einem Foto der Welle kannst du T nicht ablesen.",
     check:{q:"Ein Oszillator braucht für eine volle Schwingung 0,5 s. Wie groß ist seine Frequenz?",
@@ -642,15 +792,15 @@ const STECKBRIEFE = {
       o:["c bleibt gleich, λ wird kleiner.","c wird größer, λ bleibt gleich.","c und λ werden beide größer."],
       h:"Was legt das Medium fest, was der Erreger?",
       e:"Das Medium bestimmt c. Wenn f steigt und c gleich bleibt, wird λ = c / f kleiner."}},
-  ort:{titel:"Ortsdarstellung s(x)", formel:"s(x)  bei festem t", viz:"ort",
+  ort:{titel:"Ortsdarstellung y(x)", formel:"y(x)  bei festem t", viz:"ort",
     text:"Die Ortsdarstellung zeigt die Auslenkung aller Oszillatoren zu einem festen Zeitpunkt, wie ein Foto der Welle. Zwei benachbarte Punkte gleicher Phase haben den Abstand λ.",
-    falle:"s(x) und s(t) sehen ähnlich aus. Schau immer zuerst auf die Achse: x oder t?",
-    check:{q:"Ein Diagramm hat die Achsen s und x. Welche Größen kannst du ablesen?",
-      o:["λ und ŝ","T und ŝ","λ und T"], h:"Was zeigt ein Foto der Welle, was nicht?",
-      e:"s(x) ist ein Foto zu einem festen Zeitpunkt. Daraus liest du Längen ab: λ und die Amplitude ŝ. T ist eine Zeit."}},
-  zeit:{titel:"Zeitdarstellung s(t)", formel:"s(t)  bei festem x", viz:"zeit",
+    falle:"y(x) und y(t) sehen ähnlich aus. Schau immer zuerst auf die Achse: x oder t?",
+    check:{q:"Ein Diagramm hat die Achsen y und x. Welche Größen kannst du ablesen?",
+      o:["λ und yₘₐₓ","T und yₘₐₓ","λ und T"], h:"Was zeigt ein Foto der Welle, was nicht?",
+      e:"y(x) ist ein Foto zu einem festen Zeitpunkt. Daraus liest du Längen ab: λ und die Amplitude yₘₐₓ. T ist eine Zeit."}},
+  zeit:{titel:"Zeitdarstellung y(t)", formel:"y(t)  bei festem x", viz:"zeit",
     text:"Die Zeitdarstellung zeigt die Auslenkung eines einzelnen Oszillators im Lauf der Zeit, wie ein Video von genau diesem Teilchen. Zwei benachbarte Punkte gleicher Phase haben den zeitlichen Abstand T.",
-    check:{q:"Im s(t)-Diagramm liegen zwei benachbarte Hochpunkte 0,2 s auseinander. Was hast du abgelesen?",
+    check:{q:"Im y(t)-Diagramm liegen zwei benachbarte Hochpunkte 0,2 s auseinander. Was hast du abgelesen?",
       o:["T = 0,2 s","λ = 0,2 m","f = 0,2 Hz"], h:"Welche Achse hat das Diagramm?",
       e:"Auf der t-Achse misst du Zeiten. Der Abstand zweier benachbarter Hochpunkte ist die Periodendauer T."}},
   regel:{titel:"Wohin bewegt sich ein Teilchen?", viz:"regel",
@@ -668,13 +818,13 @@ const STECKBRIEFE = {
       h:"Nur eine Wellenart hat eine Schwingungsrichtung quer zur Ausbreitung.",
       e:"Nur Transversalwellen lassen sich polarisieren. Also ist die Welle eine Querwelle."}}
 /*K3-ANFANG*/  ,
-  superpos:{titel:"Superposition", formel:"s = s₁ + s₂", viz:"superpos",
-    text:"Treffen zwei Wellen am selben Ort zusammen, addieren sich ihre Auslenkungen: An jeder Stelle gilt s = s₁ + s₂. Das heißt Superposition oder ungestörte Überlagerung. Danach laufen beide Wellen weiter, als wären sie sich nie begegnet. Schieb rechts die Zeit selbst vor und zurück.",
+  superpos:{titel:"Superposition", formel:"y = y₁ + y₂", viz:"superpos",
+    text:"Treffen zwei Wellen am selben Ort zusammen, addieren sich ihre Auslenkungen: An jeder Stelle gilt y = y₁ + y₂. Das heißt Superposition oder ungestörte Überlagerung. Danach laufen beide Wellen weiter, als wären sie sich nie begegnet. Schieb rechts die Zeit selbst vor und zurück.",
     merke:"Wellen durchdringen sich, ohne sich gegenseitig zu verändern. Addiert wird nur dort, wo sie sich gerade überlagern.",
     falle:"Ein gerades Seil heißt nicht Ruhe. Trifft ein Berg auf ein gleich großes Tal, ist das Seil kurz gerade, aber seine Teilchen bewegen sich schnell. Deshalb tauchen beide Pulse wieder auf.",
     check:{q:"Ein Berg (3 cm hoch) und ein Tal (1 cm tief) liegen gerade genau übereinander. Wie groß ist die Auslenkung in der Mitte?",
       o:["2 cm nach oben","4 cm nach oben","0 cm, sie löschen sich aus"], h:"Rechne mit Vorzeichen: Ein Tal zählt negativ.",
-      e:"s = s₁ + s₂ = 3 cm + (−1 cm) = 2 cm. Null ergibt sich nur, wenn Berg und Tal gleich groß sind."}},
+      e:"y = y₁ + y₂ = 3 cm + (−1 cm) = 2 cm. Null ergibt sich nur, wenn Berg und Tal gleich groß sind."}},
   interf:{titel:"Interferenz", viz:"interf",
     text:"Überlagern sich zwei Wellen gleicher Frequenz dauerhaft, spricht man von Interferenz. Schwingen beide an einem Ort im Gleichtakt (gleichphasig), verstärken sie sich: konstruktive Interferenz. Schwingen sie im Gegentakt (gegenphasig), schwächen sie sich ab: destruktive Interferenz. Verschiebe rechts Welle 2 und beobachte die Summe.",
     merke:"Berg trifft Berg: Verstärkung. Berg trifft Tal: Abschwächung.",
@@ -684,7 +834,7 @@ const STECKBRIEFE = {
       e:"Im Gegentakt arbeiten die Wellen gegeneinander: 3 cm − 2 cm = 1 cm. Null wird es nur bei gleichen Amplituden."}},
   gangu:{titel:"Gangunterschied Δs", formel:"Δs = |s₂ − s₁|", viz:"gangu",
     text:"Zwei Quellen schwingen im Gleichtakt und senden Wellen gleicher Wellenlänge aus. Bis zum Empfänger legen die Wellen die Wege s₁ und s₂ zurück. Ihr Unterschied heißt Gangunterschied Δs. Er entscheidet, ob die Wellen beim Empfänger im Gleichtakt oder im Gegentakt ankommen. Zieh rechts das Mikrofon durch das Wellenfeld.",
-    merke:"Verstärkung bei Δs = k · λ, also 0, λ, 2λ, … Auslöschung bei Δs = (2k + 1) · λ/2, also λ/2, 3λ/2, 5λ/2, …",
+    merke:"Verstärkung bei Δs = k · λ (k = 0, 1, 2, …), also 0, λ, 2λ, … Auslöschung bei Δs = (2k − 1) · λ/2 (k = 1, 2, 3, …), also λ/2, 3λ/2, 5λ/2, …",
     falle:"Es kommt nicht auf die Wege selbst an, sondern nur auf ihren Unterschied. Und der zählt in Wellenlängen, nicht in Metern.",
     check:{q:"λ = 40 cm. Der Empfänger ist 1,20 m von Quelle 1 und 1,80 m von Quelle 2 entfernt. Was empfängt er?",
       o:["Auslöschung, denn Δs = 1,5 · λ","Verstärkung, denn Δs ist größer als λ","Das hängt davon ab, wie laut die Quellen sind"], h:"Berechne Δs und teile durch λ.",
@@ -710,31 +860,31 @@ const STECKBRIEFE = {
     check:{q:"Bei einer stehenden Welle liegen benachbarte Knoten 25 cm auseinander. Wie groß ist λ?",
       o:["50 cm","25 cm","12,5 cm"], h:"Schau dir die typische Falle an.",
       e:"Der Knotenabstand ist λ/2. Also ist λ = 2 · 25 cm = 50 cm."}},
-  eigen:{titel:"Eigenschwingungen", formel:"L = n · λ/2&emsp;fₙ = n · f₁", viz:"eigen",
-    text:"Ist ein Seil der Länge L an beiden Enden fest, liegt an beiden Enden ein Knoten. Das passt nur zu bestimmten Wellenlängen: L = n · λ/2. Die zugehörigen Frequenzen heißen Eigenfrequenzen. Die tiefste gehört zur Grundschwingung (n = 1), die höheren zu den Oberschwingungen. Rechts ist L = 1,2 m und c = 2,4 m/s, also f₁ = 1 Hz. Trifft der Erreger eine Eigenfrequenz, schaukelt sich eine große stehende Welle auf.",
-    merke:"Beidseitig fest: Die Eigenfrequenzen sind die ganzzahligen Vielfachen der Grundfrequenz. Bei n passen genau n Bäuche auf das Seil.",
-    falle:"Ist ein Ende lose, liegt dort ein Bauch. Dann passt L = λ/4, 3λ/4, 5λ/4, … Es gibt nur noch die ungeraden Vielfachen der neuen, halb so großen Grundfrequenz.",
-    check:{q:"Eine Gitarrensaite schwingt in der Grundschwingung mit 110 Hz. Mit welcher Frequenz schwingt sie, wenn drei Bäuche auf die Saite passen (n = 3)?",
-      o:["330 Hz","220 Hz","36,7 Hz"], h:"fₙ = n · f₁.",
-      e:"f₃ = 3 · f₁ = 3 · 110 Hz = 330 Hz. Die Wellenlänge ist dann nur noch ein Drittel so groß."}}
+  eigen:{titel:"Eigenschwingungen", formel:"λₖ = 2ℓ / (k + 1)&emsp;k = 0, 1, 2, …", viz:"eigen",
+    text:"Ist ein Seil der Länge ℓ an beiden Enden fest, liegt an beiden Enden ein Knoten. Das passt nur zu bestimmten Wellenlängen: λₖ = 2ℓ / (k + 1). Die zugehörigen Frequenzen heißen Eigenfrequenzen. Die tiefste gehört zur Grundschwingung (k = 0), die höheren zu den Oberschwingungen (k = 1, 2, 3, …). Rechts ist ℓ = 1,2 m und c = 2,4 m/s, also f₀ = 1 Hz. Trifft der Erreger eine Eigenfrequenz, schaukelt sich eine große stehende Welle auf.",
+    merke:"Beidseitig fest: Die Eigenfrequenzen sind die ganzzahligen Vielfachen der Grundfrequenz, fₖ = (k + 1) · f₀. Bei der k-ten Oberschwingung passen k + 1 Bäuche auf das Seil.",
+    falle:"Ist ein Ende lose, liegt dort ein Bauch. Dann gilt λₖ = 2ℓ / (k + ½), also ℓ = λ/4, 3λ/4, 5λ/4, … Es gibt nur noch die ungeraden Vielfachen der neuen, halb so großen Grundfrequenz.",
+    check:{q:"Eine Gitarrensaite schwingt in der Grundschwingung mit 110 Hz. Mit welcher Frequenz schwingt sie, wenn drei Bäuche auf die Saite passen (2. Oberschwingung, k = 2)?",
+      o:["330 Hz","220 Hz","36,7 Hz"], h:"fₖ = (k + 1) · f₀.",
+      e:"f₂ = 3 · f₀ = 3 · 110 Hz = 330 Hz. Die Wellenlänge ist dann nur noch ein Drittel so groß."}}
 /*K3-ENDE*/
 /*K4-ANFANG*/  ,
-  saite:{titel:"Eigenschwingungen einer Saite", formel:"L = k · λ/2&emsp;fₖ = k · c/(2L)", viz:"saite",
-    text:"Beide Enden einer Saite sind fest, dort liegt immer ein Knoten. Deshalb passen nur ganze Vielfache von λ/2 auf die Saite: L = k · λ/2 mit k = 1, 2, 3, … Daraus folgen die Eigenfrequenzen fₖ = k · c/(2L). Wähle rechts k aus. Die Animation läuft stark verlangsamt, der Ton (mit Kopfhörern) nicht.",
+  saite:{titel:"Eigenschwingungen einer Saite", formel:"λₖ = 2ℓ / (k + 1)&emsp;fₖ = (k + 1) · c / (2ℓ)", viz:"saite",
+    text:"Beide Enden einer Saite sind fest, dort liegt immer ein Knoten. Deshalb passen nur ganze Vielfache von λ/2 auf die Saite: λₖ = 2ℓ / (k + 1). Dabei ist k = 0 die Grundschwingung, k = 1, 2, 3, … sind die Oberschwingungen. Daraus folgen die Eigenfrequenzen fₖ = (k + 1) · c / (2ℓ). Wähle rechts k aus. Die Animation läuft stark verlangsamt, der Ton (mit Kopfhörern) nicht.",
     merke:"Die Saite legt fest, welche Frequenzen möglich sind. Das sind ihre Eigenfrequenzen.",
-    falle:"Die Saitenlänge ist nicht λ. Bei der Grundschwingung gilt L = λ/2.",
-    praxis:"Greifst du an der Gitarre einen Bund, wird L kürzer und der Ton höher. Klavier-Basssaiten sind mit Kupferdraht umwickelt. Dadurch werden sie schwerer, c sinkt und der Ton wird tief, ohne dass die Saite meterlang sein muss.",
+    falle:"Die Saitenlänge ist nicht λ. Bei der Grundschwingung gilt ℓ = λ/2.",
+    praxis:"Greifst du an der Gitarre einen Bund, wird ℓ kürzer und der Ton höher. Klavier-Basssaiten sind mit Kupferdraht umwickelt. Dadurch werden sie schwerer, c sinkt und der Ton wird tief, ohne dass die Saite meterlang sein muss.",
     check:{q:"Eine Gitarrensaite ist 65 cm lang. Wie groß ist λ der Grundschwingung?",
-      o:["1,30 m","65 cm","32,5 cm"], h:"Bei der Grundschwingung passt genau ein halber Wellenzug auf die Saite: L = λ/2.",
-      e:"L = λ/2, also λ = 2 · L = 2 · 65 cm = 1,30 m."}},
-  rohr:{titel:"Offenes und gedacktes Rohr", formel:"offen: fₖ = k · c/(2L)&emsp;gedackt: fₖ = (2k−1) · c/(4L)", viz:"rohr",
+      o:["1,30 m","65 cm","32,5 cm"], h:"Bei der Grundschwingung passt genau ein halber Wellenzug auf die Saite: ℓ = λ/2.",
+      e:"ℓ = λ/2, also λ = 2 · ℓ = 2 · 65 cm = 1,30 m."}},
+  rohr:{titel:"Offenes und gedacktes Rohr", formel:"offen: fₖ = (k + 1) · c / (2ℓ)&emsp;gedackt: fₖ = (2k + 1) · c / (4ℓ)", viz:"rohr",
     text:"In einem Rohr schwingt die Luft als Längswelle. Am offenen Ende liegt ein Bewegungsbauch, am geschlossenen ein Bewegungsknoten. Beim Rohr mit zwei offenen Enden passen ganze Vielfache von λ/2 hinein. Ist ein Ende zu, passen nur ungerade Vielfache von λ/4. Tippe rechts das Ende zu und schalte zwischen Teilchen und Druck um.",
     merke:"Zu einem gedackten Rohr gehören nur die ungeraden Vielfachen der Grundfrequenz. Der Grundton liegt bei gleicher Länge eine Oktave tiefer als beim offenen Rohr.",
     falle:"Ein Bewegungsknoten ist ein Druckbauch. Ein Mikrofon misst den Druck: Direkt an einer Wand, wo die Luft nicht schwingen kann, ist es deshalb laut.",
     praxis:"Die Querflöte ist ein offenes Rohr. Die Klarinette wirkt näherungsweise wie ein gedacktes Rohr. Sie klingt deshalb etwa eine Oktave tiefer als eine gleich lange Flöte und hat einen „hohlen“ Klang, weil die geraden Obertöne fehlen. Die Panflöte besteht aus gedackten Röhren, und eine gedackte Orgelpfeife braucht für denselben Ton nur die halbe Länge. Auch dein Gehörgang ist ein gedacktes Rohr von etwa 2,5 cm. Seine Resonanz bei rund 3,4 kHz liegt dort, wo du am empfindlichsten hörst.",
     check:{q:"Du verschließt eine offene Pfeife an einem Ende. Was passiert mit dem Grundton?",
-      o:["Er wird eine Oktave tiefer.","Er wird eine Oktave höher.","Er bleibt gleich."], h:"Vergleiche λ₁ = 2L (offen) mit λ₁ = 4L (gedackt).",
-      e:"Gedackt gilt λ₁ = 4L statt 2L. Die Wellenlänge verdoppelt sich, die Frequenz halbiert sich: eine Oktave tiefer."}},
+      o:["Er wird eine Oktave tiefer.","Er wird eine Oktave höher.","Er bleibt gleich."], h:"Vergleiche λ₀ = 2ℓ (offen) mit λ₀ = 4ℓ (gedackt).",
+      e:"Gedackt gilt λ₀ = 4ℓ statt 2ℓ. Die Wellenlänge verdoppelt sich, die Frequenz halbiert sich: eine Oktave tiefer."}},
   kundt:{titel:"Kundt'sches Rohr", formel:"c = λ · f&emsp;Häufchenabstand = λ/2", viz:"kundt",
     text:"Ein Lautsprecher erzeugt im Rohr eine stehende Schallwelle. Leichtes Pulver wird in den Bäuchen hin- und hergeworfen und sammelt sich in den Bewegungsknoten. Zwei benachbarte Häufchen sind λ/2 voneinander entfernt, daraus folgt mit der bekannten Frequenz die Schallgeschwindigkeit c = λ · f. Schalte ein und wähle rechts die Frequenz.",
     merke:"Das Pulver zeigt die Knoten der Luftbewegung. Aus ihrem Abstand lässt sich λ und damit c bestimmen.",
@@ -743,21 +893,21 @@ const STECKBRIEFE = {
     check:{q:"Bei f = 1,70 kHz liegen die Häufchen 10,0 cm auseinander. Wie groß ist c?",
       o:["340 m/s","170 m/s","17 m/s"], h:"Aus dem Häufchenabstand folgt zuerst λ, dann c = λ · f.",
       e:"λ = 2 · 10,0 cm = 20,0 cm = 0,200 m. Dann c = λ · f = 0,200 m · 1700 Hz = 340 m/s."}},
-  klang:{titel:"Klang und Instrumente", formel:"f₁ = c/(2L)&emsp;Klangfarbe = Mischung der fₖ", viz:"klang",
-    text:"Die Tonhöhe bestimmt die Grundfrequenz f₁. Die Klangfarbe bestimmt die Mischung der Eigenschwingungen. Die Stellschrauben stecken in f₁ = c/(2L): die Länge L und über c die Spannung und die Masse der Saite. Zupfst du die Saite bei p, schwingt die k-te Eigenschwingung mit einer Stärke, die proportional zu sin(k·π·p/L) / k² ist. Verschiebe die Zupfstelle und sieh im Spektrum zu.",
-    merke:"Zupfst du genau in einem Knoten der k-ten Eigenschwingung, fehlt sie im Klang.",
+  klang:{titel:"Klang und Instrumente", formel:"f₀ = c / (2ℓ)&emsp;Klangfarbe = Mischung der fₖ", viz:"klang",
+    text:"Die Tonhöhe bestimmt die Grundfrequenz f₀. Die Klangfarbe bestimmt die Mischung der Eigenschwingungen. Die Stellschrauben stecken in f₀ = c / (2ℓ): die Länge ℓ und über c die Spannung und die Masse der Saite. Zupfst du die Saite bei p, schwingt die Eigenschwingung mit der Frequenz n · f₀ mit einer Stärke, die proportional zu sin(n·π·p/ℓ) / n² ist. Verschiebe die Zupfstelle und sieh im Spektrum zu.",
+    merke:"Zupfst du genau in einem Knoten einer Eigenschwingung, fehlt sie im Klang.",
     falle:"Zwei Instrumente können denselben Ton spielen und trotzdem verschieden klingen: Die Grundfrequenz ist gleich, die Mischung der Oberschwingungen nicht.",
-    praxis:"Zupfst du nah am Steg, klingt die Gitarre hell und hart, in der Mitte weich. Beim Flageolett berührst du die Saite bei L/2. Dort entsteht ein Knoten, es bleiben nur die geraden Eigenschwingungen und die Oktave klingt. Bei der Helium-Stimme ändert sich vor allem die Klangfarbe: Die Resonanzen des Mund- und Rachenraums wandern nach oben, der Grundton der Stimmbänder bleibt fast gleich.",
+    praxis:"Zupfst du nah am Steg, klingt die Gitarre hell und hart, in der Mitte weich. Beim Flageolett berührst du die Saite bei ℓ/2. Dort entsteht ein Knoten, es bleiben nur die Eigenschwingungen mit 2f₀, 4f₀, … und die Oktave klingt. Bei der Helium-Stimme ändert sich vor allem die Klangfarbe: Die Resonanzen des Mund- und Rachenraums wandern nach oben, der Grundton der Stimmbänder bleibt fast gleich.",
     check:{q:"Du zupfst die Saite genau in der Mitte. Welche Eigenschwingungen fehlen?",
-      o:["Alle mit geradem k","Alle mit ungeradem k","Keine"], h:"In der Mitte liegt der Knoten aller Eigenschwingungen mit geradem k.",
-      e:"Bei k = 2, 4, 6, … liegt in der Saitenmitte ein Knoten. Wer dort zupft, regt sie nicht an."}}
+      o:["Alle mit 2f₀, 4f₀, 6f₀, …","Alle mit f₀, 3f₀, 5f₀, …","Keine"], h:"In der Mitte liegt ein Knoten aller Eigenschwingungen, deren Frequenz ein gerades Vielfaches von f₀ ist.",
+      e:"Bei 2f₀, 4f₀, 6f₀, … (k = 1, 3, 5, …) liegt in der Saitenmitte ein Knoten. Wer dort zupft, regt sie nicht an."}}
 /*K4-ENDE*/
 };
 
 const KAPITEL = [
   {id:"k1", nr:1, titel:"Grundlagen", untertitel:"Definition, Wellenarten, λ, f und c", freigegeben:true,
    steckbriefe:["welle","arten","kenngr","lambda","c"], challenges:["aendert","dirigent","querlaengs"]},
-  {id:"k2", nr:2, titel:"Darstellungen & Polarisation", untertitel:"s(x), s(t), Merkregel, Polarisation", freigegeben:true,
+  {id:"k2", nr:2, titel:"Darstellungen & Polarisation", untertitel:"y(x), y(t), Merkregel, Polarisation", freigegeben:true,
    steckbriefe:["ort","zeit","regel","pol"], challenges:["teilchen","ablesen","polar"]},
   {id:"k3", nr:3, titel:"Interferenz & stehende Wellen", untertitel:"Superposition, Interferenz, Reflexion, stehende Wellen", freigegeben:true,
    steckbriefe:["superpos","interf","gangu","reflex","stehend","knoten","eigen"], challenges:["pulse","gang","reflexion","stehend"], spiel:"voegel"}
@@ -776,7 +926,7 @@ const PIN = "2605";
 const ABGABE = {url:"", hinweis:"", tage:7};
 
 /* ---------- Inhalte: Was ändert sich? ---------- */
-const GROESSEN = {f:["f","Frequenz"],T:["T","Periodendauer"],c:["c","Ausbreitungsgeschw."],lambda:["λ","Wellenlänge"],s:["ŝ","Amplitude"]};
+const GROESSEN = {f:["f","Frequenz"],T:["T","Periodendauer"],c:["c","Ausbreitungsgeschw."],lambda:["λ","Wellenlänge"],s:["yₘₐₓ","Amplitude"]};
 // vor/nach: [c, f, Amplitude] für die Skizze
 const AE_L1 = [
   {text:"Der Erreger schwingt doppelt so schnell. Das Seil bleibt dasselbe.",
@@ -1066,7 +1216,7 @@ const VIZ = {
       curve(ctx,L,L+tw,x=>y0-A*Math.sin(TAU*(x-L)/per),col.wave,3);
       const c1=L+0.25*per, c2=L+1.25*per; darrow(ctx,c1,y0-A-16,c2,y0-A-16,col.mark,2.5); label(ctx,"T",(c1+c2)/2,y0-A-24,col.mark,"center",700,15);
       dashV(ctx,c1,y0-A,y0-A-16,col.mark); dashV(ctx,c2,y0-A,y0-A-16,col.mark);
-      const tr=L+0.75*per; darrow(ctx,tr,y0,tr,y0+A,col.ok,2.5); label(ctx,"ŝ",tr+10,y0+A/2+5,col.ok,"left",700,15);
+      const tr=L+0.75*per; darrow(ctx,tr,y0,tr,y0+A,col.ok,2.5); label(ctx,"sₘₐₓ",tr+10,y0+A/2+5,col.ok,"left",700,15);
       const tt=(t*0.5)%2.5, px=L+tt*per, py=y0-A*Math.sin(TAU*tt); dashV(ctx,px,y0,py,col.ink);
       ctx.fillStyle=col.ink; ctx.beginPath(); ctx.arc(px,py,7,0,TAU); ctx.fill(); label(ctx,"s",px+10,(y0+py)/2+4,col.ink,"left",700); }); },
   lambda(side){ const st=canvasFill(mkcv(side));
@@ -1095,10 +1245,10 @@ const VIZ = {
       const cyc=4.2, tt=t%cyc, frozen=tt>2.6, te=frozen?Math.floor(t/cyc)*cyc+2.6:t;
       const L=34,R=20,tw=w-L-R, lam=tw/2.4, y0=h/2+8, A=Math.min(56,h*0.25);
       ctx.strokeStyle=col.muted; ctx.lineWidth=1.5; ctx.beginPath(); ctx.moveTo(L,y0); ctx.lineTo(w-R,y0); ctx.moveTo(L,y0-A-24); ctx.lineTo(L,y0+A+18); ctx.stroke();
-      label(ctx,"s",L-20,y0-A-14,col.ink,"left",700); label(ctx,"x",w-R-10,y0-8,col.ink,"left",700);
+      label(ctx,"y",L-20,y0-A-14,col.ink,"left",700); label(ctx,"x",w-R-10,y0-8,col.ink,"left",700);
       curve(ctx,L,L+tw,x=>y0-A*Math.sin(TAU*((x-L)/lam-0.35*te)),col.wave,3);
       if(frozen){ const a=Math.max(0,1-(tt-2.6)*3); if(a>0){ ctx.globalAlpha=a*0.5; ctx.fillStyle="#fff"; ctx.fillRect(0,0,w,h); ctx.globalAlpha=1; }
-        ctx.strokeStyle=col.mark; ctx.lineWidth=3; ctx.strokeRect(6,6,w-12,h-12); label(ctx,"FOTO: s(x) bei festem t",w-18,26,col.mark,"right",700,14); }
+        ctx.strokeStyle=col.mark; ctx.lineWidth=3; ctx.strokeRect(6,6,w-12,h-12); label(ctx,"FOTO: y(x) bei festem t",w-18,26,col.mark,"right",700,14); }
       else label(ctx,"Welle läuft …",w-18,26,col.muted,"right",700); }); },
   zeit(side){ const st=canvasFill(mkcv(side));
     loop(t=>{ const col=colors(), {ctx,w,h}=st; paper(st,col);
@@ -1110,8 +1260,8 @@ const VIZ = {
       label(ctx,"Welle",L+4,16,col.muted,"left",700,12);
       const y2=h*0.72, A2=Math.min(42,h*0.16), win=2.5*per, tc=t%win;
       ctx.strokeStyle=col.muted; ctx.lineWidth=1.5; ctx.beginPath(); ctx.moveTo(L,y2); ctx.lineTo(w-R,y2); ctx.moveTo(L,y2-A2-14); ctx.lineTo(L,y2+A2+10); ctx.stroke();
-      label(ctx,"s",L-20,y2-A2-4,col.ink,"left",700); label(ctx,"t",w-R-10,y2-8,col.ink,"left",700);
-      label(ctx,"s(t) des orangen Teilchens",L+8,y2-A2-12,col.mark,"left",700,12);
+      label(ctx,"y",L-20,y2-A2-4,col.ink,"left",700); label(ctx,"t",w-R-10,y2-8,col.ink,"left",700);
+      label(ctx,"y(t) des orangen Teilchens",L+8,y2-A2-12,col.mark,"left",700,12);
       const t0=t-tc; curve(ctx,L,L+tc/win*tw,x=>{ const tt=t0+(x-L)/tw*win; return y2-A2*Math.sin(TAU*(f*tt-(xp-L)/lam)); },col.mark,3);
       ctx.fillStyle=col.mark; ctx.beginPath(); ctx.arc(L+tc/win*tw,y2-A2*sp,6,0,TAU); ctx.fill();
       for(let k=1;k<=2;k++){ const x=L+k*per/win*tw; ctx.fillStyle=col.muted; ctx.fillRect(x-.5,y2-4,1,8); label(ctx,k===1?"T":"2T",x,y2+18,col.muted,"center"); } }); },
@@ -1144,7 +1294,7 @@ const VIZ = {
       b.addEventListener("click",()=>{ mode=m; S=ptSeil(modi[m]); [...seg.children].forEach(x=>x.setAttribute("aria-pressed",String(x===b))); Z.neu(); }); seg.appendChild(b); });
     loop(now=>{ const t=Z.tick(now), nah=Math.abs(t-1.5)<0.3; zeichneSeil(st,S,t,{teile:true,schnelle:mode==="gegen"&&nah});
       legende3(st,[["Puls 1",B3.a,1],["Puls 2",B3.b,1],["Summe",B3.sum,0]]);
-      if(Math.abs(t-1.5)<0.02) label(st.ctx,mode==="gegen"?"Seil gerade, Teilchen in Bewegung":"genau übereinander: s = s₁ + s₂",st.w/2,st.h-12,B3.mark,"center",700,13); }); },
+      if(Math.abs(t-1.5)<0.02) label(st.ctx,mode==="gegen"?"Seil gerade, Teilchen in Bewegung":"genau übereinander: y = y₁ + y₂",st.w/2,st.h-12,B3.mark,"center",700,13); }); },
   interf(side){ let d=0, a2=1; const row=el("div",{class:"k3row"}); side.appendChild(row);
     const reg=el("div",{class:"reg"}), rng=el("input",{type:"range",min:"0",max:"16",step:"1",value:"0","aria-label":"Welle 2 verschieben"}), val=el("span",{class:"val"}); reg.append(rng,val); reg.addEventListener("pointerdown",e=>e.stopPropagation());
     const seg=el("div",{class:"seg"}); [[1,"gleich groß"],[0.5,"Welle 2 kleiner"]].forEach(([v,l])=>{ const b=el("button",{"aria-pressed":String(v===a2)},l);
@@ -1158,7 +1308,7 @@ const VIZ = {
       const res=Math.sqrt(1+a2*a2+2*a2*Math.cos(TAU*d)); ctx.strokeStyle=rgba3(B3.mark,.55); ctx.lineWidth=1.5; ctx.setLineDash([3,5]); ctx.beginPath();
       [1,-1].forEach(v=>{ ctx.moveTo(0,yB-v*A*res); ctx.lineTo(w,yB-v*A*res); }); ctx.stroke(); ctx.setLineDash([]);
       leucht(ctx,pts(yB,x=>Math.sin(k*x-om)+a2*Math.sin(k*x-om-TAU*d)),B3.sum,3.5);
-      legende3(st,[["Welle 1",B3.a,0],["Welle 2",B3.b,0]]); label(ctx,`Summe   ŝ = ${fmt(res.toFixed(2))} · ŝ₁`,14,yB-A*2-9,B3.mark,"left",700,12);
+      legende3(st,[["Welle 1",B3.a,0],["Welle 2",B3.b,0]]); label(ctx,`Summe   yₘₐₓ = ${fmt(res.toFixed(2))} · yₘₐₓ,₁`,14,yB-A*2-9,B3.mark,"left",700,12);
       const r=d%1, art=r===0?"Gleichtakt: konstruktiv (Verstärkung)":r===0.5?(a2===1?"Gegentakt: destruktiv (Auslöschung)":"Gegentakt: destruktiv (Abschwächung)"):"dazwischen";
       label(ctx,art,w/2,h-9,r===0?B3.ok:r===0.5?B3.bad:B3.dim,"center",700,12); }); },
   gangu(side){ const F=mkFeld(), row=el("div",{class:"k3row"}), seg=el("div",{class:"seg"}); row.appendChild(seg); side.appendChild(row);
@@ -1188,32 +1338,32 @@ const VIZ = {
     const rng=el("input",{type:"range",min:"2",max:"18",step:"1",value:"4","aria-label":"Frequenz des Erregers"}), val=el("span",{class:"val"}); reg.append(rng,val); reg.addEventListener("pointerdown",e=>e.stopPropagation());
     const setze=v=>{ f=v; rng.value=String(Math.round(v*4)); val.textContent=`f = ${fmt(v.toFixed(2))} Hz`; Tr.leeren(); };
     [[-1,"rechts fest"],[1,"rechts lose"]].forEach(([r,l])=>{ const b=el("button",{"aria-pressed":String(r===Tr.o.R)},l); b.addEventListener("click",()=>{ Tr.o.R=r; [...seg.children].forEach(x=>x.setAttribute("aria-pressed",String(x===b))); setze(r<0?1:0.5); }); seg.appendChild(b); });
-    [1,2,3,4].forEach(n=>{ const b=el("button",{"aria-label":"Eigenschwingung Nummer "+n},`n=${n}`); b.addEventListener("click",()=>setze(Tr.o.R<0?n:n-0.5)); nb.appendChild(b); });
+    [1,2,3,4].forEach(n=>{ const b=el("button",{"aria-label":"Eigenschwingung k = "+(n-1)},`k=${n-1}`); b.addEventListener("click",()=>setze(Tr.o.R<0?n:n-0.5)); nb.appendChild(b); });
     rng.addEventListener("input",()=>setze(+rng.value/4)); row.append(seg,nb); side.append(row,reg); setze(1);
     const st=canvasFill(mkcv(side,"b3"));
     loop(now=>{ const dt=last===null?0:now-last; last=now; Tr.schritt(dt,()=>{ ph+=TAU*f/240; return 0.2*Math.sin(ph); }); zeichneTreiber(st,Tr,{ym:2.7,pb:20});
-      const n=eigenNr(f,Tr.o.R); label(st.ctx,n?`Eigenschwingung n = ${n}   λ = ${nf(2.4/f)} m`:"keine Eigenfrequenz: Das Seil zittert nur",st.w/2,st.h-8,n?B3.ok:B3.dim,"center",700,13);
+      const n=eigenNr(f,Tr.o.R); label(st.ctx,n?`${n===1?"Grundschwingung":(n-1)+". Oberschwingung"} (k = ${n-1})   λ = ${nf(2.4/f)} m`:"keine Eigenfrequenz: Das Seil zittert nur",st.w/2,st.h-8,n?B3.ok:B3.dim,"center",700,13);
       label(st.ctx,"Erreger",12,18,B3.mark,"left",700,12); }); }
 /*K3-ENDE*/
 /*K4-ANFANG*/  ,
   saite(side){ let k=1; const row=el("div",{class:"k3row"}), nb=el("div",{class:"seg eng"}), ton=()=>{ if(aud4.ctx) aud4Setze([110*k],[1]); };
-    [1,2,3,4].forEach(n=>{ const b=el("button",{"aria-pressed":String(n===k),"aria-label":"Eigenschwingung "+n},`k=${n}`);
+    [1,2,3,4].forEach(n=>{ const b=el("button",{"aria-pressed":String(n===k),"aria-label":"Eigenschwingung k = "+(n-1)},`k=${n-1}`);
       b.addEventListener("click",()=>{ k=n; [...nb.children].forEach(x=>x.setAttribute("aria-pressed",String(x===b))); ton(); }); nb.appendChild(b); });
     const zp=el("button",{class:"btn ghost","aria-label":"Saite zupfen"},"Zupfen"); zp.addEventListener("click",()=>aud4Zupf(110)); zp.addEventListener("pointerdown",e=>e.stopPropagation());
     row.append(nb); tonKnopf4(row,an=>{ if(an) ton(); }); row.appendChild(zp); side.appendChild(row);
     const U=uhr4(side), st=canvasFill(mkcv(side,"b3")); ton();
     szene4(st,U,t=>{ const G=saiteBild(st,{k,ph:Math.cos(TAU*.45*k*t)}); legende3(st,[["Saite",B3.a,0],["Hüllkurve",rgba3(B3.a,.6),1]]);
-      label(st.ctx,`k = ${k}   λ = 2L/${k}   f = ${k} · f₁ = ${hz4(110*k)}`,st.w/2,st.h-9,B3.txt,"center",700,13); }); },
+      label(st.ctx,`k = ${k-1}   λₖ = 2ℓ/${k}   f = ${k} · f₀ = ${hz4(110*k)}`,st.w/2,st.h-9,B3.txt,"center",700,13); }); },
   rohr(side){ let ged=false, n=1, druck=false; const f=()=>ged?(2*n-1)*100:n*200, ton=()=>{ if(aud4.ctx) aud4Setze([f()],[1]); };
     const row=el("div",{class:"k3row"}), s1=el("div",{class:"seg"}), s2=el("div",{class:"seg eng"}), s3=el("div",{class:"seg"});
     const mk=(seg,opts,get,set)=>opts.forEach(([v,l])=>{ const b=el("button",{"aria-pressed":String(v===get())},l); b.addEventListener("click",()=>{ set(v); [...seg.children].forEach(x=>x.setAttribute("aria-pressed",String(x===b))); ton(); }); seg.appendChild(b); });
     mk(s1,[[false,"rechts offen"],[true,"rechts zu"]],()=>ged,v=>{ ged=v; });
-    mk(s2,[[1,"k=1"],[2,"k=2"],[3,"k=3"]],()=>n,v=>{ n=v; });
+    mk(s2,[[1,"k=0"],[2,"k=1"],[3,"k=2"]],()=>n,v=>{ n=v; });
     mk(s3,[[false,"Teilchen"],[true,"Druck"]],()=>druck,v=>{ druck=v; });
     row.append(s1,s2,s3); tonKnopf4(row,an=>{ if(an) ton(); }); side.appendChild(row);
     const U=uhr4(side), st=canvasFill(mkcv(side,"b3")); ton();
     szene4(st,U,t=>{ const ph=TAU*.6*f()/200*t; rohrBild(st,{gedackt:ged,n,ph:Math.cos(ph),pph:Math.sin(ph),druck});
-      label(st.ctx,`L = 85 cm   f = ${hz4(f())}   ${ged?"gedackt: (2k−1) · c/(4L)":"offen: k · c/(2L)"}`,st.w/2,st.h*.17,B3.txt,"center",700,13); }); },
+      label(st.ctx,`ℓ = 85 cm   f = ${hz4(f())}   ${ged?"gedackt: (2k + 1) · c/(4ℓ)":"offen: (k + 1) · c/(2ℓ)"}`,st.w/2,st.h*.17,B3.txt,"center",700,13); }); },
   kundt(side){ const N=720, X=new Float32Array(N), Y=new Float32Array(N), reset=()=>{ for(let i=0;i<N;i++){ X[i]=Math.random(); Y[i]=Math.random(); } }; reset();
     let m=5, an=false, lt=null, seit=0; const f=()=>m*170, ton=()=>{ if(aud4.ctx) aud4Setze(an?[f()]:[],[1]); };
     const row=el("div",{class:"k3row"}), s1=el("div",{class:"seg eng"}), s2=el("div",{class:"seg"});
@@ -1234,7 +1384,7 @@ const VIZ = {
       ctx.fillStyle="#e4c37a"; for(let i=0;i<N;i++){ const u=1-X[i], a=an?Math.abs(Math.sin(m*Math.PI*u)):0, hb=Math.min(34,H[Math.min(BN-1,(X[i]*BN)|0)]*.55), py=base-Y[i]*hb-a*(((Math.sin(i*12.9898+Math.floor(t*30)*78.233)*43758.5453)%1+1)%1)*9*(.4+Y[i]); ctx.fillRect(x0+X[i]*L-1,py,2.2,2.2); }
       if(an&&seit>3.5){ const nx=j=>x1-j*L/m; ctx.strokeStyle=rgba3(B3.mark,.7); ctx.lineWidth=1.5; ctx.setLineDash([4,5]); for(let j=0;j<=m;j++){ ctx.beginPath(); ctx.moveTo(nx(j),y0-hh-8); ctx.lineTo(nx(j),y0+hh); ctx.stroke(); } ctx.setLineDash([]);
         const j=Math.floor(m/2); darrow(ctx,nx(j+1),y0-hh-16,nx(j),y0-hh-16,B3.mark,2.2); label(ctx,"λ/2",(nx(j)+nx(j+1))/2,y0-hh-24,B3.mark,"center",700,13); }
-      label(ctx,`Rohr L = 1,00 m   f = ${hz4(f())}   λ/2 = ${fmt(+(100/m).toFixed(1))} cm`,w/2,h-10,B3.txt,"center",700,13);
+      label(ctx,`Rohr ℓ = 1,00 m   f = ${hz4(f())}   λ/2 = ${fmt(+(100/m).toFixed(1))} cm`,w/2,h-10,B3.txt,"center",700,13);
       label(ctx,an?(seit>3.5?"Das Pulver liegt in den Bewegungsknoten.":"Das Pulver wandert …"):"Pulver gleichmäßig verteilt",14,22,B3.txt,"left",700,13); }); },
   klang(side){ let p=.18; const NB=8, amps=q=>{ const a=[...Array(NB)].map((_,i)=>Math.sin((i+1)*Math.PI*q)/((i+1)*(i+1))), mx=Math.max(...a.map(Math.abs))||1; return a.map(v=>Math.abs(v)<1e-9?0:v/mx); };
     const anschlag=()=>{ const A=amps(p), s=A.reduce((q,v)=>q+Math.abs(v),0)||1; aud4Anschlag(A.map((_,i)=>110*(i+1)),A.map(v=>Math.abs(v)/s*.9)); };
@@ -1248,11 +1398,11 @@ const VIZ = {
       strich(ctx,xs.map(x=>[G.X(x),G.Y(sc*f0(x))]),B3.dim,1.5,[4,5],.7);
       leucht(ctx,xs.map(x=>[G.X(x),G.Y(sc*A.reduce((s,a,i)=>s+a*Math.sin((i+1)*Math.PI*x)*Math.cos(TAU*.3*(i+1)*t),0))]),B3.a,3.2);
       ctx.fillStyle=B3.mark; ctx.beginPath(); ctx.moveTo(G.X(p),G.Y(-1.05)); ctx.lineTo(G.X(p)-7,G.Y(-1.05)+12); ctx.lineTo(G.X(p)+7,G.Y(-1.05)+12); ctx.closePath(); ctx.fill();
-      const by=h-26, bh=h*.3, bw=Math.min(34,(w-80)/NB-8); label(ctx,"Spektrum: Stärke der k-ten Eigenschwingung",w/2,by-bh-12,B3.txt,"center",700,12);
+      const by=h-26, bh=h*.3, bw=Math.min(34,(w-80)/NB-8); label(ctx,"Spektrum: Stärke der Schwingungen mit n · f₀",w/2,by-bh-12,B3.txt,"center",700,12);
       A.forEach((a,i)=>{ const x=w/2+(i-(NB-1)/2)*(bw+10)-bw/2, v=Math.abs(a), g=ctx.createLinearGradient(0,by-bh,0,by); g.addColorStop(0,B3.mark); g.addColorStop(1,rgba3(B3.mark,.35));
         ctx.fillStyle=rgba3(B3.sum,.07); ctx.fillRect(x,by-bh,bw,bh); ctx.fillStyle=g; ctx.fillRect(x,by-v*bh,bw,Math.max(2,v*bh)); label(ctx,String(i+1),x+bw/2,by+15,v<.02?B3.bad:B3.dim,"center",700,12); });
       label(ctx,p<.2?"Klang: hell und hart":p<.42?"Klang: ausgewogen":"Klang: weich und rund",14,h*.5-bh-24>40?20:20,B3.mark,"left",700,13);
-      if(Math.abs(p-.5)<.012) label(ctx,"Mitte: k = 2, 4, 6, 8 fehlen",w-14,20,B3.bad,"right",700,12); }); }
+      if(Math.abs(p-.5)<.012) label(ctx,"Mitte: 2f₀, 4f₀, 6f₀, 8f₀ fehlen",w-14,20,B3.bad,"right",700,12); }); }
 /*K4-ENDE*/
 };
 
@@ -1458,13 +1608,13 @@ function drawSx(A,col,R,t,K,opt){ // obere Grafik: Teilchen auf der Welle
     ctx.beginPath(); ctx.fillStyle=hl?col.mark:col.wave; ctx.arc(px,py,hl?9:7,0,TAU); ctx.fill();
     if(opt.ring(i)!==null){ ctx.strokeStyle=opt.ring(i); ctx.lineWidth=3; ctx.beginPath(); ctx.arc(px,py,14,0,TAU); ctx.stroke(); }
     ctx.fillStyle=hl?col.mark:col.muted; ctx.fillText(String(i+1),px,h-8); }
-  ctx.textAlign="left"; label(ctx,opt.live?"Animation":"s(x) bei t = 0",12,20,col.muted);
+  ctx.textAlign="left"; label(ctx,opt.live?"Animation":"y(x) bei t = 0",12,20,col.muted);
   const ax=w/2; R.dir>0?arrow(ctx,ax-40,20,ax+40,20,col.muted):arrow(ctx,ax+40,20,ax-40,20,col.muted); label(ctx,"c",ax-4,40,col.muted,"left",700);
   return {L,dx}; }
-function drawSt(B,col,g,opt={}){ // s(t)-Grafik
+function drawSt(B,col,g,opt={}){ // y(t)-Grafik
   const {ctx,w,h}=B; paper(B,col); const l=opt.small?18:34, by=h/2, bamp=Math.min(50,h*0.36), tw=w-l-(opt.small?10:16);
   ctx.strokeStyle=col.line; ctx.lineWidth=1.5; ctx.beginPath(); ctx.moveTo(l,by); ctx.lineTo(w-6,by); ctx.moveTo(l,6); ctx.lineTo(l,h-6); ctx.stroke();
-  if(!opt.small){ label(ctx,"s",l-22,18,col.muted); label(ctx,"t",w-18,by-8,col.muted); }
+  if(!opt.small){ label(ctx,"y",l-22,18,col.muted); label(ctx,"t",w-18,by-8,col.muted); }
   label(ctx,"T",l+tw/2,by+18,col.muted,"center"); label(ctx,"2T",l+tw-10,by+18,col.muted,"center");
   ctx.fillStyle=col.muted; ctx.fillRect(l+tw/2-0.5,by-4,1,8); ctx.fillRect(l+tw-0.5,by-4,1,8);
   curve(ctx,l,l+tw,px=>by-bamp*g((px-l)/tw*2),opt.color||col.mark,3,1.5);
@@ -1476,13 +1626,13 @@ function teilchenTask(R){ return {run(api){
   const richtig=i=>((i-R.j)%8+8)%8===0;
   const g=tt=>Math.sin(TAU*R.j/8+R.phi-R.dir*TAU*tt);
   api.badge("Erst wählen, dann Animation");
-  api.prompt(`Die Welle läuft nach <b>${R.dir>0?"rechts":"links"}</b>. Welches Teilchen schwingt so wie unten im s(t)-Diagramm?`);
+  api.prompt(`Die Welle läuft nach <b>${R.dir>0?"rechts":"links"}</b>. Welches Teilchen schwingt so wie unten im y(t)-Diagramm?`);
   api.hint("Tippe oben auf ein Teilchen. Lies zuerst den Startwert bei t = 0 ab, dann die erste Bewegungsrichtung.");
   const A=canvasFill(api.cv()), B=canvasFill(api.cv("small"));
   let geo={L:26,dx:40};
   loop(()=>{ const col=colors(); const t=geprueft?((performance.now()/1000-t0)/2.4)%2:0;
     geo=drawSx(A,col,R,t,K,{live:geprueft,hl:i=>geprueft&&richtig(i),ring:i=>wahl===i?(geprueft?(richtig(i)?col.ok:col.bad):col.ink):null});
-    drawSt(B,col,g,{cursor:geprueft?t:undefined,title:"s(t) des gesuchten Teilchens"}); });
+    drawSt(B,col,g,{cursor:geprueft?t:undefined,title:"y(t) des gesuchten Teilchens"}); });
   const pruef=el("button",{class:"btn",disabled:""},"Tippe oben ein Teilchen an");
   A.c.addEventListener("pointerdown",ev=>{ if(geprueft) return; const rc=A.c.getBoundingClientRect(); const x=ev.clientX-rc.left;
     const i=Math.round((x-geo.L)/geo.dx); if(i>=0&&i<K&&Math.abs(x-(geo.L+i*geo.dx))<geo.dx*0.6){ wahl=i; pruef.disabled=false; pruef.textContent=`Teilchen ${i+1} prüfen`; } });
@@ -1507,7 +1657,7 @@ function teilchenRueck(){ return [...Array(PRO_LEVEL)].map(()=>{ const R={dir:Ma
   return {run(api){
     let geprueft=false, t0=0; const K=13;
     api.badge("Erst wählen, dann Animation");
-    api.prompt(`Die Welle läuft nach <b>${R.dir>0?"rechts":"links"}</b>. Welches s(t)-Diagramm gehört zum orangen Teilchen ${R.j+1}?`);
+    api.prompt(`Die Welle läuft nach <b>${R.dir>0?"rechts":"links"}</b>. Welches y(t)-Diagramm gehört zum orangen Teilchen ${R.j+1}?`);
     const A=canvasFill(api.cv());
     loop(()=>{ const col=colors(); const t=geprueft?((performance.now()/1000-t0)/2.4)%2:0;
       drawSx(A,col,R,t,K,{live:geprueft,hl:i=>i===R.j,ring:()=>null}); });
@@ -1523,10 +1673,10 @@ function teilchenRueck(){ return [...Array(PRO_LEVEL)].map(()=>{ const R={dir:Ma
 
 /* ---------- Ablesen & Rechnen ---------- */
 function sxConf(){ const lam=one([1,1.5,2,2.5,3]), sh=one([2,3,4]), sg=Math.random()<.5?1:-1;
-  return {lam,sh,sg,o:{xmax:6,xminor:0.25,xmajor:0.5,ymax:sh+1,ystep:1,xlab:"x",xunit:"m",ylab:"s",yunit:"cm",fn:x=>sg*sh*Math.cos(TAU*x/lam)}}; }
+  return {lam,sh,sg,o:{xmax:6,xminor:0.25,xmajor:0.5,ymax:sh+1,ystep:1,xlab:"x",xunit:"m",ylab:"y",yunit:"cm",fn:x=>sg*sh*Math.cos(TAU*x/lam)}}; }
 const T_TAB=[{T:0.2,tmax:0.8,mi:0.05,ma:0.1},{T:0.4,tmax:1.6,mi:0.1,ma:0.2},{T:0.5,tmax:2,mi:0.125,ma:0.25},{T:0.8,tmax:3.2,mi:0.2,ma:0.4},{T:1,tmax:4,mi:0.25,ma:0.5}];
 function stConf(){ const r=one(T_TAB), sh=one([2,3,4]), sg=Math.random()<.5?1:-1;
-  return {T:r.T,sh,sg,o:{xmax:r.tmax,xminor:r.mi,xmajor:r.ma,ymax:sh+1,ystep:1,xlab:"t",xunit:"s",ylab:"s",yunit:"cm",fn:t=>sg*sh*Math.cos(TAU*t/r.T)}}; }
+  return {T:r.T,sh,sg,o:{xmax:r.tmax,xminor:r.mi,xmajor:r.ma,ymax:sh+1,ystep:1,xlab:"t",xunit:"s",ylab:"y",yunit:"cm",fn:t=>sg*sh*Math.cos(TAU*t/r.T)}}; }
 function plotViz(confs){ return api=>{ const sts=confs.map((c,k)=>({st:canvasFill(api.cv(confs.length>1&&k>0?"":"")),c})); let shown=false;
   loop(()=>{ const col=colors(); sts.forEach(({st,c})=>axesPlot(st,col,Object.assign({},c,{shown}))); });
   return {reveal(){ shown=true; }}; }; }
@@ -1537,8 +1687,8 @@ function ablesenL1(){
     return {viz:plotViz([Object.assign({},c.o,{mark:m,title:"Ortsdarstellung"})]),q:"Wie groß ist die Wellenlänge λ?",
       opts:[{t:`${nf(c.lam)} m`,ok:true},{t:`${nf(c.lam/2)} m`,fb:"Das ist der Abstand Berg–Tal, also λ/2."},{t:`${nf(2*c.lam)} m`,fb:"Das sind zwei Wellenlängen. Miss bis zum direkt nächsten Berg."},{t:`${nf(c.lam/4)} m`,fb:"Das ist der Abstand Ruhelage–Berg, also λ/4."}],
       erkl:`Von einem Berg zum nächsten Berg (oder Tal zu Tal) sind es ${nf(c.lam)} m.`}; });
-  const ampQ=()=>gen(()=>{ const c=sxConf(); const xc=c.sg>0?c.lam:c.lam/2; const m={type:"v",x:xc,y:c.sh,label:"ŝ"};
-    return {viz:plotViz([Object.assign({},c.o,{mark:m,title:"Ortsdarstellung"})]),q:"Wie groß ist die Amplitude ŝ?",
+  const ampQ=()=>gen(()=>{ const c=sxConf(); const xc=c.sg>0?c.lam:c.lam/2; const m={type:"v",x:xc,y:c.sh,label:"yₘₐₓ"};
+    return {viz:plotViz([Object.assign({},c.o,{mark:m,title:"Ortsdarstellung"})]),q:"Wie groß ist die Amplitude yₘₐₓ?",
       opts:[{t:`${nf(c.sh)} cm`,ok:true},{t:`${nf(2*c.sh)} cm`,fb:"Das ist der Abstand Berg–Tal. Die Amplitude misst man von der Ruhelage aus."},{t:`${nf(c.sh/2)} cm`,fb:"Zu klein. Miss von s = 0 bis zum Berg."},{t:`${nf(c.lam)} m`,fb:"Das ist die Wellenlänge, eine Länge in x-Richtung, keine Auslenkung."}],
       erkl:`Die Amplitude ist die größte Auslenkung aus der Ruhelage: ${nf(c.sh)} cm.`}; });
   return shuffle([lamQ(),lamQ(),lamQ(),ampQ(),ampQ()]).map(o=>mcTask(Object.assign(o,{hint:"Schau zuerst auf die Achsen."})));
@@ -1554,18 +1704,18 @@ function ablesenL2(){
       erkl:`T = ${nf(c.T)} s, also f = 1 / T = ${nf(1/c.T)} Hz.`}; });
   const falle=()=>{ if(Math.random()<0.5){ const c=sxConf();
       return {viz:plotViz([Object.assign({},c.o,{title:"Diagramm"})]),q:"Wie groß ist die Periodendauer T?",
-        opts:[{t:"Nicht ablesbar. Dafür bräuchte ich s(t).",ok:true},{t:`${nf(c.lam)} s`,fb:"Auf der Achse steht x in m. Das ist λ, keine Zeit."},{t:`${nf(c.lam/2)} s`,fb:"Auf der Achse steht x in m, nicht t."},{t:`${nf(2*c.lam)} s`,fb:"Auf der Achse steht x in m, nicht t."}],
-        erkl:"Das ist eine Ortsdarstellung s(x), ein Foto der Welle. Zeiten wie T kannst du daraus nicht ablesen."}; }
+        opts:[{t:"Nicht ablesbar. Dafür bräuchte ich y(t).",ok:true},{t:`${nf(c.lam)} s`,fb:"Auf der Achse steht x in m. Das ist λ, keine Zeit."},{t:`${nf(c.lam/2)} s`,fb:"Auf der Achse steht x in m, nicht t."},{t:`${nf(2*c.lam)} s`,fb:"Auf der Achse steht x in m, nicht t."}],
+        erkl:"Das ist eine Ortsdarstellung y(x), ein Foto der Welle. Zeiten wie T kannst du daraus nicht ablesen."}; }
     const c=stConf();
     return {viz:plotViz([Object.assign({},c.o,{title:"Diagramm"})]),q:"Wie groß ist die Wellenlänge λ?",
-      opts:[{t:"Nicht ablesbar. Dafür bräuchte ich s(x).",ok:true},{t:`${nf(c.T)} m`,fb:"Auf der Achse steht t in s. Das ist T, keine Länge."},{t:`${nf(c.T/2)} m`,fb:"Auf der Achse steht t in s, nicht x."},{t:`${nf(2*c.T)} m`,fb:"Auf der Achse steht t in s, nicht x."}],
-      erkl:"Das ist eine Zeitdarstellung s(t) eines einzelnen Teilchens. Längen wie λ kannst du daraus nicht ablesen."}; };
+      opts:[{t:"Nicht ablesbar. Dafür bräuchte ich y(x).",ok:true},{t:`${nf(c.T)} m`,fb:"Auf der Achse steht t in s. Das ist T, keine Länge."},{t:`${nf(c.T/2)} m`,fb:"Auf der Achse steht t in s, nicht x."},{t:`${nf(2*c.T)} m`,fb:"Auf der Achse steht t in s, nicht x."}],
+      erkl:"Das ist eine Zeitdarstellung y(t) eines einzelnen Teilchens. Längen wie λ kannst du daraus nicht ablesen."}; };
   return shuffle([tQ(),tQ(),fQ(),fQ(),falle()]).map(o=>mcTask(Object.assign(o,{hint:"Achse zuerst: x oder t?"})));
 }
 function ablesenL3(){
   const pair=()=>{ for(let n=0;n<80;n++){ const a=sxConf(), b=stConf(); b.o.fn=t=>a.sg*a.sh*Math.cos(TAU*t/b.T); b.o.ymax=a.o.ymax;
       if(b.T!==1 && a.lam/b.T<=15) return {a,b}; } const a=sxConf(), b=stConf(); return {a,b}; };
-  const viz=(p)=>plotViz([Object.assign({},p.a.o,{title:"Ortsdarstellung s(x) bei t = 0"}),Object.assign({},p.b.o,{title:"Zeitdarstellung s(t) bei x = 0"})]);
+  const viz=(p)=>plotViz([Object.assign({},p.a.o,{title:"Ortsdarstellung y(x) bei t = 0"}),Object.assign({},p.b.o,{title:"Zeitdarstellung y(t) bei x = 0"})]);
   const cQ=()=>gen(()=>{ const p=pair(), l=p.a.lam, T=p.b.T, c=l/T;
     return {viz:viz(p),q:"Wie groß ist die Ausbreitungsgeschwindigkeit c?",
       opts:[{t:`${nf(c)} m/s`,ok:true},{t:`${nf(l*T)} m/s`,fb:"c = λ / T, nicht λ · T."},{t:`${nf(T/l)} m/s`,fb:"Der Bruch ist umgedreht."},{t:`${nf(2*l/T)} m/s`,fb:"Du hast eine halbe Schwingung als T genommen."}],
@@ -1846,7 +1996,7 @@ function pulsTask(k){ return {run(api){
   loop(now=>{ const t=Z.tick(now); zeichneSeil(st,S,t,{teile:!vor,pfeile:vor?[{x:PT.xl,d:1,y:Math.max(k.a1,0)+1.3},{x:PT.xr,d:-1,y:Math.max(k.a2,0)+1.3}]:null});
     if(vor) label(st.ctx,"kurz vor dem Treffen",st.w/2,22,B3.dim,"center",700,13); else legende3(st,[["Puls 1",B3.a,1],["Puls 2",B3.b,1],["Summe",B3.sum,0]]); });
   bildWahl(api,opts,(m,o)=>seilBild(m,{f:o.f,win:beim?[5,19]:[1,23],pf:o.pf,ym:beim?5:4.6}),o=>{ vor=false; Z.zeige(true); Z.start(); effekt3(st,!!o.ok);
-    api.feedback(!!o.ok,(o.ok?"":o.fb+" ")+(beim?`Beim Überlagern gilt an jeder Stelle s = s₁ + s₂. In der Mitte: ${mz3(k.a1)} + ${mk3(k.a2)} = ${mz3(k.a1+k.a2)} Kästchen.`
+    api.feedback(!!o.ok,(o.ok?"":o.fb+" ")+(beim?`Beim Überlagern gilt an jeder Stelle y = y₁ + y₂. In der Mitte: ${mz3(k.a1)} + ${mk3(k.a2)} = ${mz3(k.a1+k.a2)} Kästchen.`
       :"Nach der Begegnung laufen beide Pulse unverändert weiter: Der Puls von links ist jetzt rechts, der Puls von rechts ist jetzt links.")); api.finish(!!o.ok); });
 }};}
 const PT_L1={gleich:[[2,2],[-2,-2]],gegen:[[2,-2],[-2,2]],rest:[[3,1],[1,3],[3,-1],[-1,3],[1,-3],[-3,-1],[2,1],[-2,-1]]};
@@ -1866,7 +2016,7 @@ function sbSeil(A){ return {L:12,rl:0,rr:0,c:2,pulse:[{a:A.v1,g:FORM.stufen(A.A)
 function summeTask(A){ return {run(api){
   const S=sbSeil(A), ich=A.sum.map(()=>0), GEO={xa:0,xb:12,ym:4.7,streck:1.5,pl:22,pr:22,pb:18}; let fertig=false, G=null, startAb=null, jetzt=0;
   api.badge("Punkt für Punkt addieren");
-  api.prompt("Die beiden Pulse überlagern sich gerade. Forme das Seil: In jeder Spalte gilt <b>s = s₁ + s₂</b>.");
+  api.prompt("Die beiden Pulse überlagern sich gerade. Forme das Seil: In jeder Spalte gilt <b>y = y₁ + y₂</b>.");
   api.hint("Blau gestrichelt ist Puls 1 allein, rot gestrichelt Puls 2 allein. Tippe oder ziehe in einer Spalte nach oben oder unten.");
   const st=canvasFill(api.cv("b3 zieh")), Z=zeitleiste(api.viz,{t0:-2.5,t1:3,t:0}); Z.zeige(false); st.c._soll=A.sum; st.c._geo=()=>G;
   const pruef=el("button",{class:"btn",disabled:""},"Erst das Seil formen"); api.actions.appendChild(pruef);
@@ -2140,24 +2290,24 @@ function resonanzTask(o){ return {_o:o,run(api){ const Tr=mkTreiber({T:1,R:o.R,g
     effekt3(st,!!op.ok); api.feedback(!!op.ok,(op.ok?"":op.fb+" ")+o.erkl+(op.ok?"":" Gleich schwingt der Erreger zum Vergleich mit der richtigen Frequenz.")); api.finish(!!op.ok); });
 }};}
 function resoBaeuche(){ const [L,c]=one([[1,4],[1,6],[1,8],[1,12],[1.5,6],[1.5,12],[2,4],[2,8],[2,12]]), f1=c/(2*L), n=2+rand(3), ks=n===2?[1,2,3,4]:[1,n-1,n,n+1], hz=v=>z2(v)+" Hz";
-  return resonanzTask({R:-1,daten:`L = ${fmt(L)} m · c = ${fmt(c)} m/s · beide Enden fest`,q:`Mit welcher Frequenz muss der Erreger schwingen, damit genau <b>${n} Bäuche</b> auf das Seil passen?`,hint:"Für n Bäuche gilt L = n · λ/2.",
+  return resonanzTask({R:-1,daten:`ℓ = ${fmt(L)} m · c = ${fmt(c)} m/s · beide Enden fest`,q:`Mit welcher Frequenz muss der Erreger schwingen, damit genau <b>${n} Bäuche</b> auf das Seil passen?`,hint:"Für n Bäuche gilt ℓ = n · λ/2.",
     opts:ks.map(k=>({t:hz(k*f1),fs:k,ok:k===n,fb:k===1?"Das ist die Grundfrequenz. Bei ihr passt nur ein einziger Bauch auf das Seil.":`Bei dieser Frequenz passen ${k} Bäuche auf das Seil.`})),
-    erkl:`Grundfrequenz: f₁ = c / (2 · L) = ${hz(f1)}. Für ${n} Bäuche: f = ${n} · f₁ = ${hz(n*f1)}.`}); }
+    erkl:`Grundfrequenz: f₀ = c / (2 · ℓ) = ${hz(f1)}. Für ${n} Bäuche: f = ${n} · f₀ = ${hz(n*f1)}.`}); }
 function resoKeine(){ const f1=one([2,3,4,5]), hz=v=>z2(v)+" Hz";
-  return resonanzTask({R:-1,daten:`beide Enden fest · Grundfrequenz f₁ = ${f1} Hz`,q:"Bei welcher dieser Frequenzen entsteht <b>keine</b> stehende Welle auf dem Seil?",hint:"Eigenfrequenzen sind ganzzahlige Vielfache der Grundfrequenz.",
+  return resonanzTask({R:-1,daten:`beide Enden fest · Grundfrequenz f₀ = ${f1} Hz`,q:"Bei welcher dieser Frequenzen entsteht <b>keine</b> stehende Welle auf dem Seil?",hint:"Eigenfrequenzen sind ganzzahlige Vielfache der Grundfrequenz.",
     opts:[2,3,2.5,4].map(k=>({t:hz(k*f1),fs:k,ok:k===2.5,fb:`Das ist das ${k}-Fache der Grundfrequenz, also eine Eigenfrequenz.`})),
-    erkl:`Stehende Wellen entstehen nur bei den ganzzahligen Vielfachen von f₁ = ${f1} Hz. ${hz(2.5*f1)} ist das 2,5-Fache und gehört nicht dazu.`}); }
+    erkl:`Stehende Wellen entstehen nur bei den ganzzahligen Vielfachen von f₀ = ${f1} Hz. ${hz(2.5*f1)} ist das 2,5-Fache und gehört nicht dazu.`}); }
 function resoLose(){ const L=one([.5,1,1.5]), c=one([6,12]), fG=c/(4*L), hz=v=>z2(v)+" Hz";
-  return resonanzTask({R:1,daten:`L = ${fmt(L)} m · c = ${fmt(c)} m/s · rechtes Ende lose`,q:`Das rechte Ende ist lose. Die tiefste Eigenfrequenz ist f = c / (4 · L) = ${hz(fG)}. Welche ist die <b>nächsthöhere</b>?`,hint:"Am losen Ende muss ein Bauch liegen.",
+  return resonanzTask({R:1,daten:`ℓ = ${fmt(L)} m · c = ${fmt(c)} m/s · rechtes Ende lose`,q:`Das rechte Ende ist lose. Die tiefste Eigenfrequenz ist f = c / (4 · ℓ) = ${hz(fG)}. Welche ist die <b>nächsthöhere</b>?`,hint:"Am losen Ende muss ein Bauch liegen.",
     opts:[{k:3,ok:true},{k:2,fb:"Bei doppelter Frequenz läge am losen Ende ein Knoten. Dort muss aber ein Bauch liegen."},{k:1.5,fb:"Dazwischen gibt es keine Eigenfrequenz."},{k:4,fb:"Geradzahlige Vielfache fallen aus, weil am losen Ende ein Bauch liegen muss."}].map(x=>({t:hz(x.k*fG),fs:x.k/2,ok:!!x.ok,fb:x.fb})),
-    erkl:`Mit einem losen Ende passt L = λ/4, 3λ/4, 5λ/4, … Die Eigenfrequenzen sind die ungeraden Vielfachen der tiefsten: 3 · ${hz(fG)} = ${hz(3*fG)}.`}); }
+    erkl:`Mit einem losen Ende passt ℓ = λ/4, 3λ/4, 5λ/4, … Die Eigenfrequenzen sind die ungeraden Vielfachen der tiefsten: 3 · ${hz(fG)} = ${hz(3*fG)}.`}); }
 function resoLambda(){ const n=one([3,4]), L=n===3?one([.9,1.5,3]):one([1,1.2,2]), m=v=>z2(v)+" m";
   return mcTask({pruef:{typ:"lambda",n,L},badge:"Genau hinschauen",q:`Das Seil ist ${fmt(L)} m lang und schwingt mit ${n} Bäuchen. Wie groß ist die Wellenlänge?`,hint:"Ein Bauch ist eine halbe Wellenlänge lang.",
     opts:[{t:m(2*L/n),ok:true},{t:m(L/n),fb:"Das ist die Länge eines einzelnen Bauchs, also nur λ/2."},{t:m(L),fb:"Das wäre die Wellenlänge bei genau zwei Bäuchen."},{t:m(2*L),fb:"Das wäre die Wellenlänge der Grundschwingung mit einem Bauch."}],
-    erkl:`${n} Bäuche sind ${n} halbe Wellenlängen: L = ${n} · λ/2. Also ist λ = 2 · L / ${n} = ${m(2*L/n)}. Der Pfeil zeigt eine ganze Wellenlänge: zwei Bäuche.`,
+    erkl:`${n} Bäuche sind ${n} halbe Wellenlängen: ℓ = ${n} · λ/2. Also ist λ = 2 · ℓ / ${n} = ${m(2*L/n)}. Der Pfeil zeigt eine ganze Wellenlänge: zwei Bäuche.`,
     viz:api=>{ const st=canvasFill(api.cv("b3")), Tr=mkTreiber({T:1,R:-1,g:.8}); let ph=0, last=null, auf=false; for(let i=0;i<60*14;i++) Tr.schritt(1/60,()=>{ ph+=TAU*n/240; return 0.2*Math.sin(ph); });
       loop(now=>{ const dt=last===null?0:now-last; last=now; Tr.schritt(dt,()=>{ ph+=TAU*n/240; return 0.2*Math.sin(ph); }); const G=zeichneTreiber(st,Tr,{ym:2.7,pt:34,pb:26});
-        schild3(st.ctx,`L = ${fmt(L)} m · beide Enden fest`,st.w/2,24,B3.txt,13); if(auf){ const y=G.Y(-2.35); darrow(st.ctx,G.X(0),y,G.X(2/n),y,B3.mark,2.5); schild3(st.ctx,"λ = "+m(2*L/n),(G.X(0)+G.X(2/n))/2,y+22,B3.mark,13); } });
+        schild3(st.ctx,`ℓ = ${fmt(L)} m · beide Enden fest`,st.w/2,24,B3.txt,13); if(auf){ const y=G.Y(-2.35); darrow(st.ctx,G.X(0),y,G.X(2/n),y,B3.mark,2.5); schild3(st.ctx,"λ = "+m(2*L/n),(G.X(0)+G.X(2/n))/2,y+22,B3.mark,13); } });
       return {reveal(){ auf=true; }}; }}); }
 function stehL3(){ return shuffle([phasenTask(one(["gegen","ruht"])),phasenTask(one(["gleich","gleich2"])),...pick([resoBaeuche,resoKeine,resoLose,resoLambda],3).map(fn=>fn())]); }
 
@@ -2443,7 +2593,7 @@ const opts4=l=>{ const s=new Set(); return l.filter(o=>{ if(s.has(o.t)) return f
 
 function bundTask(o){ return {run(api){
   const f0=o.f0, ft=f0*o.r; let p=0, fertig=false, zt=-9, t=0, lt=null, G=null;
-  api.situation(`Gitarre: Die leere Saite klingt mit ${hz4(f0)}. Die Saite ist 65 cm lang.`); api.badge("Spielen");
+  api.situation(`Gitarre: Die leere Saite klingt mit f₀ = ${hz4(f0)}. Sie ist ℓ₀ = 65 cm lang.`); api.badge("Spielen");
   api.prompt(`Triff den Zielton <b>${hz4(ft)}</b> (${o.name}). Zieh den Finger auf die Saite: Er kürzt die schwingende Länge.`); api.hint((o.bunde?"Die Bundstäbchen sind nur eine Hilfe. ":"Diesmal ohne Bundstäbchen. ")+"Die Frequenz siehst du nicht, nur die Länge: Rechne aus, welche Länge du brauchst.");
   const st=canvasFill(api.cv("b3 zieh")), zb=el("button",{class:"btn ghost"},"Zupfen"), pr=el("button",{class:"btn"},"Das ist der Ton"), row=el("div",{class:"k3row"});
   const zielX=G=>{ const pc=1-1/o.r; return o.bunde?fretMitte(G,klemm(Math.round(-12*Math.log2(1/o.r)),1,12)):G.X(pc); };   // Mit Bünden liegt das Ziel im Feld vor dem Bundstab, dort kann der Finger stehen
@@ -2452,14 +2602,14 @@ function bundTask(o){ return {run(api){
   let rest=2; const zl=()=>{ zb.textContent=fertig?"Frei zupfen":`Zupfen · ${rest} übrig`; zb.disabled=!fertig&&rest<=0; };   // vor der Antwort höchstens zwei Versuche, danach beliebig oft
   zb.addEventListener("click",()=>{ if(!fertig){ if(rest<=0) return; rest--; } zt=t; aud4Zupf(bundF(f0,p)); zl(); }); zl(); tonKnopf4(row,()=>{}); api.body.appendChild(row); api.actions.append(zb,pr);
   pr.addEventListener("click",()=>{ if(fertig) return; fertig=true; zt=t; const f=bundF(f0,p), Lv=.65*(1-p), ok=Math.abs(f-ft)/ft<=.02; pr.disabled=true; zl(); aud4Zupf(f); effekt3(st,ok);
-    api.feedback(ok,ok?`Treffer: Es schwingt die Länge ${lenTxt(Lv)}, das ergibt f = f₀ · L₀/L = ${hz4(f)}. ${o.ver}`:`Du hast ${hz4(f)} getroffen (Länge ${lenTxt(Lv)}). Für ${hz4(ft)} brauchst du L = L₀ · f₀/f = ${lenTxt(.65*f0/ft)}. ${o.ver}`,ok?undefined:"Die Saite reißt fast!"); api.finish(ok); });
+    api.feedback(ok,ok?`Treffer: Es schwingt die Länge ${lenTxt(Lv)}, das ergibt f = f₀ · ℓ₀/ℓ = ${hz4(f)}. ${o.ver}`:`Du hast ${hz4(f)} getroffen (Länge ${lenTxt(Lv)}). Für ${hz4(ft)} brauchst du ℓ = ℓ₀ · f₀/f = ${lenTxt(.65*f0/ft)}. ${o.ver}`,ok?undefined:"Die Saite reißt fast!"); api.finish(ok); });
   loop(now=>{ const dt=lt===null?0:Math.min(.05,now-lt); lt=now; t+=dt; G=halsBild(st,{bunde:o.bunde}); const {ctx,w,h}=st, f=bundF(f0,p), px=G.X(p), A=Math.max(0,24*Math.exp(-(t-zt)*1.3));
     ctx.strokeStyle=B3.metall; ctx.lineWidth=2; ctx.beginPath(); ctx.moveTo(G.x0,G.y0); ctx.lineTo(px,G.y0); ctx.stroke();
     saiteLinie(ctx,px,G.x1,G.y0,A,Math.cos(TAU*DOCH4*(f/f0)*(t-zt)),1,B3.a,3);
     if(A<1.5){ ctx.strokeStyle=B3.a; ctx.lineWidth=3; ctx.beginPath(); ctx.moveTo(px,G.y0); ctx.lineTo(G.x1,G.y0); ctx.stroke(); }
     if(fertig){ const zx=zielX(G); ctx.strokeStyle=B3.ok; ctx.lineWidth=2.4; ctx.setLineDash([5,5]); ctx.beginPath(); ctx.arc(zx,G.y0,17,0,TAU); ctx.stroke(); ctx.setLineDash([]); label(ctx,"Ziel",zx,G.y0-26,B3.ok,"center",700,12); }
     const fx=o.bunde&&p>0?fretMitte(G,fretN(p)):px; perle(ctx,fx,G.y0,B3.mark,22); ctx.fillStyle=B3.mark; ctx.beginPath(); ctx.arc(fx,G.y0,8,0,TAU); ctx.fill();
-    label(ctx,`Ziel: ${hz4(ft)}`,14,24,B3.mark,"left",700,14); label(ctx,`schwingende Länge L = ${lenTxt(.65*(1-p))}`,w/2,h-14,B3.txt,"center",700,13); label(ctx,"Sattel",G.x0,G.y0-44,B3.dim,"center",600,11); label(ctx,"Steg",G.x1+4,G.y0-44,B3.dim,"center",600,11); }); }};}
+    label(ctx,`Ziel: ${hz4(ft)}`,14,24,B3.mark,"left",700,14); label(ctx,`schwingende Länge ℓ = ${lenTxt(.65*(1-p))}`,w/2,h-14,B3.txt,"center",700,13); label(ctx,"Sattel",G.x0,G.y0-44,B3.dim,"center",600,11); label(ctx,"Steg",G.x1+4,G.y0-44,B3.dim,"center",600,11); }); }};}
 function bundL1(){ const L=[{name:"Oktave",r:2,bunde:true,ver:"Eine Oktave bedeutet doppelte Frequenz, also halbe Länge."},{name:"Quinte",r:1.5,bunde:true,ver:"Eine Quinte hat das Frequenzverhältnis 3:2, also zwei Drittel der Länge."},{name:"Quarte",r:4/3,bunde:true,ver:"Eine Quarte hat das Verhältnis 4:3, also drei Viertel der Länge."},
     {name:"große Terz",r:1.25,bunde:false,ver:"Eine große Terz hat das Verhältnis 5:4, also vier Fünftel der Länge."},{name:"kleine Terz",r:1.2,bunde:false,ver:"Eine kleine Terz hat das Verhältnis 6:5, also fünf Sechstel der Länge."}];
   return [...shuffle(L.slice(0,3)),...shuffle(L.slice(3))].map(it=>bundTask(Object.assign({f0:one([82.4,110,146.8,196])},it))); }
@@ -2467,8 +2617,8 @@ function bundL1(){ const L=[{name:"Oktave",r:2,bunde:true,ver:"Eine Oktave bedeu
 // Flageolett: Die Saite nur berühren. An einem Knoten kann sie nicht schwingen, also bleiben nur die Eigenschwingungen mit Knoten an dieser Stelle.
 function flagTask(o){ return {run(api){
   const f1=110, k=o.k, pz=o.a/o.k; let p=.5, fertig=false, zt=-9, t=0, lt=null, G=null, res=null;
-  api.situation(`Gitarrensaite, leer ${hz4(f1)}. Du berührst sie nur leicht, ohne sie herunterzudrücken, und zupfst dann.`); api.badge("Spielen");
-  api.prompt(`Bring die <b>${k}. Eigenschwingung</b> (${hz4(k*f1)}) zum Klingen. Wo musst du die Saite berühren?`); api.hint("An deinem Finger liegt ein Knoten. Nur Eigenschwingungen, die dort selbst einen Knoten haben, bleiben übrig.");
+  api.situation(`Gitarrensaite, Grundfrequenz f₀ = ${hz4(f1)}. Du berührst sie nur leicht, ohne sie herunterzudrücken, und zupfst dann.`); api.badge("Spielen");
+  api.prompt(`Bring die <b>${k-1}. Oberschwingung</b> (${hz4(k*f1)}) zum Klingen. Wo musst du die Saite berühren?`); api.hint("An deinem Finger liegt ein Knoten. Nur Eigenschwingungen, die dort selbst einen Knoten haben, bleiben übrig.");
   const st=canvasFill(api.cv("b3 zieh")), zb=el("button",{class:"btn ghost"},"Zupfen"), pr=el("button",{class:"btn"},"Das ist der Ton"), row=el("div",{class:"k3row"});
   st.c._ziel=()=>{ const r=st.c.getBoundingClientRect(), pw=k===2?1/3:.5; return {r:[r.left+G.X(pz),r.top+G.y0],f:[r.left+G.X(pw),r.top+G.y0]}; };
   ziehbar(st.c,(x)=>{ if(G) p=klemm(G.P(x),.03,.97); });
@@ -2476,15 +2626,15 @@ function flagTask(o){ return {run(api){
   let rest=2; const zl=()=>{ zb.textContent=fertig?"Frei zupfen":`Zupfen · ${rest} übrig`; zb.disabled=!fertig&&rest<=0; };   // vor der Antwort höchstens zwei Versuche, danach beliebig oft
   zb.addEventListener("click",()=>{ if(!fertig){ if(rest<=0) return; rest--; } zupf(); zl(); }); zl(); tonKnopf4(row,()=>{}); api.body.appendChild(row); api.actions.append(zb,pr);
   pr.addEventListener("click",()=>{ if(fertig) return; fertig=true; zupf(); const ok=!!res&&res.b===k; pr.disabled=true; zl(); effekt3(st,ok);
-    const ziel=`Für k = ${k} berührst du bei ${o.a}/${k} der Länge.`;
-    api.feedback(ok,res?`Du hast bei ${res.a}/${res.b} der Länge berührt. Dort liegt ein Knoten aller Eigenschwingungen mit k = ${res.b}, ${2*res.b}, ${3*res.b}, … Die tiefste davon klingt: ${res.b} · f₁ = ${hz4(res.b*f1)}.${ok?"":" "+ziel}`:`Dort liegt kein Knoten einer tiefen Eigenschwingung, die Saite klingt dumpf. Knoten liegen bei Bruchteilen wie 1/2, 1/3 oder 1/4 der Länge. ${ziel}`,ok?undefined:"Saite abgewürgt!"); api.finish(ok); });
+    const ziel=`Für die ${k-1}. Oberschwingung berührst du bei ${o.a}/${k} der Länge.`;
+    api.feedback(ok,res?`Du hast bei ${res.a}/${res.b} der Länge berührt. Dort liegt ein Knoten aller Eigenschwingungen mit den Frequenzen ${res.b} · f₀, ${2*res.b} · f₀, ${3*res.b} · f₀, … Die tiefste davon klingt: ${res.b} · f₀ = ${hz4(res.b*f1)}.${ok?"":" "+ziel}`:`Dort liegt kein Knoten einer tiefen Eigenschwingung, die Saite klingt dumpf. Knoten liegen bei Bruchteilen wie 1/2, 1/3 oder 1/4 der Länge. ${ziel}`,ok?undefined:"Saite abgewürgt!"); api.finish(ok); });
   loop(now=>{ const dt=lt===null?0:Math.min(.05,now-lt); lt=now; t+=dt; G=halsBild(st,{bunde:false}); const {ctx,w,h}=st, A=res?Math.max(0,28*Math.exp(-(t-zt)*(fertig?.6:1.1))):Math.max(0,5*Math.exp(-(t-zt)*3));
     ctx.strokeStyle=B3.metall; ctx.lineWidth=2; ctx.beginPath(); ctx.moveTo(G.x0,G.y0); ctx.lineTo(G.x1,G.y0); ctx.stroke();
     const b=res?res.b:1; if(zt>-1) saiteLinie(ctx,G.x0,G.x1,G.y0,A,Math.cos(TAU*DOCH4*b*.55*(t-zt)),b,B3.a,3.2);
     if(fertig&&res){ for(let j=0;j<=res.b;j++){ ctx.strokeStyle=B3.mark; ctx.lineWidth=2.2; ctx.beginPath(); ctx.arc(G.X(j/res.b),G.y0,8,0,TAU); ctx.stroke(); } }
     if(fertig){ ctx.strokeStyle=B3.ok; ctx.lineWidth=2.4; ctx.setLineDash([5,5]); ctx.beginPath(); ctx.arc(G.X(pz),G.y0,17,0,TAU); ctx.stroke(); ctx.setLineDash([]); label(ctx,"Ziel",G.X(pz),G.y0-26,B3.ok,"center",700,12); }
     const px=G.X(p); perle(ctx,px,G.y0,B3.mark,22); ctx.strokeStyle=B3.mark; ctx.lineWidth=3; ctx.beginPath(); ctx.arc(px,G.y0,9,0,TAU); ctx.stroke();
-    label(ctx,`Ziel: ${k}. Eigenschwingung = ${hz4(k*f1)}`,14,24,B3.mark,"left",700,14); label(ctx,`Berühre die Saite leicht und zupfe`,w/2,h-14,B3.txt,"center",700,13); }); }};}
+    label(ctx,`Ziel: ${k-1}. Oberschwingung = ${hz4(k*f1)}`,14,24,B3.mark,"left",700,14); label(ctx,`Berühre die Saite leicht und zupfe`,w/2,h-14,B3.txt,"center",700,13); }); }};}
 function flagL2(){ return pick([{k:2,a:1},{k:3,a:1},{k:3,a:2},{k:4,a:1},{k:4,a:3},{k:5,a:1},{k:5,a:2},{k:6,a:1}],PRO_LEVEL).map(flagTask); }
 
 // Pfeife: Länge so einstellen, dass der Grundton stimmt (offen: λ₁ = 2L, gedackt: λ₁ = 4L)
@@ -2497,33 +2647,33 @@ function orgelTask(o){ return {run(api){
   st.c._ziel=()=>({v:vz,fv:vz>500?vz-300:vz+300});
   const bl=el("button",{class:"btn ghost"},"Anblasen"); let rest=2; const zl=()=>{ bl.textContent=fertig?"Frei anblasen":`Anblasen · ${rest} übrig`; bl.disabled=!fertig&&rest<=0; };   // vor der Antwort höchstens zwei Versuche, danach beliebig oft
   const blasen=()=>{ if(aud4.ctx&&aud4.an){ aud4Setze([orgelF(Lv(),ged)],[.9]); setTimeout(()=>aud4Stumm(),1100); } };
-  const setze=x=>{ v=klemm(x,0,1000); rng.value=String(Math.round(v)); val.textContent=`L = ${lenTxt(Lv())}`; }; rng.addEventListener("input",()=>setze(+rng.value));
+  const setze=x=>{ v=klemm(x,0,1000); rng.value=String(Math.round(v)); val.textContent=`ℓ = ${lenTxt(Lv())}`; }; rng.addEventListener("input",()=>setze(+rng.value));
   bl.addEventListener("click",()=>{ if(!fertig){ if(rest<=0) return; rest--; } blasen(); zl(); }); zl();
   reg.append(rng,val); row.appendChild(reg); api.body.appendChild(row); tonKnopf4(trow,()=>{}); api.body.appendChild(trow); api.actions.append(bl,pr); setze(v);
   pr.addEventListener("click",()=>{ if(fertig) return; fertig=true; pr.disabled=true; zl(); blasen(); const f=orgelF(Lv(),ged), ok=Math.abs(f-ft)/ft<=.02; effekt3(st,ok);
-    if(ok) api.feedback(true,`${ged?"Gedackt":"Offen"}: f₁ = c/(${ged?4:2}L) = 343 m/s : (${ged?4:2} · ${lenTxt(Lv())}) = ${hz4(f)}.${ged?" Eine gedackte Pfeife ist für denselben Ton nur halb so lang wie eine offene.":""}`);
-    else api.feedback(false,`Mit L = ${lenTxt(Lv())} kommt f₁ = ${hz4(f)} heraus. Für ${hz4(ft)} brauchst du L = ${lenTxt(Lt)}: ${ged?"λ₁ = 4L, also L = c/(4f)":"λ₁ = 2L, also L = c/(2f)"}.`,"Die Pfeife quietscht!"); api.finish(ok); });
+    if(ok) api.feedback(true,`${ged?"Gedackt":"Offen"}: f₀ = c/(${ged?4:2}ℓ) = 343 m/s : (${ged?4:2} · ${lenTxt(Lv())}) = ${hz4(f)}.${ged?" Eine gedackte Pfeife ist für denselben Ton nur halb so lang wie eine offene.":""}`);
+    else api.feedback(false,`Mit ℓ = ${lenTxt(Lv())} kommt f₀ = ${hz4(f)} heraus. Für ${hz4(ft)} brauchst du ℓ = ${lenTxt(Lt)}: ${ged?"λ₀ = 4ℓ, also ℓ = c/(4f)":"λ₀ = 2ℓ, also ℓ = c/(2f)"}.`,"Die Pfeife quietscht!"); api.finish(ok); });
   loop(now=>{ const dt=lt===null?0:Math.min(.05,now-lt); lt=now; t+=dt; const f=orgelF(Lv(),ged), ph=TAU*DOCH4*Math.min(3,f/ft)*t; rohrBild(st,{gedackt:ged,n:1,ph:Math.cos(ph),amp:.9,rel:Lv()/Lmax}); const {ctx,w,h}=st, x0=46, ww=w-92;
     if(fertig){ ctx.strokeStyle=B3.ok; ctx.lineWidth=2.4; ctx.setLineDash([5,5]); ctx.beginPath(); ctx.moveTo(x0+ww*Lt/Lmax,h*.5-70); ctx.lineTo(x0+ww*Lt/Lmax,h*.5+70); ctx.stroke(); ctx.setLineDash([]); label(ctx,"Ziel",x0+ww*Lt/Lmax,h*.5-76,B3.ok,"center",700,12); }
-    label(ctx,`Ziel: ${hz4(ft)}`,14,24,B3.mark,"left",700,14); label(ctx,`L = ${lenTxt(Lv())}`,w/2,h*.17+14,B3.txt,"center",700,13); }); }};}
+    label(ctx,`Ziel: ${hz4(ft)}`,14,24,B3.mark,"left",700,14); label(ctx,`ℓ = ${lenTxt(Lv())}`,w/2,h*.17+14,B3.txt,"center",700,13); }); }};}
 function orgelL3(){ const L=[{name:"Querflöte, Ton C",f:262,ged:false},{name:"Gedackte Pfeife, derselbe Ton C",f:262,ged:true},{name:"Panflötenrohr",f:858,ged:true},{name:"Stimmpfeife für das A",f:440,ged:false},{name:"Orgelpfeife, Bass",f:131,ged:true},{name:"Orgelpfeife, Bass",f:131,ged:false}];
   return shuffle(L).slice(0,PRO_LEVEL).map(orgelTask); }
 
 /* =====================================================================
    Challenge B · Wie klingt's?
    ===================================================================== */
-const GR4={c:["c","Wellengeschw."],lam:["λ₁","Wellenlänge der Grundschwingung"],f:["f₁","Grundfrequenz"]};
+const GR4={c:["c","Wellengeschw."],lam:["λ₀","Wellenlänge der Grundschwingung"],f:["f₀","Grundfrequenz"]};
 const KA4=[
-  {text:"Du greifst die Gitarrensaite im 5. Bund.",soll:{c:"=",lam:"-",f:"+"},nach:[.75,1.33],bez:"Saite",erkl:"Spannung und Saite bleiben gleich, also bleibt c gleich. Die schwingende Länge wird kürzer: λ₁ = 2L sinkt und f₁ = c/(2L) steigt."},
-  {text:"Du stimmst die Gitarrensaite straffer.",soll:{c:"+",lam:"=",f:"+"},nach:[1,1.25],bez:"Saite",erkl:"Mehr Spannung macht die Saite schneller: c steigt. Die Länge und damit λ₁ = 2L bleiben, also steigt f₁ = c/(2L)."},
-  {text:"Du ziehst eine dickere Saite auf. Länge und Spannung bleiben gleich.",soll:{c:"-",lam:"=",f:"-"},nach:[1,.8],bez:"Saite",erkl:"Die dickere Saite hat mehr Masse pro Länge und ist träger: c sinkt. λ₁ = 2L bleibt, also sinkt f₁."},
-  {text:"Du setzt einen Kapodaster auf die Gitarre.",soll:{c:"=",lam:"-",f:"+"},nach:[.8,1.25],bez:"Saite",erkl:"Der Kapodaster verkürzt die schwingende Länge wie ein gegriffener Bund: c bleibt, λ₁ sinkt, f₁ steigt."},
-  {text:"Eine offene Orgelpfeife wird im Raum wärmer.",soll:{c:"+",lam:"=",f:"+"},nach:[1,1.12],bez:"Luftsäule",erkl:"In warmer Luft ist c größer. Die Pfeife behält ihre Länge, also bleibt λ₁ = 2L. Deshalb steigt f₁ und die Orgel „zieht hoch“."},
-  {text:"Du füllst Wasser in einen Messzylinder und bläst darüber. Der Wasserstand steigt.",soll:{c:"=",lam:"-",f:"+"},nach:[.7,1.43],bez:"Luftsäule",erkl:"Die Luftsäule über dem Wasser wird kürzer, c in der Luft bleibt. Mit λ₁ = 4L sinkt λ₁, und f₁ = c/(4L) steigt: Der Ton wird höher."}
+  {text:"Du greifst die Gitarrensaite im 5. Bund.",soll:{c:"=",lam:"-",f:"+"},nach:[.75,1.33],bez:"Saite",erkl:"Spannung und Saite bleiben gleich, also bleibt c gleich. Die schwingende Länge wird kürzer: λ₀ = 2ℓ sinkt und f₀ = c/(2ℓ) steigt."},
+  {text:"Du stimmst die Gitarrensaite straffer.",soll:{c:"+",lam:"=",f:"+"},nach:[1,1.25],bez:"Saite",erkl:"Mehr Spannung macht die Saite schneller: c steigt. Die Länge und damit λ₀ = 2ℓ bleiben, also steigt f₀ = c/(2ℓ)."},
+  {text:"Du ziehst eine dickere Saite auf. Länge und Spannung bleiben gleich.",soll:{c:"-",lam:"=",f:"-"},nach:[1,.8],bez:"Saite",erkl:"Die dickere Saite hat mehr Masse pro Länge und ist träger: c sinkt. λ₀ = 2ℓ bleibt, also sinkt f₀."},
+  {text:"Du setzt einen Kapodaster auf die Gitarre.",soll:{c:"=",lam:"-",f:"+"},nach:[.8,1.25],bez:"Saite",erkl:"Der Kapodaster verkürzt die schwingende Länge wie ein gegriffener Bund: c bleibt, λ₀ sinkt, f₀ steigt."},
+  {text:"Eine offene Orgelpfeife wird im Raum wärmer.",soll:{c:"+",lam:"=",f:"+"},nach:[1,1.12],bez:"Luftsäule",erkl:"In warmer Luft ist c größer. Die Pfeife behält ihre Länge, also bleibt λ₀ = 2ℓ. Deshalb steigt f₀ und die Orgel „zieht hoch“."},
+  {text:"Du füllst Wasser in einen Messzylinder und bläst darüber. Der Wasserstand steigt.",soll:{c:"=",lam:"-",f:"+"},nach:[.7,1.43],bez:"Luftsäule",erkl:"Die Luftsäule über dem Wasser wird kürzer, c in der Luft bleibt. Mit λ₀ = 4ℓ sinkt λ₀, und f₀ = c/(4ℓ) steigt: Der Ton wird höher."}
 ];
 function klangAendertTask(it){ return {run(api){
   const antw={}, keys=["c","lam","f"]; let geprueft=false, zeig=false;
-  api.badge("Erst vorhersagen"); api.prompt(it.text); api.hint("Entscheide für jede Größe. λ₁ ist die Wellenlänge der Grundschwingung. Das Bild zeigt erst nach dem Prüfen, wie es danach schwingt.");
+  api.badge("Erst vorhersagen"); api.prompt(it.text); api.hint("Entscheide für jede Größe. λ₀ ist die Wellenlänge der Grundschwingung. Das Bild zeigt erst nach dem Prüfen, wie es danach schwingt.");
   const st=canvasFill(api.cv("b3"));
   loop(now=>{ buehne(st); const {ctx,w,h}=st, W=w-110, cx=w/2, y0=h*.5, A=Math.min(h*.27,58), pts=(Lr,fr,ph)=>[...Array(61)].map((_,i)=>{ const u=i/60; return [cx-W*Lr/2+W*Lr*u,y0-A*Math.sin(Math.PI*u)*ph]; });
     strich(ctx,pts(1,1,1),B3.dim,2,[6,6],.9); strich(ctx,pts(1,1,-1),B3.dim,2,[6,6],.5);
@@ -2545,31 +2695,31 @@ function klangL1(){ return pick(KA4,PRO_LEVEL).map(klangAendertTask); }
 function klangL2(){ const C=343;
   return shuffle([
     ()=>{ const L=one([60,65,70]), f=one([82.4,110,146.8]), c=2*L/100*f; return mcTask({sit:`Eine Gitarrensaite ist ${L} cm lang. Ihre Grundfrequenz ist ${hz4(f)}.`,q:"Wie schnell breitet sich die Welle auf der Saite aus?",
-      opts:opts4([{t:ms4(c),ok:true},{t:ms4(c/2),fb:"Du hast λ = L gesetzt. Bei der Grundschwingung ist L = λ/2, also λ = 2L."},{t:ms4(c*100),fb:"Die Zentimeter sind nicht in Meter umgerechnet."},{t:ms4(c*2),fb:"λ = 4L gilt nur beim gedackten Rohr."}]),
-      erkl:`λ = 2L = ${fmt(2*L/100)} m, dann c = λ · f₁ = ${fmt(2*L/100)} m · ${hz4(f)} = ${ms4(c)}.`}); },
+      opts:opts4([{t:ms4(c),ok:true},{t:ms4(c/2),fb:"Du hast λ = ℓ gesetzt. Bei der Grundschwingung ist ℓ = λ/2, also λ = 2ℓ."},{t:ms4(c*100),fb:"Die Zentimeter sind nicht in Meter umgerechnet."},{t:ms4(c*2),fb:"λ = 4ℓ gilt nur beim gedackten Rohr."}]),
+      erkl:`λ = 2ℓ = ${fmt(2*L/100)} m, dann c = λ · f₀ = ${fmt(2*L/100)} m · ${hz4(f)} = ${ms4(c)}.`}); },
     ()=>{ const L=one([10,12.5,20]), f=C/(4*L/100); return mcTask({sit:`Ein Panflötenrohr ist gedackt und ${fmt(L)} cm lang. Rechne mit c = 343 m/s.`,q:"Wie groß ist die Grundfrequenz?",
-      opts:opts4([{t:hz4(f),ok:true},{t:hz4(2*f),fb:"Das ist die Formel für das offene Rohr. Beim gedackten Rohr gilt λ₁ = 4L."},{t:hz4(f/100),fb:"Die Zentimeter sind nicht in Meter umgerechnet."},{t:hz4(f/2),fb:"Zu tief: λ₁ ist 4L, nicht 8L."}]),
-      erkl:`λ₁ = 4L = ${fmt(4*L/100)} m, dann f₁ = c/λ₁ = ${C} m/s : ${fmt(4*L/100)} m = ${hz4(f)}.`}); },
+      opts:opts4([{t:hz4(f),ok:true},{t:hz4(2*f),fb:"Das ist die Formel für das offene Rohr. Beim gedackten Rohr gilt λ₀ = 4ℓ."},{t:hz4(f/100),fb:"Die Zentimeter sind nicht in Meter umgerechnet."},{t:hz4(f/2),fb:"Zu tief: λ₀ ist 4ℓ, nicht 8L."}]),
+      erkl:`λ₀ = 4ℓ = ${fmt(4*L/100)} m, dann f₀ = c/λ₀ = ${C} m/s : ${fmt(4*L/100)} m = ${hz4(f)}.`}); },
     ()=>{ const f=C/(4*.025); return mcTask({sit:"Dein Gehörgang ist ein Rohr von etwa 2,5 cm Länge. Es ist an einem Ende offen und am anderen vom Trommelfell verschlossen. Rechne mit c = 343 m/s.",q:"Bei welcher Grundfrequenz hat er seine Resonanz?",
-      opts:opts4([{t:hz4(f),ok:true},{t:hz4(2*f),fb:"Das wäre ein offenes Rohr. Hier ist ein Ende zu: λ₁ = 4L."},{t:hz4(f/10),fb:"Die Zehnerpotenz stimmt nicht: 2,5 cm sind 0,025 m."},{t:hz4(f/2),fb:"λ₁ ist 4L, nicht 8L."}]),
-      erkl:`λ₁ = 4L = 0,10 m, dann f₁ = ${C} m/s : 0,10 m = ${hz4(f)}. Hier hörst du am empfindlichsten.`}); },
+      opts:opts4([{t:hz4(f),ok:true},{t:hz4(2*f),fb:"Das wäre ein offenes Rohr. Hier ist ein Ende zu: λ₀ = 4ℓ."},{t:hz4(f/10),fb:"Die Zehnerpotenz stimmt nicht: 2,5 cm sind 0,025 m."},{t:hz4(f/2),fb:"λ₀ ist 4ℓ, nicht 8L."}]),
+      erkl:`λ₀ = 4ℓ = 0,10 m, dann f₀ = ${C} m/s : 0,10 m = ${hz4(f)}. Hier hörst du am empfindlichsten.`}); },
     ()=>{ const L=one([2,1.5,1]), f=C/(2*L); return mcTask({sit:`Eine offene Orgelpfeife ist ${fmt(L.toFixed(2))} m lang. Rechne mit c = 343 m/s.`,q:"Wie groß ist die Grundfrequenz?",
-      opts:opts4([{t:hz4(f),ok:true},{t:hz4(f/2),fb:"Das ist die Formel für das gedackte Rohr. Offen gilt λ₁ = 2L."},{t:hz4(2*f),fb:"Du hast λ = L gesetzt. Bei der Grundschwingung ist L = λ/2."},{t:hz4(4*f),fb:"Zu hoch: λ₁ ist 2L, nicht L/2."}]),
-      erkl:`λ₁ = 2L = ${fmt((2*L).toFixed(2))} m, dann f₁ = c/λ₁ = ${C} m/s : ${fmt((2*L).toFixed(2))} m = ${hz4(f)}.`}); },
-    ()=>{ const f1=one([110,165,220,330]), k=one([3,4,5]); return mcTask({sit:`Eine Saite hat die Grundfrequenz f₁ = ${hz4(f1)}.`,q:`Welche Frequenz hat die ${k}. Eigenschwingung?`,
-      opts:opts4([{t:hz4(k*f1),ok:true},{t:hz4((k-1)*f1),fb:`Das ist die ${k-1}. Eigenschwingung.`},{t:hz4((k+1)*f1),fb:`Das ist die ${k+1}. Eigenschwingung.`},{t:hz4(f1/k),fb:"Geteilt statt multipliziert."}]),
-      erkl:`fₖ = k · f₁ = ${k} · ${hz4(f1)} = ${hz4(k*f1)}.`}); }
+      opts:opts4([{t:hz4(f),ok:true},{t:hz4(f/2),fb:"Das ist die Formel für das gedackte Rohr. Offen gilt λ₀ = 2ℓ."},{t:hz4(2*f),fb:"Du hast λ = ℓ gesetzt. Bei der Grundschwingung ist ℓ = λ/2."},{t:hz4(4*f),fb:"Zu hoch: λ₀ ist 2ℓ, nicht L/2."}]),
+      erkl:`λ₀ = 2ℓ = ${fmt((2*L).toFixed(2))} m, dann f₀ = c/λ₀ = ${C} m/s : ${fmt((2*L).toFixed(2))} m = ${hz4(f)}.`}); },
+    ()=>{ const f1=one([110,165,220,330]), k=one([3,4,5]); return mcTask({sit:`Eine Saite hat die Grundfrequenz f₀ = ${hz4(f1)}.`,q:`Welche Frequenz hat die ${k-1}. Oberschwingung?`,
+      opts:opts4([{t:hz4(k*f1),ok:true},{t:hz4((k-1)*f1),fb:`Das ist die ${k-2}. Oberschwingung.`},{t:hz4((k+1)*f1),fb:`Das ist die ${k}. Oberschwingung.`},{t:hz4(f1/k),fb:"Geteilt statt multipliziert."}]),
+      erkl:`Die ${k-1}. Oberschwingung hat k = ${k-1}: fₖ = (k + 1) · f₀ = ${k} · ${hz4(f1)} = ${hz4(k*f1)}.`}); }
   ]).map(g=>g()); }
 const KL3=[
   {sit:"Nach einem Atemzug Helium klingt die Stimme heller, der Grundton der Stimmbänder bleibt aber fast gleich.",q:"Was ändert sich?",ok:"Die Resonanzen im Mund- und Rachenraum wandern nach oben. Die Klangfarbe ändert sich.",f:["Die Stimmbänder schwingen viel schneller.","Der Rachenraum wird kürzer."],e:"In Helium ist c viel größer. Die Resonanzfrequenzen des Mund- und Rachenraums steigen, die Mischung der Oberschwingungen ändert sich. Der Grundton kommt von den Stimmbändern und bleibt."},
-  {sit:"Eine Klarinette und eine Querflöte sind gleich lang. Die Klarinette klingt etwa eine Oktave tiefer.",q:"Warum?",ok:"Die Klarinette wirkt wie ein gedacktes Rohr: λ₁ = 4L statt 2L.",f:["Das Holz hat ein kleineres c als das Metall der Flöte.","Die Klarinette hat ein engeres Rohr."],e:"Eine Klarinette ist näherungsweise an einem Ende geschlossen. Dort liegt ein Knoten, das Rohr hat λ₁ = 4L. Die doppelte Wellenlänge bedeutet die halbe Frequenz."},
-  {sit:"Du berührst eine Gitarrensaite bei L/3 nur leicht und zupfst sie. Es klingt ein heller Ton.",q:"Welche Eigenschwingungen bleiben, und was hörst du?",ok:"Es bleiben k = 3, 6, 9, …. Du hörst 3 · f₁.",f:["Es bleiben nur gerade k. Du hörst die Oktave 2 · f₁.","Es bleibt die Grundschwingung. Du hörst f₁."],e:"Bei L/3 liegt ein Knoten. Er passt nur zu den Eigenschwingungen, bei denen L/3 ein ganzes Vielfaches von λ/2 ist: k = 3, 6, 9, … Am deutlichsten hörst du 3 · f₁."},
-  {sit:"Orgelbauer bauen für tiefe Töne gern gedackte Pfeifen.",q:"Was ist ihr Vorteil?",ok:"Für denselben Ton ist sie nur halb so lang wie eine offene Pfeife.",f:["Gedackte Pfeifen klingen bei gleicher Länge höher.","Gedackte Pfeifen sind lauter."],e:"Gedackt gilt λ₁ = 4L, offen λ₁ = 2L. Für dieselbe Frequenz braucht die gedackte Pfeife also nur die halbe Länge."},
-  {sit:"Du bläst über eine Flasche, während sie sich mit Wasser füllt. Der Ton wird immer höher.",q:"Warum?",ok:"Die Luftsäule wird kürzer, also steigt f₁ = c/(4L).",f:["Das Wasser schwingt mit und hat ein größeres c.","Die Luft wird dichter, deshalb steigt c."],e:"Die Luftsäule ist gedackt und wird mit steigendem Wasserstand kürzer. c in der Luft bleibt gleich, nur L sinkt. Also steigt f₁."},
+  {sit:"Eine Klarinette und eine Querflöte sind gleich lang. Die Klarinette klingt etwa eine Oktave tiefer.",q:"Warum?",ok:"Die Klarinette wirkt wie ein gedacktes Rohr: λ₀ = 4ℓ statt 2ℓ.",f:["Das Holz hat ein kleineres c als das Metall der Flöte.","Die Klarinette hat ein engeres Rohr."],e:"Eine Klarinette ist näherungsweise an einem Ende geschlossen. Dort liegt ein Knoten, das Rohr hat λ₀ = 4ℓ. Die doppelte Wellenlänge bedeutet die halbe Frequenz."},
+  {sit:"Du berührst eine Gitarrensaite bei ℓ/3 nur leicht und zupfst sie. Es klingt ein heller Ton.",q:"Welche Eigenschwingungen bleiben, und was hörst du?",ok:"Es bleiben die Schwingungen mit 3f₀, 6f₀, 9f₀, … Du hörst 3 · f₀.",f:["Es bleiben 2f₀, 4f₀, … Du hörst die Oktave 2 · f₀.","Es bleibt die Grundschwingung. Du hörst f₀."],e:"Bei ℓ/3 liegt ein Knoten. Er passt nur zu den Eigenschwingungen, bei denen ℓ/3 ein ganzes Vielfaches von λ/2 ist: 3f₀, 6f₀, 9f₀, … (k = 2, 5, 8, …). Am deutlichsten hörst du 3 · f₀."},
+  {sit:"Orgelbauer bauen für tiefe Töne gern gedackte Pfeifen.",q:"Was ist ihr Vorteil?",ok:"Für denselben Ton ist sie nur halb so lang wie eine offene Pfeife.",f:["Gedackte Pfeifen klingen bei gleicher Länge höher.","Gedackte Pfeifen sind lauter."],e:"Gedackt gilt λ₀ = 4ℓ, offen λ₀ = 2ℓ. Für dieselbe Frequenz braucht die gedackte Pfeife also nur die halbe Länge."},
+  {sit:"Du bläst über eine Flasche, während sie sich mit Wasser füllt. Der Ton wird immer höher.",q:"Warum?",ok:"Die Luftsäule wird kürzer, also steigt f₀ = c/(4ℓ).",f:["Das Wasser schwingt mit und hat ein größeres c.","Die Luft wird dichter, deshalb steigt c."],e:"Die Luftsäule ist gedackt und wird mit steigendem Wasserstand kürzer. c in der Luft bleibt gleich, nur ℓ sinkt. Also steigt f₀."},
   {sit:"Zupfst du die Gitarrensaite nahe am Steg, klingt sie hell und hart. In der Mitte klingt sie weich.",q:"Warum?",ok:"Nahe am Steg werden die hohen Eigenschwingungen stark angeregt.",f:["Nahe am Steg wird die Saite kürzer.","Nahe am Steg wird c größer."],e:"Die Länge und c ändern sich nicht. Nur die Mischung: Nahe am Ende sind die Anteile der hohen k größer, in der Mitte fehlen die geraden k ganz."},
-  {sit:"Die tiefen Saiten eines Klaviers sind mit Kupferdraht umwickelt.",q:"Was bringt das?",ok:"Die Saite wird schwerer, c sinkt, und der Ton wird tief, ohne dass die Saite sehr lang sein muss.",f:["Die Saite wird länger und schwingt deshalb langsamer.","Die Saite wird straffer und schwingt deshalb tiefer."],e:"f₁ = c/(2L). Mehr Masse pro Länge verkleinert c, und f₁ sinkt. Ohne Umwicklung bräuchte die Saite für denselben Ton viele Meter."}
+  {sit:"Die tiefen Saiten eines Klaviers sind mit Kupferdraht umwickelt.",q:"Was bringt das?",ok:"Die Saite wird schwerer, c sinkt, und der Ton wird tief, ohne dass die Saite sehr lang sein muss.",f:["Die Saite wird länger und schwingt deshalb langsamer.","Die Saite wird straffer und schwingt deshalb tiefer."],e:"f₀ = c/(2ℓ). Mehr Masse pro Länge verkleinert c, und f₀ sinkt. Ohne Umwicklung bräuchte die Saite für denselben Ton viele Meter."}
 ];
-function klangL3(){ return pick(KL3,PRO_LEVEL).map(it=>mcTask({sit:it.sit,q:it.q,opts:[{t:it.ok,ok:true},{t:it.f[0],fb:"Das passt nicht zu den Größen in f₁ = c/(2L)."},{t:it.f[1],fb:"Das erklärt es nicht."}],erkl:it.e})); }
+function klangL3(){ return pick(KL3,PRO_LEVEL).map(it=>mcTask({sit:it.sit,q:it.q,opts:[{t:it.ok,ok:true},{t:it.f[0],fb:"Das passt nicht zu den Größen in f₀ = c/(2ℓ)."},{t:it.f[1],fb:"Das erklärt es nicht."}],erkl:it.e})); }
 
 /* =====================================================================
    Challenge C · Kundt-Labor
@@ -2614,8 +2764,8 @@ function kundtL3(){ const A=[
   {sit:"Du verdoppelst die Frequenz des Lautsprechers. Die Luft bleibt dieselbe.",q:"Was passiert mit den Häufchen?",fakt:.5,erkl:"λ = c/f wird halb so groß, also auch der Häufchenabstand: Die Häufchen rücken zusammen."},
   {sit:"Du senkst die Frequenz des Lautsprechers auf ein Drittel. Die Luft bleibt dieselbe.",q:"Was passiert mit den Häufchen?",fakt:3,erkl:"λ = c/f wird dreimal so groß, also auch der Häufchenabstand: Die Häufchen rücken auseinander."}
  ].map(kundtWas);
-  const mess=mcTask({sit:"Kundts Original: Ein Messingstab (L = 1,00 m) ist in der Mitte eingespannt und schwingt in der Grundschwingung, beide Enden sind frei. Er regt die Luft im Rohr an. Die Häufchen liegen 9,8 cm auseinander. Rechne mit c = 343 m/s für die Luft.",q:"Wie groß ist c im Messing?",
-    opts:[{t:"etwa 3,50 km/s",ok:true},{t:"etwa 1,75 km/s",fb:"Du hast λ im Stab gleich L gesetzt. Mit Knoten in der Mitte und freien Enden ist L = λ/2."},{t:"etwa 7,0 km/s",fb:"Zu groß: In der Grundschwingung ist λ im Stab 2L, nicht 4L."},{t:"etwa 35 m/s",fb:"Die Zehnerpotenz stimmt nicht: 9,8 cm sind 0,098 m."}],
+  const mess=mcTask({sit:"Kundts Original: Ein Messingstab (ℓ = 1,00 m) ist in der Mitte eingespannt und schwingt in der Grundschwingung, beide Enden sind frei. Er regt die Luft im Rohr an. Die Häufchen liegen 9,8 cm auseinander. Rechne mit c = 343 m/s für die Luft.",q:"Wie groß ist c im Messing?",
+    opts:[{t:"etwa 3,50 km/s",ok:true},{t:"etwa 1,75 km/s",fb:"Du hast λ im Stab gleich ℓ gesetzt. Mit Knoten in der Mitte und freien Enden ist ℓ = λ/2."},{t:"etwa 7,0 km/s",fb:"Zu groß: In der Grundschwingung ist λ im Stab 2ℓ, nicht 4ℓ."},{t:"etwa 35 m/s",fb:"Die Zehnerpotenz stimmt nicht: 9,8 cm sind 0,098 m."}],
     erkl:"In der Luft ist λ = 2 · 9,8 cm = 19,6 cm, die Frequenz also f = 343 m/s : 0,196 m ≈ 1750 Hz. Der Stab schwingt mit derselben Frequenz. Seine Länge ist λ/2, also λ = 2,00 m, und c = λ · f ≈ 2,00 m · 1750 Hz ≈ 3,50 km/s."});
   return shuffle(A.concat([mess])); }
 /*K4-ENDE*/
@@ -2772,7 +2922,7 @@ function schwebL3(){ return pick(SB3,PRO_LEVEL).map(it=>mcTask({sit:it.sit,q:it.
    CHALLENGES
    ===================================================================== */
 const CH = {
-  aendert:{titel:"Was ändert sich?", art:"Ursache und Wirkung", kurz:"Etwas am Erreger oder am Seil ändert sich. Was passiert mit f, T, c, λ und ŝ?",
+  aendert:{titel:"Was ändert sich?", art:"Ursache und Wirkung", kurz:"Etwas am Erreger oder am Seil ändert sich. Was passiert mit f, T, c, λ und yₘₐₓ?",
     intro:"Du bekommst eine Situation, in der sich etwas ändert. Sag für jede Größe voraus, ob sie größer, gleich oder kleiner wird. Erst danach siehst du die neue Welle.",
     levels:[{name:"Einsteiger",info:"Eine Änderung, klare Situationen. Vorhersage für jede Größe.",make:()=>pick(AE_L1,PRO_LEVEL).map(aendertTask)},
             {name:"Mit Zahlen",info:"Rechnen mit c = λ · f. Drei der vier Ergebnisse sind typische Fehler.",make:zahlenTasks},
@@ -2787,16 +2937,16 @@ const CH = {
     levels:[{name:"Klare Fälle",info:"Seil, Feder, Schall, Stadion.",make:()=>pick(PHAENOMENE.filter(p=>p.lv===1),PRO_LEVEL).map(p=>phenTask(p,false))},
             {name:"Knifflige Fälle",info:"Erdbeben, Gitarre, Wasser, Ultraschall.",make:()=>pick(PHAENOMENE.filter(p=>p.lv===2),PRO_LEVEL).map(p=>phenTask(p,false))},
             {name:"Begründen",info:"Warum ist das so? Wähle die Erklärung, die wirklich trägt.",make:()=>pick(QL_L3,PRO_LEVEL).map(mcTask)}]},
-  teilchen:{titel:"Welches Teilchen bin ich?", art:"s(x) und s(t) verbinden", kurz:"Finde das Teilchen, das genau so schwingt wie im s(t)-Diagramm.",
+  teilchen:{titel:"Welches Teilchen bin ich?", art:"y(x) und y(t) verbinden", kurz:"Finde das Teilchen, das genau so schwingt wie im y(t)-Diagramm.",
     intro:"Oben siehst du die Welle als Foto, unten die Schwingung eines einzelnen Teilchens. Finde das passende Teilchen. Nach dem Prüfen läuft die Animation, und du siehst, ob deine Vorhersage stimmt.",
     levels:[{name:"Welle nach rechts",info:"Die Welle läuft immer nach rechts.",make:()=>teilchenTasks(true)},
             {name:"Beide Richtungen",info:"Achte auf die Laufrichtung.",make:()=>teilchenTasks(false)},
-            {name:"Umgekehrt",info:"Das Teilchen ist markiert. Welches s(t)-Diagramm gehört dazu?",make:teilchenRueck}]},
-  ablesen:{titel:"Ablesen & Rechnen", art:"Diagramme lesen", kurz:"λ, ŝ, T und f aus Diagrammen ablesen und damit c berechnen.",
-    intro:"Lies Größen aus s(x)- und s(t)-Diagrammen ab und rechne damit. Die falschen Antworten sind typische Ablesefehler. Schau immer zuerst auf die Achse. Nach deiner Antwort wird die richtige Strecke eingezeichnet.",
-    levels:[{name:"Ortsdarstellung",info:"λ und ŝ aus s(x).",make:ablesenL1},
-            {name:"Zeitdarstellung",info:"T und f aus s(t), mit einer Falle.",make:ablesenL2},
-            {name:"Beide Diagramme",info:"c, Laufzeit und Vorhersage aus s(x) und s(t).",make:ablesenL3}]},
+            {name:"Umgekehrt",info:"Das Teilchen ist markiert. Welches y(t)-Diagramm gehört dazu?",make:teilchenRueck}]},
+  ablesen:{titel:"Ablesen & Rechnen", art:"Diagramme lesen", kurz:"λ, yₘₐₓ, T und f aus Diagrammen ablesen und damit c berechnen.",
+    intro:"Lies Größen aus y(x)- und y(t)-Diagrammen ab und rechne damit. Die falschen Antworten sind typische Ablesefehler. Schau immer zuerst auf die Achse. Nach deiner Antwort wird die richtige Strecke eingezeichnet.",
+    levels:[{name:"Ortsdarstellung",info:"λ und yₘₐₓ aus y(x).",make:ablesenL1},
+            {name:"Zeitdarstellung",info:"T und f aus y(t), mit einer Falle.",make:ablesenL2},
+            {name:"Beide Diagramme",info:"c, Laufzeit und Vorhersage aus y(x) und y(t).",make:ablesenL3}]},
   polar:{titel:"Polarisierbar?", art:"Polarisation", kurz:"Welle trifft Spalt: Was kommt durch? Erst vorhersagen, dann zuschauen.",
     intro:"Eine Welle trifft auf einen oder mehrere Spalte. Sag voraus, was dahinter ankommt. Die Animation zeigt dir danach, ob du richtig lagst.",
     levels:[{name:"Welche Wellen?",info:"Lässt sich diese Welle überhaupt polarisieren?",make:()=>pick(PHAENOMENE.filter(p=>p.art!=="misch"&&!p.nopol),PRO_LEVEL).map(p=>phenTask(p,true))},
@@ -2806,7 +2956,7 @@ const CH = {
   pulse:{titel:"Pulse treffen sich", art:"Superposition", kurz:"Zwei Pulse laufen aufeinander zu. Wie sieht das Seil beim Treffen aus, wie danach?",
     intro:"Zwei Pulse laufen auf einem Seil aufeinander zu. Kurz vor dem Treffen hält die Animation an, und du sagst voraus, wie das Seil aussehen wird. Erst danach läuft die Animation weiter. Mit dem Regler kannst du die Zeit selbst vor- und zurückschieben.",
     levels:[{name:"Beim Treffen",info:"Vier Bilder: Welches zeigt das Seil, wenn die Pulse übereinander liegen?",make:pulsL1},
-            {name:"Summe bauen",info:"Forme das Seil selbst, Spalte für Spalte: s = s₁ + s₂.",make:pulsL2},
+            {name:"Summe bauen",info:"Forme das Seil selbst, Spalte für Spalte: y = y₁ + y₂.",make:pulsL2},
             {name:"Nach dem Treffen",info:"Ungleiche Pulse: Was ist nach der Begegnung von ihnen übrig?",make:pulsL3}]},
   reflexion:{titel:"Echo am Seilende", art:"Reflexion", kurz:"Ein Puls läuft auf das Seilende zu. Kommt er als Berg oder als Tal zurück?",
     intro:"Ein Puls läuft auf ein festes oder ein loses Seilende zu. Du sagst voraus, wie er zurückkommt. Danach siehst du die Reflexion in der Animation und kannst sie mit dem Regler in Ruhe untersuchen.",
@@ -2828,12 +2978,12 @@ const CH = {
   jaeger:{titel:"Saitenmeister", art:"Töne treffen", kurz:"Finde die richtige Stelle auf Saite und Pfeife: Länge, Knoten und Eigenschwingungen bestimmen den Ton.",
     intro:"Du bist Saitenmeister: Ein Zielton erscheint, und du triffst ihn. Mit dem Finger kürzt du die Saite, mit einer leichten Berührung holst du eine Eigenschwingung heraus, und an der Pfeife stellst du die Länge ein. Nach jedem Versuch siehst du, was physikalisch passiert ist. Ein grober Fehlgriff lässt die Saite fast reißen.",
     levels:[{name:"Bund finden",info:"Zieh den Finger auf die Saite und triff Oktave, Quinte und Co. Kürzere Saite, höherer Ton.",make:bundL1},
-            {name:"Flageolett",info:"Berühre die Saite an einem Knoten und hol die k-te Eigenschwingung heraus.",make:flagL2},
+            {name:"Flageolett",info:"Berühre die Saite an einem Knoten und hol eine Oberschwingung heraus.",make:flagL2},
             {name:"Rohr-Orgel",info:"Stell die Pfeifenlänge ein, offen oder gedackt, und triff den Ton.",make:orgelL3}]},
-  klingts:{titel:"Wie klingt's?", art:"Ursache und Wirkung", kurz:"Gitarre, Orgel, Flasche: Was passiert mit c, λ₁ und f₁, und wie rechnet man damit?",
-    intro:"Du bekommst ein Instrument und eine Änderung. Sag voraus, was mit c, λ₁ und f₁ passiert. Danach rechnest du mit Saiten und Rohren und begründest Phänomene aus der Musik.",
-    levels:[{name:"Was ändert sich?",info:"Bund, Spannung, dicke Saite, Wärme: c, λ₁ und f₁ vorhersagen.",make:klangL1},
-            {name:"Rechnen",info:"f₁ und c aus Länge und Frequenz. Drei der vier Ergebnisse sind typische Fehler.",make:klangL2},
+  klingts:{titel:"Wie klingt's?", art:"Ursache und Wirkung", kurz:"Gitarre, Orgel, Flasche: Was passiert mit c, λ₀ und f₀, und wie rechnet man damit?",
+    intro:"Du bekommst ein Instrument und eine Änderung. Sag voraus, was mit c, λ₀ und f₀ passiert. Danach rechnest du mit Saiten und Rohren und begründest Phänomene aus der Musik.",
+    levels:[{name:"Was ändert sich?",info:"Bund, Spannung, dicke Saite, Wärme: c, λ₀ und f₀ vorhersagen.",make:klangL1},
+            {name:"Rechnen",info:"f₀ und c aus Länge und Frequenz. Drei der vier Ergebnisse sind typische Fehler.",make:klangL2},
             {name:"Begründen",info:"Helium-Stimme, Klarinette, Flageolett, Orgel: Wähle die Erklärung, die wirklich trägt.",make:klangL3}]},
   kundtlab:{titel:"Kundt-Labor", art:"Messen wie im Labor", kurz:"Häufchen am Lineal ablesen, c bestimmen und vorhersagen, was sich ändert.",
     intro:"Im Glasrohr hat sich das Pulver zu Häufchen gesammelt. Du liest am Lineal ab, rechnest damit λ und c aus und sagst voraus, was passiert, wenn sich Gas oder Frequenz ändern.",
@@ -2874,7 +3024,7 @@ function renderHome(){
   KAPITEL.forEach(k=>{ const b=el("button",{class:"tab","aria-pressed":String(k.id===aktK)},`<span class="nr">${k.nr}</span>${k.titel}`);
     if(!k.freigegeben){ b.disabled=true; b.title="Wird später freigegeben"; } else b.addEventListener("click",()=>{ aktK=k.id; renderHome(); });
     tabs.appendChild(b); });
-  tabs.appendChild(trophyButton());
+/*HEFT-ANFANG*/tabs.appendChild(heftKnopf());/*HEFT-ENDE*/  tabs.appendChild(trophyButton());
   tabs.appendChild(themeSwitch());
   top.append(brand,tabs); app.appendChild(top);
 
@@ -3247,6 +3397,324 @@ function playLevel(k,typ,n){/*K3-ANFANG*/if(typ===k.spiel) return spielIntro(k);
   run();
 }
 
+/*HEFT-ANFANG*/
+/* =====================================================================
+   PHYSIKHEFT (ab Version 2.5): der Stoff im Stil eines Heftaufschriebs, zum Lesen und Drucken.
+   Die Inhalte stehen in heft.js (Bausteine), die Skizzen hier in HSK. Kein Fortschritt, kein Nachweis.
+   ===================================================================== */
+const HEFT_ICON=`<svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 2.5h9.5a2 2 0 0 1 2 2v13H6a2 2 0 0 1-2-2z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M4 15.5a2 2 0 0 1 2-2h9.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M7.5 6.5h5M7.5 9.5h4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>`;
+function heftKnopf(){ const b=el("button",{class:"tab heftk",title:"Heft","aria-label":"Heft"},HEFT_ICON); b.addEventListener("click",()=>renderHeft()); return b; }
+function heftLaden(){ if(window.HEFT) return Promise.resolve(window.HEFT);
+  return new Promise((ok,no)=>{ const s=document.createElement("script"); s.src="heft.js?v="+encodeURIComponent(VERSION); s.onload=()=>window.HEFT?ok(window.HEFT):no(new Error("leer")); s.onerror=()=>{ s.remove(); no(new Error("nicht geladen")); }; document.head.appendChild(s); }); }
+let heftK="k1";
+function renderHeft(wahl){ view(false); if(wahl) heftK=wahl;
+  const druck=el("button",{class:"btn"},"Drucken / PDF"); druck.addEventListener("click",()=>window.print());
+  heftKopf("heft",druck);
+  const leiste=el("nav",{class:"hleiste","aria-label":"Kapitel im Heft"}), wrap=el("div",{class:"heft"}); app.append(leiste,wrap);
+  wrap.innerHTML=`<p class="hlade">Das Heft wird geladen …</p>`;
+  heftLaden().then(H=>{ const da=H.filter(k=>k.abschnitte&&k.abschnitte.length); if(!da.length) throw new Error("leer");
+    if(heftK!=="alle"&&!da.some(k=>k.kap===heftK)) heftK=da[0].kap;
+    leiste.innerHTML=""; const chip=(id,txt)=>{ const b=el("button",{class:id==="alle"?"tab alle":"tab","aria-pressed":String(id===heftK),title:String(txt).replace(/<[^>]+>/g," ").trim()},txt); b.addEventListener("click",()=>renderHeft(id)); leiste.appendChild(b); };
+    da.forEach(k=>{ const K=KAPITEL.find(x=>x.id===k.kap)||{nr:"",titel:k.titel}; chip(k.kap,`<span class="nr">${K.nr}</span>${k.titel||K.titel}`); });
+    if(da.length>1) chip("alle","Alle Kapitel");
+    wrap.innerHTML=""; (heftK==="alle"?da:da.filter(k=>k.kap===heftK)).forEach(k=>wrap.appendChild(heftBlatt(k)));
+  }).catch(()=>{ wrap.innerHTML=`<p class="hlade">Das Heft konnte nicht geladen werden. Prüfe die Internetverbindung und tippe auf der Startseite auf „Aktualisieren“.</p>`; }); }
+function heftBlatt(k){ const K=KAPITEL.find(x=>x.id===k.kap)||{nr:"",titel:""}, b=el("article",{class:"hblatt"});
+  b.innerHTML=`<header class="hkopf"><span class="hknr">${K.nr}</span><div><span class="heye">Wellen-Werkstatt · Heft · Kapitel ${K.nr}</span><h2>${k.titel||K.titel}</h2></div></header>`;
+  k.abschnitte.forEach((a,i)=>{ const s=el("section",{class:"habs"+(a.tief?" tief":"")}); s.appendChild(el("h3",{},`<span class="hnr">${K.nr}.${i+1}</span>${hfx(a.titel)}`)); (a.inhalt||[]).forEach(z=>s.appendChild(heftBaustein(z))); b.appendChild(s); });
+  return b; }
+// Brüche: {Zähler|Nenner} → gestapelter Bruch (auch verschachtelt)
+const hfx=s=>{ let t=String(s===undefined?"":s), a; while((a=t.replace(/\{([^{}|]*)\|([^{}|]*)\}/g,`<span class="fr"><span>$1</span><span>$2</span></span>`))!==t) t=a; return t; };
+function heftBaustein(z){ const [typ,a,b]=z;
+  if(typ==="merke"||typ==="achtung") return el("div",{class:"hb "+typ},`<span class="hbtag">${typ==="merke"?"Merke":"Achtung"}</span><div>${hfx(a)}</div>`);
+  if(typ==="text") return el("p",{class:"hb text"},hfx(a));
+  if(typ==="formel"||typ==="nebenformel"){ const o=z[3]||{}, fs=o.fs?`<span class="hfs" title="IQB-Formelsammlung">Formelsammlung S. ${o.fs}</span>`:"";
+    return el("div",{class:"hb "+(typ==="formel"?"hformel":"hneben")},`<div class="hf">${hfx(a)}</div>${fs}${b?`<div class="hbereich"><b>Gilt</b> ${hfx(b)}</div>`:""}`); }
+  if(typ==="groessen") return el("table",{class:"hb hgr"},`<tbody>${(a||[]).map(r=>`<tr>${r.map(c=>`<td>${hfx(c)}</td>`).join("")}</tr>`).join("")}</tbody>`);
+  if(typ==="skizze") return el("figure",{class:"hb skizze"},`${HSK[a]?HSK[a]():`<p class="hlade">Skizze „${a}“ fehlt.</p>`}${b?`<figcaption>${hfx(b)}</figcaption>`:""}`);
+  if(typ==="beispiel") return el("div",{class:"hb beispiel"},`<span class="hbtag">Beispiel</span><p class="hauf">${hfx(a)}</p><div class="hloes">${(b||[]).map(l=>`<p>${hfx(l)}</p>`).join("")}</div>`);
+  return el("div",{class:"hb"},hfx(a)); }
+
+/* ---------- Skizzen (SVG, druckscharf) ---------- */
+const hsN=v=>Math.round(v*10)/10;
+function hsPfad(f,x0,x1,n=160){ let d=""; for(let i=0;i<=n;i++){ const x=x0+(x1-x0)*i/n; d+=(i?"L":"M")+hsN(x)+" "+hsN(f(x)); } return d; }
+function hsSvg(id,w,h,inner,titel){ const mk=(n,c)=>`<marker id="${id}-${n}" viewBox="0 0 10 10" refX="8.6" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="${c}"/></marker>`;
+  return `<svg class="hs" viewBox="0 0 ${w} ${h}" role="img" aria-label="${titel}"><defs>${mk("k","#3d4757")}${mk("b","#1f6fd1")}${mk("o","#c46a00")}</defs>${inner}</svg>`; }
+const hsPf=(id,x1,y1,x2,y2,f,cls,beide)=>`<line class="${cls}" x1="${hsN(x1)}" y1="${hsN(y1)}" x2="${hsN(x2)}" y2="${hsN(y2)}" marker-end="url(#${id}-${f})"${beide?` marker-start="url(#${id}-${f})"`:""}/>`;
+const hsT=(x,y,t,cls="",an="middle")=>`<text x="${hsN(x)}" y="${hsN(y)}" text-anchor="${an}" class="${cls}">${t}</text>`;
+const hsL=(x1,y1,x2,y2,cls)=>`<line class="${cls}" x1="${hsN(x1)}" y1="${hsN(y1)}" x2="${hsN(x2)}" y2="${hsN(y2)}"/>`;
+const hsK=(x,y,r,fill,extra="")=>`<circle cx="${hsN(x)}" cy="${hsN(y)}" r="${r}" fill="${fill}" ${extra}/>`;
+function hsFeder(x1,y1,x2,y2,n=7,a=4.5){ const dx=x2-x1, dy=y2-y1, L=Math.hypot(dx,dy)||1, nx=-dy/L, ny=dx/L; let d=`M${hsN(x1)} ${hsN(y1)}`;
+  for(let i=1;i<2*n;i++){ const u=i/(2*n), s=i%2?a:-a; d+=`L${hsN(x1+dx*u+nx*s)} ${hsN(y1+dy*u+ny*s)}`; } return `<path class="fe" d="${d}L${hsN(x2)} ${hsN(y2)}"/>`; }
+function hsAchsen(id,xa,ya,xb,yt,yu,lx,ly){ return hsPf(id,xa,ya,xb,ya,"k","ax")+hsPf(id,xa,yu,xa,yt,"k","ax")+hsT(xb+8,ya+5,lx,"gr","start")+hsT(xa+10,yt+6,ly,"gr","start"); }
+// Eigenschwingung als Zeile: Band der Amplitude, eine Momentaufnahme, Enden fest (Wand) oder lose (Ring)
+function hsMode(x0,x1,y,A,fn,li,re){ const u=x=>(x-x0)/(x1-x0);
+  let g=`<path d="${hsPfad(x=>y-A*Math.abs(fn(u(x))),x0,x1)}L${x1} ${y}${hsPfad(x=>y+A*Math.abs(fn(u(x))),x1,x0).replace("M","L")}Z" fill="#dfeafa"/>`+hsL(x0,y,x1,y,"g")+`<path class="w" d="${hsPfad(x=>y-.85*A*fn(u(x)),x0,x1)}"/>`;
+  const ende=(x,art,seite)=>art==="fest"?`<rect x="${seite<0?x-11:x}" y="${y-A-6}" width="11" height="${2*A+12}" fill="#9aa5b5"/>`:hsL(x,y-A-8,x,y+A+8,"ax")+`<circle cx="${x}" cy="${hsN(y-.85*A*fn(seite<0?0:1))}" r="5.5" fill="#fff" stroke="#3d4757" stroke-width="2"/>`;
+  return g+ende(x0,li,-1)+ende(x1,re,1); }
+const HSK={
+  kette(){ const id="hk-kette", y0=124, A=40, lam=272, xf=566, X=i=>96+i*31, s=x=>x<xf?A*Math.sin(2*Math.PI*(xf-x)/lam):0, ye=y0-s(62); let g="";
+    g+=hsL(70,y0,640,y0,"g")+hsT(646,y0+5,"Ruhelage","st","start");
+    g+=hsPf(id,96,36,612,36,"b","pb")+hsT(354,24,"Ausbreitungsrichtung: Die Energie wandert weiter","bt");
+    for(let i=0;i<18;i++) g+=hsK(X(i),y0,3,"#c3cad4");
+    g+=hsFeder(56,ye,X(0),y0-s(X(0)),4,4); for(let i=0;i<17;i++) g+=hsFeder(X(i),y0-s(X(i)),X(i+1),y0-s(X(i+1)),4,4);
+    g+=`<rect x="30" y="${hsN(ye-18)}" width="26" height="36" rx="5" fill="#3d4757"/>`+hsPf(id,18,y0-A,18,y0+A,"k","k",true)+hsT(43,y0+A+42,"Erreger","gr");
+    for(let i=0;i<18;i++) g+=hsK(X(i),y0-s(X(i)),8.5,i===6?"#c46a00":"#1f6fd1",'stroke="#fff" stroke-width="1.5"');
+    g+=hsPf(id,X(6)+18,y0-A-4,X(6)+18,y0+A+4,"o","m",true)+hsT(X(6)+18,y0+A+28,"schwingt nur um seine Ruhelage","mt");
+    g+=hsT(X(17),y0+28,"noch in Ruhe","st","end");
+    return hsSvg(id,710,214,g,"Gekoppelte Oszillatoren als Kette"); },
+  querlaengs(){ const id="hk-ql", lam=240; let g="";
+    const y1=86, s1=x=>30*Math.sin(2*Math.PI*(x-60)/lam), X1=i=>60+i*30;
+    g+=hsT(20,22,"Transversalwelle (Querwelle)","gr","start")+hsL(46,y1,612,y1,"g")+`<path class="wl" d="${hsPfad(x=>y1-s1(x),60,600)}"/>`;
+    for(let i=0;i<19;i++) g+=hsK(X1(i),y1-s1(X1(i)),7,i===4?"#c46a00":"#1f6fd1",'stroke="#fff" stroke-width="1.3"');
+    g+=hsPf(id,X1(4)+17,y1-34,X1(4)+17,y1+34,"o","m",true)+hsT(X1(4)+17,y1+56,"Schwingung ⟂ Ausbreitung","mt");
+    g+=hsPf(id,450,y1+56,606,y1+56,"b","pb")+hsT(442,y1+61,"Ausbreitung","bt","end");
+    const y2=250, d2=x=>11*Math.sin(2*Math.PI*(x-60)/lam);
+    g+=hsT(20,190,"Longitudinalwelle (Längswelle)","gr","start");
+    [y2-18,y2,y2+18].forEach((yy,r)=>{ for(let i=0;i<=36;i++){ const x0=60+i*15, hi=r===0&&i===16; g+=hsK(x0+d2(x0),yy,hi?6:4.6,hi?"#c46a00":"#1f6fd1"); } });
+    const xh=60+16*15+d2(300); g+=hsPf(id,xh-17,y2-34,xh+17,y2-34,"o","m",true)+hsT(xh,y2-44,"Schwingung ∥ Ausbreitung","mt");
+    g+=hsT(60+lam/2,y2+44,"Verdichtung","st")+hsT(60+lam,y2+44,"Verdünnung","st")+hsT(60+1.5*lam,y2+44,"Verdichtung","st");
+    g+=hsPf(id,450,y2+66,606,y2+66,"b","pb")+hsT(442,y2+71,"Ausbreitung","bt","end");
+    return hsSvg(id,640,330,g,"Quer- und Längswelle"); },
+  zeitbild(){ const id="hk-zeit", x0=60, y0=118, T=220, A=70, s=x=>A*Math.sin(2*Math.PI*(x-x0)/T); let g="";
+    g+=hsAchsen(id,x0,y0,612,20,214,"t","s");
+    g+=`<path class="w" d="${hsPfad(x=>y0-s(x),x0,x0+2.4*T)}"/>`;
+    const m1=x0+T/4, m2=x0+1.25*T; g+=hsL(m1,y0-A-4,m1,30,"md")+hsL(m2,y0-A-4,m2,30,"md")+hsPf(id,m1,36,m2,36,"o","m",true)+hsT((m1+m2)/2,28,"T","mt");
+    const mi=x0+2.25*T; g+=hsPf(id,mi,y0,mi,y0-A,"o","m",true)+hsT(mi+10,y0-A/2+8,`s<tspan dy="4" font-size="11">max</tspan>`,"mt","start");
+    const xp=x0+1.12*T, yp=y0-s(xp); g+=hsL(xp,y0,xp,yp,"pbd")+hsK(xp,yp,5,"#1f6fd1")+hsT(xp+8,(y0+yp)/2+5,"s","bt","start");
+    return hsSvg(id,640,224,g,"Zeitbild einer Schwingung"); },
+  momentbild(){ const id="hk-moment", x0=50, y0=120, lam=230, A=70, s=x=>A*Math.sin(2*Math.PI*(x-x0)/lam); let g="";
+    g+=hsAchsen(id,x0,y0,614,20,216,"x","y");
+    g+=`<path class="w" d="${hsPfad(x=>y0-s(x),x0,610)}"/>`;
+    const b1=x0+lam/4, b2=x0+1.25*lam, t2=x0+1.75*lam, t1=x0+.75*lam;
+    g+=hsL(b1,y0-A-4,b1,26,"md")+hsL(b2,y0-A-4,b2,26,"md")+hsPf(id,b1,32,b2,32,"o","m",true)+hsT((b1+b2)/2,24,"λ","mt");
+    g+=hsL(b2,y0-A+6,b2,214,"md")+hsL(t2,y0+A+4,t2,214,"md")+hsPf(id,b2,208,t2,208,"o","m",true)+hsT((b2+t2)/2,232,"λ/2","mt");
+    g+=hsT(x0+2.25*lam,y0-A-12,"Wellenberg","bt")+hsT(t1,y0+A+24,"Wellental","bt");
+    return hsSvg(id,640,240,g,"Momentbild einer Welle"); },
+  ausbreitung(){ const id="hk-aus", y0=118, lam=240, A=58, dx=62, s=(x,v)=>A*Math.sin(2*Math.PI*(x-60-v)/lam); let g="";
+    g+=hsL(40,y0,612,y0,"g")+hsT(620,y0+5,"x","gr","start");
+    g+=`<path class="wg" d="${hsPfad(x=>y0-s(x,0),40,610)}"/><path class="w" d="${hsPfad(x=>y0-s(x,dx),40,610)}"/>`;
+    const c1=60+1.25*lam, c2=c1+dx; g+=hsK(c1,y0-A,6,"#9aa5b5")+hsK(c2,y0-A,6,"#1f6fd1")+hsPf(id,c1,y0-A-18,c2,y0-A-18,"o","m")+hsT((c1+c2)/2,y0-A-28,"Δx = c · Δt","mt");
+    g+=hsL(60,198,96,198,"wg")+hsT(104,203,"Momentbild zur Zeit t","st","start")+hsL(330,198,366,198,"w")+hsT(374,203,"zur Zeit t + Δt","st","start");
+    return hsSvg(id,640,214,g,"Ausbreitung eines Wellenbergs"); },
+  medium(){ const id="hk-med", y0=112, A=46, xb=330, l1=124, l2=72, ph=x=>x<xb?2*Math.PI*(x-20)/l1:2*Math.PI*(xb-20)/l1+2*Math.PI*(x-xb)/l2; let g="";
+    g+=`<rect x="20" y="34" width="${xb-20}" height="156" fill="#eef4fc"/><rect x="${xb}" y="34" width="${620-xb}" height="156" fill="#f8f2e6"/>`+hsL(xb,34,xb,190,"ax");
+    g+=hsT((20+xb)/2,24,"Medium 1: c₁","gr")+hsT((xb+620)/2,24,"Medium 2: c₂ kleiner als c₁","gr");
+    g+=hsL(20,y0,620,y0,"g")+`<path class="w" d="${hsPfad(x=>y0-A*Math.sin(ph(x)),20,620,300)}"/>`;
+    const a1=20+l1/4, a2=a1+l1, r1=xb+.75*l2, r2=r1+l2;
+    g+=hsL(a1,y0-A,a1,178,"md")+hsL(a2,y0-A,a2,178,"md")+hsPf(id,a1,172,a2,172,"o","m",true)+hsT((a1+a2)/2,206,"λ₁","mt");
+    g+=hsL(r1,y0-A,r1,178,"md")+hsL(r2,y0-A,r2,178,"md")+hsPf(id,r1,172,r2,172,"o","m",true)+hsT((r1+r2)/2,206,"λ₂","mt");
+    g+=hsT(xb,222,"gleiche Frequenz f auf beiden Seiten","mt");
+    return hsSvg(id,640,230,g,"Welle beim Übergang in ein anderes Medium"); },
+  /* ---------- Kapitel 2 ---------- */
+  ortzeit(){ const id="hk-oz", y0=112, A=52, P=110, s=(x,x0)=>A*Math.sin(2*Math.PI*(x-x0)/P); let g="";
+    [[40,"x","λ","Momentbild y(x): ein Foto der Welle"],[360,"t","T","Zeitbild y(t): ein einzelner Oszillator"]].forEach(([xa,lx,gr,ti])=>{
+      g+=hsAchsen(id,xa,y0,xa+262,22,190,lx,"y")+`<path class="w" d="${hsPfad(x=>y0-s(x,xa),xa,xa+250)}"/>`;
+      const c1=xa+P/4, c2=c1+P; g+=hsL(c1,y0-A-4,c1,30,"md")+hsL(c2,y0-A-4,c2,30,"md")+hsPf(id,c1,36,c2,36,"o","m",true)+hsT((c1+c2)/2,28,gr,"mt");
+      g+=hsT(xa+125,214,ti,"st"); });
+    return hsSvg(id,640,224,g,"Momentbild und Zeitbild"); },
+  regel(){ const id="hk-regel", y0=120, A=55, lam=240, f=x=>A*Math.sin(2*Math.PI*(x-40)/lam), fs=x=>A*2*Math.PI/lam*Math.cos(2*Math.PI*(x-40)/lam); let g="";
+    g+=hsL(30,y0,615,y0,"g")+`<path class="w" d="${hsPfad(x=>y0-f(x),40,610)}"/>`+hsPf(id,420,26,600,26,"b","pb")+hsT(412,31,"Welle läuft nach rechts","bt","end");
+    for(let i=0;i<9;i++){ const x=70+i*62, y=y0-f(x), v=-fs(x), L=Math.min(30,Math.abs(v)*30); g+=hsK(x,y,7,"#c46a00",'stroke="#fff" stroke-width="1.4"'); if(L>6) g+=hsPf(id,x,y-Math.sign(v)*9,x,y-Math.sign(v)*(9+L),"o","m"); }
+    g+=hsT(60+lam*.25+40,y0-A-14,"Berg","bt")+hsT(105,y0+A+30,"vor dem Berg: nach oben","st","start")+hsT(330,y0+A+30,"hinter dem Berg: nach unten","st","start");
+    return hsSvg(id,640,214,g,"Bewegungsrichtung der Oszillatoren"); },
+  takt(){ const id="hk-takt", y0=104, A=50, lam=200, f=x=>A*Math.sin(2*Math.PI*(x-40)/lam); let g="";
+    g+=hsL(30,y0,615,y0,"g")+`<path class="w" d="${hsPfad(x=>y0-f(x),40,610)}"/>`;
+    const xa=40+lam/4, xb=xa+lam, xc=xb+lam/2; [[xa,"A"],[xb,"B"],[xc,"C"]].forEach(([x,n])=>{ g+=hsK(x,y0-f(x),8,"#c46a00",'stroke="#fff" stroke-width="1.5"')+(f(x)>0?hsT(x,y0-f(x)-16,n,"gr"):hsT(x+16,y0-f(x)+6,n,"gr","start")); });
+    g+=hsL(xa,y0-A+10,xa,184,"md")+hsL(xb,y0-A+10,xb,184,"md")+hsL(xc,y0+A+10,xc,184,"md")+hsPf(id,xa,178,xb,178,"o","m",true)+hsT((xa+xb)/2,198,"λ: Gleichtakt","mt")+hsPf(id,xb,178,xc,178,"o","m",true)+hsT((xb+xc)/2,198,"λ/2: Gegentakt","mt");
+    return hsSvg(id,640,206,g,"Gleichtakt und Gegentakt"); },
+  polar(){ const id="hk-pol", y0=118, A=40; let g="";
+    const brett=(x,senk)=>`<rect x="${x-9}" y="${y0-70}" width="18" height="140" rx="3" fill="#9aa5b5"/>`+(senk?`<rect x="${x-3}" y="${y0-56}" width="6" height="112" fill="#fff"/>`:`<rect x="${x-9}" y="${y0-4}" width="18" height="8" fill="#fff"/>`);
+    g+=`<path class="w" d="${hsPfad(x=>y0-A*Math.sin(2*Math.PI*(x-30)/110),30,400)}"/>`+hsL(400,y0,610,y0,"w");
+    g+=brett(220,true)+brett(400,false);
+    const sym=(x,senk)=>`<rect x="${x-17}" y="14" width="34" height="34" rx="4" fill="none" stroke="#3d4757" stroke-width="1.5"/>`+(senk?hsL(x,19,x,43,"k"):hsL(x-12,31,x+12,31,"k"));
+    g+=sym(220,true)+sym(400,false)+hsT(220,210,"Spalt senkrecht: kommt durch","st")+hsT(420,210,"Spalt waagerecht: aufgehalten","st")+hsPf(id,40,y0-A-24,40,y0+A+24,"o","m",true);
+    return hsSvg(id,640,222,g,"Polarisation am Spalt"); },
+  /* ---------- Kapitel 3 ---------- */
+  superpos(){ const id="hk-sup", gl=(x,c,a,b)=>a*Math.exp(-Math.pow((x-c)/b,2)); let g="";
+    const reihe=(y,c1,c2,mitte,txt)=>{ g+=hsL(150,y,620,y,"g")+hsT(140,y+5,txt,"st","end");
+      if(mitte){ g+=`<path class="wb" d="${hsPfad(x=>y-gl(x,c1,40,34),150,620)}"/><path class="wgn" d="${hsPfad(x=>y-gl(x,c2,-24,34),150,620)}"/><path class="ws" d="${hsPfad(x=>y-gl(x,c1,40,34)-gl(x,c2,-24,34),150,620)}"/>`; }
+      else g+=`<path class="w" d="${hsPfad(x=>y-gl(x,c1,40,34),150,620)}"/><path class="wgn" d="${hsPfad(x=>y-gl(x,c2,-24,34),150,620)}"/>`; };
+    reihe(66,250,520,false,"vorher"); g+=hsPf(id,230,20,280,20,"b","pb")+hsPf(id,540,98,490,98,"o","m");
+    reihe(160,385,385,true,"beim Treffen"); g+=hsT(470,138,"y = y₁ + y₂","gr","start");
+    reihe(250,520,250,false,"nachher");
+    return hsSvg(id,640,286,g,"Superposition zweier Pulse"); },
+  interferenz(){ const id="hk-int"; let g="";
+    [[20,0,"gleichphasig: Verstärkung"],[340,Math.PI,"gegenphasig: Auslöschung"]].forEach(([xa,ph,ti])=>{ const y0=110, A=30, s=(x,p)=>A*Math.sin(2*Math.PI*(x-xa)/120+p);
+      g+=hsL(xa,y0,xa+280,y0,"g")+`<path class="wb" d="${hsPfad(x=>y0-s(x,0),xa,xa+280)}"/><path class="wgn" d="${hsPfad(x=>y0-s(x,ph)+(ph?0:6),xa,xa+280)}"/><path class="ws" d="${hsPfad(x=>y0-s(x,0)-s(x,ph),xa,xa+280)}"/>`+hsT(xa+140,200,ti,"gr"); });
+    g+=hsL(30,24,62,24,"wb")+hsT(68,29,"Welle 1","st","start")+hsL(150,24,182,24,"wgn")+hsT(188,29,"Welle 2","st","start")+hsL(270,24,302,24,"ws")+hsT(308,29,"Summe","st","start");
+    return hsSvg(id,640,214,g,"Konstruktive und destruktive Interferenz"); },
+  gang(){ const id="hk-gang", q1=[90,62], q2=[90,178], p=[540,96]; let g="";
+    [q1,q2].forEach(q=>{ for(let r=50;r<=480;r+=50) g+=`<path class="fe" d="M${hsN(q[0]+r*Math.cos(-1.05))} ${hsN(q[1]+r*Math.sin(-1.05))} A${r} ${r} 0 0 1 ${hsN(q[0]+r*Math.cos(1.05))} ${hsN(q[1]+r*Math.sin(1.05))}" opacity=".45"/>`; });
+    g+=hsL(q1[0],q1[1],p[0],p[1],"pb")+hsL(q2[0],q2[1],p[0],p[1],"pgn")+hsK(q1[0],q1[1],8,"#3d4757")+hsK(q2[0],q2[1],8,"#3d4757")+hsK(p[0],p[1],8,"#c46a00");
+    g+=hsT(q1[0]-14,q1[1]+5,"Q₁","gr","end")+hsT(q2[0]-14,q2[1]+5,"Q₂","gr","end")+hsT(p[0]+14,p[1]+5,"P","gr","start");
+    g+=hsT(320,66,"s₁","bt")+hsT(320,160,"s₂","gnt")+hsT(320,222,"Gangunterschied Δs = |s₂ − s₁|","mt");
+    return hsSvg(id,640,232,g,"Gangunterschied zweier Quellen"); },
+  reflexion(){ const id="hk-ref", gl=(x,c,a)=>a*Math.exp(-Math.pow((x-c)/34,2)); let g="";
+    [[70,true,"Festes Ende: Ein Berg kommt als Tal zurück (Phasensprung um π)."],[220,false,"Loses Ende: Ein Berg kommt als Berg zurück."]].forEach(([y,fest,ti])=>{
+      g+=hsL(40,y,590,y,"g");
+      if(fest) g+=`<rect x="590" y="${y-46}" width="16" height="92" fill="#9aa5b5"/>`; else g+=hsL(598,y-46,598,y+46,"ax")+`<circle cx="598" cy="${y}" r="7" fill="none" stroke="#3d4757" stroke-width="2.4"/>`;
+      g+=`<path class="wgr" d="${hsPfad(x=>y-gl(x,470,34),360,585)}"/>`+hsPf(id,445,y-46,500,y-46,"k","k")+hsT(437,y-41,"hin","st","end");
+      const ya=fest?y+46:y-46; g+=`<path class="w" d="${hsPfad(x=>y-gl(x,200,fest?-34:34),60,340)}"/>`+hsPf(id,230,ya,175,ya,"b","pb")+hsT(238,ya+5,"zurück","bt","start");
+      g+=hsT(40,y+(fest?72:72),ti,"st","start"); });
+    return hsSvg(id,640,304,g,"Reflexion am festen und losen Ende"); },
+  stehend(){ const id="hk-steh", x0=50, x1=590, y0=112, A=56, n=3, u=x=>(x-x0)/(x1-x0), env=x=>A*Math.sin(n*Math.PI*u(x)); let g="";
+    g+=`<path d="${hsPfad(x=>y0-Math.abs(env(x)),x0,x1)}L${x1} ${y0}${hsPfad(x=>y0+Math.abs(env(x)),x1,x0).replace("M","L")}Z" fill="#dfeafa"/>`;
+    g+=hsL(x0,y0,x1,y0,"g")+[1,.5,-.5,-1].map(k=>`<path class="${Math.abs(k)===1?"w":"wl"}" d="${hsPfad(x=>y0-k*env(x),x0,x1)}"/>`).join("");
+    g+=`<rect x="${x0-14}" y="${y0-62}" width="14" height="124" fill="#9aa5b5"/><rect x="${x1}" y="${y0-62}" width="14" height="124" fill="#9aa5b5"/>`;
+    for(let j=0;j<=n;j++){ const x=x0+j*(x1-x0)/n; g+=`<circle cx="${hsN(x)}" cy="${y0}" r="8" fill="#fff" stroke="#c46a00" stroke-width="2.4"/>`+hsT(x,y0+30,"K","mt"); if(j<n) g+=hsT(x+(x1-x0)/(2*n),y0-A-12,"B","bt"); }
+    const d=(x1-x0)/n; g+=hsPf(id,x0+d,206,x0+2*d,206,"o","m",true)+hsT(x0+1.5*d,224,"λ/2","mt")+hsPf(id,x0+2*d,180,x0+2.5*d,180,"o","m",true)+hsT(x0+2.25*d,174,"λ/4","mt");
+    return hsSvg(id,640,232,g,"Stehende Welle mit Knoten und Bäuchen"); },
+  eigen(){ const id="hk-eigen"; let g="";
+    g+=hsT(170,20,"zwei feste Enden","gr")+hsT(480,20,"festes und loses Ende","gr");
+    [0,1,2].forEach(k=>{ const y=70+k*92; g+=hsT(8,y+5,`k = ${k}`,"gr","start");
+      g+=hsMode(70,290,y,30,u=>Math.sin((k+1)*Math.PI*u),"fest","fest")+hsT(180,y+50,`λ${["₀","₁","₂"][k]} = ${["2ℓ","ℓ","2ℓ/3"][k]}`,"st");
+      g+=hsMode(370,590,y,30,u=>Math.sin((2*k+1)*Math.PI*u/2),"fest","lose")+hsT(480,y+50,`λ${["₀","₁","₂"][k]} = ${["4ℓ","4ℓ/3","4ℓ/5"][k]}`,"st"); });
+    return hsSvg(id,640,330,g,"Eigenschwingungen"); },
+  /* ---------- Kapitel 4 ---------- */
+  saite(){ const id="hk-saite"; let g="";
+    [0,1,2].forEach(k=>{ const y=46+k*86; g+=hsT(16,y+5,`k = ${k}`,"gr","start")+hsMode(110,560,y,30,u=>Math.sin((k+1)*Math.PI*u),"fest","fest")+hsT(590,y+5,["f₀","2 · f₀","3 · f₀"][k],"bt","start"); });
+    return hsSvg(id,660,272,g,"Eigenschwingungen einer Saite"); },
+  rohr(){ const id="hk-rohr"; let g="";
+    const tube=(x0,x1,y,env,zu,txt)=>{ const h=30, band=`<path d="${hsPfad(x=>y-h*Math.abs(env((x-x0)/(x1-x0))),x0,x1)}L${x1} ${y}${hsPfad(x=>y+h*Math.abs(env((x-x0)/(x1-x0))),x1,x0).replace("M","L")}Z" fill="#cfe0f8"/>`;
+      return band+`<rect x="${x0}" y="${y-h-6}" width="${x1-x0}" height="${2*h+12}" rx="8" fill="none" stroke="#3d4757" stroke-width="1.8"/>`+(zu?`<rect x="${x1-3}" y="${y-h-6}" width="10" height="${2*h+12}" rx="2" fill="#3d4757"/>`:"")+hsT(x0-14,y+5,txt,"gr","end"); };
+    g+=tube(190,600,44,u=>Math.cos(Math.PI*u),false,"offen, k = 0")+tube(190,600,134,u=>Math.cos(2*Math.PI*u),false,"offen, k = 1");
+    g+=tube(190,600,224,u=>Math.cos(Math.PI*u/2),true,"gedackt, k = 0")+tube(190,600,314,u=>Math.cos(3*Math.PI*u/2),true,"gedackt, k = 1");
+    return hsSvg(id,640,356,g,"Offenes und gedacktes Rohr"); },
+  kundt(){ const id="hk-kundt", x0=90, x1=590, y0=96, m=5; let g="";
+    g+=`<rect x="${x0}" y="${y0-38}" width="${x1-x0}" height="76" rx="10" fill="#eef4fc" stroke="#3d4757" stroke-width="1.8"/>`;
+    g+=`<path d="M${x0-4} ${y0-16}L${x0-34} ${y0-34}L${x0-34} ${y0+34}L${x0-4} ${y0+16}Z" fill="#3d4757"/>`+`<rect x="${x1-6}" y="${y0-44}" width="14" height="88" fill="#9aa5b5"/>`;
+    const nx=j=>x1-j*(x1-x0)/m; for(let j=0;j<=m;j++){ const x=nx(j); if(x>x0+6&&x<x1-4) g+=`<path d="M${hsN(x-22)} ${y0+36}Q${hsN(x)} ${y0-6} ${hsN(x+22)} ${y0+36}Z" fill="#d9b26b"/>`; }
+    g+=hsL(nx(3),y0+40,nx(3),y0+66,"md")+hsL(nx(2),y0+40,nx(2),y0+66,"md")+hsPf(id,nx(3),y0+60,nx(2),y0+60,"o","m",true)+hsT((nx(2)+nx(3))/2,y0+80,"λ/2","mt");
+    g+=hsT(x0-20,y0+62,"Lautsprecher","st","middle")+hsT(x1,y0+62,"Stempel","st","middle");
+    return hsSvg(id,640,186,g,"Kundt'sches Rohr"); },
+  spektrum(){ const id="hk-spek", p=.2, a=[...Array(8)].map((_,i)=>Math.abs(Math.sin((i+1)*Math.PI*p))/((i+1)*(i+1))), mx=Math.max(...a); let g="";
+    g+=hsAchsen(id,60,190,600,20,190,"f","Anteil");
+    a.forEach((v,i)=>{ const x=90+i*62, h=v/mx*150; g+=`<rect x="${x}" y="${hsN(190-h)}" width="34" height="${hsN(h)}" rx="3" fill="#1f6fd1"/>`+hsT(x+17,210,i?`${i+1}f₀`:"f₀","st"); });
+    return hsSvg(id,640,222,g,"Spektrum einer gezupften Saite"); },
+  schwebung(){ const id="hk-schweb", y0=100, A=36, W=560, F=24, d=2.2, s=u=>.5*(Math.cos(2*Math.PI*F*u)+Math.cos(2*Math.PI*(F+d)*u)); let g="";
+    g+=hsL(40,y0,610,y0,"g")+`<path class="wg" d="${hsPfad(x=>y0-2*A*Math.abs(Math.cos(Math.PI*d*(x-40)/W)),40,600,200)}"/><path class="wg" d="${hsPfad(x=>y0+2*A*Math.abs(Math.cos(Math.PI*d*(x-40)/W)),40,600,200)}"/>`;
+    g+=`<path class="w" d="${hsPfad(x=>y0-2*A*s((x-40)/W),40,600,600)}"/>`;
+    const t1=40, t2=40+W/d; g+=hsPf(id,t1,186,t2,186,"o","m",true)+hsT((t1+t2)/2,204,"T_S = 1 / f_S".replace("T_S","T<tspan dy=\"4\" font-size=\"10\">S</tspan><tspan dy=\"-4\"> </tspan>").replace("f_S","f<tspan dy=\"4\" font-size=\"10\">S</tspan>"),"mt");
+    return hsSvg(id,640,214,g,"Schwebung"); }
+};
+/*HEFT-ENDE*/
+/*HEFT-ANFANG*/
+/* =====================================================================
+   HEFT · Karteikarten (Abfrage mit Auswahl und Modus, Anki-Verfahren) und Mindmap (zoombarer Canvas)
+   Lernstand der Karten unter eigenem Schlüssel, kein Nachweis.
+   ===================================================================== */
+const KARTKEY="wellen-werkstatt-karten";
+function kartStand(){ let s=null; try{ s=JSON.parse(localStorage.getItem(KARTKEY)); }catch(e){} if(!s||typeof s!=="object") s={}; s.sel=s.sel||{}; s.srs=s.srs||{}; s.modus=s.modus||"anki"; return s; }
+function kartSave(s){ try{ localStorage.setItem(KARTKEY,JSON.stringify(s)); }catch(e){} }
+function heftModi(akt){ const seg=el("div",{class:"seg hmodi",role:"group","aria-label":"Ansicht"});
+  [["heft","Heft"],["karten","Karteikarten"],["mindmap","Mindmap"]].forEach(([id,txt])=>{ const b=el("button",{"aria-pressed":String(id===akt)},txt);
+    b.addEventListener("click",()=>{ if(id==="heft") renderHeft(); else if(id==="karten") renderKarten(); else renderMindmap(); }); seg.appendChild(b); });
+  return seg; }
+function heftKopf(akt,rechts){ const b=bar("← Lernpfad",renderHome,"Wellen-Werkstatt · Heft",{heft:"Heft",karten:"Karteikarten",mindmap:"Mindmap"}[akt],heftModi(akt)); if(rechts) b.appendChild(rechts); if(akt!=="mindmap") b.appendChild(themeSwitch()); return b; }
+const kartAlle=H=>H.flatMap(k=>(k.karten||[]).map(c=>Object.assign({kap:k.kap},c)));
+
+/* ---------- Anki-Verfahren (vereinfachtes SM-2, Tage) ---------- */
+const TAG=864e5;
+function ankiNeu(st,note,jetzt){ const o=Object.assign({ivl:0,ease:2.5,reps:0,due:0},st||{});
+  if(note===0){ o.reps=0; o.ivl=0; o.ease=Math.max(1.3,o.ease-.2); o.due=jetzt+60e3; return o; }
+  if(note===1){ o.ivl=Math.max(1,Math.round((o.ivl||1)*1.2)); o.ease=Math.max(1.3,o.ease-.15); }
+  else { const gut=o.reps===0?1:o.reps===1?3:Math.round(o.ivl*o.ease); o.ivl=note===3?Math.max(gut+1,Math.round(gut*1.3)):gut; if(note===3) o.ease+=.15; }
+  o.reps++; o.due=jetzt+o.ivl*TAG; return o; }
+const ankiText=(st,note)=>{ const o=ankiNeu(st,note,0); return note===0?"< 1 min":o.ivl===1?"1 Tag":o.ivl+" Tage"; };
+
+function renderKarten(){ view(false); heftKopf("karten");
+  const wrap=el("div",{class:"kwrap"}); app.appendChild(wrap); wrap.innerHTML=`<p class="hlade">Die Karten werden geladen …</p>`;
+  heftLaden().then(H=>{ const alle=kartAlle(H), S=kartStand(); alle.forEach(c=>{ if(S.sel[c.id]===undefined) S.sel[c.id]=true; }); kartSave(S); wrap.innerHTML="";
+    const links=el("section",{class:"kwahl"}), rechts=el("section",{class:"kstart"}); wrap.append(links,rechts);
+    links.appendChild(el("h3",{},"Karten auswählen"));
+    const zaehl=()=>{ const sel=alle.filter(c=>S.sel[c.id]), jetzt=Date.now(), fae=sel.filter(c=>!S.srs[c.id]||S.srs[c.id].due<=jetzt).length;
+      rechts.querySelector(".kzahl").innerHTML=`<b>${sel.length}</b> von ${alle.length} Karten gewählt${S.modus==="anki"?` · <b>${fae}</b> fällig`:""}`; startB.disabled=!sel.length||(S.modus==="anki"&&!fae); };
+    H.filter(k=>(k.karten||[]).length).forEach(k=>{ const K=KAPITEL.find(x=>x.id===k.kap)||{nr:"",titel:""}, grp=el("div",{class:"kgrp"}), kopf=el("label",{class:"kkopf"});
+      const alleK=el("input",{type:"checkbox"}); kopf.append(alleK,el("span",{},`<b>Kapitel ${K.nr}</b> · ${K.titel}`)); grp.appendChild(kopf);
+      const boxen=[]; k.karten.forEach(c=>{ const z=el("label",{class:"kzeile"}), cb=el("input",{type:"checkbox"}); cb.checked=!!S.sel[c.id]; boxen.push([cb,c.id]);
+        const st=S.srs[c.id], info=st&&st.reps?`<span class="kfaell">${st.due<=Date.now()?"fällig":"in "+Math.max(1,Math.round((st.due-Date.now())/TAG))+" T."}</span>`:`<span class="kfaell neu">neu</span>`;
+        z.append(cb,el("span",{class:"kfrage"},hfx(c.v)),el("span",{},info)); cb.addEventListener("change",()=>{ S.sel[c.id]=cb.checked; kartSave(S); syncK(); zaehl(); }); grp.appendChild(z); });
+      const syncK=()=>{ const n=boxen.filter(([cb])=>cb.checked).length; alleK.checked=n===boxen.length; alleK.indeterminate=n>0&&n<boxen.length; };
+      alleK.addEventListener("change",()=>{ boxen.forEach(([cb,id])=>{ cb.checked=alleK.checked; S.sel[id]=alleK.checked; }); kartSave(S); zaehl(); }); syncK(); links.appendChild(grp); });
+    rechts.appendChild(el("h3",{},"Abfrage"));
+    const modi=el("div",{class:"kmodi"}); [["anki","Anki: fällige Karten","Karten kommen wieder, wenn du sie zu vergessen beginnst. Du bewertest selbst: Nochmal, Schwer, Gut, Einfach."],["reihe","Alle der Reihe nach","Jede gewählte Karte einmal, in der Reihenfolge des Hefts."],["zufall","Alle gemischt","Jede gewählte Karte einmal, in zufälliger Reihenfolge."]].forEach(([id,t,info])=>{
+      const b=el("button",{class:"kmodus","aria-pressed":String(S.modus===id)},`<b>${t}</b><span>${info}</span>`); b.addEventListener("click",()=>{ S.modus=id; kartSave(S); [...modi.children].forEach(x=>x.setAttribute("aria-pressed",String(x===b))); zaehl(); }); modi.appendChild(b); });
+    rechts.appendChild(modi); rechts.appendChild(el("p",{class:"kzahl"}));
+    const startB=el("button",{class:"btn big"},"Abfrage starten"); startB.addEventListener("click",()=>{ const sel=alle.filter(c=>S.sel[c.id]), jetzt=Date.now();
+      let q=S.modus==="anki"?sel.filter(c=>!S.srs[c.id]||S.srs[c.id].due<=jetzt).sort((a,b)=>((S.srs[a.id]||{}).due||0)-((S.srs[b.id]||{}).due||0)):S.modus==="zufall"?shuffle(sel):sel.slice(); kartAbfrage(q,S.modus); });
+    rechts.appendChild(startB); rechts.appendChild(el("p",{class:"hint"},"Der Lernstand der Karten bleibt auf diesem Gerät. Er zählt nicht für „Meine Erfolge“."));
+    zaehl();
+  }).catch(()=>{ wrap.innerHTML=`<p class="hlade">Die Karten konnten nicht geladen werden.</p>`; }); }
+
+function kartAbfrage(q,modus){ view(false); const quit=el("button",{class:"btn ghost"},"Beenden"); quit.addEventListener("click",renderKarten); heftKopf("karten",quit);
+  const S=kartStand(), gesamt=q.length; let gewusst=0, nicht=[], i=0;
+  const buehne=el("div",{class:"kabfrage"}); app.appendChild(buehne);
+  function zeig(){ buehne.innerHTML=""; if(!q.length) return ende(); const c=q[0], K=KAPITEL.find(x=>x.id===c.kap)||{nr:""};
+    const fort=el("div",{class:"kfort"},`<span>Karte ${Math.min(i+1,gesamt)} · noch ${q.length}</span><i style="width:${Math.round(100*(gesamt-q.length)/Math.max(1,gesamt))}%"></i>`);
+    const karte=el("article",{class:"kkarte"}); karte.innerHTML=`<span class="heye">Kapitel ${K.nr}</span><p class="kv">${hfx(c.v)}</p>`;
+    const rueck=el("div",{class:"kr"}); rueck.innerHTML=`<p>${hfx(c.r)}</p>${c.s&&HSK[c.s]?`<figure class="kskizze">${HSK[c.s]()}</figure>`:""}`; rueck.hidden=true; karte.appendChild(rueck);
+    const knoepfe=el("div",{class:"kknoepfe"}), zeigB=el("button",{class:"btn big"},"Antwort zeigen"); knoepfe.appendChild(zeigB);
+    zeigB.addEventListener("click",()=>{ rueck.hidden=false; karte.classList.add("offen"); knoepfe.innerHTML="";
+      const wert=(note)=>{ i++; if(modus==="anki"){ S.srs[c.id]=ankiNeu(S.srs[c.id],note,Date.now()); kartSave(S); q.shift(); if(note===0) q.splice(Math.min(q.length,3),0,c); else gewusst++; }
+        else { q.shift(); if(note>0) gewusst++; else nicht.push(c); } zeig(); };
+      if(modus==="anki") [[0,"Nochmal","nochmal"],[1,"Schwer","schwer"],[2,"Gut","gut"],[3,"Einfach","einfach"]].forEach(([n,t,cl])=>{ const b=el("button",{class:"btn kbew "+cl},`${t}<small>${ankiText(S.srs[c.id],n)}</small>`); b.addEventListener("click",()=>wert(n)); knoepfe.appendChild(b); });
+      else [[0,"Nicht gewusst","nochmal"],[2,"Gewusst","gut"]].forEach(([n,t,cl])=>{ const b=el("button",{class:"btn kbew "+cl},t); b.addEventListener("click",()=>wert(n)); knoepfe.appendChild(b); }); });
+    buehne.append(fort,karte,knoepfe); }
+  function ende(){ buehne.innerHTML=""; const k=el("div",{class:"endcard"});
+    k.innerHTML=`<span class="eyebrow">Karteikarten</span><span class="big">${gewusst} / ${gesamt}</span><span class="muted">${modus==="anki"?"Karten erledigt":"gewusst"}</span><h3>${gesamt?"Fertig für jetzt.":"Gerade ist keine Karte fällig."}</h3>`;
+    const acts=el("div",{class:"actions",style:"justify-content:center;margin-top:8px"});
+    if(nicht.length){ const b=el("button",{class:"btn"},`Die ${nicht.length} nicht gewussten wiederholen`); b.addEventListener("click",()=>kartAbfrage(nicht.slice(),modus)); acts.appendChild(b); }
+    const z=el("button",{class:"btn ghost"},"Zur Auswahl"); z.addEventListener("click",renderKarten); acts.appendChild(z); k.appendChild(acts); buehne.appendChild(k); }
+  zeig(); }
+
+/* ---------- Mindmap: großer Canvas, zoombar, Flug von Kapitel zu Kapitel ---------- */
+const MMFARBE={k1:"#1f6fd1",k2:"#0f8a7e",k3:"#7a4fc9",k4:"#c46a00"};
+function renderMindmap(){ view(true); const leiste=el("div",{class:"mmleiste"}); heftKopf("mindmap",leiste);
+  const huelle=el("div",{class:"mm"}), welt=el("div",{class:"mmwelt"}), svg=document.createElementNS("http://www.w3.org/2000/svg","svg"); svg.setAttribute("class","mmlinien"); welt.appendChild(svg); huelle.appendChild(welt); app.appendChild(huelle);
+  huelle.appendChild(el("p",{class:"mmtipp"},"Ziehen zum Verschieben, zwei Finger oder Mausrad zum Zoomen, Tippen auf einen Knoten fliegt dorthin."));
+  heftLaden().then(H=>{ const da=H.filter(k=>k.abschnitte&&k.abschnitte.length), knoten=[], linien=[], N=da.length, cluster={};
+    const add=(x,y,cls,html,ziel)=>{ const d=el("div",{class:"mmk "+cls},html); d.style.left=x+"px"; d.style.top=y+"px"; welt.appendChild(d); knoten.push({d,x,y}); if(ziel) d.addEventListener("click",e=>{ if(bewegt) return; e.stopPropagation(); ziel(); }); return d; };
+    add(0,0,"mmzentrum","<b>Mechanische Wellen</b><span>Wellen-Werkstatt · Heft</span>",()=>flieg(alles()));
+    da.forEach((k,ci)=>{ const K=KAPITEL.find(x=>x.id===k.kap)||{nr:ci+1,titel:""}, a=-Math.PI/2+ci*2*Math.PI/N+Math.PI/N, R=1550, cx=Math.cos(a)*R, cy=Math.sin(a)*R, farbe=MMFARBE[k.kap]||"#3d4757";
+      const box={x0:cx,y0:cy,x1:cx,y1:cy}; const dehn=(x,y,w=180,h=90)=>{ box.x0=Math.min(box.x0,x-w); box.x1=Math.max(box.x1,x+w); box.y0=Math.min(box.y0,y-h); box.y1=Math.max(box.y1,y+h); };
+      linien.push([0,0,cx,cy,farbe,7]);
+      const kn=add(cx,cy,"mmkap",`<span class="mmnr" style="background:${farbe}">${K.nr}</span><b>${k.titel||K.titel}</b>`,()=>flieg(cluster[k.kap])); kn.style.setProperty("--f",farbe);
+      const n=k.abschnitte.length, spread=Math.min(3.6,.78*(n-1));   // Abschnitte abwechselnd auf zwei Ringen, damit sich keine Karten überdecken
+      k.abschnitte.forEach((ab,j)=>{ const b=a+(n>1?-spread/2+spread*j/(n-1):0), r=j%2?880:540, x=cx+Math.cos(b)*r, y=cy+Math.sin(b)*r;
+        const f=(ab.inhalt||[]).find(z=>z[0]==="formel")||(ab.inhalt||[]).find(z=>z[0]==="nebenformel"), m=(ab.inhalt||[]).find(z=>z[0]==="merke");
+        const kurz=f?`<span class="mmf">${hfx(f[1])}</span>`:m?`<span class="mmt">${kurzText(m[1])}</span>`:"";
+        linien.push([cx,cy,x,y,farbe,3,ab.tief]); dehn(x,y,190,110);
+        const d=add(x,y,"mmab"+(ab.tief?" tief":""),`<span class="mmnr2" style="color:${farbe}">${K.nr}.${j+1}</span><b>${hfx(ab.titel)}</b>${kurz}`,()=>flieg({x0:x-480,x1:x+480,y0:y-300,y1:y+300}));
+        d.style.setProperty("--f",farbe); });
+      dehn(cx,cy); cluster[k.kap]=box; });
+    const alle_=()=>{ let b={x0:-200,y0:-120,x1:200,y1:120}; Object.values(cluster).forEach(c=>{ b={x0:Math.min(b.x0,c.x0),y0:Math.min(b.y0,c.y0),x1:Math.max(b.x1,c.x1),y1:Math.max(b.y1,c.y1)}; }); return b; };
+    alles=alle_;
+    const B=alle_(), pad=200; svg.setAttribute("viewBox",`${B.x0-pad} ${B.y0-pad} ${B.x1-B.x0+2*pad} ${B.y1-B.y0+2*pad}`); svg.style.left=(B.x0-pad)+"px"; svg.style.top=(B.y0-pad)+"px"; svg.setAttribute("width",B.x1-B.x0+2*pad); svg.setAttribute("height",B.y1-B.y0+2*pad);
+    svg.innerHTML=linien.map(([x1,y1,x2,y2,f,w,tief])=>{ const mx=(x1+x2)/2+(y2-y1)*.12, my=(y1+y2)/2-(x2-x1)*.12; return `<path d="M${x1} ${y1}Q${mx} ${my} ${x2} ${y2}" fill="none" stroke="${f}" stroke-width="${w}" stroke-linecap="round" opacity="${tief?.35:.75}"${tief?' stroke-dasharray="10 9"':""}/>`; }).join("");
+    leiste.innerHTML=""; const lb=(t,fn,tt)=>{ const b=el("button",{class:"tab",title:tt||t},t); b.addEventListener("click",fn); leiste.appendChild(b); };
+    lb("Übersicht",()=>flieg(alles())); da.forEach(k=>{ const K=KAPITEL.find(x=>x.id===k.kap)||{nr:""}; lb(String(K.nr),()=>flieg(cluster[k.kap]),"Kapitel "+K.nr); }); lb("−",()=>zoom(1/1.4),"verkleinern"); lb("+",()=>zoom(1.4),"vergrößern");
+    flieg(alles(),true);
+  }).catch(()=>{ huelle.innerHTML=`<p class="hlade">Die Mindmap konnte nicht geladen werden.</p>`; });
+  /* Kamera: Weltpunkt (cx,cy) in der Mitte, Maßstab s */
+  let cam={cx:0,cy:0,s:.3}, bewegt=false, alles=()=>({x0:-500,y0:-500,x1:500,y1:500});
+  const setze=(sanft)=>{ const r=huelle.getBoundingClientRect(); welt.style.transition=sanft?"transform .9s cubic-bezier(.65,0,.35,1)":"none"; welt.style.transform=`translate(${r.width/2-cam.cx*cam.s}px,${r.height/2-cam.cy*cam.s}px) scale(${cam.s})`; };
+  const flieg=(b,sofort)=>{ const r=huelle.getBoundingClientRect(), w=b.x1-b.x0, h=b.y1-b.y0; cam={cx:(b.x0+b.x1)/2,cy:(b.y0+b.y1)/2,s:klemm(Math.min(r.width/(w*1.08),r.height/(h*1.08)),.08,2.5)}; setze(!sofort); };
+  const zoom=(f,px,py)=>{ const r=huelle.getBoundingClientRect(), x=px===undefined?r.width/2:px, y=py===undefined?r.height/2:py, wx=cam.cx+(x-r.width/2)/cam.s, wy=cam.cy+(y-r.height/2)/cam.s, s=klemm(cam.s*f,.06,3);
+    cam={cx:wx-(x-r.width/2)/s,cy:wy-(y-r.height/2)/s,s}; setze(px===undefined); };
+  const zeiger=new Map(); let start=null;
+  huelle.addEventListener("pointerdown",e=>{ zeiger.set(e.pointerId,[e.clientX,e.clientY]); bewegt=false; start={cam:Object.assign({},cam),p:[...zeiger.values()].map(p=>p.slice())}; });
+  huelle.addEventListener("pointermove",e=>{ if(!zeiger.has(e.pointerId)||!start) return; zeiger.set(e.pointerId,[e.clientX,e.clientY]); const P=[...zeiger.values()], r=huelle.getBoundingClientRect();
+    if(P.length===1&&start.p.length===1){ const dx=P[0][0]-start.p[0][0], dy=P[0][1]-start.p[0][1]; if(Math.hypot(dx,dy)>6&&!bewegt){ bewegt=true; try{ huelle.setPointerCapture(e.pointerId); }catch(err){} } /* erst beim Ziehen festhalten, damit ein Tippen den Knoten erreicht */ cam={cx:start.cam.cx-dx/start.cam.s,cy:start.cam.cy-dy/start.cam.s,s:start.cam.s}; setze(false); }
+    else if(P.length>=2&&start.p.length>=2){ bewegt=true; const d0=Math.hypot(start.p[0][0]-start.p[1][0],start.p[0][1]-start.p[1][1]), d1=Math.hypot(P[0][0]-P[1][0],P[0][1]-P[1][1]), m0=[(start.p[0][0]+start.p[1][0])/2-r.left,(start.p[0][1]+start.p[1][1])/2-r.top], m1=[(P[0][0]+P[1][0])/2-r.left,(P[0][1]+P[1][1])/2-r.top];
+      const s=klemm(start.cam.s*d1/Math.max(1,d0),.06,3), wx=start.cam.cx+(m0[0]-r.width/2)/start.cam.s, wy=start.cam.cy+(m0[1]-r.height/2)/start.cam.s; cam={cx:wx-(m1[0]-r.width/2)/s,cy:wy-(m1[1]-r.height/2)/s,s}; setze(false); } });
+  const auf=e=>{ zeiger.delete(e.pointerId); start=zeiger.size?{cam:Object.assign({},cam),p:[...zeiger.values()].map(p=>p.slice())}:null; };
+  huelle.addEventListener("pointerup",auf); huelle.addEventListener("pointercancel",auf);
+  huelle.addEventListener("wheel",e=>{ e.preventDefault(); const r=huelle.getBoundingClientRect(); zoom(Math.exp(-e.deltaY*.0015),e.clientX-r.left,e.clientY-r.top); },{passive:false});
+  const ro=new ResizeObserver(()=>setze(false)); ro.observe(huelle); cleanups.push(()=>ro.disconnect());
+  huelle._kamera=()=>Object.assign({},cam); }
+function kurzText(html){ const t=String(html).replace(/<br>/g," ").replace(/<[^>]+>/g,""); const s=t.split(/(?<=\.)\s/)[0]; return hfx(s.length>110?s.slice(0,105)+" …":s); }
+/*HEFT-ENDE*/
 renderHome();
 startUpdates();
 </script>

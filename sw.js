@@ -2,7 +2,7 @@
    Strategie: Netz zuerst (damit Updates sofort ankommen), bei Funkloch oder Zeitüberschreitung die gespeicherte Kopie.
    Der Lernstand liegt im localStorage und wird hier nie angefasst. */
 const CACHE = "ww-cache-v1";
-const CORE = ["./", "index.html", "version.js", "manifest.webmanifest", "icon.svg", "icon-180.png", "icon-192.png", "icon-512.png"];
+const CORE = ["./", "index.html", "version.js", "heft.js", "manifest.webmanifest", "icon.svg", "icon-180.png", "icon-192.png", "icon-512.png"];
 const key = u => { const x = new URL(u, self.location.href); return x.origin + x.pathname; };
 
 self.addEventListener("install", e => {

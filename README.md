@@ -102,3 +102,13 @@ Version 2.2 · Stand 11.11.2026
 - Der bisherige Fortschritt bleibt erhalten. Alles Neue steht zwischen `/*K4-ANFANG*/` und `/*K4-ENDE*/`.
 - Für die Auswertung `Wellen-Werkstatt-Nachweise-v2.4.html` benutzen (kennt Kapitel 4).
 - Plus-Kachel „Schwebung“ (freiwillig, Messing-Kachel unter dem Lernpfad von Kapitel 4, frei nach den Steckbriefen): Steckbrief mit Animation und Ton, 3 Level (Gitarre stimmen, Rechnen, Transfer). Zählt nicht für Fortschritt und Nachweis, eigener Speicherschlüssel `wellen-werkstatt-plus` (wird von „Fortschritt zurücksetzen“ nicht gelöscht).
+
+## Neu in Version 2.5: Physikheft
+
+- Knopf „Physikheft“ oben auf der Startseite: der Stoff im Stil eines Heftaufschriebs (Merke, gerahmte Formeln mit Anwendungsbereich, Skizzen, Beispiele, typische Fehler), zum Lesen, Drucken und Speichern als PDF (A4).
+- Die Inhalte stehen in `heft.js` als Bausteine und lassen sich dort ändern; eine Anleitung steht am Anfang der Datei. Die Skizzen sind im Quelltext von `index.html` (HSK).
+- Kein Fortschritt, kein Nachweis. Alles Neue in `index.html` steht zwischen `/*HEFT-ANFANG*/` und `/*HEFT-ENDE*/`.
+- Pilot: zunächst Kapitel 1.
+- Ab 19.11.2026 zusätzlich: Heft für Kapitel 1 bis 4 (26 Abschnitte, 21 Skizzen, als PDF etwa 20 Seiten A4), Karteikarten (23 Karten, jede einzeln anwählbar; Abfrage als Anki mit Nochmal/Schwer/Gut/Einfach, der Reihe nach oder gemischt; Lernstand unter `wellen-werkstatt-karten`, kein Nachweis) und Mindmap (zoombarer Canvas, Flug zu Kapiteln und Abschnitten).
+- Schreibweise in der ganzen App wie in der IQB-Formelsammlung: Welle y(x), y(t), yₘₐₓ; Schwingung s, sₘₐₓ; Länge ℓ; Eigenschwingungen ab k = 0 (Grundschwingung, f₀, λ₀); Minima beim Gangunterschied (2k − 1) · λ/2 mit k = 1, 2, 3. Die Namen von Kapiteln, Steckbriefen und Challenges sind unverändert, der Fortschritt bleibt.
+- Kopfzeile: Kapitel links (nur das gewählte ausgeschrieben), rechts Heft-Symbol, Erfolge, Darstellung. Die Erklärkästen unter dem Lernpfad sind in allen Kapiteln entfernt.
