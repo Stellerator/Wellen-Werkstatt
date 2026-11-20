@@ -468,6 +468,13 @@ body.nachtwelt .theme{display:none}
 .tab.heftk svg{flex:none}
 .hleiste{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin:0 0 14px}
 .hlade{text-align:center;color:var(--muted);padding:40px 0}
+.hsafari{position:fixed;inset:0;z-index:60;background:rgba(5,10,20,.55);display:grid;place-items:center;padding:20px}
+.hsafari-box{width:min(560px,100%);background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:18px;padding:22px 24px;box-shadow:0 20px 50px rgba(0,0,0,.4)}
+.hsafari-box h3{font:800 24px/1.2 var(--font-display);margin:0 0 10px}
+.hsafari-box p{margin:0 0 14px;font-size:16px;line-height:1.5}
+.hsafari-knoepfe{display:flex;gap:10px;flex-wrap:wrap;margin:6px 0 14px}
+.hsafari-info{color:var(--muted);font-size:14px!important}
+.hsafari-url{display:block;margin-top:6px;font-family:var(--font-mono);font-size:13px;word-break:break-all;color:var(--ink)}
 .hdruckhinweis{max-width:860px;margin:0 auto 16px;padding:12px 16px;border-radius:12px;background:var(--surface);border:1px solid var(--line);font-size:16px}
 .heft{display:flex;flex-direction:column;align-items:center;gap:30px;padding:4px 0 48px}
 .hblatt{width:min(860px,100%);box-sizing:border-box;color:#1d2430;background-color:#fff;background-image:linear-gradient(#eef2f7 1px,transparent 1px),linear-gradient(90deg,#eef2f7 1px,transparent 1px);background-size:20px 20px;border-radius:6px;box-shadow:0 12px 34px rgba(0,0,0,.28);padding:34px 46px 46px;font:17px/1.55 var(--font-body)}
@@ -3462,15 +3469,28 @@ function renderHeft(wahl){ view(false); if(wahl) heftK=wahl;
 /* Drucken: Vom Home-Bildschirm aus (eigenständiges Fenster) ignoriert iPadOS den Druckbefehl.
    Dann öffnet sich das Heft in Safari als reine Druckansicht (?druck=k1 bzw. ?druck=alle), dort klappt Drucken und „Als PDF sichern“. */
 const heftEigenFenster=()=>window.navigator.standalone===true||(window.matchMedia&&window.matchMedia("(display-mode: standalone)").matches);
-function heftDrucken(kap){ if(heftEigenFenster()){ const u=location.pathname+"?druck="+encodeURIComponent(kap||"alle"); const w=window.open(u,"_blank"); if(!w) location.href=u; return; } try{ window.print(); }catch(e){} }
+// Im App-Fenster vom Home-Bildschirm sperrt iPadOS das Drucken, und Links in die eigene App bleiben im App-Fenster.
+// Deshalb: Safari ausdrücklich öffnen (x-safari-https://…, ab iPadOS 17) oder den Link kopieren und in Safari einfügen.
+let heftNavi=u=>{ location.href=u; };
+function heftDruckLink(kap){ return new URL(location.pathname+"?druck="+encodeURIComponent(kap||"alle"),location.href).href; }
+function heftSafariDialog(kap){ const url=heftDruckLink(kap), alt=document.querySelector(".hsafari"); if(alt) alt.remove();
+  const ov=el("div",{class:"hsafari",role:"dialog","aria-modal":"true","aria-label":"Drucken in Safari"}), box=el("div",{class:"hsafari-box"});
+  box.innerHTML=`<h3>Drucken geht nur in Safari</h3><p>Diese App läuft als eigenes Fenster vom Home-Bildschirm. Dort erlaubt das iPad kein Drucken. Öffne das Heft deshalb in Safari, dort kannst du drucken oder als PDF sichern.</p>`;
+  const reihe=el("div",{class:"hsafari-knoepfe"}), sb=el("button",{class:"btn"},"In Safari öffnen"), kb=el("button",{class:"btn ghost"},"Link kopieren"), xb=el("button",{class:"btn ghost"},"Schließen");
+  const fb=el("p",{class:"hsafari-info"},`Öffnet sich Safari nicht: <b>Link kopieren</b>, Safari öffnen und den Link oben in die Adresszeile einfügen.<br><span class="hsafari-url">${url}</span>`);
+  sb.addEventListener("click",()=>heftNavi("x-safari-"+url));
+  kb.addEventListener("click",()=>{ const ok=()=>{ kb.textContent="Link kopiert ✓"; }; try{ navigator.clipboard.writeText(url).then(ok,()=>{ fb.querySelector(".hsafari-url").style.userSelect="all"; kb.textContent="Link markieren und kopieren"; }); }catch(e){ kb.textContent="Link markieren und kopieren"; } });
+  xb.addEventListener("click",()=>ov.remove()); ov.addEventListener("click",e=>{ if(e.target===ov) ov.remove(); });
+  reihe.append(sb,kb,xb); box.append(reihe,fb); ov.appendChild(box); document.body.appendChild(ov); cleanups.push(()=>ov.remove()); }
+function heftDrucken(kap){ if(heftEigenFenster()) return heftSafariDialog(kap); try{ window.print(); }catch(e){} }
 function heftDruckStart(){ const q=new URLSearchParams(location.search).get("druck"); if(!q) return false;
   view(false); const zur=el("button",{class:"btn ghost"},"Zur App"), dr=el("button",{class:"btn"},"Drucken / Als PDF sichern");
-  zur.addEventListener("click",()=>{ location.href=location.pathname; }); dr.addEventListener("click",()=>{ try{ window.print(); }catch(e){} });
+  zur.addEventListener("click",()=>{ location.href=location.pathname; }); dr.addEventListener("click",()=>heftDrucken(q));
   const b=bar("←",()=>{ location.href=location.pathname; },"Wellen-Werkstatt · Heft","Druckansicht",dr); b.querySelector(".back").textContent="← Zur App";
   app.appendChild(el("p",{class:"hdruckhinweis"},"Erscheint kein Druckfenster, tippe in Safari auf <b>Teilen</b> und dann auf <b>Drucken</b>. Für eine PDF-Datei wählst du im Druckfenster oben <b>Teilen</b> und dann <b>In Dateien sichern</b>."));
   const wrap=el("div",{class:"heft"}); app.appendChild(wrap); wrap.innerHTML=`<p class="hlade">Das Heft wird geladen …</p>`;
   heftLaden().then(H=>{ const da=H.filter(k=>k.abschnitte&&k.abschnitte.length); wrap.innerHTML=""; (q==="alle"?da:da.filter(k=>k.kap===q)).forEach(k=>wrap.appendChild(heftBlatt(k)));
-    if(!wrap.children.length) da.forEach(k=>wrap.appendChild(heftBlatt(k))); setTimeout(()=>{ try{ window.print(); }catch(e){} },700); })
+    if(!wrap.children.length) da.forEach(k=>wrap.appendChild(heftBlatt(k))); setTimeout(()=>{ if(heftEigenFenster()) heftSafariDialog(q); else { try{ window.print(); }catch(e){} } },700); })
     .catch(()=>{ wrap.innerHTML=`<p class="hlade">Das Heft konnte nicht geladen werden.</p>`; });
   return true; }
 function heftBlatt(k){ const K=KAPITEL.find(x=>x.id===k.kap)||{nr:"",titel:""}, b=el("article",{class:"hblatt"});
