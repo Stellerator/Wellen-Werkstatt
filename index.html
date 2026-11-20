@@ -468,6 +468,7 @@ body.nachtwelt .theme{display:none}
 .tab.heftk svg{flex:none}
 .hleiste{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin:0 0 14px}
 .hlade{text-align:center;color:var(--muted);padding:40px 0}
+.hdruckhinweis{max-width:860px;margin:0 auto 16px;padding:12px 16px;border-radius:12px;background:var(--surface);border:1px solid var(--line);font-size:16px}
 .heft{display:flex;flex-direction:column;align-items:center;gap:30px;padding:4px 0 48px}
 .hblatt{width:min(860px,100%);box-sizing:border-box;color:#1d2430;background-color:#fff;background-image:linear-gradient(#eef2f7 1px,transparent 1px),linear-gradient(90deg,#eef2f7 1px,transparent 1px);background-size:20px 20px;border-radius:6px;box-shadow:0 12px 34px rgba(0,0,0,.28);padding:34px 46px 46px;font:17px/1.55 var(--font-body)}
 .hkopf{display:flex;gap:14px;align-items:center;border-bottom:3px solid #1d2430;padding-bottom:10px;margin-bottom:4px}
@@ -606,6 +607,45 @@ figure.hb.skizze figcaption{font-size:14px;line-height:1.4;color:#5d6675;margin:
 .mmab .mmt{font-size:15px;line-height:1.4;color:#4b5565}
 .mmab.tief{opacity:.62;border-style:dashed;box-shadow:none}
 .mmtipp{position:absolute;left:14px;bottom:10px;margin:0;font-size:13px;color:#5d6675;background:rgba(255,255,255,.85);padding:4px 10px;border-radius:999px;pointer-events:none}
+/*HEFT-ENDE*/
+/*HEFT-ANFANG*/
+/* ===== Aufgaben (Stift-Knopf) ===== */
+.tabs .tab.aufgk{min-width:48px;padding:0 13px;justify-content:center}
+.aintro{max-width:900px;color:var(--muted);margin:0 0 12px}
+.afilter{justify-content:flex-start}
+.agrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px;padding-bottom:40px}
+.acard{display:flex;flex-direction:column;gap:8px;text-align:left;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:18px 20px;min-height:180px}
+.acard:hover{border-color:var(--wave)}
+.acard h3{font:800 22px/1.2 var(--font-display);margin:0}
+.acard p{margin:0;color:var(--muted);font-size:16px;line-height:1.45}
+.akopf{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.anr{display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--wave);color:#fff;font:800 15px/1 var(--font-display)}
+.aherk{font:700 12px/1 var(--font-body);color:#7a2430;border:1.3px solid #a8323e;border-radius:999px;padding:4px 9px;background:#fff}
+.aanz{margin-top:auto;font:700 13px/1 var(--font-mono);color:var(--muted)}
+.asplit{flex:1;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px;min-height:0}
+.amat,.ateile{overflow:auto;min-height:0;padding-bottom:30px}
+.ablatt{width:auto;padding:22px 26px 28px;font-size:16px}
+.aeinl{margin:0 0 6px;font-weight:600}
+.amatk{border-top:1.5px solid #dde3ea;margin-top:14px;padding-top:6px}
+.amatk h4{font:800 17px/1.2 var(--font-display);margin:8px 0 4px;color:#1f6fd1}
+.ateile{display:flex;flex-direction:column;gap:14px}
+.ateil{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px 18px}
+.atext{display:grid;grid-template-columns:auto minmax(0,1fr);gap:12px;align-items:start}
+.atext p{margin:0;font-size:17px;line-height:1.5}
+.atnr{min-width:34px;height:30px;padding:0 6px;border-radius:8px;background:var(--plot);border:1px solid var(--line);display:grid;place-items:center;font:800 14px/1 var(--font-mono)}
+.aknoepfe{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:12px;padding-left:46px}
+.aspring{font-size:13px}
+.astufen{display:flex;flex-direction:column;gap:10px;margin-top:12px;padding-left:46px}
+.astufen>div{border-radius:10px;padding:10px 14px;font-size:16px;line-height:1.55;background:#fff;color:#1d2430}
+.astufe-tipp{border:1.5px dashed #c46a00} .astufe-tipp .hbtag{background:#c46a00}
+.astufe-ansatz{border:1.5px solid #1f6fd1} .astufe-ansatz .hbtag{background:#1f6fd1}
+.astufe-loesung{border:1.5px solid #2e8b57;border-left-width:5px} .astufe-loesung .hbtag{background:#2e8b57}
+.astufen .skizze .hs{max-width:520px}
+.op{all:unset;cursor:help;font-weight:700;text-decoration:underline dotted;text-decoration-thickness:1.5px;text-underline-offset:3px;text-decoration-color:var(--muted)}
+.op:focus-visible{outline:2px solid var(--wave);outline-offset:2px;border-radius:3px}
+.optipp{position:absolute;z-index:50;background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:12px;box-shadow:0 10px 26px rgba(0,0,0,.28);padding:10px 14px;font-size:15px;line-height:1.45}
+.optipp b{display:block;font:800 13px/1.2 var(--font-display);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:3px}
+@media (max-width:899px), (max-aspect-ratio:5/4){ .asplit{grid-template-columns:1fr} .amat,.ateile{overflow:visible} }
 /*HEFT-ENDE*/
 </style>
 </head>
@@ -3024,7 +3064,7 @@ function renderHome(){
   KAPITEL.forEach(k=>{ const b=el("button",{class:"tab","aria-pressed":String(k.id===aktK)},`<span class="nr">${k.nr}</span>${k.titel}`);
     if(!k.freigegeben){ b.disabled=true; b.title="Wird später freigegeben"; } else b.addEventListener("click",()=>{ aktK=k.id; renderHome(); });
     tabs.appendChild(b); });
-/*HEFT-ANFANG*/tabs.appendChild(heftKnopf());/*HEFT-ENDE*/  tabs.appendChild(trophyButton());
+/*HEFT-ANFANG*/tabs.appendChild(heftKnopf()); tabs.appendChild(aufgKnopf());/*HEFT-ENDE*/  tabs.appendChild(trophyButton());
   tabs.appendChild(themeSwitch());
   top.append(brand,tabs); app.appendChild(top);
 
@@ -3408,7 +3448,7 @@ function heftLaden(){ if(window.HEFT) return Promise.resolve(window.HEFT);
   return new Promise((ok,no)=>{ const s=document.createElement("script"); s.src="heft.js?v="+encodeURIComponent(VERSION); s.onload=()=>window.HEFT?ok(window.HEFT):no(new Error("leer")); s.onerror=()=>{ s.remove(); no(new Error("nicht geladen")); }; document.head.appendChild(s); }); }
 let heftK="k1";
 function renderHeft(wahl){ view(false); if(wahl) heftK=wahl;
-  const druck=el("button",{class:"btn"},"Drucken / PDF"); druck.addEventListener("click",()=>window.print());
+  const druck=el("button",{class:"btn"},"Drucken / PDF"); druck.addEventListener("click",()=>heftDrucken(heftK));
   heftKopf("heft",druck);
   const leiste=el("nav",{class:"hleiste","aria-label":"Kapitel im Heft"}), wrap=el("div",{class:"heft"}); app.append(leiste,wrap);
   wrap.innerHTML=`<p class="hlade">Das Heft wird geladen …</p>`;
@@ -3419,6 +3459,20 @@ function renderHeft(wahl){ view(false); if(wahl) heftK=wahl;
     if(da.length>1) chip("alle","Alle Kapitel");
     wrap.innerHTML=""; (heftK==="alle"?da:da.filter(k=>k.kap===heftK)).forEach(k=>wrap.appendChild(heftBlatt(k)));
   }).catch(()=>{ wrap.innerHTML=`<p class="hlade">Das Heft konnte nicht geladen werden. Prüfe die Internetverbindung und tippe auf der Startseite auf „Aktualisieren“.</p>`; }); }
+/* Drucken: Vom Home-Bildschirm aus (eigenständiges Fenster) ignoriert iPadOS den Druckbefehl.
+   Dann öffnet sich das Heft in Safari als reine Druckansicht (?druck=k1 bzw. ?druck=alle), dort klappt Drucken und „Als PDF sichern“. */
+const heftEigenFenster=()=>window.navigator.standalone===true||(window.matchMedia&&window.matchMedia("(display-mode: standalone)").matches);
+function heftDrucken(kap){ if(heftEigenFenster()){ const u=location.pathname+"?druck="+encodeURIComponent(kap||"alle"); const w=window.open(u,"_blank"); if(!w) location.href=u; return; } try{ window.print(); }catch(e){} }
+function heftDruckStart(){ const q=new URLSearchParams(location.search).get("druck"); if(!q) return false;
+  view(false); const zur=el("button",{class:"btn ghost"},"Zur App"), dr=el("button",{class:"btn"},"Drucken / Als PDF sichern");
+  zur.addEventListener("click",()=>{ location.href=location.pathname; }); dr.addEventListener("click",()=>{ try{ window.print(); }catch(e){} });
+  const b=bar("←",()=>{ location.href=location.pathname; },"Wellen-Werkstatt · Heft","Druckansicht",dr); b.querySelector(".back").textContent="← Zur App";
+  app.appendChild(el("p",{class:"hdruckhinweis"},"Erscheint kein Druckfenster, tippe in Safari auf <b>Teilen</b> und dann auf <b>Drucken</b>. Für eine PDF-Datei wählst du im Druckfenster oben <b>Teilen</b> und dann <b>In Dateien sichern</b>."));
+  const wrap=el("div",{class:"heft"}); app.appendChild(wrap); wrap.innerHTML=`<p class="hlade">Das Heft wird geladen …</p>`;
+  heftLaden().then(H=>{ const da=H.filter(k=>k.abschnitte&&k.abschnitte.length); wrap.innerHTML=""; (q==="alle"?da:da.filter(k=>k.kap===q)).forEach(k=>wrap.appendChild(heftBlatt(k)));
+    if(!wrap.children.length) da.forEach(k=>wrap.appendChild(heftBlatt(k))); setTimeout(()=>{ try{ window.print(); }catch(e){} },700); })
+    .catch(()=>{ wrap.innerHTML=`<p class="hlade">Das Heft konnte nicht geladen werden.</p>`; });
+  return true; }
 function heftBlatt(k){ const K=KAPITEL.find(x=>x.id===k.kap)||{nr:"",titel:""}, b=el("article",{class:"hblatt"});
   b.innerHTML=`<header class="hkopf"><span class="hknr">${K.nr}</span><div><span class="heye">Wellen-Werkstatt · Heft · Kapitel ${K.nr}</span><h2>${k.titel||K.titel}</h2></div></header>`;
   k.abschnitte.forEach((a,i)=>{ const s=el("section",{class:"habs"+(a.tief?" tief":"")}); s.appendChild(el("h3",{},`<span class="hnr">${K.nr}.${i+1}</span>${hfx(a.titel)}`)); (a.inhalt||[]).forEach(z=>s.appendChild(heftBaustein(z))); b.appendChild(s); });
@@ -3596,7 +3650,17 @@ const HSK={
     g+=hsL(40,y0,610,y0,"g")+`<path class="wg" d="${hsPfad(x=>y0-2*A*Math.abs(Math.cos(Math.PI*d*(x-40)/W)),40,600,200)}"/><path class="wg" d="${hsPfad(x=>y0+2*A*Math.abs(Math.cos(Math.PI*d*(x-40)/W)),40,600,200)}"/>`;
     g+=`<path class="w" d="${hsPfad(x=>y0-2*A*s((x-40)/W),40,600,600)}"/>`;
     const t1=40, t2=40+W/d; g+=hsPf(id,t1,186,t2,186,"o","m",true)+hsT((t1+t2)/2,204,"T_S = 1 / f_S".replace("T_S","T<tspan dy=\"4\" font-size=\"10\">S</tspan><tspan dy=\"-4\"> </tspan>").replace("f_S","f<tspan dy=\"4\" font-size=\"10\">S</tspan>"),"mt");
-    return hsSvg(id,640,214,g,"Schwebung"); }
+    return hsSvg(id,640,214,g,"Schwebung"); },
+  pendel(){ const id="hk-pendel", ax=230, ay=34, L=200, a=30*Math.PI/180, bx=ax+L*Math.sin(a), by=ay+L*Math.cos(a), FG=120, FR=FG*Math.sin(a), FS=FG*Math.cos(a), sub=t=>`<tspan dy="5" font-size="11">${t}</tspan>`; let g="";
+    g+=`<rect x="${ax-70}" y="${ay-14}" width="140" height="14" fill="#9aa5b5"/>`+hsL(ax,ay,ax,ay+L+30,"g")+hsL(ax,ay,bx,by,"k");
+    g+=`<path class="md" d="M${ax} ${ay+L}A${L} ${L} 0 0 0 ${hsN(bx)} ${hsN(by)}"/>`+hsT(ax+12,ay+L+30,"s","mt","middle");
+    g+=`<path class="k" d="M${ax} ${ay+56}A56 56 0 0 0 ${hsN(ax+56*Math.sin(a))} ${hsN(ay+56*Math.cos(a))}"/>`+hsT(ax+10,ay+84,"α","gr","start")+hsT((ax+bx)/2-10,(ay+by)/2+12,"ℓ","gr","end");
+    const tx=-Math.cos(a), ty=Math.sin(a), sx=-Math.sin(a), sy=-Math.cos(a);
+    g+=hsL(bx+tx*FR,by+ty*FR,bx,by+FG,"md")+hsPf(id,bx,by,bx,by+FG,"k","k")+hsPf(id,bx,by,bx+tx*FR,by+ty*FR,"o","m")+hsPf(id,bx,by,bx+sx*FS,by+sy*FS,"b","pb");
+    g+=hsK(bx,by,14,"#1f6fd1");
+    g+=hsT(bx+10,by+FG+4,"F"+sub("G"),"gr","start")+hsT(bx+tx*FR-10,by+ty*FR+4,"F"+sub("R"),"mt","end")+hsT(bx+sx*FS+14,by+sy*FS+6,"F"+sub("Seil"),"bt","start");
+    g+=hsT(430,150,"F"+sub("R")+`<tspan dy="-5"> = F</tspan>`+sub("G")+`<tspan dy="-5"> · sin α</tspan>`,"mt","start")+hsT(430,180,"F"+sub("R")+`<tspan dy="-5"> zeigt zur Ruhelage</tspan>`,"st","start");
+    return hsSvg(id,640,370,g,"Fadenpendel mit Kräften"); }
 };
 /*HEFT-ENDE*/
 /*HEFT-ANFANG*/
@@ -3715,7 +3779,60 @@ function renderMindmap(){ view(true); const leiste=el("div",{class:"mmleiste"});
   huelle._kamera=()=>Object.assign({},cam); }
 function kurzText(html){ const t=String(html).replace(/<br>/g," ").replace(/<[^>]+>/g,""); const s=t.split(/(?<=\.)\s/)[0]; return hfx(s.length>110?s.slice(0,105)+" …":s); }
 /*HEFT-ENDE*/
-renderHome();
+/*HEFT-ANFANG*/
+/* =====================================================================
+   AUFGABEN (Stift-Knopf): Übungsaufgaben mit gestuften Lösungen, ohne Bewertung. Inhalte in aufgaben.js.
+   ===================================================================== */
+const AUFG_ICON=`<svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M13.6 3.2l3.2 3.2-9.7 9.7-4 .8.8-4z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M11.6 5.2l3.2 3.2" stroke="currentColor" stroke-width="1.8"/></svg>`;
+function aufgKnopf(){ const b=el("button",{class:"tab aufgk",title:"Aufgaben","aria-label":"Aufgaben"},AUFG_ICON); b.addEventListener("click",()=>renderAufgaben()); return b; }
+function aufgLaden(){ if(window.AUFGABEN) return Promise.resolve(window.AUFGABEN);
+  return new Promise((ok,no)=>{ const s=document.createElement("script"); s.src="aufgaben.js?v="+encodeURIComponent(VERSION); s.onload=()=>window.AUFGABEN?ok(window.AUFGABEN):no(new Error("leer")); s.onerror=()=>{ s.remove(); no(new Error("nicht geladen")); }; document.head.appendChild(s); }); }
+// Operatoren: kurze Erklärung, was verlangt ist (dezent, beim Antippen)
+const OPS={nennen:"Ohne Erklärung aufzählen oder angeben.",angeben:"Ohne Erklärung aufzählen oder angeben.",beschreiben:"Einen Sachverhalt in eigenen Worten geordnet wiedergeben.",erklären:"Einen Sachverhalt auf Gesetze, Regeln oder Ursachen zurückführen, sodass er verständlich wird.",erläutern:"Erklären und mit zusätzlichen Informationen oder Beispielen verständlich machen.",
+  berechnen:"Ein Ergebnis aus gegebenen Größen mit einem nachvollziehbaren Rechenweg gewinnen.",bestimmen:"Ein Ergebnis auf einem nachvollziehbaren Weg gewinnen: rechnen, ablesen oder grafisch ermitteln.",ermitteln:"Ein Ergebnis auf einem nachvollziehbaren Weg gewinnen: rechnen, ablesen oder grafisch ermitteln.",
+  skizzieren:"Das Wesentliche vereinfacht zeichnen, ohne genaue Maße.",zeichnen:"Genau und, wo nötig, maßstäblich zeichnen, z. B. ein Diagramm mit beschrifteten Achsen.",herleiten:"Aus Gesetzen und Größen durch Umformen eine neue Beziehung gewinnen, Schritt für Schritt.",
+  beurteilen:"Zu einer Aussage ein begründetes Urteil fällen: stimmt sie, und warum (nicht)?",begründen:"Einen Sachverhalt mit Gesetzen oder Regeln stützen, Argumente nennen.",vergleichen:"Gemeinsamkeiten und Unterschiede herausarbeiten.",abschätzen:"Die Größenordnung durch begründete, vereinfachte Überlegungen angeben.",darstellen:"Einen Sachverhalt geordnet wiedergeben, auch als Skizze oder Diagramm.",prüfen:"Eine Aussage oder ein Ergebnis an Fakten oder einer Rechnung messen."};
+const OPWORT={nenne:"nennen",gib:"angeben",an:"angeben",beschreibe:"beschreiben",erkläre:"erklären",erläutere:"erläutern",berechne:"berechnen",bestimme:"bestimmen",ermittle:"ermitteln",skizziere:"skizzieren",zeichne:"zeichnen",leite:"herleiten",her:"herleiten",beurteile:"beurteilen",begründe:"begründen",vergleiche:"vergleichen",schätze:"abschätzen",ab:"abschätzen",stelle:"darstellen",dar:"darstellen",prüfe:"prüfen"};
+const opHtml=s=>String(s).replace(/\[\[([^\]]+)\]\]/g,(m,w)=>{ const op=OPWORT[w.toLowerCase()]||w.toLowerCase(); return `<button type="button" class="op" data-op="${op}" aria-label="${w} (Operator: ${op})">${w}</button>`; });
+function opTipp(wurzel){ let box=null; const zu=()=>{ if(box){ box.remove(); box=null; } };
+  wurzel.addEventListener("click",e=>{ const b=e.target.closest(".op"); if(!b){ zu(); return; } e.stopPropagation(); const neu=!box||box._b!==b; zu(); if(!neu) return;
+    const o=b.dataset.op; box=el("div",{class:"optipp",role:"tooltip"},`<b>${o[0].toUpperCase()+o.slice(1)}</b>${OPS[o]||""}`); box._b=b; document.body.appendChild(box);
+    const r=b.getBoundingClientRect(), w=Math.min(300,window.innerWidth-24); box.style.width=w+"px"; box.style.left=Math.max(12,Math.min(window.innerWidth-w-12,r.left+r.width/2-w/2))+"px"; box.style.top=(r.bottom+window.scrollY+8)+"px"; });
+  const draussen=e=>{ if(!e.target.closest(".op")&&!e.target.closest(".optipp")) zu(); }; document.addEventListener("click",draussen);
+  cleanups.push(zu,()=>document.removeEventListener("click",draussen)); }
+
+const AKAP=a=>a.kap==="s"?{nr:"S",titel:"Vorstufe: Schwingungen"}:(KAPITEL.find(k=>k.id===a.kap)||{nr:"",titel:""});
+let aufgFilter="alle";
+function renderAufgaben(f){ view(false); if(f) aufgFilter=f;
+  bar("← Lernpfad",renderHome,"Wellen-Werkstatt","Aufgaben",themeSwitch());
+  const leiste=el("nav",{class:"hleiste afilter","aria-label":"Kapitel"}), info=el("p",{class:"aintro"},"Übungsaufgaben mit gestuften Lösungen. Erst selbst versuchen, dann <b>Tipp</b>, <b>Ansatz</b> und <b>Lösung</b> nacheinander aufdecken. Unterpunktete Wörter sind Operatoren: Antippen zeigt, was verlangt ist.");
+  const grid=el("div",{class:"agrid"}); app.append(info,leiste,grid); grid.innerHTML=`<p class="hlade">Die Aufgaben werden geladen …</p>`;
+  aufgLaden().then(A=>{ const kaps=["s",...KAPITEL.map(k=>k.id)].filter(k=>A.some(a=>a.kap===k||(a.auch||[]).includes(k)));
+    const chip=(id,html)=>{ const b=el("button",{class:id==="alle"?"tab alle":"tab","aria-pressed":String(id===aufgFilter)},html); b.addEventListener("click",()=>renderAufgaben(id)); leiste.appendChild(b); };
+    chip("alle","Alle"); kaps.forEach(k=>{ const K=k==="s"?{nr:"S",titel:"Schwingungen"}:KAPITEL.find(x=>x.id===k); chip(k,`<span class="nr">${K.nr}</span>${K.titel}`); });
+    grid.innerHTML=""; A.filter(a=>aufgFilter==="alle"||a.kap===aufgFilter||(a.auch||[]).includes(aufgFilter)).forEach(a=>{ const K=AKAP(a);
+      const c=el("button",{class:"acard"}); c.innerHTML=`<span class="akopf"><span class="anr">${K.nr}</span><span class="eyebrow">${K.titel}</span>${a.herkunft?`<span class="aherk">${a.herkunft}</span>`:""}</span><h3>${a.titel}</h3><p>${hfx(a.kontext||"")}</p><span class="aanz">${a.teile.length} Teilaufgaben</span>`;
+      c.addEventListener("click",()=>renderAufgabe(a.id)); grid.appendChild(c); });
+  }).catch(()=>{ grid.innerHTML=`<p class="hlade">Die Aufgaben konnten nicht geladen werden.</p>`; }); }
+
+function renderAufgabe(id){ view(true);
+  aufgLaden().then(A=>{ const a=A.find(x=>x.id===id); if(!a) return renderAufgaben(); const K=AKAP(a);
+    const zu=el("button",{class:"btn ghost"},"Alle Lösungen zuklappen");
+    bar("← Aufgaben",()=>renderAufgaben(),`${K.nr==="S"?"Vorstufe":"Kapitel "+K.nr} · Aufgaben${a.herkunft?" · "+a.herkunft:""}`,a.titel,zu).appendChild(themeSwitch());
+    const split=el("div",{class:"asplit"}), mat=el("section",{class:"amat"}), teile=el("section",{class:"ateile"}); split.append(mat,teile); app.appendChild(split);
+    const blatt=el("div",{class:"hblatt ablatt"}); blatt.appendChild(el("p",{class:"aeinl"},hfx(a.einleitung||""))); (a.material||[]).forEach(m=>{ const s=el("section",{class:"amatk"}); s.appendChild(el("h4",{},hfx(m.titel))); (m.inhalt||[]).forEach(z=>s.appendChild(heftBaustein(z))); blatt.appendChild(s); }); mat.appendChild(blatt);
+    const stufen=[["tipp","Tipp"],["ansatz","Ansatz"],["loesung","Lösung"]], reset=[];
+    a.teile.forEach(t=>{ const box=el("article",{class:"ateil"}); box.innerHTML=`<div class="atext"><span class="atnr">${t.nr}</span><p>${opHtml(hfx(t.text))}</p></div>`;
+      const aus=el("div",{class:"astufen"}), kn=el("div",{class:"aknoepfe"}); box.append(aus,kn); let n=0;
+      const zeig=()=>{ kn.innerHTML=""; if(n<3){ const [key,nm]=stufen[n], b=el("button",{class:"btn "+(n===2?"":"ghost")+" astufe"},`${nm} zeigen`); b.addEventListener("click",()=>{ const [k2,nm2]=stufen[n]; const d=el("div",{class:"astufe-"+k2},`<span class="hbtag">${nm2}</span><div>${hfx(t[k2]||"")}</div>`);
+          if(k2==="loesung"&&t.skizze&&HSK[t.skizze]) d.appendChild(el("figure",{class:"hb skizze"},HSK[t.skizze]())); aus.appendChild(d); n++; zeig(); }); kn.appendChild(b);
+          if(n<2){ const s=el("button",{class:"linkbtn aspring"},"gleich zur Lösung"); s.addEventListener("click",()=>{ while(n<3) kn.querySelector(".astufe").click(); }); kn.appendChild(s); } }
+        else { const r=el("button",{class:"linkbtn"},"zuklappen"); r.addEventListener("click",()=>{ aus.innerHTML=""; n=0; zeig(); }); kn.appendChild(r); } };
+      reset.push(()=>{ aus.innerHTML=""; n=0; zeig(); }); zeig(); teile.appendChild(box); });
+    zu.addEventListener("click",()=>reset.forEach(f=>f())); opTipp(teile);
+  }).catch(()=>renderAufgaben()); }
+/*HEFT-ENDE*/
+if(!heftDruckStart()) renderHome();
 startUpdates();
 </script>
 </body>

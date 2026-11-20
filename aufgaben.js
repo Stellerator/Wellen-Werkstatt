@@ -1,0 +1,179 @@
+/* Wellen-Werkstatt · Aufgaben mit gestuften Lösungen (Übungsbereich, ohne Bewertung)
+   =====================================================================
+   Jede Aufgabe:
+     id        nie ändern
+     kap       Kapitel, zu dem sie gehört ("s" = Vorstufe Schwingungen, sonst "k1" … "k4")
+     auch      weitere Kapitel, die sie berührt
+     herkunft  z. B. "nach Abitur 2024, Aufgabe 3" (neu formuliert, eigene Zahlen) oder leer
+     kontext   ein Satz für die Übersicht
+     einleitung, material: [{titel, inhalt: [Bausteine wie im Heft]}]
+     teile: [{nr, text, tipp, ansatz, loesung, skizze}]   skizze (frei) erscheint mit der Lösung
+
+   Operatoren schreibst du in doppelte eckige Klammern: [[Berechne]], [[Erkläre]], [[Leite]] … her.
+   Sie werden dezent unterpunktet, ein Tippen zeigt, was verlangt ist.
+   Brüche: {Zähler|Nenner}, tiefgestellt: <sub>max</sub>, fett: <b>…</b>
+   ===================================================================== */
+window.AUFGABEN = [
+  /* ============================ Vorstufe Schwingungen ============================ */
+  { id: "kran", kap: "s", herkunft: "nach Abitur 2025, Aufgabe 4", titel: "Die Last am Kranseil",
+    kontext: "Ein Kran stoppt, die Last schwingt weiter. Wie weit, wie lange, und was hat die Masse damit zu tun?",
+    einleitung: "Fährt ein Kran mit hängender Last und stoppt plötzlich, schwingt die Last am Seil wie ein Fadenpendel. Die Last wird als punktförmig, das Seil als masselos und die Schwingung als harmonisch betrachtet.",
+    material: [
+      { titel: "M 1 · Kran mit Last", inhalt: [["skizze", "pendel", "Fadenpendel: Seillänge ℓ, Auslenkung s längs der Bahn, Auslenkwinkel α."], ["groessen", [["v", "Geschwindigkeit des Krans vor dem Stopp", "2,0 m/s"], ["m", "Masse der Last", "600 kg"], ["ℓ", "Seillänge", "20,0 m"]]]] },
+      { titel: "M 2 · Rückstellkraft", inhalt: [["text", "F<sub>R</sub> = F<sub>G</sub> · sin α. Für kleine Auslenkungen gilt sin α ≈ {s|ℓ}, also F<sub>R</sub> ≈ F<sub>G</sub> · {s|ℓ}."], ["text", "Differentialgleichung: m · s̈ = −{m · g|ℓ} · s"]] },
+      { titel: "M 3 · Zwei Meinungen", inhalt: [["text", "Mia: „Je schwerer die Last, desto weiter schwingt sie aus.“<br>Ben: „Die Auslenkung hängt nur davon ab, wie schnell die Last beim Stopp ist.“"]] }
+    ],
+    teile: [
+      { nr: "1", text: "[[Erkläre]], warum die Last zu schwingen beginnt, wenn der Kran plötzlich stoppt.", tipp: "Was macht ein Körper, auf den in Fahrtrichtung keine Kraft mehr wirkt?", ansatz: "Denke an die Trägheit der Last und an die Kraft, die sie zurückzieht, sobald sie ausgelenkt ist.", loesung: "Wegen ihrer Trägheit bewegt sich die Last mit 2,0 m/s weiter, obwohl der Aufhängepunkt stehen bleibt. Sie wird ausgelenkt, und die Rückstellkraft F<sub>R</sub> = F<sub>G</sub> · sin α zieht sie zur Ruhelage zurück. Dort ist sie wieder schnell und schwingt über die Ruhelage hinaus: Es entsteht eine Pendelschwingung." },
+      { nr: "2", text: "[[Berechne]] die maximale Auslenkung s<sub>max</sub> der Last.", tipp: "Beim Stopp ist die Last in der Ruhelage und hat ihre größte Geschwindigkeit.", ansatz: "Für die harmonische Schwingung gilt v<sub>max</sub> = s<sub>max</sub> · ω (Formelsammlung S. 22) und ω = √(g/ℓ) aus der Differentialgleichung in M 2.", loesung: "ω = √({g|ℓ}) = √({9,81 m/s²|20,0 m}) ≈ 0,700 {1|s}<br>s<sub>max</sub> = {v<sub>max</sub>|ω} = {2,0 m/s|0,700 1/s} ≈ 2,9 m" },
+      { nr: "3", text: "[[Beurteile]] die beiden Aussagen in M 3.", tipp: "Taucht die Masse m in deinem Ergebnis aus Teil 2 auf?", ansatz: "s<sub>max</sub> = {v|ω} mit ω = √(g/ℓ). Von welchen Größen hängt s<sub>max</sub> also ab?", loesung: "s<sub>max</sub> = v · √({ℓ|g}) hängt nicht von der Masse ab. Mia hat nicht recht. Ben hat bei gleicher Seillänge recht: Die Auslenkung hängt von der Geschwindigkeit beim Stopp ab, aber zusätzlich von der Seillänge ℓ." },
+      { nr: "4", text: "[[Stelle]] die Kräfte an der ausgelenkten Last in einer Skizze [[dar]]. Zeichne die Gewichtskraft, die Rückstellkraft und die Seilkraft ein.", tipp: "Zerlege die Gewichtskraft in zwei Richtungen: längs des Seils und senkrecht dazu.", ansatz: "Die Komponente senkrecht zum Seil zeigt zur Ruhelage. Sie ist die Rückstellkraft F<sub>R</sub> = F<sub>G</sub> · sin α.", loesung: "F<sub>G</sub> zeigt senkrecht nach unten. Sie wird zerlegt in eine Komponente längs des Seils (sie wird von der Seilkraft aufgehoben) und die Rückstellkraft F<sub>R</sub> = F<sub>G</sub> · sin α tangential zur Bahn, Richtung Ruhelage.", skizze: "pendel" },
+      { nr: "5", text: "[[Leite]] aus der Differentialgleichung in M 2 die Formel für die Periodendauer T [[her]]. [[Berechne]] T für die Last.", tipp: "Vergleiche mit der Federschwingung: m · s̈ = −D · s hat die Lösung mit ω = √(D/m).", ansatz: "Hier spielt {m · g|ℓ} die Rolle von D. Dann ω = √({g|ℓ}) und T = {2π|ω}.", loesung: "Mit s(t) = s<sub>max</sub> · sin(ω · t) folgt s̈ = −ω² · s. Einsetzen: −m · ω² · s = −{m · g|ℓ} · s, also ω² = {g|ℓ}.<br>T = {2π|ω} = 2π · √({ℓ|g}) (Formelsammlung S. 22)<br>T = 2π · √({20,0 m|9,81 m/s²}) ≈ 9,0 s" },
+      { nr: "6", text: "Beim Pendelschlagversuch wird ein 50-kg-Pendelkörper aus 70 cm Höhe gegen eine Glasscheibe geschwungen. [[Nenne]] die auftretenden Energieformen und [[berechne]] die Geschwindigkeit beim Aufprall im tiefsten Punkt.", tipp: "Reibung vernachlässigen: Was wird in was umgewandelt?", ansatz: "Lageenergie oben = Bewegungsenergie unten: m · g · h = ½ · m · v²", loesung: "Lageenergie wird in Bewegungsenergie umgewandelt (bei Reibung zum Teil in innere Energie).<br>v = √(2 · g · h) = √(2 · 9,81 m/s² · 0,70 m) ≈ 3,7 m/s. Die Masse kürzt sich heraus." }
+    ]},
+
+  /* ================================ Kapitel 1 ================================ */
+  { id: "erdbeben", kap: "k1", titel: "Erdbeben-Frühwarnung",
+    kontext: "Zwei Wellen, zwei Geschwindigkeiten: Wie viele Sekunden Vorwarnung gibt die Physik?",
+    einleitung: "Bei einem Erdbeben laufen zwei Arten von Wellen durch das Gestein: die schnellere P-Welle (primär) und die langsamere S-Welle (sekundär). Die S-Welle richtet die meisten Schäden an. Frühwarnsysteme nutzen den Unterschied.",
+    material: [
+      { titel: "M 1 · Wellen im Gestein", inhalt: [["groessen", [["P-Welle", "Längswelle, Gestein wird gestaucht und gedehnt", "6,0 km/s"], ["S-Welle", "Querwelle, Gestein wird seitlich verschoben", "3,5 km/s"]]]] },
+      { titel: "M 2 · Seismogramm", inhalt: [["text", "Eine Messstation zeichnet die P-Welle 20 s vor der S-Welle auf."]] },
+      { titel: "M 3 · Frühwarnung", inhalt: [["text", "Eine Messstation liegt 40 km vom Erdbebenherd entfernt. Sobald sie die P-Welle registriert, sendet sie ohne Verzögerung eine Warnung an eine Stadt in 168 km Entfernung vom Herd."]] }
+    ],
+    teile: [
+      { nr: "1", text: "[[Beschreibe]], wie die Gesteinsteilchen bei der P-Welle und bei der S-Welle schwingen.", tipp: "Längs- oder Querwelle?", ansatz: "Vergleiche jeweils die Schwingungsrichtung mit der Ausbreitungsrichtung.", loesung: "P-Welle: Die Teilchen schwingen in Ausbreitungsrichtung hin und her (Längswelle, Verdichtungen und Verdünnungen). S-Welle: Die Teilchen schwingen senkrecht zur Ausbreitungsrichtung (Querwelle).", skizze: "querlaengs" },
+      { nr: "2", text: "[[Berechne]] die Entfernung der Messstation aus M 2 vom Erdbebenherd.", tipp: "Beide Wellen legen dieselbe Strecke d zurück, nur unterschiedlich schnell.", ansatz: "Laufzeiten t<sub>P</sub> = {d|v<sub>P</sub>} und t<sub>S</sub> = {d|v<sub>S</sub>}. Ihre Differenz ist 20 s.", loesung: "t<sub>S</sub> − t<sub>P</sub> = d · ({1|v<sub>S</sub>} − {1|v<sub>P</sub>}) = 20 s<br>d = {20 s|{1|3,5 km/s} − {1|6,0 km/s}} = {20 s|0,119 s/km} ≈ 168 km" },
+      { nr: "3", text: "[[Bestimme]] mit M 3, wie viele Sekunden die Stadt gewarnt ist, bevor die S-Welle eintrifft.", tipp: "Wann kommt die P-Welle an der Station an, wann die S-Welle in der Stadt?", ansatz: "t<sub>Warnung</sub> = {40 km|6,0 km/s}, t<sub>S, Stadt</sub> = {168 km|3,5 km/s}", loesung: "Warnung nach {40 km|6,0 km/s} ≈ 6,7 s. Die S-Welle erreicht die Stadt nach {168 km|3,5 km/s} = 48 s.<br>Vorwarnzeit: 48 s − 6,7 s ≈ 41 s." },
+      { nr: "4", text: "Messstationen auf der dem Herd gegenüberliegenden Seite der Erde empfangen keine S-Wellen, wohl aber P-Wellen. [[Begründe]] dies mit dem flüssigen äußeren Erdkern.", tipp: "Welche Wellenart braucht ein Medium, das sich gegen seitliches Verschieben wehrt?", ansatz: "In Gasen und Flüssigkeiten gibt es keine Rückstellkraft bei seitlicher Verschiebung.", loesung: "Querwellen brauchen ein Medium, in dem seitlich verschobene Teilchen zurückgezogen werden. Eine Flüssigkeit leistet das nicht, deshalb können S-Wellen den flüssigen äußeren Kern nicht durchqueren. P-Wellen sind Längswellen, sie laufen auch durch Flüssigkeiten." }
+    ]},
+  { id: "laola", kap: "k1", titel: "La-Ola im Stadion",
+    kontext: "Zehntausende stehen auf und setzen sich wieder hin. Was wandert da eigentlich durchs Stadion?",
+    einleitung: "Bei einer La-Ola-Welle steht jede Person kurz auf, reißt die Arme hoch und setzt sich wieder, sobald ihr Nachbar aufgestanden ist. Die Welle läuft so um das ganze Stadion.",
+    material: [
+      { titel: "M 1 · Beobachtungen", inhalt: [["groessen", [["Umfang der Tribüne", "", "480 m"], ["Zeit für eine Runde", "", "32 s"], ["Eine Person steht", "", "etwa 1,2 s"], ["Sitzabstand nebeneinander", "", "0,50 m"]]]] }
+    ],
+    teile: [
+      { nr: "1", text: "[[Begründe]], ob die La-Ola eine Querwelle oder eine Längswelle ist.", tipp: "In welche Richtung bewegt sich eine Person, in welche Richtung läuft die Welle?", ansatz: "Vergleiche die Bewegung der Personen mit der Ausbreitungsrichtung.", loesung: "Die Personen bewegen sich nach oben und unten, die Welle läuft waagerecht um das Stadion. Die Schwingung ist senkrecht zur Ausbreitung: eine Querwelle." },
+      { nr: "2", text: "[[Berechne]] die Ausbreitungsgeschwindigkeit der Welle.", tipp: "Strecke durch Zeit.", ansatz: "c = {Δx|Δt}", loesung: "c = {480 m|32 s} = 15 m/s" },
+      { nr: "3", text: "[[Bestimme]], wie breit der „Wellenberg“ ist und wie viele Personen gleichzeitig stehen.", tipp: "Während eine Person 1,2 s steht, läuft die Welle weiter.", ansatz: "Breite = c · t<sub>stehen</sub>, Anzahl = {Breite|Sitzabstand}", loesung: "Breite = 15 m/s · 1,2 s = 18 m. Darauf stehen etwa {18 m|0,50 m} = 36 Personen nebeneinander." },
+      { nr: "4", text: "[[Erkläre]] am Beispiel der La-Ola, dass eine Welle Energie, aber keine Materie transportiert.", tipp: "Wo sitzt eine Person nach dem Durchlauf der Welle?", ansatz: "Was wird weitergegeben, was bleibt am Platz?", loesung: "Jede Person bleibt an ihrem Platz und bewegt sich nur auf und ab. Weitergegeben wird nur der Bewegungszustand „Aufstehen“: Die Welle transportiert Energie (die Bewegung), aber keine Materie (die Personen)." },
+      { nr: "5", text: "Die Welle läuft ununterbrochen im Kreis. [[Gib]] Periodendauer, Frequenz und Wellenlänge [[an]] und [[prüfe]] damit c = λ · f.", tipp: "Wann steht eine Person das nächste Mal auf?", ansatz: "Nach einer Runde ist die Welle wieder da: T = 32 s. Auf dem Umfang hat genau eine Welle Platz.", loesung: "T = 32 s, f = {1|T} ≈ 0,031 Hz, λ = 480 m.<br>c = λ · f = 480 m · {1|32 s} = 15 m/s. Das stimmt mit Teil 2 überein." }
+    ]},
+
+  /* ================================ Kapitel 2 ================================ */
+  { id: "bojen", kap: "k2", titel: "Bojen in der Dünung",
+    kontext: "Zwei Bojen, eine Welle: Wer geht gerade hoch, wer runter, und wie hoch steht die Boje in 11 Sekunden?",
+    einleitung: "Vor der Küste läuft eine gleichmäßige Dünung. Eine Messboje hebt und senkt sich, eine zweite liegt weiter draußen. Die Welle läuft in Richtung Küste (positive x-Richtung).",
+    material: [
+      { titel: "M 1 · Messwerte", inhalt: [["groessen", [["Periodendauer", "Zeit zwischen zwei höchsten Lagen einer Boje", "8,0 s"], ["Wellenlänge", "Abstand zweier Wellenberge", "96 m"], ["Amplitude", "", "1,2 m"]]]] },
+      { titel: "M 2 · Wellenfunktion", inhalt: [["text", "Für die Welle gilt mit der ersten Boje bei x = 0, die zur Zeit t = 0 nach oben startet:"], ["nebenformel", "y(x,t) = 1,2 m · sin(2π · ({t|8,0 s} − {x|96 m}))", "für t ≥ {x|c}", { fs: 22 }]] }
+    ],
+    teile: [
+      { nr: "1", text: "[[Berechne]] die Ausbreitungsgeschwindigkeit der Dünung.", tipp: "Welche Formel verbindet λ, T und c?", ansatz: "c = {λ|T} (Formelsammlung S. 22: c = λ · f)", loesung: "c = {96 m|8,0 s} = 12 m/s" },
+      { nr: "2", text: "[[Skizziere]] das Zeitbild y(t) der ersten Boje für die ersten 16 s.", tipp: "Die Boje startet in der Ruhelage nach oben.", ansatz: "Eine Sinuskurve mit Amplitude 1,2 m und Periodendauer 8,0 s: zwei volle Schwingungen.", loesung: "Sinuskurve, beginnt bei y = 0 nach oben, Maximum 1,2 m bei t = 2 s, Nulldurchgang bei 4 s, Minimum −1,2 m bei 6 s, wieder 0 bei 8 s; das Ganze zweimal.", skizze: "zeitbild" },
+      { nr: "3", text: "Die zweite Boje liegt 48 m weiter in Laufrichtung. [[Begründe]], wie die beiden Bojen zueinander schwingen.", tipp: "Vergleiche den Abstand mit der Wellenlänge.", ansatz: "48 m = λ/2.", loesung: "Der Abstand ist eine halbe Wellenlänge. Die Bojen schwingen im Gegentakt: Ist die eine oben, ist die andere unten." },
+      { nr: "4", text: "[[Berechne]] mit M 2 die Auslenkung einer Boje bei x = 24 m zur Zeit t = 11 s.", tipp: "Erst prüfen, ob die Welle schon da ist. Taschenrechner im Bogenmaß!", ansatz: "Ankunft nach {x|c} = {24 m|12 m/s} = 2 s. Dann einsetzen: {t|T} − {x|λ} = {11|8,0} − {24|96}", loesung: "Die Welle ist nach 2 s angekommen, bei 11 s also schon da.<br>y = 1,2 m · sin(2π · (1,375 − 0,25)) = 1,2 m · sin(2π · 1,125) ≈ 1,2 m · 0,707 ≈ 0,85 m" },
+      { nr: "5", text: "[[Bestimme]] den Phasenunterschied zweier Bojen, die 24 m auseinanderliegen.", tipp: "Welcher Bruchteil von λ sind 24 m?", ansatz: "Δφ = 2π · {Δx|λ}", loesung: "Δφ = 2π · {24 m|96 m} = {π|2}: Die hintere Boje hinkt eine Viertelperiode (2 s) hinterher." }
+    ]},
+
+  /* ================================ Kapitel 3 ================================ */
+  { id: "openair", kap: "k3", titel: "Zwei Lautsprecher beim Open-Air",
+    kontext: "Beim Soundcheck läuft ein Sinuston. Wo auf der Wiese ist es laut, wo seltsam leise?",
+    einleitung: "Beim Soundcheck eines Open-Air-Konzerts geben zwei Lautsprecher denselben Sinuston gleichphasig ab. Eine Technikerin geht über die Wiese und hört laute und leise Stellen.",
+    material: [
+      { titel: "M 1 · Aufbau", inhalt: [["skizze", "gang", "Die Lautsprecher Q₁ und Q₂ und ein Punkt P auf der Wiese."], ["groessen", [["Abstand der Lautsprecher", "", "4,0 m"], ["Frequenz des Tons", "", "686 Hz"], ["Schallgeschwindigkeit", "", "343 m/s"], ["P: Abstand zu Q₁", "", "12,00 m"], ["P: Abstand zu Q₂", "", "12,75 m"]]]] }
+    ],
+    teile: [
+      { nr: "1", text: "[[Berechne]] die Wellenlänge des Tons.", tipp: "c, f und λ hängen zusammen.", ansatz: "λ = {c|f} (Formelsammlung S. 22)", loesung: "λ = {343 m/s|686 Hz} = 0,50 m" },
+      { nr: "2", text: "[[Begründe]], ob es am Punkt P laut oder leise ist.", tipp: "Berechne den Gangunterschied.", ansatz: "Δs = |s₂ − s₁| und vergleichen mit k · λ (laut) bzw. (2k − 1) · {λ|2} (leise).", loesung: "Δs = 12,75 m − 12,00 m = 0,75 m = 1,5 · λ = (2 · 2 − 1) · {λ|2}. Die Wellen kommen im Gegentakt an: Es ist leise (Auslöschung)." },
+      { nr: "3", text: "[[Begründe]], warum es auf der Mittellinie zwischen den Lautsprechern überall laut ist.", tipp: "Wie groß ist Δs auf der Mittellinie?", ansatz: "Jeder Punkt der Mittellinie ist von beiden Lautsprechern gleich weit entfernt.", loesung: "Auf der Mittellinie ist Δs = 0 = 0 · λ. Die gleichphasig ausgesandten Wellen kommen im Gleichtakt an und verstärken sich." },
+      { nr: "4", text: "Ein Kabel wird vertauscht, ein Lautsprecher schwingt nun gegenphasig. [[Beschreibe]], was sich auf der Wiese ändert.", tipp: "Was bedeutet ein zusätzlicher Phasenunterschied von einer halben Periode?", ansatz: "Gegenphasige Quellen verhalten sich so, als hätte eine Welle zusätzlich λ/2 Weg.", loesung: "Laute und leise Stellen tauschen: Auf der Mittellinie ist es jetzt leise, am Punkt P laut." },
+      { nr: "5", text: "[[Erkläre]], warum man beim Konzert selbst kaum stille Stellen bemerkt.", tipp: "Musik ist kein einzelner Sinuston.", ansatz: "Wo liegen die leisen Stellen für verschiedene Frequenzen?", loesung: "Musik enthält viele Frequenzen gleichzeitig. Für jede Wellenlänge liegen die leisen Stellen woanders, sodass sie sich verwischen. Außerdem überlagern Reflexionen an Bühne und Boden das Muster." }
+    ]},
+  { id: "noisecancel", kap: "k3", titel: "Kopfhörer mit Geräuschunterdrückung",
+    kontext: "Ein Mikrofon hört das Dröhnen im Flugzeug, ein Lautsprecher spielt es umgekehrt zurück. Warum klappt das bei tiefen Tönen so viel besser?",
+    einleitung: "Kopfhörer mit aktiver Geräuschunterdrückung (Noise Cancelling) messen den Lärm mit einem Mikrofon und erzeugen im Kopfhörer einen Gegenschall. Im Flugzeug dröhnt es vor allem tief.",
+    material: [
+      { titel: "M 1 · Daten", inhalt: [["groessen", [["Brummton im Flugzeug", "", "125 Hz"], ["Schallgeschwindigkeit", "", "343 m/s"], ["Verzögerung durch die Elektronik", "", "1,0 ms"]]]] }
+    ],
+    teile: [
+      { nr: "1", text: "[[Erkläre]] das Prinzip der Geräuschunterdrückung mit dem Begriff Interferenz.", tipp: "Wie muss der Gegenschall im Vergleich zum Lärm schwingen?", ansatz: "Destruktive Interferenz: gleiche Frequenz, gleiche Amplitude, Gegentakt.", loesung: "Der Lautsprecher erzeugt Schall gleicher Frequenz und Amplitude, aber im Gegentakt zum Lärm. Am Ohr überlagern sich beide destruktiv und löschen sich aus." },
+      { nr: "2", text: "[[Berechne]] Periodendauer und Wellenlänge des Brummtons.", tipp: "T = 1/f und λ = c/f.", ansatz: "T = {1|f} (Formelsammlung S. 21), λ = {c|f}", loesung: "T = {1|125 Hz} = 8,0 ms, λ = {343 m/s|125 Hz} ≈ 2,7 m" },
+      { nr: "3", text: "Die Elektronik reagiert 1,0 ms zu spät. [[Bestimme]] den Phasenfehler und [[beurteile]], ob die Unterdrückung noch gut funktioniert.", tipp: "Welcher Bruchteil der Periodendauer ist 1,0 ms?", ansatz: "Phasenfehler = 2π · {Δt|T}. Für die Restamplitude zweier gleich großer Wellen mit Phasenunterschied π + δ gilt: y<sub>Rest</sub> = 2 · y<sub>max</sub> · sin({δ|2}).", loesung: "{1,0 ms|8,0 ms} = {1|8} Periode, also δ = {π|4} = 45°.<br>y<sub>Rest</sub> = 2 · y<sub>max</sub> · sin(22,5°) ≈ 0,77 · y<sub>max</sub>. Nur knapp ein Viertel wird weggenommen. Die Elektronik muss die Verzögerung kennen und ausgleichen." },
+      { nr: "4", text: "[[Begründe]], warum Geräuschunterdrückung bei tiefen Tönen besser funktioniert als bei hohen.", tipp: "Was passiert mit demselben Zeitfehler bei kürzerer Periodendauer?", ansatz: "Vergleiche den Phasenfehler bei 125 Hz und bei 2000 Hz.", loesung: "Bei hohen Frequenzen ist T klein. Derselbe Zeitfehler ist dann ein großer Bruchteil der Periode, der Gegenschall kommt nicht mehr im Gegentakt an. Außerdem ist λ klein, schon kleine Abstände zwischen Lautsprecher und Trommelfell verschieben die Phase." }
+    ]},
+  { id: "gummiseil", kap: "k3", titel: "Ein Gummiseil am Vibrationsgenerator",
+    kontext: "Bei manchen Frequenzen schaukelt sich das Seil gewaltig auf, bei anderen zittert es nur. Ein loses Ende ändert alles.",
+    einleitung: "Ein Gummiseil ist an einem Vibrationsgenerator befestigt und am anderen Ende fest eingespannt. Der Generator schwingt mit kleiner Amplitude, sodass er wie ein Knoten wirkt. Seine Frequenz lässt sich einstellen.",
+    material: [
+      { titel: "M 1 · Daten", inhalt: [["groessen", [["Länge des Seils", "", "ℓ = 2,40 m"], ["Ausbreitungsgeschwindigkeit", "", "c = 12 m/s"]]], ["formel", "λ<sub>k</sub> = {2ℓ|k + 1}", "zwei feste Enden; Grundschwingung k = 0", { fs: 23 }]] }
+    ],
+    teile: [
+      { nr: "1", text: "[[Berechne]] die Grundfrequenz f<sub>0</sub>.", tipp: "Welche Wellenlänge passt bei der Grundschwingung auf das Seil?", ansatz: "λ<sub>0</sub> = 2ℓ und f<sub>0</sub> = {c|λ<sub>0</sub>}", loesung: "λ<sub>0</sub> = 2 · 2,40 m = 4,80 m, f<sub>0</sub> = {12 m/s|4,80 m} = 2,5 Hz" },
+      { nr: "2", text: "[[Bestimme]], bei welcher Frequenz das Seil mit vier Bäuchen schwingt, und [[gib]] die Wellenlänge [[an]].", tipp: "Vier Bäuche: Welche Oberschwingung ist das?", ansatz: "Vier Bäuche gehören zu k = 3: λ<sub>3</sub> = {2ℓ|4}, f<sub>3</sub> = 4 · f<sub>0</sub>", loesung: "λ<sub>3</sub> = {4,80 m|4} = 1,20 m, f<sub>3</sub> = {12 m/s|1,20 m} = 10 Hz = 4 · f<sub>0</sub>" },
+      { nr: "3", text: "[[Skizziere]] die Grundschwingung und die beiden ersten Oberschwingungen.", tipp: "Feste Enden sind immer Knoten.", ansatz: "k = 0: ein Bauch, k = 1: zwei Bäuche, k = 2: drei Bäuche.", loesung: "Siehe Skizze: Knoten an beiden Enden, dazwischen 1, 2 bzw. 3 Bäuche.", skizze: "saite" },
+      { nr: "4", text: "Der Generator wird auf 8,75 Hz gestellt. [[Beschreibe]] und [[begründe]], was zu sehen ist.", tipp: "Ist 8,75 Hz ein ganzzahliges Vielfaches von 2,5 Hz?", ansatz: "{8,75 Hz|2,5 Hz} = 3,5", loesung: "8,75 Hz ist keine Eigenfrequenz (das 3,5-Fache von f<sub>0</sub>). Es bildet sich keine kräftige stehende Welle, das Seil zittert nur mit kleiner Amplitude." },
+      { nr: "5", text: "Jetzt wird das rechte Ende mit einem Ring an einer Stange befestigt (loses Ende). [[Berechne]] die Eigenfrequenzen und [[beurteile]], was jetzt bei 8,75 Hz passiert.", tipp: "Am losen Ende liegt ein Bauch.", ansatz: "λ<sub>k</sub> = {2ℓ|k + ½} (Formelsammlung S. 23), also f<sub>k</sub> = (2k + 1) · {c|4ℓ}", loesung: "{c|4ℓ} = {12 m/s|9,60 m} = 1,25 Hz. Eigenfrequenzen: 1,25 Hz, 3,75 Hz, 6,25 Hz, 8,75 Hz, …<br>8,75 Hz = 7 · 1,25 Hz ist jetzt eine Eigenfrequenz (k = 3): Es bildet sich eine kräftige stehende Welle mit einem Bauch am losen Ende.", skizze: "eigen" }
+    ]},
+
+  /* ================================ Kapitel 4 ================================ */
+  { id: "saiten", kap: "k4", auch: ["k1", "k3"], herkunft: "nach Abitur 2024, Aufgabe 3", titel: "Saiten und Töne",
+    kontext: "Vom Wellenberg auf einer Kette über das Monochord bis zur Gitarrensaite, die gar nicht so lang ist wie ihre Welle in der Luft.",
+    einleitung: "Bei vielen Instrumenten entstehen Töne, indem eine Saite gestrichen, angeschlagen oder gezupft wird.",
+    material: [
+      { titel: "M 1 · Ausbreitung von Wellen", inhalt: [["text", "Auf einer Kette liegt ein Wellenberg zur Zeit t = 0 bei x = 18 cm, zur Zeit t = 0,25 s bei x = 63 cm.<br>Bei einem Gewitter hört man den Donner 3,0 s nach dem Blitz. Der Blitz schlug in 1,03 km Entfernung ein."], ["skizze", "kette", "Wellenmaschine: gekoppelte Oszillatoren."]] },
+      { titel: "M 2 · Monochord", inhalt: [["text", "Eine an beiden Enden eingespannte Saite (feste Enden) lässt sich mit einem verschiebbaren Block verkürzen. Die Spannung bleibt gleich. Eine Saitenlänge von 66 cm ergibt die Grundfrequenz 250 Hz."], ["nebenformel", "f<sub>0</sub> = {c|2ℓ}", "Grundfrequenz einer Saite der Länge ℓ, c Ausbreitungsgeschwindigkeit auf der Saite"]] },
+      { titel: "M 3 · Saitenspannung", inhalt: [["text", "Die ganze Saite wird durch angehängte Massestücke gespannt."], ["groessen", [["m in kg", "0,50 · 1,0 · 2,0 · 3,0 · 4,0 · 5,0", ""], ["f<sub>0</sub> in Hz", "106 · 150 · 212 · 260 · 300 · 335", ""]]], ["text", "Vorschläge: (1) f<sub>0</sub> ~ m, (2) f<sub>0</sub> ~ √m, (3) f<sub>0</sub> ~ m²"]] },
+      { titel: "M 4 · Spektrum einer Gitarrensaite", inhalt: [["text", "Im Frequenzspektrum der gezupften Saite liegen Maxima bei 220 Hz, 440 Hz, 660 Hz, 880 Hz, 1100 Hz und 1320 Hz. Das erste Maximum gehört zur Grundschwingung."], ["skizze", "spektrum", "Beispiel eines Spektrums einer gezupften Saite."]] },
+      { titel: "M 5 · Eine Gitarrensaite", inhalt: [["text", "Die A-Saite einer Gitarre klingt mit der Grundfrequenz 110 Hz. In Luft gehört dazu die Wellenlänge 3,12 m. Die Saite ist aber nur 65 cm lang."]] }
+    ],
+    teile: [
+      { nr: "1.1", text: "[[Bestimme]] aus M 1 die Geschwindigkeit des Wellenbergs auf der Kette und die Schallgeschwindigkeit in Luft.", tipp: "Strecke durch Zeit.", ansatz: "c = {Δx|Δt}", loesung: "Kette: c = {0,63 m − 0,18 m|0,25 s} = {0,45 m|0,25 s} = 1,8 m/s<br>Schall: c = {1030 m|3,0 s} ≈ 343 m/s" },
+      { nr: "1.2", text: "[[Beschreibe]] anhand der Wellenmaschine, welche Eigenschaften ein Wellenträger haben muss, damit sich eine mechanische Welle ausbreiten kann.", tipp: "Was haben die einzelnen Teile, und was verbindet sie?", ansatz: "Schwingungsfähige Teile und eine Kopplung zwischen ihnen.", loesung: "Der Wellenträger besteht aus schwingungsfähigen Teilen (Oszillatoren mit Masse und Rückstellkraft). Benachbarte Oszillatoren sind gekoppelt, sodass jeder seine Schwingung an den Nachbarn weitergibt." },
+      { nr: "2", text: "[[Erkläre]], wie eine stehende Welle zustande kommt. [[Skizziere]] für die Saite die Grundschwingung und die 2. Oberschwingung.", tipp: "Was passiert an den eingespannten Enden?", ansatz: "Hinlaufende und reflektierte Welle gleicher Frequenz und Amplitude überlagern sich.", loesung: "Die Welle wird an den festen Enden reflektiert. Hinlaufende und reflektierte Welle haben gleiche Frequenz und Amplitude und laufen gegeneinander. Ihre Überlagerung ergibt Knoten (immer in Ruhe) und Bäuche. Grundschwingung (k = 0): ein Bauch. 2. Oberschwingung (k = 2): drei Bäuche.", skizze: "saite" },
+      { nr: "3", text: "[[Leite]] f<sub>0</sub> = {c|2ℓ} [[her]]. [[Berechne]] die Saitenlänge für eine Grundschwingung mit 440 Hz.", tipp: "Wie viele halbe Wellenlängen passen bei der Grundschwingung auf die Saite?", ansatz: "ℓ = {λ<sub>0</sub>|2} (Formelsammlung S. 23 mit k = 0) und c = λ · f (S. 22). c aus den Angaben in M 2.", loesung: "An beiden Enden liegen Knoten, bei der Grundschwingung passt eine halbe Wellenlänge: λ<sub>0</sub> = 2ℓ. Mit c = λ<sub>0</sub> · f<sub>0</sub> folgt f<sub>0</sub> = {c|2ℓ}.<br>c = 2 · 0,66 m · 250 Hz = 330 m/s<br>ℓ = {c|2 · f<sub>0</sub>} = {330 m/s|2 · 440 Hz} = 0,375 m = 37,5 cm" },
+      { nr: "4", text: "[[Zeichne]] mit M 3 ein f<sub>0</sub>(m)-Diagramm. [[Beurteile]], welcher Zusammenhang zutrifft.", tipp: "Prüfe die Vorschläge an Wertepaaren: Was passiert mit f<sub>0</sub>, wenn m verdoppelt oder vervierfacht wird?", ansatz: "Bilde für jedes Wertepaar {f<sub>0</sub>|m}, {f<sub>0</sub>|√m} und {f<sub>0</sub>|m²}. Welcher Quotient ist konstant?", loesung: "Der Graph ist eine nach rechts flacher werdende Kurve durch den Ursprung. {f<sub>0</sub>|√m} ≈ 150 Hz/√kg ist bei allen Werten gleich, zum Beispiel {300 Hz|√4,0 kg} = 150. Also gilt (2): f<sub>0</sub> ~ √m. Bei vierfacher Masse verdoppelt sich die Frequenz." },
+      { nr: "5", text: "[[Ermittle]] aus M 4 die Frequenzen der Grundschwingung und der ersten fünf Oberschwingungen. [[Gib]] eine Beziehung für die Frequenz der k-ten Oberschwingung [[an]].", tipp: "Vergleiche die Frequenzen mit der ersten.", ansatz: "Teile jede Frequenz durch 220 Hz.", loesung: "f<sub>0</sub> = 220 Hz, f<sub>1</sub> = 440 Hz, f<sub>2</sub> = 660 Hz, f<sub>3</sub> = 880 Hz, f<sub>4</sub> = 1100 Hz, f<sub>5</sub> = 1320 Hz.<br>f<sub>k</sub> = (k + 1) · f<sub>0</sub>" },
+      { nr: "6", text: "[[Erkläre]] den scheinbaren Widerspruch in M 5.", tipp: "Was ist auf der Saite und in der Luft gleich, was verschieden?", ansatz: "Die Frequenz überträgt sich von der Saite auf die Luft. c ist in beiden Medien verschieden.", loesung: "Auf der Saite gilt λ<sub>0</sub> = 2ℓ = 1,30 m, also c<sub>Saite</sub> = 1,30 m · 110 Hz = 143 m/s. Die Frequenz 110 Hz bleibt beim Übergang in die Luft gleich, dort ist c = 343 m/s, also λ = {343 m/s|110 Hz} ≈ 3,12 m. Die Wellenlänge hängt vom Medium ab, deshalb ist sie in Luft größer als auf der Saite." }
+    ]},
+  { id: "didgeridoo", kap: "k4", titel: "Das Didgeridoo",
+    kontext: "Ein ausgehöhlter Eukalyptusstamm, die Lippen am einen Ende: Warum brummt er so tief?",
+    einleitung: "Das Didgeridoo ist ein australisches Blasinstrument aus einem von Termiten ausgehöhlten Stamm. Beim Spielen verschließen die vibrierenden Lippen ein Ende, das andere Ende ist offen.",
+    material: [
+      { titel: "M 1 · Daten", inhalt: [["groessen", [["Länge des Rohrs", "", "ℓ = 1,30 m"], ["Schallgeschwindigkeit", "", "c = 343 m/s"]]]] },
+      { titel: "M 2 · Rohre", inhalt: [["skizze", "rohr", "Bewegungsamplitude der Luft im offenen und im gedackten Rohr."]] }
+    ],
+    teile: [
+      { nr: "1", text: "[[Begründe]], warum das Didgeridoo als gedacktes Rohr betrachtet werden kann.", tipp: "Was liegt an den Lippen, was am offenen Ende?", ansatz: "An einem geschlossenen Ende kann die Luft nicht hin und her schwingen.", loesung: "An den Lippen ist das Rohr verschlossen, dort liegt ein Bewegungsknoten (festes Ende). Am anderen Ende ist es offen, dort liegt ein Bewegungsbauch (loses Ende). Das ist ein gedacktes Rohr." },
+      { nr: "2", text: "[[Berechne]] die Frequenz des Grundtons.", tipp: "Welcher Bruchteil von λ passt bei der Grundschwingung in ein gedacktes Rohr?", ansatz: "λ<sub>0</sub> = {2ℓ|0 + ½} = 4ℓ (Formelsammlung S. 23)", loesung: "λ<sub>0</sub> = 4 · 1,30 m = 5,20 m, f<sub>0</sub> = {343 m/s|5,20 m} ≈ 66 Hz" },
+      { nr: "3", text: "[[Bestimme]] die Frequenzen der ersten beiden Oberschwingungen.", tipp: "Beim gedackten Rohr fehlen bestimmte Vielfache.", ansatz: "f<sub>k</sub> = (2k + 1) · f<sub>0</sub>", loesung: "f<sub>1</sub> = 3 · 66 Hz ≈ 198 Hz, f<sub>2</sub> = 5 · 66 Hz ≈ 330 Hz" },
+      { nr: "4", text: "[[Vergleiche]] mit einem gleich langen Rohr, das an beiden Enden offen ist.", tipp: "Zwei offene Enden: zwei lose Enden.", ansatz: "λ<sub>0</sub> = 2ℓ, f<sub>k</sub> = (k + 1) · f<sub>0</sub>", loesung: "Offen: f<sub>0</sub> = {343 m/s|2,60 m} ≈ 132 Hz, eine Oktave höher, und alle ganzzahligen Vielfachen kommen vor (264 Hz, 396 Hz, …). Das gedackte Rohr klingt tiefer und hat nur die ungeraden Vielfachen." },
+      { nr: "5", text: "[[Schätze]] [[ab]], wie lang ein Didgeridoo mit dem Grundton 73 Hz sein muss.", tipp: "Umstellen nach ℓ.", ansatz: "ℓ = {c|4 · f<sub>0</sub>}", loesung: "ℓ = {343 m/s|4 · 73 Hz} ≈ 1,2 m" }
+    ]},
+  { id: "stimmen", kap: "k4", titel: "Die Gitarre nach Gehör stimmen",
+    kontext: "Ein Stimmton und eine verstimmte Saite: Das Wummern verrät, wie weit man daneben liegt.",
+    einleitung: "Ein Stimmgerät spielt den Ton 110,0 Hz. Gleichzeitig wird die leere A-Saite der Gitarre gezupft. Man hört ein langsames An- und Abschwellen der Lautstärke.",
+    material: [
+      { titel: "M 1 · Beobachtungen", inhalt: [["text", "Man zählt 3 Lautstärkemaxima in 2,0 s. Dreht man den Wirbel so, dass die Saite straffer wird, werden die Maxima schneller."], ["groessen", [["Länge der schwingenden Saite", "", "ℓ = 65 cm"]]], ["skizze", "schwebung", "Überlagerung zweier fast gleicher Töne."]] }
+    ],
+    teile: [
+      { nr: "1", text: "[[Erkläre]], wie das An- und Abschwellen der Lautstärke zustande kommt.", tipp: "Zwei Töne mit fast gleicher Frequenz geraten abwechselnd in Gleichtakt und Gegentakt.", ansatz: "Überlagerung zweier Schwingungen mit leicht verschiedener Frequenz.", loesung: "Die beiden Töne überlagern sich. Weil ihre Frequenzen leicht verschieden sind, sind sie abwechselnd im Gleichtakt (laut) und im Gegentakt (leise). Das nennt man Schwebung." },
+      { nr: "2", text: "[[Berechne]] die Schwebungsfrequenz und die möglichen Frequenzen der Saite.", tipp: "Wie viele Maxima pro Sekunde?", ansatz: "f<sub>S</sub> = {Zahl der Maxima|Zeit} = |f<sub>1</sub> − f<sub>2</sub>|", loesung: "f<sub>S</sub> = {3|2,0 s} = 1,5 Hz. Die Saite hat 110,0 Hz ± 1,5 Hz, also 108,5 Hz oder 111,5 Hz." },
+      { nr: "3", text: "[[Begründe]] mit M 1, welche der beiden Frequenzen die Saite hat.", tipp: "Straffer heißt größeres c, also höhere Frequenz.", ansatz: "Wird der Unterschied zur Stimmfrequenz größer oder kleiner?", loesung: "Beim Straffen steigt die Frequenz der Saite. Die Schwebung wird schneller, der Unterschied also größer. Die Saite lag schon über 110 Hz: 111,5 Hz. Sie muss also lockerer gestimmt werden." },
+      { nr: "4", text: "[[Berechne]] die Ausbreitungsgeschwindigkeit auf der verstimmten und auf der richtig gestimmten Saite.", tipp: "Grundschwingung: ℓ = λ<sub>0</sub>/2.", ansatz: "c = 2ℓ · f<sub>0</sub>", loesung: "Verstimmt: c = 2 · 0,65 m · 111,5 Hz ≈ 145 m/s. Richtig: c = 2 · 0,65 m · 110,0 Hz = 143 m/s." }
+    ]},
+  { id: "kundthelium", kap: "k4", titel: "Kundt'sches Rohr mit Helium",
+    kontext: "Erst Luft, dann ein Helium-Gemisch: Die Pulverhäufchen rücken auseinander, und die Stimme klingt plötzlich wie Micky Maus.",
+    einleitung: "In einem Kundt'schen Rohr erzeugt ein Lautsprecher eine stehende Schallwelle. Korkmehl sammelt sich zu Häufchen. Anschließend wird das Rohr mit einem Helium-Luft-Gemisch gefüllt.",
+    material: [
+      { titel: "M 1 · Messung mit Luft", inhalt: [["text", "Frequenz des Lautsprechers: 2,00 kHz. Auf einer Strecke von 85,0 cm liegen 11 Häufchen, das erste und das letzte genau an den Enden der Strecke."], ["skizze", "kundt", "Pulverhäufchen in den Bewegungsknoten."]] },
+      { titel: "M 2 · Messung mit Helium-Gemisch", inhalt: [["text", "Gleiche Frequenz. Benachbarte Häufchen liegen jetzt 14,0 cm auseinander."]] }
+    ],
+    teile: [
+      { nr: "1", text: "[[Erkläre]], warum sich das Pulver an bestimmten Stellen sammelt.", tipp: "Wo bewegt sich die Luft stark, wo gar nicht?", ansatz: "Bewegungsbäuche und Bewegungsknoten der stehenden Welle.", loesung: "In den Bewegungsbäuchen schwingt die Luft stark hin und her und wirbelt das Pulver auf. In den Bewegungsknoten ist die Luft in Ruhe, dort bleibt das Pulver liegen. Die Häufchen markieren die Knoten." },
+      { nr: "2", text: "[[Berechne]] die Schallgeschwindigkeit in Luft.", tipp: "Wie viele Abstände liegen zwischen 11 Häufchen?", ansatz: "10 Abstände von je {λ|2}, dann c = λ · f (Formelsammlung S. 22).", loesung: "{λ|2} = {85,0 cm|10} = 8,50 cm, λ = 17,0 cm = 0,170 m<br>c = 0,170 m · 2000 Hz = 340 m/s" },
+      { nr: "3", text: "[[Berechne]] die Schallgeschwindigkeit im Helium-Gemisch.", tipp: "Häufchenabstand ist λ/2.", ansatz: "λ = 2 · 14,0 cm", loesung: "λ = 0,280 m, c = 0,280 m · 2000 Hz = 560 m/s" },
+      { nr: "4", text: "Atmet man Helium ein, klingt die Stimme hell und quäkig. [[Beurteile]] die Aussage: „Helium lässt die Stimmbänder schneller schwingen.“", tipp: "Was bestimmt die Tonhöhe der Stimmbänder, was den Klang?", ansatz: "Der Mund- und Rachenraum ist ein Rohr mit Eigenfrequenzen f ~ c.", loesung: "Die Aussage ist falsch. Die Stimmbänder schwingen fast gleich schnell, der Grundton bleibt. Im Helium-Gemisch ist c größer, deshalb liegen die Eigenfrequenzen (Resonanzen) des Mund- und Rachenraums höher. Andere Obertöne werden verstärkt: Die Klangfarbe ändert sich." }
+    ]}
+];
