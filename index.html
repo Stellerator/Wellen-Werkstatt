@@ -457,6 +457,20 @@ body.nachtwelt .theme{display:none}
 .plusseite .about .vizhost{display:flex;flex-direction:column;gap:10px}
 .plusseite .about .cv{min-height:230px}
 /*K4-ENDE*/
+/*K5-ANFANG*/
+/* ===== Ab Version 2.5: Kapitel 5 ===== */
+.fside .cv.hoch5{min-height:340px}
+.viz .cv.gross5{flex:2.6 1 0;min-height:260px}
+.viz:has(.cv.gross5) .situ{flex:0 0 auto;padding:6px 14px}
+.viz:has(.cv.gross5) .situ p{font-size:clamp(18px,1.9vw,23px)}
+.raster5{display:grid;grid-template-columns:1fr 1fr;gap:10px;flex:1 1 auto;min-height:0}
+.raster5 button{position:relative;padding:0;border:2px solid #1f3150;border-radius:14px;overflow:hidden;background:#070e1a;aspect-ratio:3/2;min-height:0;cursor:pointer}
+.raster5 button .mini{position:absolute;inset:0}
+.raster5 button .gl{position:absolute;left:8px;top:6px;z-index:2;font-weight:800;color:#fff;font-family:var(--font-mono);background:rgba(5,10,20,.75);border-radius:8px;padding:1px 8px}
+.raster5 button.right{border-color:var(--ok);box-shadow:0 0 0 3px var(--ok)}
+.raster5 button.wrong{border-color:var(--bad);box-shadow:0 0 0 3px var(--bad)}
+.raster5.done button:not(.right):not(.wrong){opacity:.75}
+/*K5-ENDE*/
 /*HEFT-ANFANG*/
 /* ===== Ab Version 2.5: Physikheft (Blatt wie Papier, auch im dunklen Modus; Druck auf A4) ===== */
 /* Kopfzeile wie im Mathe-Master: nur das gewählte Kapitel ausgeklappt, die anderen nur mit Nummer */
@@ -667,7 +681,7 @@ figure.hb.skizze figcaption{font-size:14px;line-height:1.4;color:#5d6675;margin:
 .iktab .iktief td{color:#7d8796;font-size:14.5px}
 .iktab .iktief td i{border-color:#aeb6c2}
 .ikfuss{font-size:13px;color:#7d8796;margin:12px 0 0}
-@media print{ .iktab{font-size:10pt;margin-top:4pt} .iktab td{padding:2.6pt 6pt;line-height:1.3} .iktab td i{width:12pt;height:12pt} .iktab thead th{padding:1pt 4pt} .iktab .ikkap th{padding:7pt 6pt 2pt;font-size:11.5pt} .ikblatt .hkopf{padding-bottom:5pt} .ikblatt .hkopf h2{font-size:17pt} .ikblatt .hknr{width:30pt;height:30pt;font-size:17pt} .ikfuss{margin-top:6pt} }
+@media print{ .iktab{font-size:9.6pt;margin-top:3pt} .iktab td{padding:1.9pt 6pt;line-height:1.25} .iktab td i{width:11pt;height:11pt} .iktab thead th{padding:1pt 4pt} .iktab .ikkap th{padding:5pt 6pt 1.5pt;font-size:11pt} .ikblatt .hkopf{padding-bottom:5pt} .ikblatt .hkopf h2{font-size:17pt} .ikblatt .hknr{width:30pt;height:30pt;font-size:17pt} .ikfuss{margin-top:6pt} }
 /*HEFT-ENDE*/
 </style>
 </head>
@@ -964,6 +978,50 @@ const STECKBRIEFE = {
       o:["Alle mit 2f₀, 4f₀, 6f₀, …","Alle mit f₀, 3f₀, 5f₀, …","Keine"], h:"In der Mitte liegt ein Knoten aller Eigenschwingungen, deren Frequenz ein gerades Vielfaches von f₀ ist.",
       e:"Bei 2f₀, 4f₀, 6f₀, … (k = 1, 3, 5, …) liegt in der Saitenmitte ein Knoten. Wer dort zupft, regt sie nicht an."}}
 /*K4-ENDE*/
+/*K5-ANFANG*/  ,
+  flaeche:{titel:"Wellen in der Fläche", formel:"Wellenstrahl ⟂ Wellenfront", viz:"wanne",
+    text:"In der Wellenwanne breiten sich Wellen auf einer Wasserfläche aus. Ein punktförmiger Erreger erzeugt Kreiswellen, ein Lineal gerade Wellen. Linien, auf denen alle Teilchen gerade gleich schwingen (zum Beispiel alle Wellenberge), heißen <b>Wellenfronten</b>. Die Pfeile senkrecht dazu sind die <b>Wellenstrahlen</b>: Sie zeigen, wohin die Welle läuft. Tippe ins Wasser, dann fällt ein Tropfen hinein.",
+    merke:"Wellenstrahlen stehen immer senkrecht auf den Wellenfronten. Benachbarte Wellenfronten (Berg zu Berg) liegen λ auseinander.",
+    falle:"Einen Wellenstrahl sieht man nicht. Er ist eine gedachte Linie für die Ausbreitungsrichtung.",
+    praxis:"Ein Stein im Teich erzeugt Kreiswellen. Weit draußen auf dem Meer sind die Wellenfronten fast gerade: Ein kleines Stück eines riesigen Kreises sieht aus wie eine Gerade.",
+    check:{q:"Wie stehen Wellenstrahlen zu den Wellenfronten?", o:["senkrecht","parallel","unter 45°"], h:"Der Strahl zeigt die Richtung, in die sich die Front bewegt.",
+      e:"Die Front bewegt sich senkrecht zu sich selbst weiter. Deshalb steht der Strahl senkrecht auf ihr."}},
+  huygens:{titel:"Huygens'sches Prinzip", formel:"neue Wellenfront = Einhüllende der Elementarwellen", viz:"huygens",
+    text:"Christiaan Huygens hat 1678 eine Regel gefunden, mit der man vorhersagen kann, wie sich eine Wellenfront weiterbewegt: <b>Jeder Punkt einer Wellenfront ist Ausgangspunkt einer Kreiswelle</b>, der Elementarwelle. Sie hat dieselbe Frequenz und dieselbe Ausbreitungsgeschwindigkeit wie die Welle. Nach der Zeit Δt haben alle Elementarwellen den Radius c · Δt. Die Linie, die alle Elementarwellen außen berührt, ist ihre <b>Einhüllende</b>: die neue Wellenfront. Rechts siehst du das in drei Schritten. Im Wellenbild senden die Zentren echte Kreiswellen aus: Schieb die Zentren dichter zusammen und sieh zu, wie aus vielen Kreiswellen eine Front wird.",
+    merke:"Jeder Punkt einer Wellenfront ist Zentrum einer Elementarwelle. Die Einhüllende aller Elementarwellen ist die neue Wellenfront.",
+    falle:"Die einzelnen Elementarwellen sieht man nicht. Sichtbar ist nur ihre Überlagerung. Rückwärts laufende Elementarwellen lässt man in der Konstruktion weg.",
+    praxis:"Mit dem Huygens'schen Prinzip lassen sich Reflexion, Brechung und Beugung erklären. Die nächsten drei Steckbriefe zeigen es.",
+    check:{q:"Eine gerade Welle trifft auf eine Wand mit einem sehr engen Spalt. Was läuft dahinter weiter?", o:["eine Kreiswelle","eine gerade Welle, so breit wie der Spalt","gar keine Welle"], h:"Wie viele Zentren für Elementarwellen passen in einen sehr engen Spalt?",
+      e:"Im engen Spalt hat nur ein Zentrum Platz. Seine Elementarwelle ist ein Halbkreis: Hinter dem Spalt läuft eine Kreiswelle."}},
+  reflex2:{titel:"Reflexion", formel:"α = α′", viz:"reflex2",
+    text:"Eine gerade Welle trifft schräg auf eine Wand. Der Winkel zwischen Wellenstrahl und <b>Lot</b> (der Senkrechten auf die Wand) ist der Einfallswinkel α, der Winkel des zurücklaufenden Strahls zum Lot der Reflexionswinkel α′. Nach Huygens wird jeder Punkt der Wand, den die Front erreicht, zum Zentrum einer Elementarwelle. Die zuerst getroffenen Punkte senden zuerst aus, ihre Elementarwellen sind schon größer. Ihre Einhüllende ist die reflektierte Front. Stell den Winkel ein und sieh zu.",
+    merke:"Reflexionsgesetz: α = α′ (Formelsammlung S. 34). Beide Winkel werden zum Lot gemessen.",
+    falle:"Die Winkel werden zum Lot gemessen, nicht zur Wand. Trifft eine Welle unter 30° zur Wand auf, ist α = 60°.",
+    praxis:"Schall wird an Hauswänden reflektiert. In einer leeren Halle kommt er von allen Wänden mehrfach zurück: Es hallt. Ein Echolot misst die Wassertiefe mit Schall, der am Meeresboden reflektiert wird.",
+    check:{q:"Eine Welle trifft unter α = 35° auf eine Wand. Unter welchem Winkel zum Lot läuft sie zurück?", o:["35°","55°","70°"], h:"Reflexionsgesetz: α = α′.",
+      e:"α′ = α = 35°. Beide Winkel werden zum Lot gemessen."}},
+  brechung:{titel:"Brechung", formel:"sin α / sin β = c₁ / c₂", viz:"brechung",
+    text:"Im flachen Wasser laufen Wasserwellen langsamer als im tiefen. Trifft eine Front schräg auf die Grenze, kommt der Teil, der schon im flachen Wasser ist, langsamer voran. Seine Elementarwellen sind kleiner, die Einhüllende knickt ab: Die Welle ändert ihre Richtung. Das ist <b>Brechung</b>. Die Frequenz bleibt gleich, also ändert sich mit c auch λ. Stell Winkel und Übergang ein.",
+    merke:"Brechungsgesetz: sin α / sin β = c₁ / c₂ (Formelsammlung S. 34). Wird die Welle langsamer, wird sie zum Lot hin gebrochen, wird sie schneller, vom Lot weg.",
+    falle:"Die Frequenz ändert sich an der Grenze nicht, sie wird vom Erreger vorgegeben. Es ändern sich c und λ.",
+    praxis:"Am Strand laufen die Wellen fast parallel zum Ufer ein, auch wenn sie draußen schräg kommen: Im immer flacheren Wasser werden sie zum Lot hin gebrochen.",
+    check:{q:"Eine Wasserwelle läuft vom tiefen ins flache Wasser. Was bleibt gleich?", o:["die Frequenz f","die Wellenlänge λ","die Ausbreitungsgeschwindigkeit c"], h:"Wer gibt den Takt der Welle vor?",
+      e:"Die Frequenz gibt der Erreger vor. Im flachen Wasser wird c kleiner und damit auch λ = c / f."}},
+  beugung:{titel:"Beugung", formel:"stark, wenn die Spaltbreite d etwa λ oder kleiner ist", viz:"beugung",
+    text:"Hinter einem Spalt oder an einer Kante läuft eine Welle auch in den Bereich, der im geometrischen Schatten liegt. Das ist <b>Beugung</b>. Nach Huygens senden die Punkte im Spalt Elementarwellen in alle Richtungen nach vorn aus, auch schräg in den Schatten. Wie stark die Beugung ist, hängt vom Verhältnis der Spaltbreite d zur Wellenlänge λ ab. Probier die Spaltbreiten und die Kante aus.",
+    merke:"Je kleiner der Spalt im Vergleich zu λ, desto stärker die Beugung. Ist d kleiner als λ, läuft hinter dem Spalt fast eine Kreiswelle weiter.",
+    falle:"Es kommt nicht auf die Spaltbreite allein an, sondern auf d im Vergleich zu λ.",
+    praxis:"Du hörst Menschen hinter einer Hausecke reden, siehst sie aber nicht: Schall hat Wellenlängen von Zentimetern bis Metern, Licht weniger als ein Tausendstel Millimeter. Hinter einer Hafenmole ist das Wasser nicht ganz ruhig, weil die Wellen an der Spitze der Mole gebeugt werden.",
+    check:{q:"Durch eine offene Tür dringt Musik. Welcher Ton wird stärker gebeugt?", o:["der tiefe Ton","der hohe Ton","beide gleich stark"], h:"λ = c / f. Welcher Ton hat die größere Wellenlänge?",
+      e:"Der tiefe Ton hat das kleinere f und damit das größere λ. Im Vergleich zur Tür ist λ groß: starke Beugung. Um die Ecke hörst du deshalb vor allem die Bässe."}},
+  interf2:{titel:"Interferenz zweier Kreiswellen", formel:"Ruhe: Δs = (2k − 1) · λ/2&emsp;Verstärkung: Δs = k · λ", viz:"interf2",
+    text:"Zwei Erreger tauchen im Gleichtakt ins Wasser, ihr Abstand ist g. Ihre Kreiswellen überlagern sich. Wo Berg auf Tal trifft, bleibt das Wasser in Ruhe. Diese Orte liegen auf <b>Knotenlinien</b> (Hyperbeln). Dazwischen schwingt das Wasser besonders stark. Entscheidend ist der Gangunterschied Δs = |s₁ − s₂| zum Punkt P. Zieh P über die Wasserfläche und vergleiche verschiedene Abstände g.",
+    merke:"Gleichtakt: Ruhe bei Δs = (2k − 1) · λ/2, Verstärkung bei Δs = k · λ (vgl. Formelsammlung S. 35, Doppelspalt). Je größer g im Vergleich zu λ, desto mehr Knotenlinien.",
+    falle:"Auf der Mittelsenkrechten zwischen den Erregern ist Δs = 0. Dort ist keine Knotenlinie, sondern Verstärkung.",
+    praxis:"Zwei Lautsprecher, die denselben Ton spielen, erzeugen im Raum laute und leise Stellen. Geh langsam durch den Raum, dann hörst du den Wechsel.",
+    check:{q:"Am Punkt P ist der Gangunterschied Δs = 1,5 λ. Was beobachtest du dort?", o:["Das Wasser bleibt in Ruhe.","Das Wasser schwingt besonders stark.","Das Wasser schwingt mit halber Amplitude."], h:"Ist 1,5 λ ein ungeradzahliges Vielfaches von λ/2?",
+      e:"1,5 λ = 3 · λ/2 = (2k − 1) · λ/2 mit k = 2. Berg trifft auf Tal: Auslöschung."}}
+/*K5-ENDE*/
 };
 
 const KAPITEL = [
@@ -977,6 +1035,10 @@ const KAPITEL = [
   {id:"k4", nr:4, titel:"Eigenschwingungen & Klang", untertitel:"Saite, Rohr, Kundt'sches Rohr, Klangfarbe", freigegeben:true,
    steckbriefe:["saite","rohr","kundt","klang"], challenges:["jaeger","klingts","kundtlab"], plus:["schweb"]}
 /*K4-ENDE*/
+/*K5-ANFANG*/  ,
+  {id:"k5", nr:5, titel:"Wellen in der Fläche", untertitel:"Wellenwanne, Huygens, Reflexion, Brechung, Beugung, Interferenz", freigegeben:true,
+   steckbriefe:["flaeche","huygens","reflex2","brechung","beugung","interf2"], challenges:["wohin","ecke","karte"]}
+/*K5-ENDE*/
 ];
 
 const PRO_LEVEL = 5, HUERDE = 4;   // 5 Aufgaben, bestanden mit 4 Treffern im ersten Versuch
@@ -1466,6 +1528,14 @@ const VIZ = {
       label(ctx,p<.2?"Klang: hell und hart":p<.42?"Klang: ausgewogen":"Klang: weich und rund",14,h*.5-bh-24>40?20:20,B3.mark,"left",700,13);
       if(Math.abs(p-.5)<.012) label(ctx,"Mitte: 2f₀, 4f₀, 6f₀, 8f₀ fehlen",w-14,20,B3.bad,"right",700,12); }); }
 /*K4-ENDE*/
+/*K5-ANFANG*/  ,
+  wanne(side){ viz5Wanne(side); },
+  huygens(side){ viz5Huygens(side); },
+  reflex2(side){ viz5Reflex(side); },
+  brechung(side){ viz5Brech(side); },
+  beugung(side){ viz5Beug(side); },
+  interf2(side){ viz5Interf(side); }
+/*K5-ENDE*/
 };
 
 /* =====================================================================
@@ -2980,6 +3050,468 @@ const SB3=[
 ];
 function schwebL3(){ return pick(SB3,PRO_LEVEL).map(it=>mcTask({sit:it.sit,q:it.q,opts:[{t:it.ok,ok:true},{t:it.f[0],fb:"Das passt nicht zu f_S = |f₁ − f₂|."},{t:it.f[1],fb:"Das erklärt es nicht."}],erkl:it.e})); }
 /*K4-ENDE*/
+/*K5-ANFANG*/
+/* =====================================================================
+   KAPITEL 5 · Wellen in der Fläche (ab Version 2.5)
+   Wellenwanne: Wellengleichung auf einem Gitter, gerechnet auf der CPU (ohne WebGL).
+   Huygens-Konstruktion, Reflexion und Brechung als exakte Geometrie; Beugung und Interferenz
+   zusätzlich als Summe von Elementarwellen. Die Kapitel 1 bis 4 benutzen nichts davon.
+   Schreibweise wie in der Formelsammlung: Spaltbreite d, Abstand der Erreger g.
+   ===================================================================== */
+const D5=Math.PI/180;
+const deg5=v=>Math.round(v/D5);
+// Text mit dunklem Hintergrund, links, mittig oder rechts ausgerichtet
+function schild5(ctx,txt,x,y,farbe,size=12,an="left"){ ctx.font=MONO(700,size); const tw=ctx.measureText(txt).width, x0=an==="left"?x:an==="right"?x-tw:x-tw/2;
+  ctx.fillStyle="rgba(5,10,20,.8)"; ctx.fillRect(x0-6,y-size-2,tw+12,size+9); label(ctx,txt,x0,y,farbe,"left",700,size); }
+// Winkelbogen zwischen zwei Richtungen v1 und v2 um H, mit Beschriftung
+function bogen5(ctx,H,v1,v2,r,farbe,txt){ const a1=Math.atan2(v1[1],v1[0]); let da=Math.atan2(v2[1],v2[0])-a1; while(da>Math.PI) da-=TAU; while(da<-Math.PI) da+=TAU;
+  ctx.strokeStyle=farbe; ctx.lineWidth=2; ctx.beginPath(); ctx.arc(H[0],H[1],r,a1,a1+da,da<0); ctx.stroke();
+  if(txt){ const m=a1+da/2; label(ctx,txt,H[0]+(r+15)*Math.cos(m),H[1]+(r+15)*Math.sin(m)+5,farbe,"center",700,14); } }
+// gestrichelte Linie
+function lot5(ctx,a,b,farbe=B3.txt){ ctx.save(); ctx.strokeStyle=farbe; ctx.globalAlpha=.75; ctx.lineWidth=1.6; ctx.setLineDash([6,5]); ctx.beginPath(); ctx.moveTo(a[0],a[1]); ctx.lineTo(b[0],b[1]); ctx.stroke(); ctx.restore(); }
+// virtuelle Bühne W × H (Standard 300 × 200), Seitenverhältnis bleibt erhalten
+function vbox5(st,W=300,H=200,rand=6){ const s=Math.min((st.w-2*rand)/W,(st.h-2*rand)/H), ox=(st.w-W*s)/2, oy=(st.h-H*s)/2;
+  return {s,ox,oy,W,H,X:x=>ox+x*s,Y:y=>oy+y*s,x:px=>(px-ox)/s,y:py=>(py-oy)/s,P:p=>[ox+p[0]*s,oy+p[1]*s]}; }
+function vclip5(ctx,V){ ctx.beginPath(); ctx.rect(V.ox,V.oy,V.W*V.s,V.H*V.s); ctx.clip(); }
+function poly5(ctx,V,pts,farbe,lw=3,stark=1){ leucht(ctx,pts.map(V.P),farbe,lw,stark); }
+
+/* ---------- Wellenwanne: Wellengleichung auf nx × ny Zellen ----------
+   c2 = (c·Δt/Δx)² ≤ 0,5. Wände halten u = 0 (die Welle wird reflektiert).
+   An den Seiten in „seiten“ (l, r, o, u) schluckt ein dämpfender Streifen der Breite rand die Wellen; er wird nicht gezeichnet. */
+function mkWanne(nx,ny,o={}){ const N=nx*ny, R=o.rand===undefined?18:o.rand, seiten=o.seiten||"lrou";
+  const W={nx,ny,N,u0:new Float32Array(N),u1:new Float32Array(N),u2:new Float32Array(N),k:new Float32Array(N),dm:new Float32Array(N),wand:new Uint8Array(N),flach:new Uint8Array(N),gr:null,n:0,
+    cl:seiten.includes("l")?R:0,cr:seiten.includes("r")?R:0,co:seiten.includes("o")?R:0,cu:seiten.includes("u")?R:0};
+  W.k.fill(o.c2||.25);
+  for(let j=0;j<ny;j++) for(let i=0;i<nx;i++){ let d=1e9; if(W.cl) d=Math.min(d,i); if(W.cr) d=Math.min(d,nx-1-i); if(W.co) d=Math.min(d,j); if(W.cu) d=Math.min(d,ny-1-j); if(d<R) W.dm[j*nx+i]=.35*Math.pow((R-d)/R,2); }
+  return W; }
+function wanneLeeren(W){ W.u0.fill(0); W.u1.fill(0); W.u2.fill(0); W.n=0; W.lt=undefined; }
+// Ein Zeitschritt: u_neu = (2u − (1 − γ)·u_alt + c2·Δu) / (1 + γ); γ dämpft nur im Randstreifen
+function wanneSchritt(W,quellen){ const {nx,ny,u0,u1,u2,k,dm,wand}=W;
+  for(let j=1;j<ny-1;j++){ let n=j*nx+1; for(let i=1;i<nx-1;i++,n++){ if(wand[n]){ u2[n]=0; continue; } const g=dm[n];
+    u2[n]=(2*u1[n]-(1-g)*u0[n]+k[n]*(u1[n-1]+u1[n+1]+u1[n-nx]+u1[n+nx]-4*u1[n]))/(1+g); } }
+  W.n++; if(quellen) quellen(W,u2); W.u0=u1; W.u1=u2; W.u2=u0; }
+// so viele Schritte, wie zur Simulationszeit t passen (höchstens 8 pro Bild, sonst ohne Nachholen)
+function wanneTakt(W,t,rate,fn){ if(W.lt===undefined||t<W.lt) W.lt=t; let n=Math.floor((t-W.lt)*rate); if(n>8){ n=8; W.lt=t; } else W.lt+=n/rate; while(n-->0) fn(); }
+const omega5=(lam,c2)=>TAU*Math.sqrt(c2)/lam;            // Kreisfrequenz pro Schritt für die Wellenlänge lam (in Zellen)
+function punktQ5(W,i0,j0,r=1.6){ const L=[]; for(let j=Math.floor(j0-r);j<=j0+r;j++) for(let i=Math.floor(i0-r);i<=i0+r;i++) if((i-i0)*(i-i0)+(j-j0)*(j-j0)<=r*r&&i>0&&j>0&&i<W.nx-1&&j<W.ny-1) L.push(j*W.nx+i); return L; }
+function linieQ5(W,i){ const L=[]; for(let j=1;j<W.ny-1;j++) L.push(j*W.nx+i); return L; }
+function anregen5(u,L,v){ for(const n of L) u[n]=v; }
+function tropfen5(W,i0,j0,a=1.8,r=2.6){ for(let j=Math.max(1,Math.floor(j0-3*r));j<Math.min(W.ny-1,j0+3*r);j++) for(let i=Math.max(1,Math.floor(i0-3*r));i<Math.min(W.nx-1,i0+3*r);i++){
+  const n=j*W.nx+i; if(W.wand[n]) continue; const v=a*Math.exp(-((i-i0)*(i-i0)+(j-j0)*(j-j0))/(r*r)); W.u1[n]+=v; W.u0[n]+=v; } }
+// Wasser zeichnen: hell = Wellenberg, dunkel = Wellental; Wände grau, flaches Wasser grünlich
+function wanneMalen(st,W,o={}){ const vw=W.nx-W.cl-W.cr, vh=W.ny-W.co-W.cu;
+  if(!W.buf){ W.buf=document.createElement("canvas"); W.buf.width=vw; W.buf.height=vh; W.bx=W.buf.getContext("2d"); W.img=W.bx.createImageData(vw,vh); }
+  const d=W.img.data, u=W.u1, g=o.gain||1.5, gr=W.gr;
+  for(let j=0;j<vh;j++){ let n=(j+W.co)*W.nx+W.cl, q=j*vw*4; for(let i=0;i<vw;i++,n++,q+=4){
+    if(W.wand[n]){ d[q]=104; d[q+1]=118; d[q+2]=140; d[q+3]=255; continue; }
+    let v=u[n]*g*(gr?gr[n]:1); v=v>1.98?1.98:v<-1.98?-1.98:v; const L=(((v+2)*63.74)|0)*3;
+    if(W.flach[n]){ d[q]=FELD_LUT[L]*.75+34; d[q+1]=FELD_LUT[L+1]*.8+30; d[q+2]=FELD_LUT[L+2]*.62+8; } else { d[q]=FELD_LUT[L]; d[q+1]=FELD_LUT[L+1]; d[q+2]=FELD_LUT[L+2]; } d[q+3]=255; } }
+  W.bx.putImageData(W.img,0,0); const {ctx,w,h}=st; buehne(st);
+  const s=Math.min((w-8)/vw,(h-8)/vh), ox=(w-vw*s)/2, oy=(h-vh*s)/2; ctx.save(); ctx.imageSmoothingEnabled=true; ctx.drawImage(W.buf,ox,oy,vw*s,vh*s); ctx.restore();
+  ctx.strokeStyle="#1f3150"; ctx.lineWidth=1; ctx.strokeRect(ox+.5,oy+.5,vw*s-1,vh*s-1);
+  return {s,ox,oy,vw,vh,X:i=>ox+(i-W.cl+.5)*s,Y:j=>oy+(j-W.co+.5)*s,I:px=>(px-ox)/s+W.cl-.5,J:py=>(py-oy)/s+W.co-.5,innen:(i,j)=>i>W.cl&&i<W.nx-W.cr-1&&j>W.co&&j<W.ny-W.cu-1}; }
+
+/* ---------- Feld als Summe von Elementarwellen (Huygens) ----------
+   Gitter über der virtuellen Bühne (W × H, Zelle z). Jedes Zentrum q = [x, y, Phase, Gewicht, nx, ny] sendet e^{i(k·r + Phase)} / √r aus,
+   mit Richtungsfaktor (1 + cos θ)/2, wenn eine Normale (nx, ny) angegeben ist. vor(x, y) liefert für Bereiche ohne Zentren eine feste Welle [Re, Im] oder null.
+   Momentbild: Re(A · e^{−iωt}); Zeitmittel (Laut-leise-Karte): |A|. */
+function feld5(o){ const z=o.z||2, gw=Math.ceil(o.W/z), gh=Math.ceil(o.H/z), N=gw*gh, re=new Float32Array(N), im=new Float32Array(N), fest=new Uint8Array(N), k=TAU/o.lam; let summe=0, zahl=0;
+  for(let j=0;j<gh;j++) for(let i=0;i<gw;i++){ const n=j*gw+i, x=(i+.5)*z, y=(j+.5)*z, v=o.vor?o.vor(x,y,k):null;
+    if(v){ re[n]=v[0]; im[n]=v[1]; fest[n]=1; continue; }
+    let a=0, b=0; for(const q of o.q){ const dx=x-q[0], dy=y-q[1], r=Math.hypot(dx,dy)+1e-6; let g=(q[3]===undefined?1:q[3])/Math.sqrt(r/o.lam+.15);
+      if(q[4]!==undefined) g*=.5*(1+(dx*q[4]+dy*q[5])/r); const p=k*r+(q[2]||0); a+=g*Math.cos(p); b+=g*Math.sin(p); }
+    re[n]=a; im[n]=b; summe+=Math.hypot(a,b); zahl++; }
+  return {gw,gh,N,re,im,fest,z,W:o.W,H:o.H,lam:o.lam,skal:zahl&&summe>0?zahl/summe:1}; }
+function feld5Malen(st,V,F,t,o={}){ if(!F.buf){ F.buf=document.createElement("canvas"); F.buf.width=F.gw; F.buf.height=F.gh; F.bx=F.buf.getContext("2d"); F.img=F.bx.createImageData(F.gw,F.gh); }
+  const d=F.img.data, om=TAU*(o.f||.5)*t, c=Math.cos(om), s=Math.sin(om), g=o.gain||1;
+  for(let n=0;n<F.N;n++){ const sk=F.fest[n]?1:F.skal*.85; let v;
+    if(o.mittel) v=Math.hypot(F.re[n],F.im[n])*sk*1.25*g-1.92; else v=(F.re[n]*c+F.im[n]*s)*sk*g*1.25;
+    v=v>1.98?1.98:v<-1.98?-1.98:v; const L=(((v+2)*63.74)|0)*3, q=n*4; d[q]=FELD_LUT[L]; d[q+1]=FELD_LUT[L+1]; d[q+2]=FELD_LUT[L+2]; d[q+3]=255; }
+  F.bx.putImageData(F.img,0,0); const {ctx}=st; ctx.save(); ctx.imageSmoothingEnabled=true; ctx.drawImage(F.buf,0,0,F.gw,F.gh,V.X(0),V.Y(0),F.gw*F.z*V.s,F.gh*F.z*V.s); ctx.restore(); }
+// Orte der Ruhe (r) und der Verstärkung (s) zweier Erreger als Punktfolgen in virtuellen Koordinaten. ph: Phase des 2. Erregers
+function linien5(Q,lam,ph,W=300,H=200,z=2){ const out={r:[],s:[]}, gw=Math.ceil(W/z), gh=Math.ceil(H/z), k=TAU/lam, del=new Float32Array(gw*gh);
+  for(let j=0;j<gh;j++) for(let i=0;i<gw;i++){ const x=(i+.5)*z, y=(j+.5)*z; del[j*gw+i]=(k*(Math.hypot(x-Q[0][0],y-Q[0][1])-Math.hypot(x-Q[1][0],y-Q[1][1]))-ph)/2; }
+  const cr=n=>Math.cos(del[n]), sn=n=>Math.sin(del[n]);
+  for(let j=0;j<gh-1;j++) for(let i=0;i<gw-1;i++){ const n=j*gw+i; if(cr(n)*cr(n+1)<0||cr(n)*cr(n+gw)<0) out.r.push((i+1)*z,(j+1)*z); if(sn(n)*sn(n+1)<0||sn(n)*sn(n+gw)<0) out.s.push((i+1)*z,(j+1)*z); }
+  return out; }
+function linien5Malen(ctx,V,L,mitStark=true){ const pk=(a,farbe,r)=>{ ctx.fillStyle=farbe; for(let i=0;i<a.length;i+=2) ctx.fillRect(V.X(a[i])-r,V.Y(a[i+1])-r,2*r,2*r); };
+  if(mitStark) pk(L.s,rgba3(B3.mark,.6),1.2); pk(L.r,"rgba(255,255,255,.95)",1.4); }
+
+/* ---------- Huygens-Konstruktion ----------
+   Eine Wellenfront ist eine Punktliste F. Die neue Front nach der Zeit Δt ist die Einhüllende aller Kreise mit Radius R = c·Δt um die Punkte von F:
+   Für jede Richtung θ liegt sie beim Punkt von F, der in dieser Richtung am weitesten vorn liegt, plus R in Richtung θ. */
+function huyHuelle(F,R,t0,t1,n=200){ const out=[]; for(let i=0;i<=n;i++){ const th=t0+(t1-t0)*i/n, ex=Math.cos(th), ey=Math.sin(th); let b=-1e18, p=F[0];
+  for(const q of F){ const v=q[0]*ex+q[1]*ey; if(v>b+1e-9){ b=v; p=q; } } out.push([p[0]+R*ex,p[1]+R*ey]); } return out; }
+// Zentren gleichmäßig auf der Front verteilen (Abstand etwa sp), nur die im Kasten box = [x0, y0, x1, y1]
+function huyZentren(F,sp,box){ if(F.length===1) return [F[0].slice()]; const seg=[]; let L=0; for(let i=0;i<F.length-1;i++){ const l=Math.hypot(F[i+1][0]-F[i][0],F[i+1][1]-F[i][1]); seg.push(l); L+=l; }
+  const m=Math.max(1,Math.round(L/sp)), out=[]; let i=0, acc=0;
+  for(let k=0;k<=m;k++){ const s=L*k/m; while(i<seg.length-1&&acc+seg[i]<s-1e-9){ acc+=seg[i]; i++; } const u=seg[i]?(s-acc)/seg[i]:0, p=[F[i][0]+(F[i+1][0]-F[i][0])*u,F[i][1]+(F[i+1][1]-F[i][1])*u];
+    if(!box||(p[0]>=box[0]&&p[0]<=box[2]&&p[1]>=box[1]&&p[1]<=box[3])) out.push(p); }
+  return out; }
+const kreis5=(x,y,r,n=120)=>[...Array(n+1)].map((_,i)=>[x+r*Math.cos(i*TAU/n),y+r*Math.sin(i*TAU/n)]);
+const bogenPts5=(x,y,r,a0,a1,n=48)=>[...Array(n+1)].map((_,i)=>{ const a=a0+(a1-a0)*i/n; return [x+r*Math.cos(a),y+r*Math.sin(a)]; });
+// Elementarwellen als Halbkreise in Ausbreitungsrichtung
+function huyKreise(ctx,V,Z,r,nrm,alpha){ if(r<=.5) return; ctx.save(); ctx.strokeStyle=rgba3(B3.mark,alpha); ctx.lineWidth=1.6;
+  Z.forEach(p=>{ const a=nrm(p); ctx.beginPath(); ctx.arc(V.X(p[0]),V.Y(p[1]),r*V.s,a-Math.PI/2,a+Math.PI/2); ctx.stroke(); }); ctx.restore(); }
+function huyPunkte(ctx,V,Z,anteil=1){ const n=Math.ceil(Z.length*anteil); for(let i=0;i<n&&i<Z.length;i++){ const x=V.X(Z[i][0]), y=V.Y(Z[i][1]); perle(ctx,x,y,B3.mark,9); ctx.fillStyle=B3.mark; ctx.beginPath(); ctx.arc(x,y,3,0,TAU); ctx.fill(); } }
+// Wand mit Öffnungen: x-Bereich [x0, x1], gesperrte y-Bereiche
+function wand5(ctx,V,x0,x1,zu){ zu.forEach(([a,b])=>{ ctx.fillStyle="#6a7890"; ctx.fillRect(V.X(x0),V.Y(a),(x1-x0)*V.s,(b-a)*V.s); ctx.strokeStyle=B3.metall; ctx.lineWidth=1.2; ctx.strokeRect(V.X(x0)+.5,V.Y(a)+.5,(x1-x0)*V.s-1,(b-a)*V.s-1); }); }
+
+/* ---------- Szenen für die Huygens-Konstruktion (virtuelle Bühne 300 × 200) ---------- */
+function huySzene(art){ const xw=120;
+  if(art==="gerade"||art==="frei") return {F:[[art==="frei"?70:40,-400],[art==="frei"?70:40,600]],th:[-1.565,1.565],nrm:()=>0,G:5,xw:art==="frei"?70:40,eben:true};
+  if(art==="schraeg"){ const f=[.5,.866], p0=[80,100], an=Math.atan2(-.5,.866); return {F:[[p0[0]-f[0]*500,p0[1]-f[1]*500],[p0[0]+f[0]*500,p0[1]+f[1]*500]],th:[an-1.565,an+1.565],nrm:()=>an,G:3}; }
+  if(art==="kreis"){ const S=[art==="kreis"?70:80,100], r0=26; return {F:kreis5(S[0],S[1],r0),th:[-Math.PI,Math.PI],nrm:p=>Math.atan2(p[1]-S[1],p[0]-S[0]),G:3,S,r0}; }
+  if(art==="kante"){ const e=110; return {F:[[xw,-400],[xw,e]],th:[-Math.PI/2,Math.PI/2],nrm:p=>p[0]-xw<1?0:Math.atan2(p[1]-Math.min(p[1],e),p[0]-xw),G:3,xw,zu:[[e,200]],a:-400,b:e}; }
+  const a=art==="spalt"?70:97, b=art==="spalt"?130:103;
+  return {F:art==="spalt"?[[xw,a],[xw,b]]:[[xw,100]],th:[-Math.PI/2,Math.PI/2],nrm:p=>p[0]-xw<1?0:Math.atan2(p[1]-klemm(p[1],a,b),p[0]-xw),G:3,xw,zu:[[0,a],[b,200]],a,b}; }
+// Wellenbild zur Szene: die Zentren auf der Front senden echte Elementarwellen aus
+function huyFeld(S,sp,lam){ const Z=huyZentren(S.F,sp,[-200,-200,500,400]);
+  const q=Z.map(p=>{ const a=S.nrm(p); return [p[0],p[1],0,1,Math.cos(a),Math.sin(a)]; });
+  let vor=null;
+  if(S.xw!==undefined) vor=(x,y,k)=>x<S.xw?[Math.cos(k*(x-S.xw)),Math.sin(k*(x-S.xw))]:null;
+  if(S.S) vor=(x,y,k)=>{ const r=Math.hypot(x-S.S[0],y-S.S[1]); return r<S.r0?(r<3?[0,0]:[Math.cos(k*(r-S.r0)),Math.sin(k*(r-S.r0))]):null; };
+  return {F:feld5({W:300,H:200,z:2,lam,q,vor}),Z}; }
+/*K5-ENDE*/
+/*K5-ANFANG*/
+/* ---------- Steckbrief-Szenen Kapitel 5 ---------- */
+function seg5(host,opts,get,set,eng){ const seg=el("div",{class:"seg"+(eng?" eng":"")});
+  opts.forEach(([v,l])=>{ const b=el("button",{"aria-pressed":String(v===get())},l); b.addEventListener("click",()=>{ set(v); [...seg.children].forEach(x=>x.setAttribute("aria-pressed",String(x===b))); }); seg.appendChild(b); });
+  host.appendChild(seg); return seg; }
+function regler5(host,o){ const reg=el("div",{class:"reg"}), rng=el("input",{type:"range",min:String(o.min),max:String(o.max),step:String(o.step||1),value:String(o.wert),"aria-label":o.name}), val=el("span",{class:"val"});
+  reg.append(rng,val); reg.addEventListener("pointerdown",e=>e.stopPropagation()); const zeig=()=>{ val.textContent=o.txt(+rng.value); }; rng.addEventListener("input",()=>{ zeig(); o.bei(+rng.value); }); zeig(); host.appendChild(reg); return rng; }
+
+// 1 · Wellenwanne frei: Kreiswelle, gerade Welle, Tropfen; Strahlen senkrecht zu den Fronten
+function viz5Wanne(side){ let art="still", strahlen=false;   // anfangs ruhiges Wasser ohne Strahlen: erst die Wahl startet eine Welle
+  const lam=16, c2=.25, om=omega5(lam,c2), W=mkWanne(240,150,{c2}), QP=punktQ5(W,80,75), QL=linieQ5(W,20); let G=null, zuletzt=null;
+  const row=el("div",{class:"k3row"}); side.appendChild(row);
+  seg5(row,[["kreis","Kreiswelle"],["gerade","gerade Welle"],["tropfen","Tropfen"]],()=>art,v=>{ art=v; wanneLeeren(W); if(v==="tropfen"){ tropfen5(W,100,75); zuletzt=[100,75]; } });
+  seg5(row,[[true,"Strahlen an"],[false,"aus"]],()=>strahlen,v=>{ strahlen=v; });
+  const U=uhr4(side), st=canvasFill(mkcv(side,"b3 hoch hoch5 zieh"));
+  ziehbar(st.c,(x,y,was)=>{ if(was!=="start"||!G) return; const i=G.I(x), j=G.J(y); if(G.innen(i,j)){ tropfen5(W,i,j); zuletzt=[i,j]; } });
+  szene4(st,U,t=>{ wanneTakt(W,t,80,()=>wanneSchritt(W,(W2,u)=>{ const a=Math.min(1,W2.n/40)*Math.sin(om*W2.n); if(art==="kreis") anregen5(u,QP,a); else if(art==="gerade") anregen5(u,QL,.8*a); }));
+    G=wanneMalen(st,W,{gain:art==="kreis"?2.4:art==="gerade"?1.4:2.8}); const {ctx}=st;
+    if(strahlen){ const pf=(i0,j0,i1,j1)=>arrow(ctx,G.X(i0),G.Y(j0),G.X(i1),G.Y(j1),B3.mark,2.4);
+      if(art==="kreis") for(let m=0;m<8;m++){ const a=(m+.5)*TAU/8; pf(80+14*Math.cos(a),75+14*Math.sin(a),80+46*Math.cos(a),75+46*Math.sin(a)); }
+      else if(art==="gerade") [42,62,88,108].forEach(j=>pf(70,j,130,j));
+      else if(zuletzt) for(let m=0;m<6;m++){ const a=m*TAU/6; pf(zuletzt[0]+10*Math.cos(a),zuletzt[1]+10*Math.sin(a),zuletzt[0]+30*Math.cos(a),zuletzt[1]+30*Math.sin(a)); } }
+    if(art==="kreis"||art==="gerade"){ const y=G.Y(W.ny-W.cu-7), x1=G.X(W.nx-W.cr-10), x0=G.X(W.nx-W.cr-10-lam); ctx.strokeStyle="#fff"; darrow(ctx,x0,y,x1,y,"#fff",2); schild5(ctx,"λ",(x0+x1)/2,y-9,"#fff",12,"center"); }
+    schild5(ctx,art==="still"?(zuletzt?"Tippe noch einmal ins Wasser":"Ruhiges Wasser: Wähle einen Erreger oder tippe ins Wasser"):art==="tropfen"?"Tippe ins Wasser":"hell: Wellenberge = Wellenfronten",G.ox+10,G.oy+20,B3.txt,12);
+    if(strahlen) schild5(ctx,"Pfeile: Wellenstrahlen",G.ox+10,G.oy+G.vh*G.s-10,B3.mark,12); }); }
+
+// 2 · Huygens'sches Prinzip: Konstruktion in drei Schritten oder Wellenbild aus echten Elementarwellen
+function viz5Huygens(side){ let art="gerade", n=8, bild=false, S=null, fronten=[], zent=[], WB=null; const lam=24, R=46, TZ=4.6, box=[-6,-6,306,206];
+  const row=el("div",{class:"k3row"}); side.appendChild(row);
+  seg5(row,[["gerade","gerade Front"],["kreis","Kreiswelle"],["spalt","Spalt"],["eng","enger Spalt"]],()=>art,v=>{ art=v; neu(); });
+  seg5(row,[[false,"Konstruktion"],[true,"Wellenbild"]],()=>bild,v=>{ bild=v; neu(); });
+  regler5(side,{name:"Abstand der Zentren",min:2,max:24,wert:n,txt:v=>`Abstand der Zentren: ${fmt(+(200/v/lam).toFixed(2))} λ`,bei:v=>{ n=v; neu(); }});
+  const U=uhr4(side), st=canvasFill(mkcv(side,"b3 hoch hoch5"));
+  function neu(){ S=huySzene(art); fronten=[S.F]; for(let g=1;g<=S.G;g++) fronten.push(huyHuelle(fronten[g-1],R,S.th[0],S.th[1])); zent=fronten.map(F=>huyZentren(F,200/n,box)); WB=bild?huyFeld(S,200/n,lam):null; }
+  neu();
+  szene4(st,U,t=>{ buehne(st); const {ctx,w,h}=st, V=vbox5(st);
+    if(bild){ feld5Malen(st,V,WB.F,t,{f:.45}); ctx.save(); vclip5(ctx,V); if(S.zu) wand5(ctx,V,S.xw-8,S.xw,S.zu); huyPunkte(ctx,V,WB.Z.filter(p=>p[1]>-6&&p[1]<206)); ctx.restore();
+      const a=200/n/lam, txt=art==="eng"?"Ein einziges Zentrum: Hinter dem Spalt läuft eine Kreiswelle.":art==="spalt"?(a>1?"Wenige Zentren: einzelne Kreiswellen":"Gerade Front, an den Rändern Kreisbögen"):a>1?"Zentren weiter als λ auseinander: einzelne Kreiswellen":a>.5?"Die Kreiswellen verschmelzen fast zu einer Front.":"Dichte Zentren: Zusammen ergeben sie die Wellenfront.";
+      schild5(ctx,"gelb: Zentren der Elementarwellen",V.ox+8,V.oy+18,B3.mark,12); schild5(ctx,txt,w/2,h-10,B3.txt,12,"center"); return; }
+    const g=Math.floor(t/TZ)%S.G, u=(t%TZ)/TZ, F=fronten[g], Z=zent[g], ease=x=>x<.5?2*x*x:1-2*(1-x)*(1-x), r=R*ease(klemm((u-.14)/.46,0,1));
+    ctx.save(); vclip5(ctx,V); ctx.fillStyle="rgba(79,168,255,.05)"; ctx.fillRect(V.ox,V.oy,300*V.s,200*V.s);
+    if(S.zu){ wand5(ctx,V,S.xw-8,S.xw,S.zu); [1,2].forEach(m=>strich(ctx,[V.P([S.xw-8-m*R+8,-5]),V.P([S.xw-8-m*R+8,205])],B3.a,2,[6,6],.35)); }
+    if(S.S){ ctx.fillStyle="#fff"; ctx.beginPath(); ctx.arc(V.X(S.S[0]),V.Y(S.S[1]),4,0,TAU); ctx.fill(); }
+    for(let k=1;k<=2;k++) if(g-k>=0) strich(ctx,fronten[g-k].map(V.P),B3.a,2,[6,6],.3);
+    poly5(ctx,V,F,B3.a,3.2,u<.8?1:Math.max(.25,1-(u-.8)/.2*.75));
+    huyKreise(ctx,V,Z,r,S.nrm,u<.8?.8:.8*(1-(u-.8)/.2));
+    if(u>.3){ const E=huyHuelle(F,r,S.th[0],S.th[1]); poly5(ctx,V,E,B3.ok,3.2,klemm((u-.3)/.2,0,1)); if(u>.8) poly5(ctx,V,E,B3.a,3.2,(u-.8)/.2); }
+    huyPunkte(ctx,V,Z,u>.8?1-(u-.8)/.2:klemm(u/.12,0,1));
+    if(S.zu) schild5(ctx,"ankommende Welle",V.X(S.xw-8)-6,V.Y(16),B3.dim,11,"right");
+    ctx.restore();
+    legende3(st,[["Wellenfront",B3.a,0],["Elementarwellen",B3.mark,0],["Einhüllende",B3.ok,0]]);
+    const schritt=u<.14?0:u<.6?1:2, T=["① Jeder Punkt der Front wird Zentrum einer Elementarwelle.","② Die Elementarwellen laufen mit c nach außen.","③ Ihre Einhüllende ist die neue Wellenfront."];
+    schild5(ctx,T[schritt],w/2,h-10,[B3.mark,B3.mark,B3.ok][schritt],13,"center"); }); }
+
+// Hilfen für Reflexion und Brechung: Gerade durch H + v·c, Richtung ev, über das ganze Bild
+function gerade5(ctx,H,v,ev,c,farbe,lw,stark,T){ const p=[H[0]+v[0]*c,H[1]+v[1]*c]; leucht(ctx,[[p[0]-ev[0]*T,p[1]-ev[1]*T],[p[0]+ev[0]*T,p[1]+ev[1]*T]],farbe,lw,stark); }
+const pr5=(p,H,v)=>(p[0]-H[0])*v[0]+(p[1]-H[1])*v[1];
+
+// 3 · Reflexion mit Huygens: Jeder getroffene Punkt der Wand sendet eine Elementarwelle aus
+function viz5Reflex(side){ let al=40;
+  regler5(side,{name:"Einfallswinkel",min:5,max:75,wert:al,txt:v=>`Einfallswinkel α = ${v}°`,bei:v=>{ al=v; }});
+  const U=uhr4(side), st=canvasFill(mkcv(side,"b3 hoch hoch5"));
+  szene4(st,U,t=>{ buehne(st); const {ctx,w,h}=st, yW=h*.8, H=[w*.5,yW], a=al*D5, lam=klemm(w*.085,28,48), T=w+h, NZ=5;
+    const d=[Math.sin(a),Math.cos(a)], e=[Math.cos(a),-Math.sin(a)], d2=[Math.sin(a),-Math.cos(a)], e2=[Math.cos(a),Math.sin(a)], ecken=[[0,0],[w,0],[0,yW],[w,yW]];
+    const smin=Math.min(...ecken.map(p=>pr5(p,H,d))), smax=Math.max(...ecken.map(p=>pr5(p,H,d2))), L=smax-smin+2*lam, sig=smin+lam+((t*42)%L), mA=0, mB=3;
+    ctx.fillStyle="#3a4862"; ctx.fillRect(0,yW,w,h-yW); ctx.strokeStyle=B3.metall; ctx.lineWidth=2.5; ctx.beginPath(); ctx.moveTo(0,yW); ctx.lineTo(w,yW); ctx.stroke(); label(ctx,"Wand",14,yW+20,B3.txt,"left",700,12);
+    ctx.save(); ctx.beginPath(); ctx.rect(0,0,w,yW); ctx.clip();
+    for(let m=mA;m<=mB;m++){ const c=sig-m*lam; gerade5(ctx,H,d,e,c,B3.a,m?2:3.4,m?.4:1,T); gerade5(ctx,H,d2,e2,c,B3.ok,m?2:3.4,m?.4:1,T); }
+    const sp=Math.max(24,w/16); ctx.strokeStyle=rgba3(B3.mark,.9); ctx.lineWidth=1.9;
+    for(let x=sp/2;x<w;x+=sp){ const r=sig-(x-H[0])*d[0]; if(r>0&&r<h*1.4){ ctx.beginPath(); ctx.arc(x,yW,r,Math.PI,TAU); ctx.stroke(); } }
+    ctx.restore();
+    for(let x=sp/2;x<w;x+=sp) if(sig-(x-H[0])*d[0]>0){ ctx.fillStyle=B3.mark; ctx.beginPath(); ctx.arc(x,yW,3,0,TAU); ctx.fill(); }
+    // Lot, Strahlen und Winkel wandern mit dem Punkt, an dem die vorderste Front gerade auf die Wand trifft
+    const Lr=Math.min(yW*.72,w*.34), xh=al>=1?H[0]+sig/d[0]:H[0];
+    if(xh>14&&xh<w-14){ const H=[xh,yW]; lot5(ctx,[H[0],yW],[H[0],yW-Lr*1.05]);
+      arrow(ctx,H[0]-d[0]*Lr,H[1]-d[1]*Lr,H[0]-d[0]*6,H[1]-d[1]*6,B3.sum,2.6); arrow(ctx,H[0]+d2[0]*6,H[1]+d2[1]*6,H[0]+d2[0]*Lr,H[1]+d2[1]*Lr,B3.sum,2.6);
+      if(al>=8){ bogen5(ctx,H,[0,-1],[-d[0],-d[1]],46,B3.mark,"α"); bogen5(ctx,H,[0,-1],d2,58,B3.mark,"α′"); }
+      ctx.strokeStyle="#fff"; ctx.lineWidth=2; ctx.beginPath(); ctx.arc(H[0],H[1],6,0,TAU); ctx.stroke(); label(ctx,"Lot",H[0]+6,yW-Lr*1.05+4,B3.txt,"left",700,12); }
+    legende3(st,[["einfallend",B3.a,0],["reflektiert",B3.ok,0],["Elementarwellen",B3.mark,0]]);
+    schild5(ctx,`α = ${al}°   α′ = ${al}°`,w-12,h-12,B3.mark,13,"right"); }); }
+
+// 4 · Brechung mit Huygens: im langsameren Wasser sind die Elementarwellen kleiner
+function viz5Brech(side){ let al=40, q=.6; const row=el("div",{class:"k3row"}); side.appendChild(row);
+  seg5(row,[[.6,"ins flache Wasser"],[1.5,"ins tiefe Wasser"]],()=>q,v=>{ q=v; });
+  regler5(side,{name:"Einfallswinkel",min:0,max:75,wert:al,txt:v=>`Einfallswinkel α = ${v}°`,bei:v=>{ al=v; }});
+  const U=uhr4(side), st=canvasFill(mkcv(side,"b3 hoch hoch5"));
+  szene4(st,U,t=>{ buehne(st); const {ctx,w,h}=st, yB=h*.5, H=[w*.5,yB], a=al*D5, sb=q*Math.sin(a), total=sb>1, b=total?0:Math.asin(sb), lam=klemm(w*.085,28,48), T=w+h, NZ=6;
+    const d1=[Math.sin(a),Math.cos(a)], e1=[Math.cos(a),-Math.sin(a)], d2=[Math.sin(b),Math.cos(b)], e2=[Math.cos(b),-Math.sin(b)], dr=[Math.sin(a),-Math.cos(a)], er=[Math.cos(a),Math.sin(a)];
+    const oben=[[0,0],[w,0],[0,yB],[w,yB]], unten=[[0,yB],[w,yB],[0,h],[w,h]];
+    const smin=Math.min(...oben.map(p=>pr5(p,H,d1))), smax=total?Math.max(...oben.map(p=>pr5(p,H,dr))):Math.max(...unten.map(p=>pr5(p,H,d2)/q)), L=smax-smin+2*lam, sig=smin+lam+((t*42)%L), mA=0, mB=3;
+    ctx.fillStyle="rgba(150,190,110,.16)"; if(q<1) ctx.fillRect(0,yB,w,h-yB); else ctx.fillRect(0,0,w,yB);
+    ctx.save(); ctx.beginPath(); ctx.rect(0,0,w,yB); ctx.clip();
+    for(let m=mA;m<=mB;m++){ const c=sig-m*lam; gerade5(ctx,H,d1,e1,c,B3.a,m?2:3.4,m?.4:1,T); if(total) gerade5(ctx,H,dr,er,c,B3.ok,m?2:3.4,m?.4:1,T); }
+    ctx.restore(); ctx.save(); ctx.beginPath(); ctx.rect(0,yB,w,h-yB); ctx.clip();
+    if(!total) for(let m=mA;m<=mB;m++){ const c=q*(sig-m*lam); gerade5(ctx,H,d2,e2,c,B3.ok,m?2:3.4,m?.4:1,T); }
+    const sp=Math.max(24,w/16); ctx.strokeStyle=rgba3(B3.mark,.9); ctx.lineWidth=1.9;
+    if(!total) for(let x=sp/2;x<w;x+=sp){ const r=q*(sig-(x-H[0])*d1[0]); if(r>0&&r<h){ ctx.beginPath(); ctx.arc(x,yB,r,0,Math.PI); ctx.stroke(); } }
+    ctx.restore();
+    ctx.strokeStyle=B3.metall; ctx.lineWidth=1.5; ctx.setLineDash([3,4]); ctx.beginPath(); ctx.moveTo(0,yB); ctx.lineTo(w,yB); ctx.stroke(); ctx.setLineDash([]);
+    if(!total) for(let x=sp/2;x<w;x+=sp) if(sig-(x-H[0])*d1[0]>0){ ctx.fillStyle=B3.mark; ctx.beginPath(); ctx.arc(x,yB,3,0,TAU); ctx.fill(); }
+    // Lot, Strahlen und Winkel wandern mit dem Auftreffpunkt der vordersten Front
+    const Lr=Math.min(yB*.8,w*.3), xh=al>=1?H[0]+sig/d1[0]:H[0];
+    if(xh>14&&xh<w-14){ const H=[xh,yB]; lot5(ctx,[H[0],yB-Lr],[H[0],yB+Lr]);
+      arrow(ctx,H[0]-d1[0]*Lr,H[1]-d1[1]*Lr,H[0]-d1[0]*6,H[1]-d1[1]*6,B3.sum,2.6);
+      if(!total){ arrow(ctx,H[0]+d2[0]*6,H[1]+d2[1]*6,H[0]+d2[0]*Lr,H[1]+d2[1]*Lr,B3.sum,2.6); if(al>=6){ bogen5(ctx,H,[0,-1],[-d1[0],-d1[1]],44,B3.mark,"α"); if(b>3*D5) bogen5(ctx,H,[0,1],d2,44,B3.mark,"β"); } }
+      else { arrow(ctx,H[0]+dr[0]*6,H[1]+dr[1]*6,H[0]+dr[0]*Lr,H[1]+dr[1]*Lr,B3.sum,2.6); }
+      ctx.strokeStyle="#fff"; ctx.lineWidth=2; ctx.beginPath(); ctx.arc(H[0],H[1],6,0,TAU); ctx.stroke(); }
+    const fl="flaches Wasser", ti="tiefes Wasser"; schild5(ctx,`${q<1?ti:fl}: c₁`,12,22,B3.txt,12); schild5(ctx,`${q<1?fl:ti}: c₂ = ${fmt(q)} · c₁`,12,yB+22,B3.txt,12);
+    schild5(ctx,total?"sin β wäre größer als 1: keine gebrochene Welle":`α = ${al}°   β = ${deg5(b)}°`,w-12,h-34,B3.mark,13,"right");
+    schild5(ctx,total?"Die Welle wird vollständig reflektiert.":`λ₂ = ${fmt(q)} · λ₁   f bleibt gleich`,w-12,h-10,B3.txt,12,"right"); }); }
+
+// 5 · Beugung in der Wellenwanne: Spalt mit d = 0,5 λ, 2 λ, 5 λ oder eine Kante
+function viz5Beug(side){ let art="d2", an=false;   // Erreger anfangs aus: ruhiges Wasser
+  const lam=14, c2=.25, om=omega5(lam,c2), W=mkWanne(240,150,{c2}), xw=70, jm=75, QL=linieQ5(W,22);
+  const A={d05:{d:7,txt:"d = 0,5 λ",g:3.4,cap:"Enger Spalt: Dahinter läuft fast eine Kreiswelle."},d2:{d:28,txt:"d = 2 λ",g:1.8,cap:"Die Welle läuft deutlich in den Schattenraum."},d5:{d:70,txt:"d = 5 λ",g:1.3,cap:"Breiter Spalt: fast geradeaus, gebeugt wird nur am Rand."},kante:{txt:"Kante",g:1.3,cap:"Hinter der Kante läuft die Welle in den Schatten."}};
+  const quelle=(W2,u)=>{ if(an) anregen5(u,QL,Math.min(1,W2.n/30)*Math.sin(om*W2.n)); };
+  const bauen=()=>{ const o=A[art]; W.wand.fill(0); for(let j=0;j<W.ny;j++) for(let i=xw;i<xw+3;i++){ const offen=art==="kante"?j<jm:(j>=jm-o.d/2&&j<jm+o.d/2); if(!offen) W.wand[j*W.nx+i]=1; }
+    W.gr=new Float32Array(W.N); for(let n=0;n<W.N;n++) W.gr[n]=n%W.nx>=xw+3?o.g:1; wanneLeeren(W); if(an) for(let s=0;s<170;s++) wanneSchritt(W,quelle); };
+  const row=el("div",{class:"k3row"}); side.appendChild(row);
+  seg5(row,[[true,"Erreger an"],[false,"aus"]],()=>an,v=>{ an=v; bauen(); });
+  seg5(row,[["d05","d = 0,5 λ"],["d2","d = 2 λ"],["d5","d = 5 λ"],["kante","Kante"]],()=>art,v=>{ art=v; bauen(); });
+  bauen(); const U=uhr4(side), st=canvasFill(mkcv(side,"b3 hoch hoch5"));
+  szene4(st,U,t=>{ wanneTakt(W,t,80,()=>wanneSchritt(W,quelle)); const G=wanneMalen(st,W,{gain:1.3}), {ctx}=st, o=A[art], xr=G.X(W.nx-W.cr-1);
+    const grenze=j=>lot5(ctx,[G.X(xw+3),G.Y(j)],[xr,G.Y(j)],B3.mark); if(art==="kante") grenze(jm-.5); else { grenze(jm-o.d/2-.5); grenze(jm+o.d/2-.5); }
+    schild5(ctx,"geometrische Schattengrenze",xr-6,G.Y(art==="kante"?jm-.5:jm-o.d/2-.5)-8,B3.mark,11,"right");
+    const y=G.Y(W.co+8), x0=G.X(xw-8-lam), x1=G.X(xw-8); darrow(ctx,x0,y,x1,y,"#fff",2); schild5(ctx,"λ",(x0+x1)/2,y-9,"#fff",12,"center");
+    schild5(ctx,o.txt,G.X(xw+8),G.Y(W.co+8),"#fff",13); schild5(ctx,an?o.cap:"Ruhiges Wasser: Schalte den Erreger ein.",st.w/2,st.h-8,an?B3.txt:B3.mark,12,"center"); }); }
+
+// 6 · Interferenz zweier Kreiswellen in der Wellenwanne, mit Knotenlinien und verschiebbarem Punkt P
+function viz5Interf(side){ let gm=2, linien=false, an=false;   // Erreger und Knotenlinien anfangs aus
+  const lam=16, c2=.25, om=omega5(lam,c2), W=mkWanne(240,150,{c2}), xq=40, jm=75; let Q1=[], Q2=[], KN=null, P=[170,42], G=null;
+  const quelle=(W2,u)=>{ if(!an) return; const a=Math.min(1,W2.n/40)*Math.sin(om*W2.n); anregen5(u,Q1,a); anregen5(u,Q2,a); };
+  const qp=()=>[[xq,jm-gm*lam/2],[xq,jm+gm*lam/2]];
+  const bauen=()=>{ const q=qp(); Q1=punktQ5(W,q[0][0],q[0][1]); Q2=punktQ5(W,q[1][0],q[1][1]); wanneLeeren(W); if(an) for(let s=0;s<200;s++) wanneSchritt(W,quelle);
+    KN=linien5(q,lam,0,W.nx,W.ny,1); };
+  const row=el("div",{class:"k3row"}); side.appendChild(row);
+  seg5(row,[[true,"Erreger an"],[false,"aus"]],()=>an,v=>{ an=v; bauen(); });
+  seg5(row,[[1,"g = 1 λ"],[2,"g = 2 λ"],[3,"g = 3 λ"]],()=>gm,v=>{ gm=v; bauen(); });
+  seg5(row,[[true,"Knotenlinien"],[false,"aus"]],()=>linien,v=>{ linien=v; });
+  bauen(); const U=uhr4(side), st=canvasFill(mkcv(side,"b3 hoch hoch5 zieh"));
+  ziehbar(st.c,(x,y)=>{ if(!G) return; P=[klemm(G.I(x),W.cl+2,W.nx-W.cr-3),klemm(G.J(y),W.co+2,W.ny-W.cu-3)]; });
+  szene4(st,U,t=>{ wanneTakt(W,t,80,()=>wanneSchritt(W,quelle)); G=wanneMalen(st,W,{gain:2.1}); const {ctx}=st, q=qp();
+    if(linien&&KN){ ctx.save(); ctx.beginPath(); ctx.rect(G.ox,G.oy,G.vw*G.s,G.vh*G.s); ctx.clip(); ctx.fillStyle="rgba(255,255,255,.9)"; for(let i=0;i<KN.r.length;i+=2) ctx.fillRect(G.X(KN.r[i]-.5)-1.3,G.Y(KN.r[i+1]-.5)-1.3,2.6,2.6); ctx.restore(); }
+    const s1=Math.hypot(P[0]-q[0][0],P[1]-q[0][1])/lam, s2=Math.hypot(P[0]-q[1][0],P[1]-q[1][1])/lam, ds=Math.abs(s1-s2), r=ds-Math.floor(ds);
+    const weg=(a,farbe)=>{ ctx.save(); ctx.strokeStyle=farbe; ctx.lineWidth=2.2; ctx.setLineDash([7,5]); ctx.beginPath(); ctx.moveTo(G.X(a[0]),G.Y(a[1])); ctx.lineTo(G.X(P[0]),G.Y(P[1])); ctx.stroke(); ctx.restore(); };
+    weg(q[0],B3.a); weg(q[1],B3.b);
+    [[q[0],B3.a,"E₁"],[q[1],B3.b,"E₂"]].forEach(([p,f,nm])=>{ perle(ctx,G.X(p[0]),G.Y(p[1]),f,14); label(ctx,nm,G.X(p[0])-10,G.Y(p[1])+5,"#fff","right",700,12); });
+    const px=G.X(P[0]), py=G.Y(P[1]); ctx.fillStyle="#0b1424"; ctx.strokeStyle=B3.mark; ctx.lineWidth=3; ctx.beginPath(); ctx.arc(px,py,8,0,TAU); ctx.fill(); ctx.stroke(); label(ctx,"P",px+12,py-8,"#fff","left",700,13);
+    const art=Math.abs(r-.5)<.08?"Ruhe: Berg trifft Tal":(r<.08||r>.92)?"Verstärkung: Berg trifft Berg":"dazwischen";
+    schild5(ctx,`s₁ = ${z2(s1)} λ   s₂ = ${z2(s2)} λ   Δs = ${z2(ds)} λ`,G.ox+8,G.oy+20,B3.txt,12);
+    if(an) schild5(ctx,art,G.ox+8,G.oy+42,art.startsWith("Ruhe")?"#fff":art.startsWith("Verst")?B3.mark:B3.dim,12);
+    schild5(ctx,an?"Zieh den Punkt P":"Ruhiges Wasser: Schalte die Erreger ein.",st.w/2,st.h-8,an?B3.dim:B3.mark,12,"center"); }); }
+/*K5-ENDE*/
+/*K5-ANFANG*/
+/* =====================================================================
+   Challenge A · Wohin läuft die Welle? (Reflexion und Brechung)
+   Den weiterlaufenden Strahl mit dem Finger ziehen. Reflexion: ohne Zahlen, nur mit dem Lot im Kopf. Brechung: rechnen, dann einstellen.
+   ===================================================================== */
+function strahlTask(o){ return {_o:o,run(api){
+  const a=o.al*D5, br=o.art==="brech", b=br?Math.asin(o.q*Math.sin(a)):a; let u=null, fertig=false, ok=false;
+  api.situation(br?`Die Welle läuft aus Wasser mit c₁ = ${o.c1} cm/s in Wasser mit c₂ = ${o.c2} cm/s. Sie trifft unter α = ${o.al}° auf die Grenze.`:"Eine gerade Welle trifft schräg auf eine feste Wand.");
+  api.badge(br?"Rechnen und einstellen":"Konstruieren");
+  api.prompt(br?"Zieh den Pfeil in die Richtung, in die die <b>gebrochene Welle</b> weiterläuft.":"Zieh den Pfeil in die Richtung, in die die <b>reflektierte Welle</b> weiterläuft.");
+  api.hint(br?"Brechungsgesetz (Formelsammlung S. 34): sin α / sin β = c₁ / c₂. β wird zum Lot gemessen.":"Beide Winkel werden zum Lot gemessen, nicht zur Wand.");
+  const st=canvasFill(api.cv("b3 gross5 zieh")), pr=el("button",{class:"btn"},"Prüfen"); pr.disabled=true; api.actions.appendChild(pr);
+  const lin=(p,q,s,t)=>[p[0]*s+q[0]*t,p[1]*s+q[1]*t];
+  const geo=()=>{ const {w,h}=st, H=[w*.5,h*.52], wv=[Math.cos(o.tau),Math.sin(o.tau)], nv=[Math.sin(o.tau),-Math.cos(o.tau)], L=Math.min(w,h)*.4;
+    return {H,wv,nv,L,d:lin(nv,wv,-Math.cos(a),Math.sin(a)),soll:br?lin(nv,wv,-Math.cos(b),Math.sin(b)):lin(nv,wv,Math.cos(a),Math.sin(a))}; };
+  const rueck=g=>br?[-g.nv[0],-g.nv[1]]:g.nv;      // Lot auf der Seite des weiterlaufenden Strahls
+  const winkel=(g,v)=>Math.acos(klemm(v[0]*rueck(g)[0]+v[1]*rueck(g)[1],-1,1))/D5;
+  ziehbar(st.c,(x,y)=>{ if(fertig) return; const g=geo(); let v=[x-g.H[0],y-g.H[1]]; const m=Math.hypot(v[0],v[1]); if(m<10) return; v=[v[0]/m,v[1]/m];
+    const nn=rueck(g), p=v[0]*nn[0]+v[1]*nn[1]; if(p<.03){ v=[v[0]+(.03-p)*nn[0],v[1]+(.03-p)*nn[1]]; const m2=Math.hypot(v[0],v[1]); v=[v[0]/m2,v[1]/m2]; } u=v; pr.disabled=false; });
+  st.c._ziel=()=>{ const r=st.c.getBoundingClientRect(), g=geo(); return {r:[r.left+g.H[0]+g.soll[0]*g.L,r.top+g.H[1]+g.soll[1]*g.L],f:[r.left+g.H[0]+rueck(g)[0]*g.L,r.top+g.H[1]+rueck(g)[1]*g.L]}; };
+  pr.addEventListener("click",()=>{ if(fertig||!u) return; fertig=true; pr.disabled=true; const g=geo(), fe=Math.acos(klemm(u[0]*g.soll[0]+u[1]*g.soll[1],-1,1))/D5, wu=Math.round(winkel(g,u)), seite=u[0]*g.wv[0]+u[1]*g.wv[1]<0;
+    ok=fe<=(br?3.5:6); effekt3(st,ok);
+    const dein=seite?" Dein Pfeil zeigt auf die falsche Seite des Lots.":` Dein Pfeil: ${wu}° zum Lot.`;
+    api.feedback(ok,br?`sin β = (c₂ / c₁) · sin α = (${o.c2} : ${o.c1}) · sin ${o.al}° ≈ ${fmt(+(o.q*Math.sin(a)).toFixed(2))}, also β ≈ ${deg5(b)}°. ${o.q<1?"Die Welle wird langsamer und zum Lot hin gebrochen.":"Die Welle wird schneller und vom Lot weg gebrochen."}${ok?"":dein}`
+      :`Reflexionsgesetz: α′ = α = ${o.al}°, beide zum Lot gemessen.${ok?"":dein}`); api.finish(ok); });
+  loop(()=>{ buehne(st); const {ctx,w,h}=st, g=geo(), H=g.H, T=w+h, P=(s,t)=>[H[0]+g.wv[0]*s+g.nv[0]*t,H[1]+g.wv[1]*s+g.nv[1]*t];
+    const flaeche=(t0,t1,farbe)=>{ ctx.beginPath(); [P(-T,t0),P(T,t0),P(T,t1),P(-T,t1)].forEach((p,i)=>i?ctx.lineTo(p[0],p[1]):ctx.moveTo(p[0],p[1])); ctx.closePath(); ctx.fillStyle=farbe; ctx.fill(); };
+    if(br){ if(o.q<1) flaeche(0,-T,"rgba(150,190,110,.17)"); else flaeche(0,T,"rgba(150,190,110,.17)");
+      lot5(ctx,P(-T,0),P(T,0),B3.metall);
+      const t1=P(-w*.32,g.L*.55), t2=P(-w*.32,-g.L*.55); schild5(ctx,`c₁ = ${o.c1} cm/s`,t1[0],t1[1],B3.txt,12,"center"); schild5(ctx,`c₂ = ${o.c2} cm/s`,t2[0],t2[1],B3.txt,12,"center"); }
+    else { flaeche(0,-18,"#3a4862"); ctx.strokeStyle=B3.metall; ctx.lineWidth=3; const p1=P(-T,0), p2=P(T,0); ctx.beginPath(); ctx.moveTo(p1[0],p1[1]); ctx.lineTo(p2[0],p2[1]); ctx.stroke(); }
+    const e=[-g.d[1],g.d[0]]; for(let k=1;k<=3;k++){ const c=[H[0]-g.d[0]*g.L*(.22+.25*k),H[1]-g.d[1]*g.L*(.22+.25*k)]; leucht(ctx,[[c[0]-e[0]*22,c[1]-e[1]*22],[c[0]+e[0]*22,c[1]+e[1]*22]],B3.a,2.4,.8); }
+    arrow(ctx,H[0]-g.d[0]*g.L,H[1]-g.d[1]*g.L,H[0]-g.d[0]*6,H[1]-g.d[1]*6,B3.sum,2.8);
+    if(br||fertig){ lot5(ctx,[H[0]+g.nv[0]*g.L*1.05,H[1]+g.nv[1]*g.L*1.05],[H[0]-g.nv[0]*g.L*1.05,H[1]-g.nv[1]*g.L*1.05]); bogen5(ctx,H,g.nv,[-g.d[0],-g.d[1]],40,B3.a,br?`α = ${o.al}°`:"α"); }
+    if(fertig){ arrow(ctx,H[0],H[1],H[0]+g.soll[0]*g.L,H[1]+g.soll[1]*g.L,B3.ok,3.2); bogen5(ctx,H,rueck(g),g.soll,56,B3.ok,br?`β = ${deg5(b)}°`:`α′ = ${o.al}°`); }
+    if(u){ const q=[H[0]+u[0]*g.L,H[1]+u[1]*g.L]; arrow(ctx,H[0],H[1],q[0],q[1],ok&&fertig?B3.ok:B3.mark,3); ctx.strokeStyle=B3.mark; ctx.lineWidth=2.5; ctx.beginPath(); ctx.arc(q[0],q[1],12,0,TAU); ctx.stroke();
+      if(br&&!fertig) schild5(ctx,`β = ${Math.round(winkel(g,u))}°`,q[0],q[1]+(q[1]>H[1]?30:-18),B3.mark,13,"center"); }
+    else { ctx.strokeStyle=rgba3(B3.mark,.7); ctx.lineWidth=2; ctx.setLineDash([5,6]); ctx.beginPath(); ctx.arc(H[0],H[1],g.L,0,TAU); ctx.stroke(); ctx.setLineDash([]); schild5(ctx,"Zieh den Pfeil vom Auftreffpunkt aus",w/2,h-10,B3.mark,12,"center"); }
+    ctx.fillStyle="#fff"; ctx.beginPath(); ctx.arc(H[0],H[1],4,0,TAU); ctx.fill(); }); }};}
+function wohinL1(){ return shuffle([0,0,.32,-.4,Math.PI/2,-1.3]).slice(0,PRO_LEVEL).map(tau=>strahlTask({art:"reflex",tau,al:one([20,25,30,35,50,55,60,65])})); }
+function wohinL2(){ return pick([[24,15],[30,18],[20,12],[18,27],[16,24],[30,21],[12,18]],PRO_LEVEL).map(([c1,c2])=>{ const q=c2/c1; let al; do{ al=one([25,30,35,40,45,50,55,60]); }while(q*Math.sin(al*D5)>.93);
+  return strahlTask({art:"brech",tau:one([0,0,.2,-.25]),al,q,c1,c2}); }); }
+const A5_L3=[
+  {sit:"Am Strand laufen die Wellen fast parallel zum Ufer ein, auch wenn sie draußen schräg kommen.",q:"Warum?",ok:"Im flacheren Wasser werden sie langsamer und zum Lot hin gebrochen.",f:["Der Wind dreht in Ufernähe immer zum Land.","Am Ufer werden sie reflektiert und überlagern sich."],e:"Je flacher das Wasser, desto kleiner c. Der Teil der Front, der schon im flachen Wasser ist, kommt langsamer voran. Die Front dreht sich, bis sie fast parallel zum Ufer liegt."},
+  {sit:"Du rufst vor einer Felswand und hörst das Echo nach 0,60 s. Rechne mit c = 343 m/s.",q:"Wie weit ist die Wand entfernt?",ok:"etwa 103 m",f:["etwa 206 m","etwa 572 m"],e:"Der Schall läuft hin und zurück: 2 · s = c · t = 343 m/s · 0,60 s ≈ 206 m. Die Wand ist also etwa 103 m entfernt."},
+  {sit:"Eine Wasserwelle läuft vom tiefen ins flache Wasser. Dort ist c nur halb so groß.",q:"Was passiert mit λ und f?",ok:"λ halbiert sich, f bleibt gleich.",f:["f halbiert sich, λ bleibt gleich.","λ und f halbieren sich beide."],e:"Die Frequenz gibt der Erreger vor, sie ändert sich an der Grenze nicht. Aus c = λ · f folgt: λ wird halb so groß."},
+  {sit:"Eine gerade Welle trifft senkrecht auf die Grenze zum flachen Wasser (α = 0°).",q:"Was passiert mit ihrer Richtung?",ok:"Sie läuft geradeaus weiter, nur λ wird kleiner.",f:["Sie wird zum Lot hin abgelenkt.","Sie wird an der Grenze vollständig reflektiert."],e:"Mit α = 0° ist sin α = 0 und damit auch β = 0°. Die Richtung bleibt, nur c und λ werden kleiner."},
+  {sit:"Eine Welle läuft schräg aus flachem in tiefes Wasser. Dort ist c größer.",q:"Wie wird sie gebrochen?",ok:"Vom Lot weg: β ist größer als α.",f:["Zum Lot hin: β ist kleiner als α.","Gar nicht, weil f gleich bleibt."],e:"sin β = (c₂ / c₁) · sin α mit c₂ > c₁. Also ist sin β > sin α und β > α."},
+  {sit:"Eine Welle trifft so auf eine Wand, dass ihr Strahl mit der Wand einen Winkel von 30° bildet.",q:"Wie groß ist der Reflexionswinkel α′?",ok:"60°",f:["30°","120°"],e:"Winkel werden zum Lot gemessen: α = 90° − 30° = 60°. Nach dem Reflexionsgesetz ist auch α′ = 60°."},
+  {sit:"Abends ist die Luft über einem See unten kühler als weiter oben. Stimmen vom anderen Ufer sind dann gut zu hören.",q:"Warum?",ok:"Oben ist c größer. Schräg nach oben laufender Schall wird vom Lot weg gebrochen und kommt wieder nach unten.",f:["Kühle Luft schluckt weniger Schall als warme.","Das Wasser wirft den Schall wie ein Spiegel nach oben."],e:"In wärmerer Luft ist c größer. Schall, der schräg nach oben läuft, wird an jeder wärmeren Schicht vom Lot weg gebrochen, bis er wieder nach unten läuft."}
+];
+const mc5=it=>mcTask({sit:it.sit,q:it.q,opts:[{t:it.ok,ok:true},{t:it.f[0],fb:it.fb?it.fb[0]:"Das passt nicht."},{t:it.f[1],fb:it.fb?it.fb[1]:"Das erklärt es nicht."}],erkl:it.e});
+
+/* =====================================================================
+   Challenge B · Um die Ecke (Huygens'sches Prinzip und Beugung)
+   ===================================================================== */
+const HUY5={
+  frei:{sit:"Eine gerade Wellenfront läuft ungehindert nach rechts. Gelb: einige Punkte der Front.",e:"Alle Elementarwellen sind gleich groß. Ihre gemeinsame Tangente ist wieder eine Gerade, parallel zur alten Front im Abstand c · Δt."},
+  schraeg:{sit:"Eine gerade Wellenfront läuft schräg nach rechts oben. Gelb: einige Punkte der Front.",e:"Die neue Front liegt parallel zur alten, senkrecht zur Front um c · Δt verschoben. Die Welle behält ihre Richtung."},
+  kreis:{sit:"Ein Erreger in der Mitte hat eine Kreiswelle erzeugt. Gelb: einige Punkte der Front.",e:"Die Zentren sitzen auf einem Kreis. Ihre Einhüllende ist ein größerer Kreis um denselben Erreger."},
+  spalt:{sit:"Eine gerade Welle trifft auf eine Wand mit einem breiten Spalt. Nur die Punkte im Spalt kommen hindurch.",e:"Nur die Punkte im Spalt senden Elementarwellen aus. In der Mitte ergibt sich eine gerade Front, an den Rändern Kreisbögen: Die Welle läuft auch in den Schattenraum. Das ist Beugung."},
+  eng:{sit:"Eine gerade Welle trifft auf eine Wand mit einem sehr engen Spalt.",e:"Im engen Spalt hat nur ein Zentrum Platz. Seine Elementarwelle ist die neue Front: ein Halbkreis, also eine Kreiswelle."},
+  kante:{sit:"Eine gerade Welle läuft an der Kante einer Mauer vorbei.",e:"Oberhalb der Kante bleibt die Front gerade. Das Zentrum an der Kante sendet eine Elementarwelle aus, die hinter die Mauer in den Schatten läuft."}};
+function huyOpt5(name,S,R){ const E=huyHuelle(S.F,R,S.th[0],S.th[1]), Lv=(x,y0=-10,y1=210)=>[[x,y0],[x,y1]], x1=(S.xw||70)+R;
+  if(name==="frei") return [{ok:true,p:[E]},{p:[Lv(70+R/2)]},{p:[[...Array(61)].map((_,i)=>{ const y=-10+i*220/60; return [70+R*(.45+.55*Math.cos(Math.PI*(y-100)/240)),y]; })]},{p:[[[x1-40,-10],[x1+40,210]]]}];
+  if(name==="schraeg"){ const n0=[.866,-.5], f=[.5,.866], m=[-.5,.866], p1=[80+R*n0[0],100+R*n0[1]], p2=[80-R*n0[0],100-R*n0[1]], ln=(p,v)=>[[p[0]-v[0]*300,p[1]-v[1]*300],[p[0]+v[0]*300,p[1]+v[1]*300]];
+    return [{ok:true,p:[E]},{p:[Lv(80+R)]},{p:[ln(p1,m)]},{p:[ln(p2,f)]}]; }
+  if(name==="kreis"){ const r=S.r0+R; return [{ok:true,p:[E]},{p:[Lv(S.S[0]+r)]},{p:[kreis5(S.S[0]+R,S.S[1],S.r0)]},{p:[[...Array(121)].map((_,i)=>[S.S[0]+(r+40)*Math.cos(i*TAU/120),S.S[1]+r*.55*Math.sin(i*TAU/120)])]}]; }
+  if(name==="spalt") return [{ok:true,p:[E]},{p:[[[x1,S.a],[x1,S.b]]]},{p:[bogenPts5(S.xw,100,R+14,-Math.PI/2,Math.PI/2)]},{p:[Lv(x1)]}];
+  if(name==="eng") return [{ok:true,p:[E]},{p:[[[x1,86],[x1,114]]]},{p:[Lv(x1)]},{p:[bogenPts5(S.xw,100,R,-.45,.45)]}];
+  return [{ok:true,p:[E]},{p:[[[x1,-10],[x1,S.b]]]},{p:[Lv(x1)]},{p:[bogenPts5(S.xw,S.b,R,-Math.PI/2,Math.PI/2)]}]; }
+// Szene der Huygens-Aufgaben zeichnen (Wand, Erreger, alte Front)
+function huyBuehne5(st,S,dick){ buehne(st); const {ctx}=st, V=vbox5(st,300,200,dick?6:3); ctx.save(); vclip5(ctx,V); ctx.fillStyle="rgba(79,168,255,.05)"; ctx.fillRect(V.ox,V.oy,300*V.s,200*V.s);
+  if(S.zu) wand5(ctx,V,S.xw-8,S.xw,S.zu); if(S.S){ ctx.fillStyle="#fff"; ctx.beginPath(); ctx.arc(V.X(S.S[0]),V.Y(S.S[1]),dick?4:2.5,0,TAU); ctx.fill(); } return V; }
+function huyTask(name){ return {_n:name,run(api){ const S=huySzene(name), R=64, Z=huyZentren(S.F,name==="eng"?1:18,[-6,-6,306,206]), E=huyHuelle(S.F,R,S.th[0],S.th[1]); let r=0, wachs=false, fertig=false, t0=null;
+  api.situation(HUY5[name].sit); api.badge("Konstruieren");
+  api.prompt("Lass die Elementarwellen wachsen. Welche Linie ist ihre <b>Einhüllende</b>, also die neue Wellenfront?"); api.hint("Die Einhüllende berührt alle Elementarwellen außen.");
+  const st=canvasFill(api.cv("b3 gross5")), wb=el("button",{class:"btn ghost"},"Elementarwellen wachsen lassen"); wb.addEventListener("click",()=>{ wachs=true; wb.disabled=true; }); api.actions.appendChild(wb);
+  bildWahl(api,huyOpt5(name,S,R),(s2,o)=>{ const V=huyBuehne5(s2,S,false), {ctx}=s2; strich(ctx,S.F.map(V.P),B3.a,1.6,[5,5],.6); o.p.forEach(p=>poly5(ctx,V,p,B3.ok,2.4)); ctx.restore(); },
+    o=>{ fertig=true; wachs=true; api.feedback(!!o.ok,HUY5[name].e); api.finish(!!o.ok); });
+  loop(t=>{ if(wachs){ if(t0===null) t0=t-r/R*1.6; r=Math.min(R,R*(t-t0)/1.6); }
+    const V=huyBuehne5(st,S,true), {ctx}=st; if(S.zu) [1,2].forEach(m=>strich(ctx,[V.P([S.xw-m*R,-5]),V.P([S.xw-m*R,205])],B3.a,2,[6,6],.35));
+    poly5(ctx,V,S.F,B3.a,3); huyKreise(ctx,V,Z,r,S.nrm,.85); huyPunkte(ctx,V,Z); if(fertig) poly5(ctx,V,E,B3.ok,3.2); ctx.restore();
+    schild5(ctx,fertig?"grün: Einhüllende = neue Wellenfront":wachs?"Elementarwellen mit Radius c · Δt":"gelb: Zentren der Elementarwellen",st.w/2,st.h-10,fertig?B3.ok:B3.mark,12,"center"); }); }};}
+function eckeL1(){ return pick(["frei","schraeg","kreis","spalt","eng","kante"],PRO_LEVEL).map(huyTask); }
+
+// Beugungsbilder: Spalt der Breite d = 40, Wellenlänge λ = d / r, berechnet als Summe von Elementarwellen
+const BEUG5={};
+function beugFeld5(r){ if(BEUG5[r]) return BEUG5[r]; const lam=40/r, Z=huyZentren([[80,80],[80,120]],Math.min(lam/5,3));
+  return BEUG5[r]=feld5({W:300,H:200,z:2,lam,q:Z.map(p=>[p[0],p[1],0,1,1,0]),vor:(x,y,k)=>x<80?[Math.cos(k*(x-80)),Math.sin(k*(x-80))]:null}); }
+// vier große Bilder im Bildbereich, antippen zum Wählen
+function raster5(api,opts,male,onPick){ const box=el("div",{class:"raster5"}), liste=shuffle(opts);
+  liste.forEach((o,k)=>{ const b=el("button",{"aria-label":"Bild "+"ABCD"[k]}); b._ok=!!o.ok; const mini=el("div",{class:"mini"}); b.append(el("span",{class:"gl"},"ABCD"[k]),mini); box.appendChild(b); o._mini=mini; o._b=b;
+    b.addEventListener("click",()=>{ if(box.classList.contains("done")) return; box.classList.add("done"); [...box.children].forEach(x=>{ if(x._ok) x.classList.add("right"); }); if(!o.ok) b.classList.add("wrong"); onPick(o); }); });
+  api.viz.appendChild(box); liste.forEach(o=>{ const st=canvasFill(o._mini); let n=0; loop(t=>{ if(n++%2===0) male(st,o,t); }); }); return box; }
+const BG5=[
+  {sit:"Eine Hafeneinfahrt ist d = 20 m breit. Meereswellen mit λ = 40 m laufen auf sie zu.",r:.5,rech:"d / λ = 20 m : 40 m = 0,5."},
+  {sit:"Eine Hafeneinfahrt ist d = 60 m breit. Die Wellen haben λ = 15 m.",r:4,rech:"d / λ = 60 m : 15 m = 4."},
+  {sit:"In der Wellenwanne ist ein Spalt d = 3,0 cm breit. Der Erreger schwingt mit f = 8,0 Hz, die Wellen laufen mit c = 24 cm/s.",r:1,rech:"λ = c / f = 24 cm/s : 8,0 Hz = 3,0 cm, also d / λ = 1."},
+  {sit:"Durch eine offene Tür (d = 0,86 m) dringt ein tiefer Ton mit f = 200 Hz. Rechne mit c = 343 m/s.",r:.5,rech:"λ = c / f = 343 m/s : 200 Hz ≈ 1,72 m, also d / λ ≈ 0,5."},
+  {sit:"Durch eine offene Tür (d = 0,86 m) dringt ein hoher Ton mit f = 1,6 kHz. Rechne mit c = 343 m/s.",r:4,rech:"λ = c / f = 343 m/s : 1600 Hz ≈ 0,21 m, also d / λ ≈ 4."},
+  {sit:"Ein Spalt in der Wellenwanne ist d = 2,4 cm breit. Die Wellen haben λ = 1,2 cm.",r:2,rech:"d / λ = 2,4 cm : 1,2 cm = 2."},
+  {sit:"Zwischen zwei Molen ist eine Lücke von d = 30 m. Die Wellen haben die Periodendauer T = 8,0 s und laufen mit c = 7,5 m/s.",r:.5,rech:"λ = c · T = 7,5 m/s · 8,0 s = 60 m, also d / λ = 0,5."},
+  {sit:"Ein Lautsprecher hat eine Öffnung von d = 34 cm. Er spielt einen Ton mit f = 2,0 kHz. Rechne mit c = 343 m/s.",r:2,rech:"λ = c / f = 343 m/s : 2000 Hz ≈ 17 cm, also d / λ ≈ 2."}];
+const BGT5={.5:"Die Öffnung ist kleiner als λ: Dahinter läuft fast eine Kreiswelle.",1:"Die Öffnung ist so groß wie λ: Die Welle breitet sich weit in den Schattenraum aus.",2:"Die Welle läuft vor allem nach vorn, aber deutlich gebeugt in den Schatten.",4:"Die Öffnung ist viel größer als λ: Die Welle läuft fast geradeaus weiter, gebeugt wird nur am Rand."};
+const rTxt5=r=>`d = ${fmt(r)} λ`;
+function beugTask(it){ return {_it:it,run(api){ let fertig=false;
+  api.situation(it.sit); api.badge("Vorhersagen"); api.prompt("Welches Bild zeigt die Welle hinter der Öffnung?"); api.hint("Vergleiche die Spaltbreite d mit der Wellenlänge λ. Die Bilder zeigen dieselbe Öffnung mit verschiedenen Wellen.");
+  raster5(api,[.5,1,2,4].map(r=>({r,ok:r===it.r})),(st,o,t)=>{ buehne(st); const V=vbox5(st,300,200,2), {ctx}=st; feld5Malen(st,V,beugFeld5(o.r),t,{f:.45}); ctx.save(); vclip5(ctx,V); wand5(ctx,V,72,80,[[0,80],[120,200]]); ctx.restore();
+    if(fertig) schild5(ctx,rTxt5(o.r),st.w-8,st.h-8,o.ok?B3.ok:"#fff",12,"right"); },
+    o=>{ fertig=true; api.feedback(!!o.ok,`${it.rech} ${BGT5[it.r]}${o.ok?"":` Dein Bild zeigt ${rTxt5(o.r)}.`}`); api.finish(!!o.ok); }); }};}
+function eckeL2(){ const a=shuffle(BG5), out=[], rs=new Set(); a.forEach(it=>{ if(out.length<PRO_LEVEL&&(!rs.has(it.r)||rs.size>=4)){ out.push(it); rs.add(it.r); } }); a.forEach(it=>{ if(out.length<PRO_LEVEL&&!out.includes(it)) out.push(it); }); return shuffle(out).map(beugTask); }
+const B5_L3=[
+  {sit:"Du hörst Menschen hinter einer Hausecke reden, siehst sie aber nicht.",q:"Warum?",ok:"Schall hat Wellenlängen von Zentimetern bis Metern und wird an der Ecke stark gebeugt. Licht hat eine winzige Wellenlänge.",f:["Die Hauswand verschluckt Licht, aber keinen Schall.","Schall wird von der Luft um die Ecke reflektiert."],e:"Beugung ist deutlich, wenn Öffnung oder Hindernis etwa so groß wie λ sind. Für Schall ist das an einer Hausecke der Fall, für Licht (λ unter 0,001 mm) nicht."},
+  {sit:"Aus der Nachbarwohnung hörst du durch die offene Tür vor allem die Bässe.",q:"Warum?",ok:"Tiefe Töne haben ein großes λ und werden an der Tür stärker gebeugt.",f:["Tiefe Töne laufen schneller als hohe.","Hohe Töne werden in der Tür reflektiert und laufen zurück."],e:"λ = c / f: Bei kleinem f ist λ groß, oft größer als die Tür. Dann breitet sich der Schall hinter der Tür in alle Richtungen aus. Hohe Töne laufen eher geradeaus weiter."},
+  {sit:"Hinter einem sehr engen Spalt läuft eine Kreiswelle weiter.",q:"Wie erklärt das Huygens'sche Prinzip das?",ok:"Im Spalt hat nur ein Punkt der Front Platz. Er ist Zentrum einer einzigen Elementarwelle.",f:["Der Spalt wirkt wie ein Erreger mit höherer Frequenz.","Die Welle wird an den Rändern des Spalts reflektiert."],e:"Jeder Punkt der Front ist Zentrum einer Elementarwelle. Durch einen engen Spalt kommt nur ein Zentrum: Seine Elementarwelle, ein Halbkreis, ist die neue Front."},
+  {sit:"Eine gerade Welle läuft ohne Hindernis weiter, obwohl jeder Punkt ihrer Front eine Kreiswelle aussendet.",q:"Warum bleibt sie gerade?",ok:"Die Einhüllende der vielen gleich großen Kreise ist wieder eine Gerade.",f:["Die Kreiswellen löschen sich vollständig aus.","Nur der mittlere Punkt sendet eine Elementarwelle aus."],e:"Alle Elementarwellen sind gleich groß. Ihre gemeinsame Tangente liegt parallel zur alten Front, im Abstand c · Δt."},
+  {sit:"Hinter einer langen Hafenmole ist das Wasser nicht völlig ruhig.",q:"Warum?",ok:"Die Wellen werden an der Spitze der Mole gebeugt und laufen in den Schattenraum.",f:["Die Wellen laufen unter der Mole hindurch.","Die Mole wirft die Wellen ins Hafenbecken zurück."],e:"Nach Huygens ist die Spitze der Mole Zentrum einer Elementarwelle. Sie läuft auch hinter die Mole, wird dort aber schwächer."},
+  {sit:"Ein Spalt wird immer breiter gemacht. Die Welle bleibt dieselbe.",q:"Was passiert hinter dem Spalt?",ok:"Die Welle läuft immer mehr geradeaus weiter, gebeugt wird nur am Rand.",f:["Die Beugung wird immer stärker.","Die Wellenlänge hinter dem Spalt wird größer."],e:"Viele Zentren nebeneinander bilden eine gerade Front, nur an den Rändern entstehen Kreisbögen. Je größer d im Vergleich zu λ, desto schärfer der Schatten."},
+  {sit:"Eine gerade Front trifft schräg auf flacheres Wasser und knickt dort ab.",q:"Wie erklärt das Huygens'sche Prinzip den Knick?",ok:"Im flachen Wasser sind die Elementarwellen kleiner, weil c dort kleiner ist.",f:["Im flachen Wasser ist f kleiner, deshalb sind die Kreise kleiner.","Die Elementarwellen im flachen Wasser starten später, sind aber gleich groß."],e:"In derselben Zeit kommen die Elementarwellen im flachen Wasser weniger weit. Ihre Einhüllende ist deshalb gegen die alte Front gedreht."}];
+
+/* =====================================================================
+   Challenge C · Laut-leise-Karte (Interferenz in der Fläche)
+   Zwei Erreger im Gleichtakt, Abstand g. Virtuelle Bühne 300 × 200, λ = 30.
+   ===================================================================== */
+const ds5=(Q,lam,x,y)=>Math.abs(Math.hypot(x-Q[0][0],y-Q[0][1])-Math.hypot(x-Q[1][0],y-Q[1][1]))/lam;
+const trifft5=(ziel,ds)=>{ const r=ds-Math.floor(ds); return ziel==="ruhe"?Math.abs(r-.5)<=.13:(r<=.13||r>=.87); };
+function zone5(Q,lam,ziel){ for(let n=0;n<500;n++){ const zw=70, zh=50, x0=115+Math.random()*(290-zw-115), y0=8+Math.random()*(192-zh-8); if(ziel==="stark"&&y0<104&&y0+zh>96) continue;
+    let tr=0, ges=0; for(let i=0;i<=12;i++) for(let j=0;j<=12;j++){ ges++; const d=ds5(Q,lam,x0+zw*i/12,y0+zh*j/12), r=d-Math.floor(d); if(ziel==="ruhe"?Math.abs(r-.5)<.1:(r<.1||r>.9)) tr++; }
+    if(tr/ges>.08&&tr/ges<.4) return [x0,y0,x0+zw,y0+zh]; } return null; }
+function quellen5(g,lam){ return [[30,100-g*lam/2],[30,100+g*lam/2]]; }
+function zweiFeld5(Q,lam,ph=0,aus=false){ return feld5({W:300,H:200,z:2.5,lam,q:aus?[[Q[0][0],Q[0][1],0,1]]:[[Q[0][0],Q[0][1],0,1],[Q[1][0],Q[1][1],ph,1]]}); }
+function erreger5(ctx,V,Q,aus){ Q.forEach((p,i)=>{ const an=!(aus&&i===1); if(an) perle(ctx,V.X(p[0]),V.Y(p[1]),i?B3.b:B3.a,16); ctx.fillStyle=an?(i?B3.b:B3.a):B3.dim; ctx.beginPath(); ctx.arc(V.X(p[0]),V.Y(p[1]),5,0,TAU); ctx.fill(); label(ctx,i?"E₂":"E₁",V.X(p[0])+9,V.Y(p[1])-8,"#fff","left",700,12); }); }
+function karteTask(o){ return {_o:o,run(api){ const lam=30, Q=quellen5(o.g,lam), F=zweiFeld5(Q,lam), L=linien5(Q,lam,0,300,200,2.5); let zone=o.zone?zone5(Q,lam,o.ziel):null, tipp=null, fertig=false, ok=false, msg="", V=null;
+  const was=o.ziel==="ruhe"?"<b>in Ruhe</b> bleibt":"<b>besonders stark</b> schwingt";
+  api.situation(`Zwei Erreger E₁ und E₂ schwingen im Gleichtakt. Ihr Abstand ist g = ${fmt(o.g)} λ.`); api.badge("Beobachten und tippen");
+  api.prompt(`Tippe auf eine Stelle, an der das Wasser ${was}.${zone?" Sie soll in der markierten Zone liegen.":""}`);
+  api.hint(o.ziel==="ruhe"?"Schau eine Weile hin. Wo Berg auf Tal trifft, bewegt sich das Wasser nicht.":"Schau eine Weile hin. Wo Berg auf Berg trifft, ist der Ausschlag doppelt so groß.");
+  const st=canvasFill(api.cv("b3 gross5 zieh"));
+  st.c._ziel=()=>{ if(!V) return null; const r=st.c.getBoundingClientRect(), z=zone||[50,6,294,194]; for(let n=0;n<4000;n++){ const x=z[0]+Math.random()*(z[2]-z[0]), y=z[1]+Math.random()*(z[3]-z[1]), d=ds5(Q,lam,x,y), rr=d-Math.floor(d);
+    if(o.ziel==="ruhe"?Math.abs(rr-.5)<.04:(rr<.04||rr>.96)) return {r:[r.left+V.X(x),r.top+V.Y(y)]}; } return null; };
+  st.c.addEventListener("pointerdown",e=>{ if(fertig||!V) return; e.preventDefault(); const r=st.c.getBoundingClientRect(), x=V.x(e.clientX-r.left), y=V.y(e.clientY-r.top);
+    if(x<0||x>300||y<0||y>200) return; if(x<48){ msg="Tippe weiter rechts, nicht direkt bei den Erregern."; return; }
+    if(zone&&(x<zone[0]||x>zone[2]||y<zone[1]||y>zone[3])){ msg="Tippe in die markierte Zone."; return; }
+    tipp=[x,y]; fertig=true; const d=ds5(Q,lam,x,y); ok=trifft5(o.ziel,d); effekt3(st,ok);
+    api.feedback(ok,`An deiner Stelle ist Δs = ${z2(d)} λ. ${o.ziel==="ruhe"?"Ruhe gibt es bei Δs = (2k − 1) · λ/2, also bei 0,5 λ, 1,5 λ, 2,5 λ, … Dort trifft Berg auf Tal.":"Verstärkung gibt es bei Δs = k · λ, also bei 0, 1 λ, 2 λ, … Dort trifft Berg auf Berg."} Jetzt siehst du die Laut-leise-Karte: dunkel = Ruhe, hell = starke Schwingung, weiß = Knotenlinien.`);
+    api.finish(ok); });
+  loop(t=>{ buehne(st); const {ctx,w,h}=st; V=vbox5(st); feld5Malen(st,V,F,t,{f:.55,mittel:fertig}); ctx.save(); vclip5(ctx,V);
+    if(fertig) linien5Malen(ctx,V,L,true);
+    if(zone){ ctx.fillStyle=rgba3(B3.mark,.08); ctx.fillRect(V.X(zone[0]),V.Y(zone[1]),(zone[2]-zone[0])*V.s,(zone[3]-zone[1])*V.s); ctx.strokeStyle=B3.mark; ctx.lineWidth=2.5; ctx.setLineDash([9,6]); ctx.strokeRect(V.X(zone[0]),V.Y(zone[1]),(zone[2]-zone[0])*V.s,(zone[3]-zone[1])*V.s); ctx.setLineDash([]); label(ctx,"Zone",V.X(zone[0])+6,V.Y(zone[1])+15,B3.mark,"left",700,11); }
+    erreger5(ctx,V,Q); ctx.restore();
+    if(tipp){ const x=V.X(tipp[0]), y=V.Y(tipp[1]); ctx.strokeStyle=ok?B3.ok:B3.bad; ctx.lineWidth=3; ctx.beginPath(); ctx.arc(x,y,11,0,TAU); ctx.stroke(); schild5(ctx,`Δs = ${z2(ds5(Q,lam,tipp[0],tipp[1]))} λ`,x,y+(y>h-40?-18:32),"#fff",12,"center"); }
+    schild5(ctx,msg||(fertig?"Zeitmittel: dunkel = Ruhe, hell = stark":"Momentbild: hell = Berg, dunkel = Tal"),w/2,h-8,msg?B3.mark:B3.txt,12,"center"); }); }};}
+function karteL1(){ return shuffle([{ziel:"ruhe"},{ziel:"ruhe",zone:1},{ziel:"stark"},{ziel:"ruhe",zone:1},{ziel:"stark",zone:1}]).map(x=>karteTask(Object.assign({g:one([2,2.5,3,3.5])},x))); }
+function karteL2(){ const zu=it=>mcTask(it), ruhe="Das Wasser bleibt in Ruhe.", stark="Das Wasser schwingt besonders stark.", halb="Das Wasser schwingt mit halber Amplitude.";
+  const gen=()=>{ const f=one([8,10,16]), lam=24/f, m=one([3,4,5]), s1=one([8,9,10,11,12]), ds=m*lam/2, s2=s1+ds, r=m%2===1, cm=v=>fmt(+v.toFixed(2))+" cm";
+    return zu({sit:`In der Wellenwanne schwingen zwei Erreger im Gleichtakt mit f = ${f} Hz. Die Wellen laufen mit c = 24 cm/s. Ein Punkt P ist s₁ = ${cm(s1)} vom einen und s₂ = ${cm(s2)} vom anderen Erreger entfernt.`,q:"Was beobachtest du bei P?",keepOrder:true,
+      opts:[{t:ruhe,ok:r,fb:"Δs ist ein ganzzahliges Vielfaches von λ: Berg trifft auf Berg."},{t:stark,ok:!r,fb:"Δs ist ein ungeradzahliges Vielfaches von λ/2: Berg trifft auf Tal."},{t:halb,fb:"Bei gleich starken Wellen gibt es entweder Ruhe, Verstärkung oder etwas dazwischen. Ist Δs ein Vielfaches von λ/2, gibt es entweder Ruhe oder Verstärkung."}],
+      erkl:`λ = c / f = 24 cm/s : ${f} Hz = ${cm(lam)}. Δs = ${cm(s2)} − ${cm(s1)} = ${cm(ds)} = ${fmt(m/2)} λ. ${r?"Das ist (2k − 1) · λ/2: Auslöschung.":"Das ist k · λ: Verstärkung."}`}); };
+  return shuffle([gen(),gen(),
+    zu({sit:"In der Wellenwanne schwingen zwei Erreger im Gleichtakt mit f = 12 Hz. Die Wellen laufen mit c = 30 cm/s. Ein Punkt P ist s₁ = 10,0 cm vom einen und s₂ = 13,75 cm vom anderen Erreger entfernt.",q:"Was beobachtest du bei P?",keepOrder:true,
+      opts:[{t:ruhe,ok:true},{t:stark,fb:"Für Verstärkung müsste Δs ein ganzzahliges Vielfaches von λ sein."},{t:halb,fb:"Rechne erst λ aus und vergleiche dann Δs mit λ/2."}],erkl:"λ = c / f = 30 cm/s : 12 Hz = 2,5 cm. Δs = 13,75 cm − 10,0 cm = 3,75 cm = 1,5 λ = (2k − 1) · λ/2 mit k = 2: Auslöschung."}),
+    zu({sit:"Zwei Lautsprecher spielen im Gleichtakt einen Ton mit f = 686 Hz. Rechne mit c = 343 m/s. Du stehst 4,00 m vom einen und 5,25 m vom anderen entfernt.",q:"Was hörst du?",
+      opts:[{t:"Es ist leise.",ok:true},{t:"Es ist besonders laut.",fb:"Δs = 2,5 λ ist kein ganzzahliges Vielfaches von λ."},{t:"Der Ton klingt eine Oktave höher.",fb:"Die Frequenz ändert sich durch Interferenz nicht."}],erkl:"λ = c / f = 343 m/s : 686 Hz = 0,50 m. Δs = 1,25 m = 2,5 λ = (2k − 1) · λ/2 mit k = 3: Auslöschung."}),
+    zu({sit:"Zwei Erreger schwingen im Gleichtakt. Ihr Abstand ist g = 2 λ.",q:"Wie viele Knotenlinien gibt es?",
+      opts:opts4([{t:"4",ok:true},{t:"2",fb:"Auch Δs = 3λ/2 ist kleiner als g = 2 λ."},{t:"3",fb:"Jede Knotenlinie gibt es zweimal, links und rechts der Mittelsenkrechten."},{t:"5",fb:"Auf der Mittelsenkrechten ist Δs = 0: Dort ist Verstärkung."}]),
+      erkl:"Ruhe bei Δs = λ/2 und 3λ/2, beide kleiner als g. Jede gibt es auf beiden Seiten der Mittelsenkrechten: 4 Knotenlinien. Größer als g kann Δs nicht werden."}),
+    zu({sit:"Zwei Lautsprecher spielen im Gleichtakt einen Ton mit f = 1,0 kHz. Rechne mit c = 343 m/s.",q:"Wie groß ist der kleinste Gangunterschied, bei dem es leise wird?",
+      opts:opts4([{t:"17,2 cm",ok:true},{t:"34,3 cm",fb:"Das ist λ. Bei Δs = λ ist es laut."},{t:"8,6 cm",fb:"Das ist λ/4."},{t:"51,5 cm",fb:"Das ist 3λ/2, nicht der kleinste Wert."}]),
+      erkl:"λ = c / f = 343 m/s : 1000 Hz = 34,3 cm. Kleinster Gangunterschied für Auslöschung: Δs = λ/2 = 17,2 cm (k = 1)."}),
+    zu({sit:"Zwei Erreger im Gleichtakt sind g = 3,3 cm voneinander entfernt. Die Wellen haben λ = 1,2 cm.",q:"Wie viele Knotenlinien gibt es?",
+      opts:opts4([{t:"6",ok:true},{t:"4",fb:"Auch Δs = 3,0 cm ist noch kleiner als g."},{t:"3",fb:"Jede Knotenlinie gibt es zweimal, links und rechts der Mittelsenkrechten."},{t:"5",fb:"Auf der Mittelsenkrechten ist Verstärkung, keine Knotenlinie."}]),
+      erkl:"Ruhe bei Δs = 0,6 cm, 1,8 cm und 3,0 cm, alle kleiner als g = 3,3 cm. Je zwei Linien: 6 Knotenlinien."})]).slice(0,PRO_LEVEL); }
+const C5_L3=[
+  {sit:"Die Frequenz beider Erreger wird verdoppelt.",q:"Was passiert mit den Knotenlinien?",ok:"Es gibt mehr, und sie liegen dichter.",f:["Es gibt weniger, und sie liegen weiter auseinander.","Sie bleiben, wie sie sind."],e:"λ = c / f halbiert sich. Bei gleichem g passen mehr Gangunterschiede (2k − 1) · λ/2 unter g: mehr Knotenlinien.",vor:{g:2},nach:{g:2,lamF:.5}},
+  {sit:"Die Erreger werden weiter auseinandergerückt. Die Frequenz bleibt gleich.",q:"Was passiert mit den Knotenlinien?",ok:"Es kommen Knotenlinien dazu.",f:["Es verschwinden Knotenlinien.","Sie rücken nach außen, ihre Zahl bleibt gleich."],e:"Die Zahl der Knotenlinien hängt von g / λ ab. Mit größerem g sind größere Gangunterschiede möglich.",vor:{g:1.5},nach:{g:3}},
+  {sit:"Ein Erreger schwingt jetzt im Gegentakt zum anderen.",q:"Was passiert auf der Mittelsenkrechten (Δs = 0)?",ok:"Dort ist jetzt Ruhe.",f:["Dort ist weiterhin Verstärkung.","Dort schwingt das Wasser mit halber Amplitude."],e:"Im Gegentakt treffen bei Δs = 0 Berg und Tal aufeinander. Knotenlinien und Linien der Verstärkung tauschen die Plätze.",vor:{g:2.5},nach:{g:2.5,ph:Math.PI}},
+  {sit:"Ein Erreger wird abgeschaltet.",q:"Was passiert mit den Knotenlinien?",ok:"Sie verschwinden, es bleibt eine Kreiswelle.",f:["Sie bleiben, werden aber schwächer.","Es entstehen doppelt so viele."],e:"Interferenz braucht zwei Wellen. Mit einem Erreger gibt es keinen Gangunterschied, das Wasser schwingt überall.",vor:{g:2.5},nach:{g:2.5,aus:true}},
+  {sit:"Das Wasser in der Wanne wird flacher. Die Frequenz bleibt gleich.",q:"Was passiert mit den Knotenlinien?",ok:"Es gibt mehr, weil λ kleiner wird.",f:["Es gibt weniger, weil λ größer wird.","Nichts, weil f gleich bleibt."],e:"Im flachen Wasser ist c kleiner. Mit λ = c / f wird λ kleiner, g / λ größer: mehr Knotenlinien.",vor:{g:2},nach:{g:2,lamF:2/3}},
+  {sit:"Die Erreger werden auf g = 0,4 λ zusammengeschoben.",q:"Was passiert mit den Knotenlinien?",ok:"Es gibt keine Knotenlinie mehr.",f:["Es bleiben genau zwei Knotenlinien.","Es gibt unendlich viele."],e:"Der Gangunterschied ist nie größer als g. Mit g < λ/2 wird Δs = λ/2 nirgends erreicht.",vor:{g:2},nach:{g:.4}}];
+function wasWenn5(it){ const lam=30, bau=c=>{ const l=lam*(c.lamF||1), Q=quellen5(c.g*lam/l,l); return {Q,l,F:zweiFeld5(Q,l,c.ph||0,c.aus),L:c.aus?{r:[],s:[]}:linien5(Q,l,c.ph||0,300,200,2.5),aus:c.aus}; };
+  return mcTask({sit:it.sit,q:it.q,opts:[{t:it.ok,ok:true},{t:it.f[0],fb:"Das passiert nicht."},{t:it.f[1],fb:"Schau dir das Bild nachher an."}],erkl:it.e,
+    viz:api=>{ api.situation(it.sit); const st=canvasFill(api.cv("b3 gross5")), A=bau(it.vor), B=bau(it.nach); let zeig=false;
+      loop(t=>{ buehne(st); const {ctx,w,h}=st, V=vbox5(st), X=zeig?B:A; feld5Malen(st,V,X.F,t,{mittel:true}); ctx.save(); vclip5(ctx,V); linien5Malen(ctx,V,X.L,true); erreger5(ctx,V,X.Q,X.aus); ctx.restore();
+        schild5(ctx,zeig?"nachher":"vorher: Laut-leise-Karte, weiß = Knotenlinien",w/2,h-8,zeig?B3.ok:B3.txt,12,"center"); }); return {reveal(){ zeig=true; }}; }}); }
+/*K5-ENDE*/
 /* =====================================================================
    CHALLENGES
    ===================================================================== */
@@ -3053,6 +3585,23 @@ const CH = {
             {name:"c bestimmen",info:"Über mehrere Häufchen messen, dann c = λ · f.",make:kundtL2},
             {name:"Was, wenn …?",info:"Erst vorhersagen, dann ansehen: andere Gase, andere Frequenz, Kundts Original.",make:kundtL3}]}
 /*K4-ENDE*/
+/*K5-ANFANG*/  ,
+  wohin:{titel:"Reflexion und Brechung", spiel:"Wohin läuft die Welle?", art:"Richtung vorhersagen", kurz:"Ich kann mit Lot und Winkeln vorhersagen, wohin eine Welle weiterläuft.",
+    intro:"Eine Welle trifft auf eine Wand oder auf die Grenze zu anderem Wasser. Du ziehst den Pfeil in die Richtung, in die sie weiterläuft. Bei der Reflexion schätzt du mit dem Lot im Kopf, bei der Brechung rechnest du β aus und stellst ihn ein. Danach siehst du Lot und Winkel.",
+    levels:[{name:"Reflexion",info:"Zieh die reflektierte Welle. Die Wand liegt nicht immer waagerecht.",make:wohinL1},
+            {name:"Brechung",info:"β mit dem Brechungsgesetz berechnen und einstellen.",make:wohinL2},
+            {name:"Aus dem Alltag",info:"Strand, Echo, Abendluft: Wähle die Erklärung, die wirklich trägt.",make:()=>pick(A5_L3,PRO_LEVEL).map(mc5)}]},
+  ecke:{titel:"Huygens'sches Prinzip und Beugung", spiel:"Um die Ecke", art:"Konstruieren und vorhersagen", kurz:"Ich kann mit Elementarwellen neue Wellenfronten konstruieren und Beugung vorhersagen.",
+    intro:"Du lässt Elementarwellen wachsen und findest ihre Einhüllende: die neue Wellenfront. Dann sagst du voraus, wie eine Welle hinter einer Öffnung aussieht. Die Beugungsbilder sind genau so berechnet, wie Huygens es vorschlägt: als Summe vieler Elementarwellen.",
+    levels:[{name:"Huygens-Baukasten",info:"Elementarwellen wachsen lassen und die neue Front wählen.",make:eckeL1},
+            {name:"Beugung am Spalt",info:"Hafen, Tür, Wellenwanne: d mit λ vergleichen und das passende Bild wählen.",make:eckeL2},
+            {name:"Begründen",info:"Hausecke, Bässe, Hafenmole: Wähle die Erklärung, die wirklich trägt.",make:()=>pick(B5_L3,PRO_LEVEL).map(mc5)}]},
+  karte:{titel:"Interferenz in der Fläche", spiel:"Laut-leise-Karte", art:"Knotenlinien finden", kurz:"Ich kann Orte der Ruhe und der Verstärkung zweier Erreger bestimmen.",
+    intro:"Zwei Erreger schwingen im Gleichtakt. Du beobachtest das Wasser und tippst auf Stellen, an denen es ruhig bleibt oder besonders stark schwingt. Danach zeigt die Laut-leise-Karte alle Knotenlinien. Später rechnest du mit dem Gangunterschied und sagst voraus, was sich ändert.",
+    levels:[{name:"Ruhe oder Verstärkung",info:"Wasser beobachten und die richtige Stelle antippen.",make:karteL1},
+            {name:"Mit Δs rechnen",info:"Erst λ, dann Δs: Ruhe oder Verstärkung? Und wie viele Knotenlinien?",make:karteL2},
+            {name:"Was, wenn …?",info:"Frequenz, Abstand, Gegentakt: erst vorhersagen, dann ansehen.",make:()=>pick(C5_L3,PRO_LEVEL).map(wasWenn5)}]}
+/*K5-ENDE*/
 };
 
 /* =====================================================================
@@ -3693,7 +4242,60 @@ const HSK={
     g+=hsK(bx,by,14,"#1f6fd1");
     g+=hsT(bx+10,by+FG+4,"F"+sub("G"),"gr","start")+hsT(bx+tx*FR-10,by+ty*FR+4,"F"+sub("R"),"mt","end")+hsT(bx+sx*FS+14,by+sy*FS+6,"F"+sub("Seil"),"bt","start");
     g+=hsT(430,150,"F"+sub("R")+`<tspan dy="-5"> = F</tspan>`+sub("G")+`<tspan dy="-5"> · sin α</tspan>`,"mt","start")+hsT(430,180,"F"+sub("R")+`<tspan dy="-5"> zeigt zur Ruhelage</tspan>`,"st","start");
-    return hsSvg(id,640,370,g,"Fadenpendel mit Kräften"); }
+    return hsSvg(id,640,370,g,"Fadenpendel mit Kräften"); },
+  /* ---------- Kapitel 5 ---------- */
+  wellenfront(){ const id="hk-wf", S=[150,130]; let g="";
+    [36,72,108].forEach(r=>{ g+=`<circle class="w" cx="${S[0]}" cy="${S[1]}" r="${r}"/>`; }); g+=hsK(S[0],S[1],5,"#3d4757");
+    for(let m=0;m<8;m++){ const a=(m+.5)*Math.PI/4; g+=hsPf(id,S[0]+14*Math.cos(a),S[1]+14*Math.sin(a),S[0]+124*Math.cos(a),S[1]+124*Math.sin(a),"o","m"); }
+    g+=hsPf(id,S[0]+36,250,S[0]+72,250,"k","k",true)+hsT(S[0]+54,268,"λ","gr")+hsT(S[0],18,"Kreiswelle","gr");
+    [380,416,452,488].forEach(x=>{ g+=hsL(x,40,x,220,"w"); }); [70,130,190].forEach(y=>{ g+=hsPf(id,350,y,560,y,"o","m"); });
+    g+=hsPf(id,416,250,452,250,"k","k",true)+hsT(434,268,"λ","gr")+hsT(450,18,"gerade Welle","gr")+hsT(600,134,"Wellenstrahl","mt","end").replace("<text","<text dy=\"-14\"")+hsT(380,234,"Wellenfront","bt","middle");
+    return hsSvg(id,640,280,g,"Wellenfronten und Wellenstrahlen"); },
+  huygens(){ const id="hk-huy", x0=90, R=56, ys=[80,120,160,200,240]; let g="";
+    g+=hsL(x0,30,x0,290,"w")+hsL(x0+R,30,x0+R,290,"wgn");
+    ys.forEach(y=>{ g+=`<path class="md" d="M${x0} ${y-R}A${R} ${R} 0 0 1 ${x0} ${y+R}"/>`+hsK(x0,y,4.5,"#c46a00"); });
+    g+=hsPf(id,x0,304,x0+R,304,"k","k",true)+hsT(x0+R/2,324,"c · Δt","gr")+hsT(x0-8,16,"alte Front","bt","end")+hsT(x0+R+8,16,"neue Front","gnt","start");
+    const xw=430, a=136, b=184; g+=`<rect x="${xw-10}" y="30" width="10" height="${a-30}" fill="#9aa5b5"/><rect x="${xw-10}" y="${b}" width="10" height="${290-b}" fill="#9aa5b5"/>`;
+    g+=hsL(xw-70,30,xw-70,290,"wl")+hsL(xw-40,30,xw-40,290,"wl");
+    [a,(a+b)/2,b].forEach(y=>{ g+=`<path class="md" d="M${xw} ${y-R}A${R} ${R} 0 0 1 ${xw} ${y+R}"/>`+hsK(xw,y,4.5,"#c46a00"); });
+    g+=`<path class="wgn" d="M${xw} ${a-R}A${R} ${R} 0 0 1 ${xw+R} ${a}L${xw+R} ${b}A${R} ${R} 0 0 1 ${xw} ${b+R}"/>`;
+    g+=hsT(xw+R+10,(a+b)/2+5,"neue Front","gnt","start")+hsT(xw-55,310,"ankommende Welle","st");
+    return hsSvg(id,640,334,g,"Huygens'sches Prinzip"); },
+  reflexwand(){ const id="hk-ref2", H=[320,200], a=40*Math.PI/180, L=150, d=[Math.sin(a),Math.cos(a)]; let g="";
+    g+=`<rect x="60" y="${H[1]}" width="520" height="16" fill="#9aa5b5"/>`+hsT(70,H[1]+36,"Wand","st","start");
+    g+=hsL(H[0],H[1],H[0],H[1]-170,"g")+hsT(H[0]+6,H[1]-158,"Lot","st","start");
+    g+=hsPf(id,H[0]-d[0]*L,H[1]-d[1]*L,H[0],H[1],"b","pb")+hsPf(id,H[0],H[1],H[0]+d[0]*L,H[1]-d[1]*L,"b","pgn");
+    [.45,.75].forEach(u=>{ const c=[H[0]-d[0]*L*u,H[1]-d[1]*L*u]; g+=hsL(c[0]-d[1]*24,c[1]+d[0]*24,c[0]+d[1]*24,c[1]-d[0]*24,"wb"); const c2=[H[0]+d[0]*L*u,H[1]-d[1]*L*u]; g+=hsL(c2[0]-d[1]*24,c2[1]-d[0]*24,c2[0]+d[1]*24,c2[1]+d[0]*24,"wgn"); });
+    const r=56; g+=`<path class="m" d="M${H[0]} ${H[1]-r}A${r} ${r} 0 0 0 ${hsN(H[0]-r*Math.sin(a))} ${hsN(H[1]-r*Math.cos(a))}"/><path class="m" d="M${H[0]} ${H[1]-r}A${r} ${r} 0 0 1 ${hsN(H[0]+r*Math.sin(a))} ${hsN(H[1]-r*Math.cos(a))}"/>`;
+    g+=hsT(H[0]-24,H[1]-r-8,"α","mt")+hsT(H[0]+26,H[1]-r-8,"α′","mt")+hsT(H[0]-d[0]*L-6,H[1]-d[1]*L-6,"einfallend","bt","end")+hsT(H[0]+d[0]*L+6,H[1]-d[1]*L-6,"reflektiert","gnt","start");
+    return hsSvg(id,640,240,g,"Reflexion"); },
+  brechung(){ const id="hk-brech", H=[320,140], a=45*Math.PI/180, q=.6, b=Math.asin(q*Math.sin(a)), L=120, d1=[Math.sin(a),Math.cos(a)], d2=[Math.sin(b),Math.cos(b)]; let g="";
+    g+=`<rect x="40" y="${H[1]}" width="560" height="130" fill="#e5eedb"/>`+hsL(40,H[1],600,H[1],"k");
+    g+=hsT(50,30,"Medium 1 (tief): c₁","st","start")+hsT(50,H[1]+22,"Medium 2 (flach): c₂ < c₁","st","start");
+    g+=hsL(H[0],H[1]-120,H[0],H[1]+120,"g")+hsT(H[0]+6,H[1]-108,"Lot","st","start");
+    g+=hsPf(id,H[0]-d1[0]*L,H[1]-d1[1]*L,H[0],H[1],"b","pb")+hsPf(id,H[0],H[1],H[0]+d2[0]*L,H[1]+d2[1]*L,"b","pgn");
+    [.35,.7].forEach(u=>{ const c=[H[0]-d1[0]*L*u,H[1]-d1[1]*L*u]; g+=hsL(c[0]-d1[1]*26,c[1]+d1[0]*26,c[0]+d1[1]*26,c[1]-d1[0]*26,"wb"); });
+    [.25,.5].forEach(u=>{ const c=[H[0]+d2[0]*L*u*1.6,H[1]+d2[1]*L*u*1.6]; g+=hsL(c[0]-d2[1]*26,c[1]+d2[0]*26,c[0]+d2[1]*26,c[1]-d2[0]*26,"wgn"); });
+    const r=50; g+=`<path class="m" d="M${H[0]} ${H[1]-r}A${r} ${r} 0 0 0 ${hsN(H[0]-r*Math.sin(a))} ${hsN(H[1]-r*Math.cos(a))}"/><path class="m" d="M${H[0]} ${H[1]+r}A${r} ${r} 0 0 0 ${hsN(H[0]+r*Math.sin(b))} ${hsN(H[1]+r*Math.cos(b))}"/>`;
+    g+=hsT(H[0]-20,H[1]-r-8,"α","mt")+hsT(H[0]+14,H[1]+r+18,"β","mt")+hsT(470,90,"f gleich, λ₂ < λ₁","st","start");
+    return hsSvg(id,640,280,g,"Brechung"); },
+  beugung(){ const id="hk-beug"; let g="";
+    const tafel=(x0,a,b,eng)=>{ let s=`<rect x="${x0-8}" y="14" width="8" height="${a-14}" fill="#9aa5b5"/><rect x="${x0-8}" y="${b}" width="8" height="${236-b}" fill="#9aa5b5"/>`;
+      [x0-80,x0-50,x0-20].forEach(x=>{ s+=hsL(x,20,x,230,"wl"); });
+      (eng?[26,52,78,104]:[22,44,66]).forEach(r=>{ s+=eng?`<path class="w" d="M${x0} ${125-r}A${r} ${r} 0 0 1 ${x0} ${125+r}"/>`:`<path class="w" d="M${x0} ${a-r}A${r} ${r} 0 0 1 ${x0+r} ${a}L${x0+r} ${b}A${r} ${r} 0 0 1 ${x0} ${b+r}"/>`; });
+      s+=hsL(x0,a,x0+150,a,"md")+hsL(x0,b,x0+150,b,"md"); return s; };
+    g+=tafel(130,118,132,true)+tafel(430,90,160,false);
+    g+=hsT(150,254,"d < λ: fast eine Kreiswelle","gr")+hsT(470,254,"d ≫ λ: Beugung nur am Rand","gr")+hsT(620,84,"Schattengrenze","mt","end");
+    return hsSvg(id,640,266,g,"Beugung am engen und am breiten Spalt"); },
+  kreisinterferenz(){ const id="hk-if2", x0=80, y0=130, gA=80, lam=40, E1=[x0,y0-gA/2], E2=[x0,y0+gA/2]; let g="";
+    [E1,E2].forEach(E=>{ for(let r=lam;r<=520;r+=lam) g+=`<path class="fe" d="M${hsN(E[0]+r*Math.cos(-1.2))} ${hsN(E[1]+r*Math.sin(-1.2))} A${r} ${r} 0 0 1 ${hsN(E[0]+r*Math.cos(1.2))} ${hsN(E[1]+r*Math.sin(1.2))}" opacity=".5"/>`; });
+    g+=`<defs><clipPath id="${id}-c"><rect x="0" y="0" width="640" height="260"/></clipPath></defs><g clip-path="url(#${id}-c)">`;
+    [lam/2,3*lam/2].forEach(del=>{ const A=del/2, c=gA/2, B=Math.sqrt(c*c-A*A); [-1,1].forEach(sg=>{ g+=`<path class="m" stroke-dasharray="6 5" d="${hsPfad(x=>y0+sg*A*Math.sqrt(1+Math.pow((x-x0)/B,2)),x0,610)}"/>`; }); });
+    g+=`</g>`+hsL(x0,y0,610,y0,"g");
+    g+=hsK(E1[0],E1[1],6,"#1f6fd1")+hsK(E2[0],E2[1],6,"#1f6fd1")+hsT(E1[0]-12,E1[1]+5,"E₁","gr","end")+hsT(E2[0]-12,E2[1]+5,"E₂","gr","end");
+    g+=hsPf(id,x0-36,E1[1],x0-36,E2[1],"k","k",true)+hsT(x0-44,y0+5,"g","gr","end");
+    g+=hsT(612,y0-6,"Δs = 0: Verstärkung","st","end")+hsT(612,22,"Knotenlinien","mt","end");
+    return hsSvg(id,640,260,g,"Interferenz zweier Kreiswellen"); }
 };
 /*HEFT-ENDE*/
 /*HEFT-ANFANG*/
@@ -3766,7 +4368,7 @@ function kartAbfrage(q,modus){ view(false); const quit=el("button",{class:"btn g
   zeig(); }
 
 /* ---------- Mindmap: großer Canvas, zoombar, Flug von Kapitel zu Kapitel ---------- */
-const MMFARBE={k1:"#1f6fd1",k2:"#0f8a7e",k3:"#7a4fc9",k4:"#c46a00"};
+const MMFARBE={k1:"#1f6fd1",k2:"#0f8a7e",k3:"#7a4fc9",k4:"#c46a00",k5:"#0f7f9e"};
 function renderMindmap(){ view(true); const leiste=el("div",{class:"mmleiste"}); heftKopf("mindmap",leiste);
   const huelle=el("div",{class:"mm"}), welt=el("div",{class:"mmwelt"}), svg=document.createElementNS("http://www.w3.org/2000/svg","svg"); svg.setAttribute("class","mmlinien"); welt.appendChild(svg); huelle.appendChild(welt); app.appendChild(huelle);
   huelle.appendChild(el("p",{class:"mmtipp"},"Ziehen zum Verschieben, zwei Finger oder Mausrad zum Zoomen, Tippen auf einen Knoten fliegt dorthin."));

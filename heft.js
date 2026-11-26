@@ -257,5 +257,61 @@ window.HEFT = [
     { id: "k4-kundt", v: "Was misst du am Kundt'schen Rohr, und wie kommst du zu c?", r: "Den Abstand benachbarter Häufchen: λ/2. Dann c = λ · f (Formelsammlung S. 22).", s: "kundt" },
     { id: "k4-klang", v: "Was bestimmt die Tonhöhe, was die Klangfarbe?", r: "Tonhöhe: Grundfrequenz f<sub>0</sub>. Klangfarbe: Mischung der Oberschwingungen.", s: "spektrum" },
     { id: "k4-schwebung", v: "Zwei Töne mit 440 Hz und 444 Hz klingen zusammen. Was hörst du?", r: "Einen Ton von 442 Hz, dessen Lautstärke 4-mal pro Sekunde an- und abschwillt: f<sub>S</sub> = |f<sub>1</sub> − f<sub>2</sub>| = 4 Hz." }
+  ]},
+
+  /* ================================ Kapitel 5 ================================ */
+  { kap: "k5",
+  /* Ich-kann-Liste: kurze Sätze nach „Ich kann …“; {t:"…", tief:true} = Vertiefung (grau) */
+  ichkann: [
+    "mit dem Huygens'schen Prinzip neue Wellenfronten konstruieren.",
+    "Reflexion und Brechung mit Lot, α = α′ und dem Brechungsgesetz beschreiben.",
+    "vorhersagen, wann eine Welle an einem Spalt stark gebeugt wird.",
+    "im Feld zweier Erreger Orte der Ruhe und der Verstärkung bestimmen."
+  ],
+  abschnitte: [
+    { titel: "Wellenfronten und Wellenstrahlen", inhalt: [
+      ["merke", "Linien, auf denen alle Teilchen im gleichen Schwingungszustand sind (zum Beispiel alle Wellenberge), heißen <b>Wellenfronten</b>. <b>Wellenstrahlen</b> zeigen die Ausbreitungsrichtung. Sie stehen senkrecht auf den Wellenfronten."],
+      ["skizze", "wellenfront", "Kreiswelle eines punktförmigen Erregers und gerade Welle: Fronten (blau) im Abstand λ, Strahlen (orange) senkrecht dazu."],
+      ["text", "In der Wellenwanne erzeugt ein punktförmiger Erreger Kreiswellen, ein gerader Erreger (zum Beispiel ein Lineal) gerade Wellen."]
+    ]},
+    { titel: "Huygens'sches Prinzip", inhalt: [
+      ["merke", "Jeder Punkt einer Wellenfront ist Ausgangspunkt einer Kreiswelle, der <b>Elementarwelle</b>. Sie hat dieselbe Frequenz und dieselbe Ausbreitungsgeschwindigkeit c wie die Welle. Die <b>Einhüllende</b> aller Elementarwellen ist die neue Wellenfront."],
+      ["skizze", "huygens", "Links: Nach der Zeit Δt haben alle Elementarwellen den Radius c · Δt, ihre Einhüllende ist wieder eine Gerade. Rechts: Hinter einem Spalt entstehen an den Rändern Kreisbögen."],
+      ["achtung", "Die einzelnen Elementarwellen sieht man nicht, sichtbar ist nur ihre Überlagerung. Rückwärts laufende Elementarwellen lässt man in der Konstruktion weg."]
+    ]},
+    { titel: "Reflexion", inhalt: [
+      ["merke", "Trifft eine Welle auf eine Wand, wird jeder getroffene Punkt der Wand Zentrum einer Elementarwelle. Ihre Einhüllende ist die reflektierte Welle."],
+      ["formel", "α = α′", "Reflexionsgesetz: Einfallswinkel α = Reflexionswinkel α′, beide zum Lot gemessen.", { fs: 34 }],
+      ["skizze", "reflexwand", "Reflexion an einer Wand: einfallender und reflektierter Strahl mit Lot."],
+      ["achtung", "Winkel werden zum Lot gemessen, nicht zur Wand. Bildet der Strahl mit der Wand 30°, ist α = 60°."]
+    ]},
+    { titel: "Brechung", inhalt: [
+      ["merke", "Läuft eine Welle schräg in ein Medium mit anderer Ausbreitungsgeschwindigkeit, ändert sie ihre Richtung: <b>Brechung</b>. Ins langsamere Medium wird sie zum Lot hin gebrochen, ins schnellere vom Lot weg."],
+      ["formel", "{sin α|sin β} = {c<sub>1</sub>|c<sub>2</sub>}", "Brechungsgesetz; α: Einfallswinkel, β: Brechungswinkel, beide zum Lot gemessen.", { fs: 34 }],
+      ["skizze", "brechung", "Brechung beim Übergang ins flache Wasser: Die Elementarwellen sind dort kleiner, die Front knickt ab, λ wird kleiner."],
+      ["beispiel", "Eine Wasserwelle läuft unter α = 40° aus tiefem Wasser (c<sub>1</sub> = 30 cm/s) in flaches Wasser (c<sub>2</sub> = 18 cm/s).", ["sin β = {c<sub>2</sub>|c<sub>1</sub>} · sin α = {18|30} · sin 40° ≈ 0,39", "β ≈ 23°: Die Welle wird zum Lot hin gebrochen."]],
+      ["achtung", "Die Frequenz f bleibt an der Grenze gleich. Mit c ändert sich deshalb λ: λ<sub>2</sub> = λ<sub>1</sub> · {c<sub>2</sub>|c<sub>1</sub>}."]
+    ]},
+    { titel: "Beugung", inhalt: [
+      ["merke", "Hinter einem Spalt oder an einer Kante läuft eine Welle auch in den geometrischen Schattenraum: <b>Beugung</b>. Sie ist stark, wenn die Spaltbreite d etwa so groß wie λ oder kleiner ist."],
+      ["skizze", "beugung", "Links: enger Spalt (d < λ), dahinter läuft fast eine Kreiswelle. Rechts: breiter Spalt (d ≫ λ), die Welle läuft fast geradeaus, gebeugt wird nur am Rand."],
+      ["beispiel", "Eine Hafeneinfahrt ist 20 m breit, die Wellen haben λ = 40 m.", ["{d|λ} = {20 m|40 m} = 0,5", "Die Öffnung ist kleiner als λ: Im Hafen breiten sich die Wellen fast als Kreiswellen aus."]],
+      ["achtung", "Es kommt auf d im Vergleich zu λ an. Schall (λ von Zentimetern bis Metern) wird an einer Tür stark gebeugt, Licht praktisch nicht."]
+    ]},
+    { titel: "Interferenz zweier Kreiswellen", inhalt: [
+      ["merke", "Zwei Erreger im Gleichtakt im Abstand g erzeugen Kreiswellen, die sich überlagern. Wo Berg auf Tal trifft, bleibt das Wasser in Ruhe. Diese Orte liegen auf <b>Knotenlinien</b> (Hyperbeln). Je größer g im Vergleich zu λ, desto mehr Knotenlinien."],
+      ["formel", "Δs = (2k − 1) · {λ|2}", "Auslöschung (Knotenlinie), k = 1, 2, 3, … mit dem Gangunterschied Δs = |s<sub>1</sub> − s<sub>2</sub>|.", { fs: "35 (Doppelspalt)" }],
+      ["nebenformel", "Δs = k · λ", "Verstärkung, k = 0, 1, 2, …"],
+      ["skizze", "kreisinterferenz", "Zwei Erreger im Gleichtakt: Wellenberge als Kreise, Knotenlinien gestrichelt."],
+      ["beispiel", "Zwei Erreger schwingen mit f = 12 Hz, c = 30 cm/s. Ein Punkt P ist s<sub>1</sub> = 10,0 cm und s<sub>2</sub> = 13,75 cm entfernt.", ["λ = {c|f} = {30 cm/s|12 Hz} = 2,5 cm", "Δs = 3,75 cm = 1,5 λ = 3 · {λ|2}: Bei P ist Ruhe."]],
+      ["achtung", "Auf der Mittelsenkrechten zwischen den Erregern ist Δs = 0. Dort ist Verstärkung, keine Knotenlinie."]
+    ]}
+  ],
+  karten: [
+    { id: "k5-huygens", v: "Was sagt das Huygens'sche Prinzip?", r: "Jeder Punkt einer Wellenfront ist Zentrum einer Elementarwelle. Die Einhüllende aller Elementarwellen ist die neue Wellenfront.", s: "huygens" },
+    { id: "k5-reflexion", v: "Wie lautet das Reflexionsgesetz, und wie misst man die Winkel?", r: "α = α′, beide Winkel zum Lot gemessen (Formelsammlung S. 34).", s: "reflexwand" },
+    { id: "k5-brechung", v: "Eine Welle läuft schräg in ein langsameres Medium. Wie wird sie gebrochen, und was bleibt gleich?", r: "Zum Lot hin: {sin α|sin β} = {c<sub>1</sub>|c<sub>2</sub>} (Formelsammlung S. 34). f bleibt gleich, λ wird kleiner.", s: "brechung" },
+    { id: "k5-beugung", v: "Wann wird eine Welle an einem Spalt stark gebeugt?", r: "Wenn die Spaltbreite d etwa so groß wie λ oder kleiner ist. Dann läuft dahinter fast eine Kreiswelle.", s: "beugung" },
+    { id: "k5-knoten", v: "Zwei Erreger schwingen im Gleichtakt. Wo bleibt das Wasser in Ruhe?", r: "Auf Knotenlinien mit Δs = (2k − 1) · {λ|2}, k = 1, 2, 3, …", s: "kreisinterferenz" }
   ]}
 ];
