@@ -654,6 +654,21 @@ figure.hb.skizze figcaption{font-size:14px;line-height:1.4;color:#5d6675;margin:
 .optipp b{display:block;font:800 13px/1.2 var(--font-display);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:3px}
 @media (max-width:899px), (max-aspect-ratio:5/4){ .asplit{grid-template-columns:1fr} .amat,.ateile{overflow:visible} }
 /*HEFT-ENDE*/
+/*HEFT-ANFANG*/
+/* ===== Ich-kann-Liste ===== */
+.iktab{width:100%;border-collapse:collapse;margin-top:10px;font-size:16px}
+.iktab thead th{font:700 12px/1.2 var(--font-body);color:#5d6675;text-align:center;padding:4px 6px;width:70px}
+.iktab thead th:first-child{width:auto}
+.iktab td{padding:7px 8px;border-bottom:1px solid #dde3ea;vertical-align:middle;line-height:1.4}
+.iktab td:not(:first-child){text-align:center;width:70px}
+.iktab td i{display:inline-block;width:18px;height:18px;border:1.6px solid #3d4757;border-radius:4px}
+.iktab .ikkap th{text-align:left;font:800 17px/1.3 var(--font-display);color:#1d2430;padding:16px 8px 6px;border-bottom:2px solid #1d2430}
+.iktab .ikkap .hnr{margin-right:8px}
+.iktab .iktief td{color:#7d8796;font-size:14.5px}
+.iktab .iktief td i{border-color:#aeb6c2}
+.ikfuss{font-size:13px;color:#7d8796;margin:12px 0 0}
+@media print{ .iktab{font-size:10pt;margin-top:4pt} .iktab td{padding:2.6pt 6pt;line-height:1.3} .iktab td i{width:12pt;height:12pt} .iktab thead th{padding:1pt 4pt} .iktab .ikkap th{padding:7pt 6pt 2pt;font-size:11.5pt} .ikblatt .hkopf{padding-bottom:5pt} .ikblatt .hkopf h2{font-size:17pt} .ikblatt .hknr{width:30pt;height:30pt;font-size:17pt} .ikfuss{margin-top:6pt} }
+/*HEFT-ENDE*/
 </style>
 </head>
 <body>
@@ -2969,70 +2984,70 @@ function schwebL3(){ return pick(SB3,PRO_LEVEL).map(it=>mcTask({sit:it.sit,q:it.
    CHALLENGES
    ===================================================================== */
 const CH = {
-  aendert:{titel:"Was ändert sich?", art:"Ursache und Wirkung", kurz:"Etwas am Erreger oder am Seil ändert sich. Was passiert mit f, T, c, λ und yₘₐₓ?",
+  aendert:{titel:"Einflüsse auf f, T, c, λ und yₘₐₓ", spiel:"Was ändert sich?", art:"Ursache und Wirkung", kurz:"Ich kann vorhersagen, wie sich f, T, c, λ und yₘₐₓ ändern, wenn sich Erreger oder Medium ändern.",
     intro:"Du bekommst eine Situation, in der sich etwas ändert. Sag für jede Größe voraus, ob sie größer, gleich oder kleiner wird. Erst danach siehst du die neue Welle.",
-    levels:[{name:"Einsteiger",info:"Eine Änderung, klare Situationen. Vorhersage für jede Größe.",make:()=>pick(AE_L1,PRO_LEVEL).map(aendertTask)},
-            {name:"Mit Zahlen",info:"Rechnen mit c = λ · f. Drei der vier Ergebnisse sind typische Fehler.",make:zahlenTasks},
-            {name:"Transfer",info:"Übergänge zwischen Medien und Rückwärtsdenken.",make:()=>pick(AE_L3,PRO_LEVEL).map(aendertTask)}]},
-  dirigent:{titel:"Wellen-Dirigent", art:"λ = c / f erleben", kurz:"Bring deine Welle mit der Zielwelle zur Deckung. Du steuerst nur Seil und Frequenz.",
+    levels:[{name:"Eine Änderung",info:"Eine Änderung, klare Situationen. Vorhersage für jede Größe.",make:()=>pick(AE_L1,PRO_LEVEL).map(aendertTask)},
+            {name:"Rechnen mit c = λ · f",info:"Rechnen mit c = λ · f. Drei der vier Ergebnisse sind typische Fehler.",make:zahlenTasks},
+            {name:"Medienwechsel",info:"Übergänge zwischen Medien und Rückwärtsdenken.",make:()=>pick(AE_L3,PRO_LEVEL).map(aendertTask)}]},
+  dirigent:{titel:"c = λ · f anwenden", spiel:"Wellen-Dirigent", art:"λ = c / f erleben", kurz:"Ich kann λ über f und Medium gezielt einstellen.",
     intro:"Deine Welle soll genau auf der Zielwelle liegen, in Länge und Tempo. λ kannst du nicht direkt einstellen, nur das Seil und die Frequenz. Bevor du regeln darfst, sagst du voraus, was du ändern musst. Punkte gibt es nur für Treffer im ersten Versuch.",
-    levels:[{name:"Nur die Frequenz",info:"Das Seil ist vorgegeben. Du regelst f.",make:()=>dirigentZiele("f").map(z=>dirigentTask(z,"f"))},
-            {name:"Seil und Frequenz",info:"Erst das Tempo, dann die Länge.",make:()=>dirigentZiele("frei").map(z=>dirigentTask(z,"frei"))},
-            {name:"Blind nach Zahlen",info:"Die Zielwelle ist unsichtbar. Du kennst nur λ und c.",make:()=>dirigentZiele("zahlen").map(z=>dirigentTask(z,"zahlen"))}]},
-  querlaengs:{titel:"Quer oder längs?", art:"Wellenarten", kurz:"Wellen aus Alltag, Technik und Natur: Querwelle, Längswelle oder Mischform?",
+    levels:[{name:"Nur f anpassen",info:"Das Seil ist vorgegeben. Du regelst f.",make:()=>dirigentZiele("f").map(z=>dirigentTask(z,"f"))},
+            {name:"Medium und f anpassen",info:"Erst das Tempo, dann die Länge.",make:()=>dirigentZiele("frei").map(z=>dirigentTask(z,"frei"))},
+            {name:"Nur aus Zahlen",info:"Die Zielwelle ist unsichtbar. Du kennst nur λ und c.",make:()=>dirigentZiele("zahlen").map(z=>dirigentTask(z,"zahlen"))}]},
+  querlaengs:{titel:"Quer- und Längswellen", spiel:"Quer oder längs?", art:"Wellenarten", kurz:"Ich kann Wellen als Quer-, Längs- oder Mischwelle einordnen.",
     intro:"Du siehst eine Welle aus Alltag, Technik oder Natur. Entscheide, welche Wellenart es ist. Danach zeigt dir die Animation, wie die Teilchen wirklich schwingen.",
     levels:[{name:"Klare Fälle",info:"Seil, Feder, Schall, Stadion.",make:()=>pick(PHAENOMENE.filter(p=>p.lv===1),PRO_LEVEL).map(p=>phenTask(p,false))},
-            {name:"Knifflige Fälle",info:"Erdbeben, Gitarre, Wasser, Ultraschall.",make:()=>pick(PHAENOMENE.filter(p=>p.lv===2),PRO_LEVEL).map(p=>phenTask(p,false))},
+            {name:"Grenzfälle",info:"Erdbeben, Gitarre, Wasser, Ultraschall.",make:()=>pick(PHAENOMENE.filter(p=>p.lv===2),PRO_LEVEL).map(p=>phenTask(p,false))},
             {name:"Begründen",info:"Warum ist das so? Wähle die Erklärung, die wirklich trägt.",make:()=>pick(QL_L3,PRO_LEVEL).map(mcTask)}]},
-  teilchen:{titel:"Welches Teilchen bin ich?", art:"y(x) und y(t) verbinden", kurz:"Finde das Teilchen, das genau so schwingt wie im y(t)-Diagramm.",
+  teilchen:{titel:"Momentbild und Zeitbild verbinden", spiel:"Welches Teilchen bin ich?", art:"y(x) und y(t) verbinden", kurz:"Ich kann Zeitbild y(t) und Momentbild y(x) einander zuordnen.",
     intro:"Oben siehst du die Welle als Foto, unten die Schwingung eines einzelnen Teilchens. Finde das passende Teilchen. Nach dem Prüfen läuft die Animation, und du siehst, ob deine Vorhersage stimmt.",
-    levels:[{name:"Welle nach rechts",info:"Die Welle läuft immer nach rechts.",make:()=>teilchenTasks(true)},
-            {name:"Beide Richtungen",info:"Achte auf die Laufrichtung.",make:()=>teilchenTasks(false)},
-            {name:"Umgekehrt",info:"Das Teilchen ist markiert. Welches y(t)-Diagramm gehört dazu?",make:teilchenRueck}]},
-  ablesen:{titel:"Ablesen & Rechnen", art:"Diagramme lesen", kurz:"λ, yₘₐₓ, T und f aus Diagrammen ablesen und damit c berechnen.",
+    levels:[{name:"Zeitbild → Oszillator",info:"Die Welle läuft immer nach rechts.",make:()=>teilchenTasks(true)},
+            {name:"Mit Laufrichtung",info:"Achte auf die Laufrichtung.",make:()=>teilchenTasks(false)},
+            {name:"Oszillator → Zeitbild",info:"Das Teilchen ist markiert. Welches y(t)-Diagramm gehört dazu?",make:teilchenRueck}]},
+  ablesen:{titel:"Diagramme auswerten", spiel:"Ablesen & Rechnen", art:"Diagramme lesen", kurz:"Ich kann λ, T und yₘₐₓ ablesen und c berechnen.",
     intro:"Lies Größen aus y(x)- und y(t)-Diagrammen ab und rechne damit. Die falschen Antworten sind typische Ablesefehler. Schau immer zuerst auf die Achse. Nach deiner Antwort wird die richtige Strecke eingezeichnet.",
-    levels:[{name:"Ortsdarstellung",info:"λ und yₘₐₓ aus y(x).",make:ablesenL1},
-            {name:"Zeitdarstellung",info:"T und f aus y(t), mit einer Falle.",make:ablesenL2},
+    levels:[{name:"Momentbild y(x)",info:"λ und yₘₐₓ aus y(x).",make:ablesenL1},
+            {name:"Zeitbild y(t)",info:"T und f aus y(t), mit einer Falle.",make:ablesenL2},
             {name:"Beide Diagramme",info:"c, Laufzeit und Vorhersage aus y(x) und y(t).",make:ablesenL3}]},
-  polar:{titel:"Polarisierbar?", art:"Polarisation", kurz:"Welle trifft Spalt: Was kommt durch? Erst vorhersagen, dann zuschauen.",
+  polar:{titel:"Polarisation", spiel:"Polarisierbar?", art:"Polarisation", kurz:"Ich kann vorhersagen, was ein Spalt durchlässt.",
     intro:"Eine Welle trifft auf einen oder mehrere Spalte. Sag voraus, was dahinter ankommt. Die Animation zeigt dir danach, ob du richtig lagst.",
-    levels:[{name:"Welche Wellen?",info:"Lässt sich diese Welle überhaupt polarisieren?",make:()=>pick(PHAENOMENE.filter(p=>p.art!=="misch"&&!p.nopol),PRO_LEVEL).map(p=>phenTask(p,true))},
+    levels:[{name:"Polarisierbar oder nicht",info:"Lässt sich diese Welle überhaupt polarisieren?",make:()=>pick(PHAENOMENE.filter(p=>p.art!=="misch"&&!p.nopol),PRO_LEVEL).map(p=>phenTask(p,true))},
             {name:"Ein Spalt",info:"Senkrecht und waagerecht, Quer- und Längswelle.",make:polL2},
             {name:"Mehrere Spalte",info:"Schräge Schwingungen, gekreuzte Spalte und eine Überraschung.",make:polL3}]}
 /*K3-ANFANG*/  ,
-  pulse:{titel:"Pulse treffen sich", art:"Superposition", kurz:"Zwei Pulse laufen aufeinander zu. Wie sieht das Seil beim Treffen aus, wie danach?",
+  pulse:{titel:"Superposition", spiel:"Pulse treffen sich", art:"Superposition", kurz:"Ich kann zwei Pulse nach y = y₁ + y₂ überlagern.",
     intro:"Zwei Pulse laufen auf einem Seil aufeinander zu. Kurz vor dem Treffen hält die Animation an, und du sagst voraus, wie das Seil aussehen wird. Erst danach läuft die Animation weiter. Mit dem Regler kannst du die Zeit selbst vor- und zurückschieben.",
     levels:[{name:"Beim Treffen",info:"Vier Bilder: Welches zeigt das Seil, wenn die Pulse übereinander liegen?",make:pulsL1},
-            {name:"Summe bauen",info:"Forme das Seil selbst, Spalte für Spalte: y = y₁ + y₂.",make:pulsL2},
+            {name:"Summe konstruieren",info:"Forme das Seil selbst, Spalte für Spalte: y = y₁ + y₂.",make:pulsL2},
             {name:"Nach dem Treffen",info:"Ungleiche Pulse: Was ist nach der Begegnung von ihnen übrig?",make:pulsL3}]},
-  reflexion:{titel:"Echo am Seilende", art:"Reflexion", kurz:"Ein Puls läuft auf das Seilende zu. Kommt er als Berg oder als Tal zurück?",
+  reflexion:{titel:"Reflexion am festen und losen Ende", spiel:"Echo am Seilende", art:"Reflexion", kurz:"Ich kann vorhersagen, wie ein Puls am Ende zurückkommt.",
     intro:"Ein Puls läuft auf ein festes oder ein loses Seilende zu. Du sagst voraus, wie er zurückkommt. Danach siehst du die Reflexion in der Animation und kannst sie mit dem Regler in Ruhe untersuchen.",
     levels:[{name:"Fest oder lose",info:"Berg oder Tal: Was kommt vom Seilende zurück?",make:reflexL1},
-            {name:"Schiefe Pulse",info:"Steile Flanke vorn oder hinten: Jetzt zählt auch die Form.",make:reflexL2},
-            {name:"Rückschluss",info:"Ein verdecktes Seilende, der Moment der Reflexion und zwei Enden.",make:reflexL3}]},
-  gang:{titel:"Laut oder leise?", art:"Gangunterschied", kurz:"Zwei Lautsprecher, ein Mikrofon: Wo verstärken sich die Wellen, wo löschen sie sich aus?",
+            {name:"Form des Pulses",info:"Steile Flanke vorn oder hinten: Jetzt zählt auch die Form.",make:reflexL2},
+            {name:"Ende erschließen",info:"Ein verdecktes Seilende, der Moment der Reflexion und zwei Enden.",make:reflexL3}]},
+  gang:{titel:"Gangunterschied", spiel:"Laut oder leise?", art:"Gangunterschied", kurz:"Ich kann mit Δs entscheiden: Verstärkung oder Auslöschung.",
     intro:"Zwei Quellen schwingen im Gleichtakt. Du gehst mit dem Mikrofon durch das Wellenfeld und suchst laute und stille Plätze. Dann zieht Nebel auf: Du siehst nur noch die beiden Weglängen und musst mit dem Gangunterschied arbeiten. Wenn du magst, schalte den Ton ein und höre die Stille.",
-    levels:[{name:"Stille finden",info:"Mikrofon ziehen, einmal messen. Erst mit Sicht, dann im Nebel.",make:gangL1},
-            {name:"Laut oder leise?",info:"Wege und Wellenlänge sind gegeben. Entscheide, bevor sich der Nebel lichtet.",make:gangL2},
-            {name:"Mit Frequenz rechnen",info:"Erst λ = c / f, dann entscheiden. Schall mit c = 343 m/s.",make:gangL3}]},
-  stehend:{titel:"Knoten oder Bauch?", art:"Stehende Wellen", kurz:"Knoten aufspüren, Wellenlängen messen und das Seil mit der richtigen Frequenz zum Schwingen bringen.",
+    levels:[{name:"Orte der Auslöschung",info:"Mikrofon ziehen, einmal messen. Erst mit Sicht, dann im Nebel.",make:gangL1},
+            {name:"Δs in Wellenlängen",info:"Wege und Wellenlänge sind gegeben. Entscheide, bevor sich der Nebel lichtet.",make:gangL2},
+            {name:"Erst λ, dann Δs",info:"Erst λ = c / f, dann entscheiden. Schall mit c = 343 m/s.",make:gangL3}]},
+  stehend:{titel:"Stehende Wellen", spiel:"Knoten oder Bauch?", art:"Stehende Wellen", kurz:"Ich kann Knoten und Bäuche finden und Eigenfrequenzen bestimmen.",
     intro:"Vor einem Seilende steht die Welle. Du markierst Knoten und Bäuche mit dem Finger, misst mit der Messzange nach und sagst voraus, wie zwei Teilchen zueinander schwingen. Am Ende stellst du den Erreger ein: Nur bei einer Eigenfrequenz schaukelt sich das Seil auf.",
     levels:[{name:"Knoten finden",info:"Knoten und Bäuche antippen, dazu ein Blick durchs Schlüsselloch.",make:stehL1},
             {name:"Wellenlänge messen",info:"Mit Lineal und Messzange vom Knotenabstand zu λ und f.",make:stehL2},
-            {name:"Resonanz treffen",info:"Gleichtakt oder Gegentakt? Und welche Frequenz bringt das Seil zum Schwingen?",make:stehL3}]}
+            {name:"Eigenfrequenzen",info:"Gleichtakt oder Gegentakt? Und welche Frequenz bringt das Seil zum Schwingen?",make:stehL3}]}
 /*K3-ENDE*/
 /*K4-ANFANG*/  ,
-  jaeger:{titel:"Saitenmeister", art:"Töne treffen", kurz:"Finde die richtige Stelle auf Saite und Pfeife: Länge, Knoten und Eigenschwingungen bestimmen den Ton.",
+  jaeger:{titel:"Eigenschwingungen: Länge und Ton", spiel:"Saitenmeister", art:"Töne treffen", kurz:"Ich kann die Länge von Saite oder Pfeife zu einem Ton bestimmen.",
     intro:"Du bist Saitenmeister: Ein Zielton erscheint, und du triffst ihn. Mit dem Finger kürzt du die Saite, mit einer leichten Berührung holst du eine Eigenschwingung heraus, und an der Pfeife stellst du die Länge ein. Nach jedem Versuch siehst du, was physikalisch passiert ist. Ein grober Fehlgriff lässt die Saite fast reißen.",
-    levels:[{name:"Bund finden",info:"Zieh den Finger auf die Saite und triff Oktave, Quinte und Co. Kürzere Saite, höherer Ton.",make:bundL1},
-            {name:"Flageolett",info:"Berühre die Saite an einem Knoten und hol eine Oberschwingung heraus.",make:flagL2},
-            {name:"Rohr-Orgel",info:"Stell die Pfeifenlänge ein, offen oder gedackt, und triff den Ton.",make:orgelL3}]},
-  klingts:{titel:"Wie klingt's?", art:"Ursache und Wirkung", kurz:"Gitarre, Orgel, Flasche: Was passiert mit c, λ₀ und f₀, und wie rechnet man damit?",
+    levels:[{name:"Saitenlänge und Ton",info:"Zieh den Finger auf die Saite und triff Oktave, Quinte und Co. Kürzere Saite, höherer Ton.",make:bundL1},
+            {name:"Oberschwingungen (Flageolett)",info:"Berühre die Saite an einem Knoten und hol eine Oberschwingung heraus.",make:flagL2},
+            {name:"Pfeife offen und gedackt",info:"Stell die Pfeifenlänge ein, offen oder gedackt, und triff den Ton.",make:orgelL3}]},
+  klingts:{titel:"Saiten und Rohre", spiel:"Wie klingt's?", art:"Ursache und Wirkung", kurz:"Ich kann f₀ berechnen und vorhersagen, wie sich der Ton ändert.",
     intro:"Du bekommst ein Instrument und eine Änderung. Sag voraus, was mit c, λ₀ und f₀ passiert. Danach rechnest du mit Saiten und Rohren und begründest Phänomene aus der Musik.",
-    levels:[{name:"Was ändert sich?",info:"Bund, Spannung, dicke Saite, Wärme: c, λ₀ und f₀ vorhersagen.",make:klangL1},
+    levels:[{name:"Einflüsse auf den Ton",info:"Bund, Spannung, dicke Saite, Wärme: c, λ₀ und f₀ vorhersagen.",make:klangL1},
             {name:"Rechnen",info:"f₀ und c aus Länge und Frequenz. Drei der vier Ergebnisse sind typische Fehler.",make:klangL2},
             {name:"Begründen",info:"Helium-Stimme, Klarinette, Flageolett, Orgel: Wähle die Erklärung, die wirklich trägt.",make:klangL3}]},
-  kundtlab:{titel:"Kundt-Labor", art:"Messen wie im Labor", kurz:"Häufchen am Lineal ablesen, c bestimmen und vorhersagen, was sich ändert.",
+  kundtlab:{titel:"Kundt'sches Rohr", spiel:"Kundt-Labor", art:"Messen wie im Labor", kurz:"Ich kann aus dem Häufchenabstand λ und c bestimmen.",
     intro:"Im Glasrohr hat sich das Pulver zu Häufchen gesammelt. Du liest am Lineal ab, rechnest damit λ und c aus und sagst voraus, was passiert, wenn sich Gas oder Frequenz ändern.",
     levels:[{name:"Abstand ablesen",info:"Zwei benachbarte Häufchen antippen und λ bestimmen.",make:kundtL1},
             {name:"c bestimmen",info:"Über mehrere Häufchen messen, dann c = λ · f.",make:kundtL2},
@@ -3056,7 +3071,7 @@ function stations(k){
   const nC=k.steckbriefe.length, dC=k.steckbriefe.filter(id=>P.cards[id]).length;
   const list=[{kind:"cards",titel:"Steckbriefe",eyebrow:"Start",kurz:`${nC} Karten zum Durchblättern, jede mit Mini-Check.`,open:true,done:dC===nC,prog:`${dC} / ${nC} Karten`,go:()=>renderFocus(k)}];
   k.challenges.forEach((typ,i)=>{ const id=chId(k,typ), def=CH[typ], passed=[0,1,2].map(n=>lvPassed(id,n));
-    list.push({kind:"ch",typ,titel:def.titel,eyebrow:`Challenge ${i+1}`,kurz:def.kurz,open:chOpen(k,i),done:passed.every(Boolean),passed,
+    list.push({kind:"ch",typ,titel:def.titel,eyebrow:`Challenge ${i+1}${def.spiel?" · "+def.spiel:""}`,kurz:def.kurz,open:chOpen(k,i),done:passed.every(Boolean),passed,
       lock:i===0?"Erst alle Steckbriefe mit Mini-Check schaffen.":`Erst Level 1 von „${CH[k.challenges[i-1]].titel}“ schaffen.`,go:()=>renderIntro(k,typ)}); });
   /*K3-ANFANG*/spielStation(k,list);/*K3-ENDE*/return list; }
 function renderHome(){
@@ -3378,7 +3393,7 @@ function renderIntro(k,typ){/*K3-ANFANG*/if(typ===k.spiel) return spielIntro(k);
 
   view(true);
   const def=CH[typ], id=chId(k,typ), idx=k.challenges.indexOf(typ);
-  bar("← Lernpfad",renderHome,`Kapitel ${k.nr} · Challenge ${idx+1} von ${k.challenges.length}`,def.titel,themeSwitch());
+  bar("← Lernpfad",renderHome,`Kapitel ${k.nr} · Challenge ${idx+1} von ${k.challenges.length}${def.spiel?" · "+def.spiel:""}`,def.titel,themeSwitch());
   const wrap=el("div",{class:"intro"});
   wrap.appendChild(el("div",{class:"about"},`<span class="eyebrow">${def.art}</span><h3>So geht's</h3><p>${def.intro}</p>
     <div class="rule"><b>Level-Hürde</b>${PRO_LEVEL} Aufgaben pro Level. Mit ${HUERDE} Treffern im ersten Versuch steigst du auf. ${idx<k.challenges.length-1?"Level 1 schaltet die nächste Challenge frei.":""}</div>`));
@@ -3475,13 +3490,11 @@ let heftNavi=u=>{ location.href=u; };
 function heftDruckLink(kap){ return new URL(location.pathname+"?druck="+encodeURIComponent(kap||"alle"),location.href).href; }
 function heftSafariDialog(kap){ const url=heftDruckLink(kap), alt=document.querySelector(".hsafari"); if(alt) alt.remove();
   const ov=el("div",{class:"hsafari",role:"dialog","aria-modal":"true","aria-label":"Drucken in Safari"}), box=el("div",{class:"hsafari-box"});
-  box.innerHTML=`<h3>Drucken geht nur in Safari</h3><p>Diese App läuft als eigenes Fenster vom Home-Bildschirm. Dort erlaubt das iPad kein Drucken. Öffne das Heft deshalb in Safari, dort kannst du drucken oder als PDF sichern.</p>`;
-  const reihe=el("div",{class:"hsafari-knoepfe"}), sb=el("button",{class:"btn"},"In Safari öffnen"), kb=el("button",{class:"btn ghost"},"Link kopieren"), xb=el("button",{class:"btn ghost"},"Schließen");
-  const fb=el("p",{class:"hsafari-info"},`Öffnet sich Safari nicht: <b>Link kopieren</b>, Safari öffnen und den Link oben in die Adresszeile einfügen.<br><span class="hsafari-url">${url}</span>`);
+  box.innerHTML=`<h3>Drucken geht nur in Safari</h3>`;
+  const reihe=el("div",{class:"hsafari-knoepfe"}), sb=el("button",{class:"btn"},"In Safari öffnen"), xb=el("button",{class:"btn ghost"},"Schließen");
   sb.addEventListener("click",()=>heftNavi("x-safari-"+url));
-  kb.addEventListener("click",()=>{ const ok=()=>{ kb.textContent="Link kopiert ✓"; }; try{ navigator.clipboard.writeText(url).then(ok,()=>{ fb.querySelector(".hsafari-url").style.userSelect="all"; kb.textContent="Link markieren und kopieren"; }); }catch(e){ kb.textContent="Link markieren und kopieren"; } });
   xb.addEventListener("click",()=>ov.remove()); ov.addEventListener("click",e=>{ if(e.target===ov) ov.remove(); });
-  reihe.append(sb,kb,xb); box.append(reihe,fb); ov.appendChild(box); document.body.appendChild(ov); cleanups.push(()=>ov.remove()); }
+  reihe.append(sb,xb); box.append(reihe); ov.appendChild(box); document.body.appendChild(ov); cleanups.push(()=>ov.remove()); }
 function heftDrucken(kap){ if(heftEigenFenster()) return heftSafariDialog(kap); try{ window.print(); }catch(e){} }
 function heftDruckStart(){ const q=new URLSearchParams(location.search).get("druck"); if(!q) return false;
   view(false); const zur=el("button",{class:"btn ghost"},"Zur App"), dr=el("button",{class:"btn"},"Drucken / Als PDF sichern");
@@ -3489,7 +3502,7 @@ function heftDruckStart(){ const q=new URLSearchParams(location.search).get("dru
   const b=bar("←",()=>{ location.href=location.pathname; },"Wellen-Werkstatt · Heft","Druckansicht",dr); b.querySelector(".back").textContent="← Zur App";
   app.appendChild(el("p",{class:"hdruckhinweis"},"Erscheint kein Druckfenster, tippe in Safari auf <b>Teilen</b> und dann auf <b>Drucken</b>. Für eine PDF-Datei wählst du im Druckfenster oben <b>Teilen</b> und dann <b>In Dateien sichern</b>."));
   const wrap=el("div",{class:"heft"}); app.appendChild(wrap); wrap.innerHTML=`<p class="hlade">Das Heft wird geladen …</p>`;
-  heftLaden().then(H=>{ const da=H.filter(k=>k.abschnitte&&k.abschnitte.length); wrap.innerHTML=""; (q==="alle"?da:da.filter(k=>k.kap===q)).forEach(k=>wrap.appendChild(heftBlatt(k)));
+  heftLaden().then(H=>{ const da=H.filter(k=>k.abschnitte&&k.abschnitte.length); wrap.innerHTML=""; if(q==="ichkann") wrap.appendChild(ichKannBlatt(da)); else (q==="alle"?da:da.filter(k=>k.kap===q)).forEach(k=>wrap.appendChild(heftBlatt(k)));
     if(!wrap.children.length) da.forEach(k=>wrap.appendChild(heftBlatt(k))); setTimeout(()=>{ if(heftEigenFenster()) heftSafariDialog(q); else { try{ window.print(); }catch(e){} } },700); })
     .catch(()=>{ wrap.innerHTML=`<p class="hlade">Das Heft konnte nicht geladen werden.</p>`; });
   return true; }
@@ -3692,10 +3705,10 @@ const KARTKEY="wellen-werkstatt-karten";
 function kartStand(){ let s=null; try{ s=JSON.parse(localStorage.getItem(KARTKEY)); }catch(e){} if(!s||typeof s!=="object") s={}; s.sel=s.sel||{}; s.srs=s.srs||{}; s.modus=s.modus||"anki"; return s; }
 function kartSave(s){ try{ localStorage.setItem(KARTKEY,JSON.stringify(s)); }catch(e){} }
 function heftModi(akt){ const seg=el("div",{class:"seg hmodi",role:"group","aria-label":"Ansicht"});
-  [["heft","Heft"],["karten","Karteikarten"],["mindmap","Mindmap"]].forEach(([id,txt])=>{ const b=el("button",{"aria-pressed":String(id===akt)},txt);
-    b.addEventListener("click",()=>{ if(id==="heft") renderHeft(); else if(id==="karten") renderKarten(); else renderMindmap(); }); seg.appendChild(b); });
+  [["heft","Heft"],["karten","Karteikarten"],["mindmap","Mindmap"],["ichkann","Ich kann"]].forEach(([id,txt])=>{ const b=el("button",{"aria-pressed":String(id===akt)},txt);
+    b.addEventListener("click",()=>{ if(id==="heft") renderHeft(); else if(id==="karten") renderKarten(); else if(id==="ichkann") renderIchKann(); else renderMindmap(); }); seg.appendChild(b); });
   return seg; }
-function heftKopf(akt,rechts){ const b=bar("← Lernpfad",renderHome,"Wellen-Werkstatt · Heft",{heft:"Heft",karten:"Karteikarten",mindmap:"Mindmap"}[akt],heftModi(akt)); if(rechts) b.appendChild(rechts); if(akt!=="mindmap") b.appendChild(themeSwitch()); return b; }
+function heftKopf(akt,rechts){ const b=bar("← Lernpfad",renderHome,"Wellen-Werkstatt · Heft",{heft:"Heft",karten:"Karteikarten",mindmap:"Mindmap",ichkann:"Ich-kann-Liste"}[akt],heftModi(akt)); if(rechts) b.appendChild(rechts); if(akt!=="mindmap") b.appendChild(themeSwitch()); return b; }
 const kartAlle=H=>H.flatMap(k=>(k.karten||[]).map(c=>Object.assign({kap:k.kap},c)));
 
 /* ---------- Anki-Verfahren (vereinfachtes SM-2, Tage) ---------- */
@@ -3851,6 +3864,20 @@ function renderAufgabe(id){ view(true);
       reset.push(()=>{ aus.innerHTML=""; n=0; zeig(); }); zeig(); teile.appendChild(box); });
     zu.addEventListener("click",()=>reset.forEach(f=>f())); opTipp(teile);
   }).catch(()=>renderAufgaben()); }
+/*HEFT-ENDE*/
+/*HEFT-ANFANG*/
+/* ---------- Ich-kann-Liste: alle Kapitel knapp auf einer A4-Seite, zum Ausdrucken und Ankreuzen ---------- */
+function ichKannBlatt(H){ const b=el("article",{class:"hblatt ikblatt"});
+  b.innerHTML=`<header class="hkopf"><span class="hknr">✓</span><div><span class="heye">Wellen-Werkstatt · Heft</span><h2>Ich-kann-Liste: Mechanische Wellen</h2></div></header>`;
+  const tab=el("table",{class:"iktab"}); tab.innerHTML=`<thead><tr><th></th><th>sicher</th><th>geht so</th><th>noch nicht</th></tr></thead>`; const tb=el("tbody"); tab.appendChild(tb);
+  H.filter(k=>(k.ichkann||[]).length).forEach(k=>{ const K=KAPITEL.find(x=>x.id===k.kap)||{nr:"",titel:""};
+    tb.insertAdjacentHTML("beforeend",`<tr class="ikkap"><th colspan="4"><span class="hnr">${K.nr}</span>${K.titel} · Ich kann …</th></tr>`);
+    k.ichkann.forEach(z=>{ const t=typeof z==="string"?z:z.t, tief=typeof z==="object"&&z.tief; tb.insertAdjacentHTML("beforeend",`<tr class="${tief?"iktief":""}"><td>${hfx(t)}</td><td><i></i></td><td><i></i></td><td><i></i></td></tr>`); }); });
+  b.appendChild(tab); b.appendChild(el("p",{class:"ikfuss"},"Graue Zeilen sind Vertiefungen."));
+  return b; }
+function renderIchKann(){ view(false); const druck=el("button",{class:"btn"},"Drucken / PDF"); druck.addEventListener("click",()=>heftDrucken("ichkann")); heftKopf("ichkann",druck);
+  const wrap=el("div",{class:"heft"}); app.appendChild(wrap); wrap.innerHTML=`<p class="hlade">Die Liste wird geladen …</p>`;
+  heftLaden().then(H=>{ wrap.innerHTML=""; wrap.appendChild(ichKannBlatt(H)); }).catch(()=>{ wrap.innerHTML=`<p class="hlade">Die Liste konnte nicht geladen werden.</p>`; }); }
 /*HEFT-ENDE*/
 if(!heftDruckStart()) renderHome();
 startUpdates();

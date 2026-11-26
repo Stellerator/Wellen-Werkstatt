@@ -24,7 +24,17 @@
    ===================================================================== */
 window.HEFT = [
   /* ================================ Kapitel 1 ================================ */
-  { kap: "k1", abschnitte: [
+  { kap: "k1",
+  /* Ich-kann-Liste: kurze Sätze nach „Ich kann …“; {t:"…", tief:true} = Vertiefung (grau) */
+  ichkann: [
+    "erklären, was eine mechanische Welle ist: Sie transportiert Energie, aber keine Materie.",
+    "Quer- und Längswellen unterscheiden.",
+    "s, s<sub>max</sub>, T, f und λ erklären und T = {1|f} anwenden.",
+    "mit c = λ · f rechnen.",
+    "begründen: Der Erreger bestimmt f, das Medium bestimmt c.",
+    { t: "die Schnelle v von der Ausbreitungsgeschwindigkeit c unterscheiden.", tief: true }
+  ],
+  abschnitte: [
     { titel: "Mechanische Welle", inhalt: [
       ["merke", "Eine <b>mechanische Welle</b> ist die Ausbreitung einer Schwingung in einem Medium, auch <b>Wellenträger</b> genannt. Gekoppelte <b>Oszillatoren</b> geben ihre Schwingung an den Nachbarn weiter."],
       ["skizze", "kette", "Der Erreger stößt die Kette an. Jeder Oszillator schwingt nur um seine Ruhelage, weitergegeben wird die Schwingung."],
@@ -85,7 +95,16 @@ window.HEFT = [
   ]},
 
   /* ================================ Kapitel 2 ================================ */
-  { kap: "k2", abschnitte: [
+  { kap: "k2",
+  /* Ich-kann-Liste: kurze Sätze nach „Ich kann …“; {t:"…", tief:true} = Vertiefung (grau) */
+  ichkann: [
+    "λ, T und y<sub>max</sub> aus Momentbild y(x) und Zeitbild y(t) ablesen.",
+    "aus beiden Bildern c berechnen.",
+    "bestimmen, wohin sich ein Oszillator als Nächstes bewegt.",
+    "begründen, warum sich nur Querwellen polarisieren lassen.",
+    { t: "mit der Wellenfunktion y(x,t) rechnen.", tief: true }
+  ],
+  abschnitte: [
     { titel: "Momentbild und Zeitbild", inhalt: [
       ["merke", "<b>Momentbild y(x)</b> (Ortsdarstellung): die Auslenkung aller Oszillatoren zu einem festen Zeitpunkt, wie ein Foto der Welle. Ablesbar: <b>λ</b> und y<sub>max</sub>.<br><b>Zeitbild y(t)</b> (Zeitdarstellung): die Auslenkung eines einzelnen Oszillators im Lauf der Zeit, wie ein Video von diesem Teilchen. Ablesbar: <b>T</b> und y<sub>max</sub>."],
       ["skizze", "ortzeit", "Links das Momentbild mit λ, rechts das Zeitbild eines Oszillators mit T."],
@@ -126,7 +145,17 @@ window.HEFT = [
   ]},
 
   /* ================================ Kapitel 3 ================================ */
-  { kap: "k3", abschnitte: [
+  { kap: "k3",
+  /* Ich-kann-Liste: kurze Sätze nach „Ich kann …“; {t:"…", tief:true} = Vertiefung (grau) */
+  ichkann: [
+    "Wellen nach y = y₁ + y₂ überlagern.",
+    "mit dem Gangunterschied Δs entscheiden: Verstärkung oder Auslöschung.",
+    "die Reflexion am festen und am losen Ende beschreiben.",
+    "Knoten und Bäuche erklären und λ aus dem Knotenabstand bestimmen.",
+    "Eigenwellenlängen mit λ<sub>k</sub> = {2ℓ|k + 1} bzw. {2ℓ|k + ½} berechnen.",
+    { t: "die Wellenfunktion der stehenden Welle deuten.", tief: true }
+  ],
+  abschnitte: [
     { titel: "Superposition", inhalt: [
       ["merke", "Treffen sich zwei Wellen, addieren sich ihre Auslenkungen an jeder Stelle: <b>y = y₁ + y₂</b>. Danach laufen beide unverändert weiter (ungestörte Überlagerung)."],
       ["skizze", "superpos", "Ein Berg und ein Tal laufen aufeinander zu. Beim Treffen addieren sich die Auslenkungen, danach laufen beide unverändert weiter."],
@@ -177,7 +206,16 @@ window.HEFT = [
   ]},
 
   /* ================================ Kapitel 4 ================================ */
-  { kap: "k4", abschnitte: [
+  { kap: "k4",
+  /* Ich-kann-Liste: kurze Sätze nach „Ich kann …“; {t:"…", tief:true} = Vertiefung (grau) */
+  ichkann: [
+    "Eigenfrequenzen von Saite, offenem und gedacktem Rohr berechnen.",
+    "vorhersagen, wie Länge, Spannung oder Temperatur den Ton ändern.",
+    "mit dem Kundt'schen Rohr λ und c bestimmen.",
+    "Tonhöhe und Klangfarbe unterscheiden.",
+    { t: "die Schwebungsfrequenz f<sub>S</sub> = |f<sub>1</sub> − f<sub>2</sub>| bestimmen.", tief: true }
+  ],
+  abschnitte: [
     { titel: "Eigenschwingungen einer Saite", inhalt: [
       ["merke", "Eine Saite ist an beiden Enden fest, dort liegen immer Knoten. Es passen nur die Wellenlängen λ<sub>k</sub> = {2ℓ|k + 1} (Formelsammlung S. 23)."],
       ["formel", "f<sub>k</sub> = (k + 1) · {c|2ℓ}", "für Saiten und andere Wellenträger mit zwei festen (oder zwei losen) Enden; folgt aus λ<sub>k</sub> und c = λ · f. Grundfrequenz f<sub>0</sub> = {c|2ℓ}.", { fs: "23 und 22" }],
