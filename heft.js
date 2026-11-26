@@ -266,7 +266,7 @@ window.HEFT = [
     "mit dem Huygens'schen Prinzip neue Wellenfronten konstruieren.",
     "Reflexion und Brechung mit Lot, α = α′ und dem Brechungsgesetz beschreiben.",
     "vorhersagen, wann eine Welle an einem Spalt stark gebeugt wird.",
-    "im Feld zweier Erreger Orte der Ruhe und der Verstärkung bestimmen."
+    "im Feld zweier Erreger die Zahl der Knotenlinien vorhersagen und λ messen."
   ],
   abschnitte: [
     { titel: "Wellenfronten und Wellenstrahlen", inhalt: [
@@ -299,11 +299,13 @@ window.HEFT = [
       ["achtung", "Es kommt auf d im Vergleich zu λ an. Schall (λ von Zentimetern bis Metern) wird an einer Tür stark gebeugt, Licht praktisch nicht."]
     ]},
     { titel: "Interferenz zweier Kreiswellen", inhalt: [
-      ["merke", "Zwei Erreger im Gleichtakt im Abstand g erzeugen Kreiswellen, die sich überlagern. Wo Berg auf Tal trifft, bleibt das Wasser in Ruhe. Diese Orte liegen auf <b>Knotenlinien</b> (Hyperbeln). Je größer g im Vergleich zu λ, desto mehr Knotenlinien."],
+      ["merke", "Zwei Erreger im Gleichtakt im Abstand g erzeugen Kreiswellen, die sich überlagern. Wo Berg auf Tal trifft, bleibt das Wasser in Ruhe. Diese Orte bilden ein Muster aus <b>Knotenlinien</b> (Hyperbeln). Weit weg verlaufen sie fast gerade vom Mittelpunkt aus, dort gilt Δs ≈ g · sin α."],
       ["formel", "Δs = (2k − 1) · {λ|2}", "Auslöschung (Knotenlinie), k = 1, 2, 3, … mit dem Gangunterschied Δs = |s<sub>1</sub> − s<sub>2</sub>|.", { fs: "35 (Doppelspalt)" }],
       ["nebenformel", "Δs = k · λ", "Verstärkung, k = 0, 1, 2, …"],
+      ["formel", "g · sin α<sub>k</sub> = (2k − 1) · {λ|2}", "Richtung der k. Knotenlinie in großer Entfernung; α<sub>k</sub> wird zur Mittelsenkrechten gemessen.", { fs: "35 (Doppelspalt)" }],
+      ["text", "Weil Δs nie größer als g werden kann, gibt es nur so viele Knotenlinien, wie Werte (2k − 1) · {λ|2} kleiner als g sind, jede oberhalb und unterhalb der Mittelsenkrechten."],
       ["skizze", "kreisinterferenz", "Zwei Erreger im Gleichtakt: Wellenberge als Kreise, Knotenlinien gestrichelt."],
-      ["beispiel", "Zwei Erreger schwingen mit f = 12 Hz, c = 30 cm/s. Ein Punkt P ist s<sub>1</sub> = 10,0 cm und s<sub>2</sub> = 13,75 cm entfernt.", ["λ = {c|f} = {30 cm/s|12 Hz} = 2,5 cm", "Δs = 3,75 cm = 1,5 λ = 3 · {λ|2}: Bei P ist Ruhe."]],
+      ["beispiel", "Zwei Erreger im Gleichtakt sind g = 5,0 cm voneinander entfernt. Die 2. Knotenlinie liegt unter α<sub>2</sub> = 37°.", ["λ = {2 · g · sin α<sub>2</sub>|3} = {2 · 5,0 cm · sin 37°|3} ≈ 2,0 cm", "Knotenlinien: {λ|2} = 1,0 cm, {3λ|2} = 3,0 cm sind kleiner als g, {5λ|2} = 5,0 cm nicht mehr: 4 Knotenlinien."]],
       ["achtung", "Auf der Mittelsenkrechten zwischen den Erregern ist Δs = 0. Dort ist Verstärkung, keine Knotenlinie."]
     ]}
   ],
@@ -312,6 +314,7 @@ window.HEFT = [
     { id: "k5-reflexion", v: "Wie lautet das Reflexionsgesetz, und wie misst man die Winkel?", r: "α = α′, beide Winkel zum Lot gemessen (Formelsammlung S. 34).", s: "reflexwand" },
     { id: "k5-brechung", v: "Eine Welle läuft schräg in ein langsameres Medium. Wie wird sie gebrochen, und was bleibt gleich?", r: "Zum Lot hin: {sin α|sin β} = {c<sub>1</sub>|c<sub>2</sub>} (Formelsammlung S. 34). f bleibt gleich, λ wird kleiner.", s: "brechung" },
     { id: "k5-beugung", v: "Wann wird eine Welle an einem Spalt stark gebeugt?", r: "Wenn die Spaltbreite d etwa so groß wie λ oder kleiner ist. Dann läuft dahinter fast eine Kreiswelle.", s: "beugung" },
-    { id: "k5-knoten", v: "Zwei Erreger schwingen im Gleichtakt. Wo bleibt das Wasser in Ruhe?", r: "Auf Knotenlinien mit Δs = (2k − 1) · {λ|2}, k = 1, 2, 3, …", s: "kreisinterferenz" }
+    { id: "k5-knoten", v: "Zwei Erreger schwingen im Gleichtakt. Wo bleibt das Wasser in Ruhe?", r: "Auf Knotenlinien mit Δs = (2k − 1) · {λ|2}, k = 1, 2, 3, …", s: "kreisinterferenz" },
+    { id: "k5-winkel", v: "Wie bestimmst du λ aus dem Muster zweier Erreger im Abstand g?", r: "Winkel α<sub>k</sub> der k. Knotenlinie zur Mittelsenkrechten messen, dann g · sin α<sub>k</sub> = (2k − 1) · {λ|2} (Formelsammlung S. 35)." }
   ]}
 ];

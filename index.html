@@ -1014,13 +1014,13 @@ const STECKBRIEFE = {
     praxis:"Du hörst Menschen hinter einer Hausecke reden, siehst sie aber nicht: Schall hat Wellenlängen von Zentimetern bis Metern, Licht weniger als ein Tausendstel Millimeter. Hinter einer Hafenmole ist das Wasser nicht ganz ruhig, weil die Wellen an der Spitze der Mole gebeugt werden.",
     check:{q:"Durch eine offene Tür dringt Musik. Welcher Ton wird stärker gebeugt?", o:["der tiefe Ton","der hohe Ton","beide gleich stark"], h:"λ = c / f. Welcher Ton hat die größere Wellenlänge?",
       e:"Der tiefe Ton hat das kleinere f und damit das größere λ. Im Vergleich zur Tür ist λ groß: starke Beugung. Um die Ecke hörst du deshalb vor allem die Bässe."}},
-  interf2:{titel:"Interferenz zweier Kreiswellen", formel:"Ruhe: Δs = (2k − 1) · λ/2&emsp;Verstärkung: Δs = k · λ", viz:"interf2",
-    text:"Zwei Erreger tauchen im Gleichtakt ins Wasser, ihr Abstand ist g. Ihre Kreiswellen überlagern sich. Wo Berg auf Tal trifft, bleibt das Wasser in Ruhe. Diese Orte liegen auf <b>Knotenlinien</b> (Hyperbeln). Dazwischen schwingt das Wasser besonders stark. Entscheidend ist der Gangunterschied Δs = |s₁ − s₂| zum Punkt P. Zieh P über die Wasserfläche und vergleiche verschiedene Abstände g.",
-    merke:"Gleichtakt: Ruhe bei Δs = (2k − 1) · λ/2, Verstärkung bei Δs = k · λ (vgl. Formelsammlung S. 35, Doppelspalt). Je größer g im Vergleich zu λ, desto mehr Knotenlinien.",
+  interf2:{titel:"Interferenz zweier Kreiswellen", formel:"Knotenlinien: g · sin αₖ = (2k − 1) · λ/2", viz:"interf2",
+    text:"Zwei Erreger tauchen im Gleichtakt ins Wasser, ihr Abstand ist g. Wo Berg auf Tal trifft (Δs = (2k − 1) · λ/2, wie in Kapitel 3), bleibt das Wasser in Ruhe. Diese Orte bilden ein Muster aus <b>Knotenlinien</b>. Es sind Hyperbeln, weit weg verlaufen sie fast gerade vom Mittelpunkt zwischen den Erregern aus, unter dem Winkel αₖ zur Mittelsenkrechten. Dort gilt Δs ≈ g · sin α. Wie viele Knotenlinien es gibt, hängt von g / λ ab: Δs kann nie größer als g werden. Schalte die Knotenlinien ein, vergleiche die Abstände g und zieh P auf eine Knotenlinie.",
+    merke:"Die k. Knotenlinie liegt weit weg unter dem Winkel αₖ mit g · sin αₖ = (2k − 1) · λ/2 (Formelsammlung S. 35, Doppelspalt). Je größer g im Vergleich zu λ, desto mehr Knotenlinien. Aus einem gemessenen Winkel lässt sich λ bestimmen.",
     falle:"Auf der Mittelsenkrechten zwischen den Erregern ist Δs = 0. Dort ist keine Knotenlinie, sondern Verstärkung.",
-    praxis:"Zwei Lautsprecher, die denselben Ton spielen, erzeugen im Raum laute und leise Stellen. Geh langsam durch den Raum, dann hörst du den Wechsel.",
-    check:{q:"Am Punkt P ist der Gangunterschied Δs = 1,5 λ. Was beobachtest du dort?", o:["Das Wasser bleibt in Ruhe.","Das Wasser schwingt besonders stark.","Das Wasser schwingt mit halber Amplitude."], h:"Ist 1,5 λ ein ungeradzahliges Vielfaches von λ/2?",
-      e:"1,5 λ = 3 · λ/2 = (2k − 1) · λ/2 mit k = 2. Berg trifft auf Tal: Auslöschung."}}
+    praxis:"So misst man in der Wellenwanne die Wellenlänge: Winkel einer Knotenlinie ablesen, λ ausrechnen. Beim Doppelspalt mit Licht entsteht dasselbe Muster, nur ist λ dort so klein, dass man es auf einem fernen Schirm betrachtet.",
+    check:{q:"Zwei Erreger im Gleichtakt sind g = 2,2 λ voneinander entfernt. Wie viele Knotenlinien gibt es?", o:["4","2","5"], h:"Welche Werte (2k − 1) · λ/2 sind kleiner als g? Jede Linie gibt es oberhalb und unterhalb der Mittelsenkrechten.",
+      e:"λ/2 und 3λ/2 sind kleiner als g = 2,2 λ, 5λ/2 nicht mehr. Jede dieser Linien gibt es zweimal: 4 Knotenlinien."}}
 /*K5-ENDE*/
 };
 
@@ -3322,7 +3322,7 @@ function viz5Interf(side){ let gm=2, linien=false, an=false;   // Erreger und Kn
     [[q[0],B3.a,"E₁"],[q[1],B3.b,"E₂"]].forEach(([p,f,nm])=>{ perle(ctx,G.X(p[0]),G.Y(p[1]),f,14); label(ctx,nm,G.X(p[0])-10,G.Y(p[1])+5,"#fff","right",700,12); });
     const px=G.X(P[0]), py=G.Y(P[1]); ctx.fillStyle="#0b1424"; ctx.strokeStyle=B3.mark; ctx.lineWidth=3; ctx.beginPath(); ctx.arc(px,py,8,0,TAU); ctx.fill(); ctx.stroke(); label(ctx,"P",px+12,py-8,"#fff","left",700,13);
     const art=Math.abs(r-.5)<.08?"Ruhe: Berg trifft Tal":(r<.08||r>.92)?"Verstärkung: Berg trifft Berg":"dazwischen";
-    schild5(ctx,`s₁ = ${z2(s1)} λ   s₂ = ${z2(s2)} λ   Δs = ${z2(ds)} λ`,G.ox+8,G.oy+20,B3.txt,12);
+    schild5(ctx,`Δs = ${z2(ds)} λ   α = ${Math.round(Math.atan2(jm-P[1],P[0]-xq)/D5)}°`,G.ox+8,G.oy+20,B3.txt,12);
     if(an) schild5(ctx,art,G.ox+8,G.oy+42,art.startsWith("Ruhe")?"#fff":art.startsWith("Verst")?B3.mark:B3.dim,12);
     schild5(ctx,an?"Zieh den Punkt P":"Ruhiges Wasser: Schalte die Erreger ein.",st.w/2,st.h-8,an?B3.dim:B3.mark,12,"center"); }); }
 /*K5-ENDE*/
@@ -3449,56 +3449,80 @@ const B5_L3=[
 
 /* =====================================================================
    Challenge C · Laut-leise-Karte (Interferenz in der Fläche)
-   Zwei Erreger im Gleichtakt, Abstand g. Virtuelle Bühne 300 × 200, λ = 30.
+   Zwei Erreger im Gleichtakt, Abstand g. Virtuelle Bühne 300 × 200, λ = 30 Einheiten.
+   Es geht um das ganze Muster; den Gangunterschied an einem Punkt übt Kapitel 3.
    ===================================================================== */
-const ds5=(Q,lam,x,y)=>Math.abs(Math.hypot(x-Q[0][0],y-Q[0][1])-Math.hypot(x-Q[1][0],y-Q[1][1]))/lam;
-const trifft5=(ziel,ds)=>{ const r=ds-Math.floor(ds); return ziel==="ruhe"?Math.abs(r-.5)<=.13:(r<=.13||r>=.87); };
-function zone5(Q,lam,ziel){ for(let n=0;n<500;n++){ const zw=70, zh=50, x0=115+Math.random()*(290-zw-115), y0=8+Math.random()*(192-zh-8); if(ziel==="stark"&&y0<104&&y0+zh>96) continue;
-    let tr=0, ges=0; for(let i=0;i<=12;i++) for(let j=0;j<=12;j++){ ges++; const d=ds5(Q,lam,x0+zw*i/12,y0+zh*j/12), r=d-Math.floor(d); if(ziel==="ruhe"?Math.abs(r-.5)<.1:(r<.1||r>.9)) tr++; }
-    if(tr/ges>.08&&tr/ges<.4) return [x0,y0,x0+zw,y0+zh]; } return null; }
 function quellen5(g,lam){ return [[30,100-g*lam/2],[30,100+g*lam/2]]; }
 function zweiFeld5(Q,lam,ph=0,aus=false){ return feld5({W:300,H:200,z:2.5,lam,q:aus?[[Q[0][0],Q[0][1],0,1]]:[[Q[0][0],Q[0][1],0,1],[Q[1][0],Q[1][1],ph,1]]}); }
 function erreger5(ctx,V,Q,aus){ Q.forEach((p,i)=>{ const an=!(aus&&i===1); if(an) perle(ctx,V.X(p[0]),V.Y(p[1]),i?B3.b:B3.a,16); ctx.fillStyle=an?(i?B3.b:B3.a):B3.dim; ctx.beginPath(); ctx.arc(V.X(p[0]),V.Y(p[1]),5,0,TAU); ctx.fill(); label(ctx,i?"E₂":"E₁",V.X(p[0])+9,V.Y(p[1])-8,"#fff","left",700,12); }); }
-function karteTask(o){ return {_o:o,run(api){ const lam=30, Q=quellen5(o.g,lam), F=zweiFeld5(Q,lam), L=linien5(Q,lam,0,300,200,2.5); let zone=o.zone?zone5(Q,lam,o.ziel):null, tipp=null, fertig=false, ok=false, msg="", V=null;
-  const was=o.ziel==="ruhe"?"<b>in Ruhe</b> bleibt":"<b>besonders stark</b> schwingt";
-  api.situation(`Zwei Erreger E₁ und E₂ schwingen im Gleichtakt. Ihr Abstand ist g = ${fmt(o.g)} λ.`); api.badge("Beobachten und tippen");
-  api.prompt(`Tippe auf eine Stelle, an der das Wasser ${was}.${zone?" Sie soll in der markierten Zone liegen.":""}`);
-  api.hint(o.ziel==="ruhe"?"Schau eine Weile hin. Wo Berg auf Tal trifft, bewegt sich das Wasser nicht.":"Schau eine Weile hin. Wo Berg auf Berg trifft, ist der Ausschlag doppelt so groß.");
-  const st=canvasFill(api.cv("b3 gross5 zieh"));
-  st.c._ziel=()=>{ if(!V) return null; const r=st.c.getBoundingClientRect(), z=zone||[50,6,294,194]; for(let n=0;n<4000;n++){ const x=z[0]+Math.random()*(z[2]-z[0]), y=z[1]+Math.random()*(z[3]-z[1]), d=ds5(Q,lam,x,y), rr=d-Math.floor(d);
-    if(o.ziel==="ruhe"?Math.abs(rr-.5)<.04:(rr<.04||rr>.96)) return {r:[r.left+V.X(x),r.top+V.Y(y)]}; } return null; };
-  st.c.addEventListener("pointerdown",e=>{ if(fertig||!V) return; e.preventDefault(); const r=st.c.getBoundingClientRect(), x=V.x(e.clientX-r.left), y=V.y(e.clientY-r.top);
-    if(x<0||x>300||y<0||y>200) return; if(x<48){ msg="Tippe weiter rechts, nicht direkt bei den Erregern."; return; }
-    if(zone&&(x<zone[0]||x>zone[2]||y<zone[1]||y>zone[3])){ msg="Tippe in die markierte Zone."; return; }
-    tipp=[x,y]; fertig=true; const d=ds5(Q,lam,x,y); ok=trifft5(o.ziel,d); effekt3(st,ok);
-    api.feedback(ok,`An deiner Stelle ist Δs = ${z2(d)} λ. ${o.ziel==="ruhe"?"Ruhe gibt es bei Δs = (2k − 1) · λ/2, also bei 0,5 λ, 1,5 λ, 2,5 λ, … Dort trifft Berg auf Tal.":"Verstärkung gibt es bei Δs = k · λ, also bei 0, 1 λ, 2 λ, … Dort trifft Berg auf Berg."} Jetzt siehst du die Laut-leise-Karte: dunkel = Ruhe, hell = starke Schwingung, weiß = Knotenlinien.`);
-    api.finish(ok); });
-  loop(t=>{ buehne(st); const {ctx,w,h}=st; V=vbox5(st); feld5Malen(st,V,F,t,{f:.55,mittel:fertig}); ctx.save(); vclip5(ctx,V);
-    if(fertig) linien5Malen(ctx,V,L,true);
-    if(zone){ ctx.fillStyle=rgba3(B3.mark,.08); ctx.fillRect(V.X(zone[0]),V.Y(zone[1]),(zone[2]-zone[0])*V.s,(zone[3]-zone[1])*V.s); ctx.strokeStyle=B3.mark; ctx.lineWidth=2.5; ctx.setLineDash([9,6]); ctx.strokeRect(V.X(zone[0]),V.Y(zone[1]),(zone[2]-zone[0])*V.s,(zone[3]-zone[1])*V.s); ctx.setLineDash([]); label(ctx,"Zone",V.X(zone[0])+6,V.Y(zone[1])+15,B3.mark,"left",700,11); }
-    erreger5(ctx,V,Q); ctx.restore();
-    if(tipp){ const x=V.X(tipp[0]), y=V.Y(tipp[1]); ctx.strokeStyle=ok?B3.ok:B3.bad; ctx.lineWidth=3; ctx.beginPath(); ctx.arc(x,y,11,0,TAU); ctx.stroke(); schild5(ctx,`Δs = ${z2(ds5(Q,lam,tipp[0],tipp[1]))} λ`,x,y+(y>h-40?-18:32),"#fff",12,"center"); }
-    schild5(ctx,msg||(fertig?"Zeitmittel: dunkel = Ruhe, hell = stark":"Momentbild: hell = Berg, dunkel = Tal"),w/2,h-8,msg?B3.mark:B3.txt,12,"center"); }); }};}
-function karteL1(){ return shuffle([{ziel:"ruhe"},{ziel:"ruhe",zone:1},{ziel:"stark"},{ziel:"ruhe",zone:1},{ziel:"stark",zone:1}]).map(x=>karteTask(Object.assign({g:one([2,2.5,3,3.5])},x))); }
-function karteL2(){ const zu=it=>mcTask(it), ruhe="Das Wasser bleibt in Ruhe.", stark="Das Wasser schwingt besonders stark.", halb="Das Wasser schwingt mit halber Amplitude.";
-  const gen=()=>{ const f=one([8,10,16]), lam=24/f, m=one([3,4,5]), s1=one([8,9,10,11,12]), ds=m*lam/2, s2=s1+ds, r=m%2===1, cm=v=>fmt(+v.toFixed(2))+" cm";
-    return zu({sit:`In der Wellenwanne schwingen zwei Erreger im Gleichtakt mit f = ${f} Hz. Die Wellen laufen mit c = 24 cm/s. Ein Punkt P ist s₁ = ${cm(s1)} vom einen und s₂ = ${cm(s2)} vom anderen Erreger entfernt.`,q:"Was beobachtest du bei P?",keepOrder:true,
-      opts:[{t:ruhe,ok:r,fb:"Δs ist ein ganzzahliges Vielfaches von λ: Berg trifft auf Berg."},{t:stark,ok:!r,fb:"Δs ist ein ungeradzahliges Vielfaches von λ/2: Berg trifft auf Tal."},{t:halb,fb:"Bei gleich starken Wellen gibt es entweder Ruhe, Verstärkung oder etwas dazwischen. Ist Δs ein Vielfaches von λ/2, gibt es entweder Ruhe oder Verstärkung."}],
-      erkl:`λ = c / f = 24 cm/s : ${f} Hz = ${cm(lam)}. Δs = ${cm(s2)} − ${cm(s1)} = ${cm(ds)} = ${fmt(m/2)} λ. ${r?"Das ist (2k − 1) · λ/2: Auslöschung.":"Das ist k · λ: Verstärkung."}`}); };
-  return shuffle([gen(),gen(),
-    zu({sit:"In der Wellenwanne schwingen zwei Erreger im Gleichtakt mit f = 12 Hz. Die Wellen laufen mit c = 30 cm/s. Ein Punkt P ist s₁ = 10,0 cm vom einen und s₂ = 13,75 cm vom anderen Erreger entfernt.",q:"Was beobachtest du bei P?",keepOrder:true,
-      opts:[{t:ruhe,ok:true},{t:stark,fb:"Für Verstärkung müsste Δs ein ganzzahliges Vielfaches von λ sein."},{t:halb,fb:"Rechne erst λ aus und vergleiche dann Δs mit λ/2."}],erkl:"λ = c / f = 30 cm/s : 12 Hz = 2,5 cm. Δs = 13,75 cm − 10,0 cm = 3,75 cm = 1,5 λ = (2k − 1) · λ/2 mit k = 2: Auslöschung."}),
-    zu({sit:"Zwei Lautsprecher spielen im Gleichtakt einen Ton mit f = 686 Hz. Rechne mit c = 343 m/s. Du stehst 4,00 m vom einen und 5,25 m vom anderen entfernt.",q:"Was hörst du?",
-      opts:[{t:"Es ist leise.",ok:true},{t:"Es ist besonders laut.",fb:"Δs = 2,5 λ ist kein ganzzahliges Vielfaches von λ."},{t:"Der Ton klingt eine Oktave höher.",fb:"Die Frequenz ändert sich durch Interferenz nicht."}],erkl:"λ = c / f = 343 m/s : 686 Hz = 0,50 m. Δs = 1,25 m = 2,5 λ = (2k − 1) · λ/2 mit k = 3: Auslöschung."}),
-    zu({sit:"Zwei Erreger schwingen im Gleichtakt. Ihr Abstand ist g = 2 λ.",q:"Wie viele Knotenlinien gibt es?",
-      opts:opts4([{t:"4",ok:true},{t:"2",fb:"Auch Δs = 3λ/2 ist kleiner als g = 2 λ."},{t:"3",fb:"Jede Knotenlinie gibt es zweimal, links und rechts der Mittelsenkrechten."},{t:"5",fb:"Auf der Mittelsenkrechten ist Δs = 0: Dort ist Verstärkung."}]),
-      erkl:"Ruhe bei Δs = λ/2 und 3λ/2, beide kleiner als g. Jede gibt es auf beiden Seiten der Mittelsenkrechten: 4 Knotenlinien. Größer als g kann Δs nicht werden."}),
-    zu({sit:"Zwei Lautsprecher spielen im Gleichtakt einen Ton mit f = 1,0 kHz. Rechne mit c = 343 m/s.",q:"Wie groß ist der kleinste Gangunterschied, bei dem es leise wird?",
-      opts:opts4([{t:"17,2 cm",ok:true},{t:"34,3 cm",fb:"Das ist λ. Bei Δs = λ ist es laut."},{t:"8,6 cm",fb:"Das ist λ/4."},{t:"51,5 cm",fb:"Das ist 3λ/2, nicht der kleinste Wert."}]),
-      erkl:"λ = c / f = 343 m/s : 1000 Hz = 34,3 cm. Kleinster Gangunterschied für Auslöschung: Δs = λ/2 = 17,2 cm (k = 1)."}),
-    zu({sit:"Zwei Erreger im Gleichtakt sind g = 3,3 cm voneinander entfernt. Die Wellen haben λ = 1,2 cm.",q:"Wie viele Knotenlinien gibt es?",
-      opts:opts4([{t:"6",ok:true},{t:"4",fb:"Auch Δs = 3,0 cm ist noch kleiner als g."},{t:"3",fb:"Jede Knotenlinie gibt es zweimal, links und rechts der Mittelsenkrechten."},{t:"5",fb:"Auf der Mittelsenkrechten ist Verstärkung, keine Knotenlinie."}]),
-      erkl:"Ruhe bei Δs = 0,6 cm, 1,8 cm und 3,0 cm, alle kleiner als g = 3,3 cm. Je zwei Linien: 6 Knotenlinien."})]).slice(0,PRO_LEVEL); }
+/* Ab hier geht es um das ganze Muster (Kapitel 3 behandelt den Gangunterschied an einem Punkt):
+   Zahl der Knotenlinien aus g / λ und die Wellenlänge aus dem Winkel einer Knotenlinie. */
+// Gleichtakt: Ruhe bei Δs = (2k − 1) · λ/2, solange das kleiner als g ist; jede Linie gibt es oberhalb und unterhalb der Mittelsenkrechten
+const knotenZahl5=gl=>2*Math.floor(gl+.5);
+const zahl5=v=>{ v=+v; const eine=Math.abs(v*10-Math.round(v*10))<1e-6; return fmt(v.toFixed(eine?1:2)); };   // 2,0 · 4,5 · 0,75 · 2,05
+// y der k. Knotenlinie (obere Hälfte) an der Stelle x: Hyperbel mit den Erregern als Brennpunkten (virtuelle Einheiten)
+function knotenY5(gv,lv,k,x){ const a=(2*k-1)*lv/4, c=gv/2; if(a>=c) return null; const b=Math.sqrt(c*c-a*a); return 100-a*Math.sqrt(1+(x-30)*(x-30)/(b*b)); }
+function gPfeil5(ctx,V,Q){ const x=V.X(Q[0][0]-16); darrow(ctx,x,V.Y(Q[0][1]),x,V.Y(Q[1][1]),"#fff",1.8); label(ctx,"g",x-6,V.Y(100)+5,"#fff","right",700,13); }
+function ruhig5(st,V){ st.ctx.fillStyle="rgb(29,85,156)"; st.ctx.fillRect(V.X(0),V.Y(0),300*V.s,200*V.s); }
+// Nummern der Knotenlinien (obere Hälfte) am Bildrand: rechts, oder oben, wenn die Linie vorher den oberen Rand erreicht
+function kNummern5(ctx,V,gv,lv){ for(let k=1;k<9;k++){ const a=(2*k-1)*lv/4, c=gv/2; if(a>=c) break; const b=Math.sqrt(c*c-a*a); let x=286, y=knotenY5(gv,lv,k,286);
+  if(y<12){ y=12; x=30+b*Math.sqrt(Math.pow(88/a,2)-1); if(x<44) break; }
+  ctx.fillStyle="rgba(5,10,20,.8)"; ctx.beginPath(); ctx.arc(V.X(x),V.Y(y),9,0,TAU); ctx.fill(); label(ctx,String(k),V.X(x),V.Y(y)+4.5,"#fff","center",700,12); } }
+// Level 1a · Zahl der Knotenlinien vorhersagen
+const KV5=[
+  {g:4.5,lam:2.0,u:"cm",sit:"In der Wellenwanne schwingen zwei Erreger im Gleichtakt. Ihr Abstand ist g = 4,5 cm, die Wellen haben λ = 2,0 cm."},
+  {g:6.0,lam:2.0,u:"cm",rech:"λ = c / f = 24 cm/s : 12 Hz = 2,0 cm.",sit:"Zwei Erreger im Gleichtakt sind g = 6,0 cm voneinander entfernt. Sie schwingen mit f = 12 Hz, die Wellen laufen mit c = 24 cm/s."},
+  {g:1.2,lam:.5,u:"m",rech:"λ = c / f = 343 m/s : 686 Hz = 0,50 m.",sit:"Zwei Lautsprecher stehen g = 1,20 m auseinander und spielen im Gleichtakt einen Ton mit f = 686 Hz. Rechne mit c = 343 m/s."},
+  {g:3.0,lam:4.0,u:"cm",sit:"Zwei Erreger im Gleichtakt sind g = 3,0 cm voneinander entfernt. Die Wellen haben λ = 4,0 cm."},
+  {g:1.5,lam:4.0,u:"cm",sit:"Zwei Erreger im Gleichtakt sind nur g = 1,5 cm voneinander entfernt. Die Wellen haben λ = 4,0 cm."},
+  {g:8.0,lam:2.0,u:"cm",rech:"λ = c / f = 30 cm/s : 15 Hz = 2,0 cm.",sit:"Zwei Erreger im Gleichtakt sind g = 8,0 cm voneinander entfernt. Sie schwingen mit f = 15 Hz, die Wellen laufen mit c = 30 cm/s."},
+  {g:5.0,lam:1.5,u:"cm",rech:"λ = c / f = 30 cm/s : 20 Hz = 1,5 cm.",sit:"Zwei Erreger im Gleichtakt sind g = 5,0 cm voneinander entfernt. Sie schwingen mit f = 20 Hz, die Wellen laufen mit c = 30 cm/s."}];
+function knotenVorher5(it){ const lv=30, gl=it.g/it.lam, Q=quellen5(gl,lv), N=knotenZahl5(gl), U=v=>zahl5(v)+" "+it.u; let X=null;
+  const werte=[...Array(N/2+1)].map((_,i)=>(2*i+1)*it.lam/2), liste=werte.slice(0,N/2).map(U).join("; ");
+  const erkl=`${it.rech?it.rech+" ":""}Ruhe gibt es bei Δs = (2k − 1) · λ/2, aber Δs kann nicht größer als g = ${U(it.g)} werden. ${N?`Kleiner als g sind: ${liste}. ${U(werte[N/2])} ist schon zu groß. Jede dieser Knotenlinien gibt es oberhalb und unterhalb der Mittelsenkrechten: ${N} Knotenlinien.`:`Schon λ/2 = ${U(werte[0])} ist größer als g: Es gibt keine Knotenlinie.`}`;
+  return mcTask({sit:it.sit,q:"Wie viele Knotenlinien entstehen?",badge:"Vorhersagen",erkl,
+    opts:opts4([{t:String(N),ok:true},{t:String(N/2),fb:"Jede Knotenlinie gibt es zweimal: oberhalb und unterhalb der Mittelsenkrechten."},{t:String(N+1),fb:"Auf der Mittelsenkrechten ist Δs = 0: Dort ist Verstärkung, keine Knotenlinie."},{t:String(N+2),fb:"Prüfe, welche Werte (2k − 1) · λ/2 wirklich kleiner als g sind."}]),
+    viz:api=>{ api.situation(it.sit); const st=canvasFill(api.cv("b3 gross5")); let zeig=false;
+      loop(t=>{ buehne(st); const V=vbox5(st), {ctx}=st; if(zeig) feld5Malen(st,V,X.F,t,{mittel:true}); else ruhig5(st,V); ctx.save(); vclip5(ctx,V); if(zeig) linien5Malen(ctx,V,X.L,false); erreger5(ctx,V,Q); gPfeil5(ctx,V,Q); ctx.restore();
+        schild5(ctx,zeig?`Laut-leise-Karte: ${N} Knotenlinien (weiß)`:"Erst vorhersagen, dann zeigt sich das Muster.",st.w/2,st.h-8,zeig?"#fff":B3.txt,12,"center"); });
+      return {reveal(){ X={F:zweiFeld5(Q,lv),L:linien5(Q,lv,0,300,200,2.5)}; zeig=true; }}; }}); }
+// Level 1b · Abstand g so einstellen, dass genau N Knotenlinien entstehen (das Muster bleibt bis zum Prüfen verborgen)
+function knotenStell5(N,lam){ return {run(api){ const lv=30, gmax=+(4*lam).toFixed(1); let g=+(N/2*lam+(Math.random()<.5?-1:1)*lam*(.9+Math.random()*.4)).toFixed(1), fertig=false, X=null;
+  g=klemm(g,.5,gmax);
+  api.situation(`Zwei Erreger im Gleichtakt. Die Wellen haben λ = ${zahl5(lam)} cm. Du kannst den Abstand g der Erreger verstellen.`); api.badge("Einstellen");
+  api.prompt(`Stell g so ein, dass genau <b>${N} Knotenlinien</b> entstehen.`); api.hint("Das Muster siehst du erst nach dem Prüfen. Welche Werte (2k − 1) · λ/2 müssen kleiner als g sein, welcher nicht mehr?");
+  const st=canvasFill(api.cv("b3 gross5")), pr=el("button",{class:"btn"},"Prüfen");
+  const rng=regler5(api.body,{name:"Abstand g",min:.5,max:gmax,step:.1,wert:g,txt:v=>`g = ${zahl5(v)} cm`,bei:v=>{ if(!fertig) g=v; }}); api.actions.appendChild(pr);
+  st.c._soll=()=>N/2*lam; st.c._falsch=()=>N/2*lam+lam; st.c._regler=rng;
+  pr.addEventListener("click",()=>{ if(fertig) return; fertig=true; pr.disabled=true; rng.disabled=true; const gl=g/lam, M=knotenZahl5(gl), ok=gl>N/2-.5+.02&&gl<N/2+.5-.02;
+    X={F:zweiFeld5(quellen5(gl,lv),lv),L:linien5(quellen5(gl,lv),lv,0,300,200,2.5)}; effekt3(st,ok);
+    api.feedback(ok,`Für ${N} Knotenlinien müssen genau ${N/2} Werte (2k − 1) · λ/2 kleiner als g sein, der nächste nicht mehr: ${zahl5((N-1)*lam/2)} cm < g < ${zahl5((N+1)*lam/2)} cm. ${ok?"":`Bei g = ${zahl5(g)} cm entstehen ${M} Knotenlinien.`}`); api.finish(ok); });
+  loop(t=>{ buehne(st); const V=vbox5(st), {ctx}=st, Q=quellen5(g/lam,lv); if(X) feld5Malen(st,V,X.F,t,{mittel:true}); else ruhig5(st,V); ctx.save(); vclip5(ctx,V); if(X) linien5Malen(ctx,V,X.L,false); erreger5(ctx,V,Q); gPfeil5(ctx,V,Q); ctx.restore();
+    schild5(ctx,X?`g = ${zahl5(g)} cm: ${knotenZahl5(g/lam)} Knotenlinien`:`g = ${zahl5(g)} cm   λ = ${zahl5(lam)} cm`,st.w/2,st.h-8,X?"#fff":B3.txt,12,"center"); }); }};}
+function karteL1(){ const a=pick(KV5,3).map(knotenVorher5), b=shuffle([[2,2],[4,1.5],[4,2.5],[6,1.5],[6,2]]).slice(0,2).map(([N,l])=>knotenStell5(N,l)); return shuffle(a.concat(b)); }
+// Level 2 · Winkel einer Knotenlinie messen, dann g · sin αₖ = (2k − 1) · λ/2 (Formelsammlung S. 35, Doppelspalt)
+const MS5=[{g:4.0,lam:2.0,k:1},{g:4.0,lam:2.0,k:2},{g:6.0,lam:2.0,k:2},{g:5.0,lam:3.0,k:1},{g:5.0,lam:2.0,k:2},{g:6.0,lam:2.0,k:1,f:12},{g:4.5,lam:3.0,k:1,f:8},{g:5.0,lam:2.0,k:1,f:15},{g:3.5,lam:2.0,k:1,f:10}];
+const cms5=v=>fmt(+(+v).toPrecision(3))+" cm/s";
+function messTask5(o){ return {_o:o,run(api){ const lv=30, gl=o.g/o.lam, gv=gl*lv, Q=quellen5(gl,lv), X={F:zweiFeld5(Q,lv),L:linien5(Q,lv,0,300,200,2.5)}, M=[30,100], aw=Math.asin((2*o.k-1)/(2*gl)); let th=null, gemessen=false, okM=false, V=null;
+  api.situation(`Zwei Erreger im Gleichtakt, Abstand g = ${zahl5(o.g)} cm.${o.f?` Sie schwingen mit f = ${o.f} Hz.`:""} Weiß: die Knotenlinien.`); api.badge("Messen und rechnen");
+  api.prompt(`Leg den Messstrahl auf die <b>${o.k}. Knotenlinie</b> oberhalb der Mittelsenkrechten.`); api.hint("Zieh den Strahl mit dem Finger. Gezählt wird von der Mittelsenkrechten aus. Weit weg verläuft die Knotenlinie fast gerade.");
+  const st=canvasFill(api.cv("b3 gross5 zieh")), mb=el("button",{class:"btn"},"Gemessen"); mb.disabled=true; api.actions.appendChild(mb);
+  ziehbar(st.c,(x,y)=>{ if(gemessen||!V) return; const vx=V.x(x)-M[0], vy=M[1]-V.y(y); if(vx<4) return; th=klemm(Math.atan2(vy,vx),0,85*D5); mb.disabled=false; });
+  st.c._mess=true; st.c._ziel=()=>{ if(!V) return null; const r=st.c.getBoundingClientRect(), R=190, P=a=>[r.left+V.X(M[0]+R*Math.cos(a)),r.top+V.Y(M[1]-R*Math.sin(a))]; return {r:P(aw),f:P(aw+.25)}; };
+  mb.addEventListener("click",()=>{ if(gemessen||th===null) return; gemessen=true; mb.remove(); okM=Math.abs(th-aw)<=3*D5; const ag=Math.round(aw/D5), s=Math.sin(ag*D5), m=2*o.k-1, lamR=2*o.g*s/m;
+    api.prompt(`${okM?`Gut gemessen: α ≈ ${ag}°.`:`Die ${o.k}. Knotenlinie liegt bei α ≈ ${ag}°.`} ${o.f?"Wie groß ist die Ausbreitungsgeschwindigkeit c?":"Wie groß ist die Wellenlänge λ?"}`);
+    api.hint("Formelsammlung S. 35 (Doppelspalt), Bedingung für Ruhe: g · sin αₖ = (2k − 1) · λ/2.");
+    const W=v=>o.f?cms5(v*o.f):zahl5(v)+" cm";
+    const op=[{t:W(lamR),ok:true},{t:W(o.g*s/m),fb:"Das ist λ/2. Rechts steht (2k − 1) · λ/2."},{t:W(o.g*s/o.k),fb:"Das ist die Bedingung für Verstärkung (k · λ), nicht für Ruhe."},{t:W(o.k===1?2*o.g*Math.cos(ag*D5):2*o.g*s),fb:o.k===1?"α wird zur Mittelsenkrechten gemessen, dazu gehört der Sinus.":`Für die ${o.k}. Knotenlinie ist 2k − 1 = ${m}.`}];
+    wahl3(api,opts4(op),c=>{ const ok=okM&&!!c.ok; effekt3(st,ok);
+      api.feedback(ok,`${okM?"":`Dein Strahl lag bei ${Math.round(th/D5)}°, die Knotenlinie bei ${ag}°. `}${c.ok?"":c.fb+" "}λ = 2 · g · sin α / (2k − 1) = 2 · ${zahl5(o.g)} cm · sin ${ag}° / ${m} ≈ ${zahl5(lamR)} cm.${o.f?` Dann ist c = λ · f ≈ ${zahl5(lamR)} cm · ${o.f} Hz ≈ ${cms5(lamR*o.f)}.`:""}`); api.finish(ok); }); });
+  loop(t=>{ buehne(st); V=vbox5(st); const {ctx}=st, Mp=V.P(M); feld5Malen(st,V,X.F,t,{mittel:true}); ctx.save(); vclip5(ctx,V); linien5Malen(ctx,V,X.L,false); erreger5(ctx,V,Q); lot5(ctx,Mp,V.P([300,100]),B3.txt); kNummern5(ctx,V,gv,lv);
+    if(gemessen) strich(ctx,[Mp,V.P([M[0]+400*Math.cos(aw),M[1]-400*Math.sin(aw)])],B3.ok,2.5,[8,6],.95);
+    if(th!==null){ const E=V.P([M[0]+400*Math.cos(th),M[1]-400*Math.sin(th)]); ctx.strokeStyle=B3.mark; ctx.lineWidth=3; ctx.beginPath(); ctx.moveTo(Mp[0],Mp[1]); ctx.lineTo(E[0],E[1]); ctx.stroke();
+      ctx.lineWidth=2; ctx.beginPath(); ctx.arc(Mp[0],Mp[1],44,-th,0); ctx.stroke(); const R2=V.P([M[0]+150*Math.cos(th),M[1]-150*Math.sin(th)]); ctx.fillStyle=B3.mark; ctx.beginPath(); ctx.arc(R2[0],R2[1],9,0,TAU); ctx.fill(); }
+    ctx.restore();
+    schild5(ctx,th===null?"Zieh den Messstrahl vom Mittelpunkt aus":`α = ${Math.round(th/D5)}°`,th===null?st.w/2:Mp[0]+56,th===null?st.h-8:Mp[1]-8,B3.mark,13,th===null?"center":"left"); }); }};}
+function karteL2(){ return pick(MS5,PRO_LEVEL).map(messTask5); }
 const C5_L3=[
   {sit:"Die Frequenz beider Erreger wird verdoppelt.",q:"Was passiert mit den Knotenlinien?",ok:"Es gibt mehr, und sie liegen dichter.",f:["Es gibt weniger, und sie liegen weiter auseinander.","Sie bleiben, wie sie sind."],e:"λ = c / f halbiert sich. Bei gleichem g passen mehr Gangunterschiede (2k − 1) · λ/2 unter g: mehr Knotenlinien.",vor:{g:2},nach:{g:2,lamF:.5}},
   {sit:"Die Erreger werden weiter auseinandergerückt. Die Frequenz bleibt gleich.",q:"Was passiert mit den Knotenlinien?",ok:"Es kommen Knotenlinien dazu.",f:["Es verschwinden Knotenlinien.","Sie rücken nach außen, ihre Zahl bleibt gleich."],e:"Die Zahl der Knotenlinien hängt von g / λ ab. Mit größerem g sind größere Gangunterschiede möglich.",vor:{g:1.5},nach:{g:3}},
@@ -3596,10 +3620,10 @@ const CH = {
     levels:[{name:"Huygens-Baukasten",info:"Elementarwellen wachsen lassen und die neue Front wählen.",make:eckeL1},
             {name:"Beugung am Spalt",info:"Hafen, Tür, Wellenwanne: d mit λ vergleichen und das passende Bild wählen.",make:eckeL2},
             {name:"Begründen",info:"Hausecke, Bässe, Hafenmole: Wähle die Erklärung, die wirklich trägt.",make:()=>pick(B5_L3,PRO_LEVEL).map(mc5)}]},
-  karte:{titel:"Interferenz in der Fläche", spiel:"Laut-leise-Karte", art:"Knotenlinien finden", kurz:"Ich kann Orte der Ruhe und der Verstärkung zweier Erreger bestimmen.",
-    intro:"Zwei Erreger schwingen im Gleichtakt. Du beobachtest das Wasser und tippst auf Stellen, an denen es ruhig bleibt oder besonders stark schwingt. Danach zeigt die Laut-leise-Karte alle Knotenlinien. Später rechnest du mit dem Gangunterschied und sagst voraus, was sich ändert.",
-    levels:[{name:"Ruhe oder Verstärkung",info:"Wasser beobachten und die richtige Stelle antippen.",make:karteL1},
-            {name:"Mit Δs rechnen",info:"Erst λ, dann Δs: Ruhe oder Verstärkung? Und wie viele Knotenlinien?",make:karteL2},
+  karte:{titel:"Interferenz in der Fläche", spiel:"Laut-leise-Karte", art:"Muster deuten und messen", kurz:"Ich kann die Zahl der Knotenlinien vorhersagen und λ aus dem Muster bestimmen.",
+    intro:"Zwei Erreger schwingen im Gleichtakt. Diesmal geht es nicht um einen einzelnen Punkt, sondern um das ganze Muster. Wie viele Knotenlinien entstehen? Mit einem Messstrahl bestimmst du aus dem Winkel einer Knotenlinie die Wellenlänge, genau wie später beim Doppelspalt mit Licht. Zum Schluss sagst du voraus, wie sich das Muster ändert.",
+    levels:[{name:"Knotenlinien vorhersagen",info:"Aus g und λ die Zahl der Knotenlinien bestimmen und g passend einstellen.",make:karteL1},
+            {name:"λ aus dem Muster messen",info:"Winkel einer Knotenlinie messen, dann g · sin αₖ = (2k − 1) · λ/2.",make:karteL2},
             {name:"Was, wenn …?",info:"Frequenz, Abstand, Gegentakt: erst vorhersagen, dann ansehen.",make:()=>pick(C5_L3,PRO_LEVEL).map(wasWenn5)}]}
 /*K5-ENDE*/
 };
